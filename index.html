@@ -22,7 +22,7 @@
           <label>source</label>
           <input type = "text"
                  id = "source"
-                 value = "camp" />
+                 value = "oql" />
         </p>
         <p>
           <label>target</label>
@@ -34,7 +34,11 @@
           <label>query</label>
           <textarea id = "query"
                     rows = "10"
-                    cols = "80" />punop AFlatten (pletIt ((pgetconstant "WORLD")) (pmap (pletEnv (pletIt (pletIt (punop (ACast ["entities.Customer"]) (pit)) (pleft)) (pletEnv (punop (ARec "c") (pit)) (pletEnv (passert (pbinop AEq (pletIt (punop AUnbrand (pit)) (pletIt (punop (ADot "age") (pit)) (pit))) (#` 32))) (pletIt (penv) (pit))))) (punop AColl (pbinop ASConcat (punop AToString (#` "Customer =")) (punop AToString (pletIt (pletIt (penv) (punop (ADot "c") (pit))) (pletIt (punop AUnbrand (pit)) (pletIt (punop (ADot "name") (pit)) (pit))))))))))</textarea>
+                    cols = "80" />/* Example of simple select-from-where */
+select p
+from p in Persons
+where p.age = 32
+</textarea>
         </p>
       </fieldset>
     </form>
