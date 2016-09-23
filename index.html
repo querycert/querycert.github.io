@@ -26,8 +26,13 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h2>Q*cert</h2>
-        <p>This is a demo for the <a href="http://github.com/querycert/qcert">Q*cert</a> verified query compiler.</p>
+        <div class="row">
+	  <h2>Q*cert</h2><p>This is a demo for the <a href="http://github.com/querycert/qcert">Q*cert</a> verified query compiler.</p>
+	  <!--
+	  <div class="col-sm-7"><h2>Q*cert</h2><p>This is a demo for the <a href="http://github.com/querycert/qcert">Q*cert</a> verified query compiler.</p></div>
+	  <div class="col-xs-5"><img class="img-responsive pull-right" src="qcert-pipeline.png"/></p></div>
+          -->
+	</div>
       </div>
 
       <form>
@@ -35,9 +40,9 @@
 	  <div class="form-group">
 	    <label for="source">source language</label>
 	    <select class="form-control" id="source">
-	      <option>oql</option>
 	      <option>rule</option>
 	      <option>camp</option>
+	      <option selected="selected">oql</option>
 	      <option>nra</option>
 	      <option>nraenv</option>
 	      <option>nnrc</option>
@@ -55,11 +60,11 @@
 	  <div class="form-group">
 	    <label for="target">target language</label>
 	    <select class="form-control" id="target">
-	      <option>nraenv</option>
-	      <option>oql</option>
 	      <option>rule</option>
 	      <option>camp</option>
+	      <option>oql</option>
 	      <option>nra</option>
+	      <option selected="selected">nraenv</option>
 	      <option>nnrc</option>
 	      <option>nnrcmr</option>
 	      <option>cldmr</option>
@@ -75,7 +80,7 @@
 	</div>
 	<div class="form-group">
 	  <label for="query">source query</label>
-	  <textarea class="form-control" id="query" rows="10">/* Example of simple select-from-where */
+	  <textarea class="form-control" id="query" rows="8">/* Example of simple select-from-where */
 select p
 from p in Persons
 where p.age = 32</textarea>
