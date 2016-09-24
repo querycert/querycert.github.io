@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Q*cert Demo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="./dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="row">
+	  <img class="img-responsive pull-right" src="qcert-logo.png" width="120"/><h2>Q*cert</h2><p>A demo for the <a href="http://github.com/querycert/qcert">Q*cert</a> query compiler.</p>
+	</div>
+      </div>
+
+      <form>
+	<div class="form-inline">
+	  <div class="form-group">
+	    <label for="source">source language</label>
+	    <select class="form-control" id="source">
+	      <option>rule</option>
+	      <option>camp</option>
+	      <option selected="selected">oql</option>
+	      <option>nra</option>
+	      <option>nraenv</option>
+	      <option>nnrc</option>
+	      <option>nnrcmr</option>
+	      <option>cldmr</option>
+	      <option>dnnrc</option>
+	      <option>dnnrc_typed</option>
+	      <option>js</option>
+	      <option>java</option>
+	      <option>spark</option>
+	      <option>spark2</option>
+	      <option>cloudant</option>
+	    </select>
+	  </div>
+	  <div class="form-group">
+	    <label for="target">target language</label>
+	    <select class="form-control" id="target">
+	      <option>rule</option>
+	      <option>camp</option>
+	      <option>oql</option>
+	      <option>nra</option>
+	      <option>nraenv</option>
+	      <option>nnrc</option>
+	      <option>nnrcmr</option>
+	      <option>cldmr</option>
+	      <option>dnnrc</option>
+	      <option>dnnrc_typed</option>
+	      <option selected="selected">js</option>
+	      <option>java</option>
+	      <option>spark</option>
+	      <option>spark2</option>
+	      <option>cloudant</option>
+	    </select>
+	  </div>
+	</div>
+	<div class="form-group">
+	  <label for="query">source query</label>
+	  <textarea class="form-control" id="query" rows="8">/* Example of simple select-from-where */
+select p
+from p in Persons
+where p.age = 32</textarea>
+	</div>
+	<div class="form-group text-right">
+	  <button type="button"
+		  onclick="compileButton()"
+		  class="btn btn-primary">compile</button>
+	</div>
+	<div class="form-group">
+	  <label for="result">compiled query</label>
+	  <pre id="result"></pre>
+	</div>
+      </form>
+      
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="./assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="./assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- Bootstrap Q*cert
+    ================================================== -->
+    <script src="qcertJS.js"></script>
+    <script>
+      var entityMap = {
+      	"&": "&amp;",
+      	"<": "&lt;",
+      	">": "&gt;",
+      	'"': '&quot;',
+      	"'": '&#39;',
+      	"/": '&#x2F;'
+      };
+	
+      function escapeHtml(string) {
+	return String(string).replace(/[&<>"'\/]/g, function (s) {
+	  return entityMap[s];
+	  });
+      }
+      function compileButton() {
+        var input = { 'source' : document.getElementById("source").value,
+                      'target' : document.getElementById("target").value,
+                      /* 'ascii' : if document.getElementByID("charset").value, */
+                      /* 'javaimports' : document.getElementById("java_imports").value, */
+                      'query' : document.getElementById("query").value };
+        document.getElementById("result").innerHTML = escapeHtml(main(input).result);
+      }
+      function clearButton() {
+        document.getElementById("result").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>

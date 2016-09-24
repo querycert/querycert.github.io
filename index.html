@@ -27,74 +27,49 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="row">
-	  <img class="img-responsive pull-right" src="qcert-logo.png" width="120"/><h2>Q*cert</h2><p>This is a demo for the <a href="http://github.com/querycert/qcert">Q*cert</a> verified query compiler.</p>
-	  <!--
-	  <div class="col-sm-7"><h2>Q*cert</h2><p>This is a demo for the <a href="http://github.com/querycert/qcert">Q*cert</a> verified query compiler.</p></div>
-	  <div class="col-xs-5"><img class="img-responsive pull-right" src="qcert-pipeline.png"/></p></div>
-          -->
+	  <img class="img-responsive pull-right" src="qcert-logo.png" width="120"/>
+	  <h2>Q*cert</h2>
+	  <p>An overview of the <a href="http://github.com/querycert/qcert">Q*cert</a> query compiler.</p>
 	</div>
       </div>
 
-      <form>
-	<div class="form-inline">
-	  <div class="form-group">
-	    <label for="source">source language</label>
-	    <select class="form-control" id="source">
-	      <option>rule</option>
-	      <option>camp</option>
-	      <option selected="selected">oql</option>
-	      <option>nra</option>
-	      <option>nraenv</option>
-	      <option>nnrc</option>
-	      <option>nnrcmr</option>
-	      <option>cldmr</option>
-	      <option>dnnrc</option>
-	      <option>dnnrc_typed</option>
-	      <option>js</option>
-	      <option>java</option>
-	      <option>spark</option>
-	      <option>spark2</option>
-	      <option>cloudant</option>
-	    </select>
-	  </div>
-	  <div class="form-group">
-	    <label for="target">target language</label>
-	    <select class="form-control" id="target">
-	      <option>rule</option>
-	      <option>camp</option>
-	      <option>oql</option>
-	      <option>nra</option>
-	      <option selected="selected">nraenv</option>
-	      <option>nnrc</option>
-	      <option>nnrcmr</option>
-	      <option>cldmr</option>
-	      <option>dnnrc</option>
-	      <option>dnnrc_typed</option>
-	      <option>js</option>
-	      <option>java</option>
-	      <option>spark</option>
-	      <option>spark2</option>
-	      <option>cloudant</option>
-	    </select>
-	  </div>
-	</div>
-	<div class="form-group">
-	  <label for="query">source query</label>
-	  <textarea class="form-control" id="query" rows="8">/* Example of simple select-from-where */
-select p
-from p in Persons
-where p.age = 32</textarea>
-	</div>
-	<div class="form-group text-right">
-	  <button type="button"
-		  onclick="compileButton()"
-		  class="btn btn-primary">compile</button>
-	</div>
-	<div class="form-group">
-	  <label for="result">compiled query</label>
-	  <pre id="result"></pre>
-	</div>
-      </form>
+      <h3>What is Q*cert?</h3>
+
+      <p>Q*cert is a query compiler written, and partially proven
+      correct, using the <a href="https://coq.inria.fr">Coq proof
+      assistant</a>. The compiler takes some input query and generates
+      code for execution. It supports several backends (notably: Java,
+      Javascript and Spark). Ultimately, the goal is to prove correct
+      the full compilation pipeline, ensuring that the generated code
+      behaves exactly as expected and returns the result as specified
+      by the query semantics.</p>
+
+      <h3>Q*cert Demo</h3>
+
+      <p>A small demo is available online. It is a simple way to get
+      acquainted with Q*cert. <a href="demo.html">Try it out!</a></p>
+
+      <h3>Q*cert Specification</h3>
+
+      <p>The code for the compiler is available as open-source
+      on <a href="https://github.com/querycert/qcert">github</a>.</p>
+
+      <p>A browsable version of the code is
+      available <a href="file:///Users/js/git/querycert.github.io/doc/QCert.Compiler.Top.CompDriver.html#CompDriver">here</a></p>
+      
+      <p>Here is the architecture for the compiler:</p>
+
+      <a href="qcert-pipeline.png"><img src="qcert-pipeline.png" width="400"/></a>
+
+      <p>Green boxes are for source query languages, pink boxes for
+      target languages and blue boxes for intermediate language used
+      within the compiler.</p>
+
+      <h3>Credits</h3>
+
+      <p>Q*cert has been developed at the IBM T.J. Watson Research
+      Center. Contributors are: Joshua Auerbach, Stefan Fehrenbach,
+      Martin Hirzel, Louis Mandel and Jerome Simeon</p>
       
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -106,35 +81,5 @@ where p.age = 32</textarea>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
 
-    <!-- Bootstrap Q*cert
-    ================================================== -->
-    <script src="qcertJS.js"></script>
-    <script>
-      var entityMap = {
-      	"&": "&amp;",
-      	"<": "&lt;",
-      	">": "&gt;",
-      	'"': '&quot;',
-      	"'": '&#39;',
-      	"/": '&#x2F;'
-      };
-	
-      function escapeHtml(string) {
-	return String(string).replace(/[&<>"'\/]/g, function (s) {
-	  return entityMap[s];
-	  });
-      }
-      function compileButton() {
-        var input = { 'source' : document.getElementById("source").value,
-                      'target' : document.getElementById("target").value,
-                      /* 'ascii' : if document.getElementByID("charset").value, */
-                      /* 'javaimports' : document.getElementById("java_imports").value, */
-                      'query' : document.getElementById("query").value };
-        document.getElementById("result").innerHTML = escapeHtml(main(input).result);
-      }
-      function clearButton() {
-        document.getElementById("result").innerHTML = "";
-      }
-    </script>
   </body>
 </html>
