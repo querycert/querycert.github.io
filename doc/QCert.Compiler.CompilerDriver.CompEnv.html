@@ -38,7 +38,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fdata</span>:<a class="idref" href="QCert.Basic.Data.ForeignData.html#foreign_data"><span class="id" title="class">foreign_data</span></a>}.<br/>
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="unwrap_result"><span class="id" title="definition">unwrap_result</span></a> <span class="id" title="var">res</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="lift_result"><span class="id" title="definition">lift_result</span></a> <span class="id" title="var">res</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#res"><span class="id" title="variable">res</span></a> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> (<a class="idref" href="QCert.Basic.Data.RData.html#dcoll"><span class="id" title="constructor">dcoll</span></a> <span class="id" title="var">l</span>) ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <span class="id" title="var">l</span><br/>
@@ -65,14 +65,8 @@
 <br/>
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="validate_rule_success"><span class="id" title="definition">validate_rule_success</span></a> (<span class="id" title="var">res</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="QCert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>)) <span class="id" title="var">exp</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#validate_success"><span class="id" title="definition">validate_success</span></a> <a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#res"><span class="id" title="variable">res</span></a> <a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#exp"><span class="id" title="variable">exp</span></a>.<br/>
-
-<br/>
-
-<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="validate_lifted_success"><span class="id" title="definition">validate_lifted_success</span></a> (<span class="id" title="var">res</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="QCert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) <span class="id" title="var">exp</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#validate_success"><span class="id" title="definition">validate_success</span></a> (<a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#unwrap_result"><span class="id" title="definition">unwrap_result</span></a> <a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#res"><span class="id" title="variable">res</span></a>) <a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#exp"><span class="id" title="variable">exp</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#validate_success"><span class="id" title="definition">validate_success</span></a> (<a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#lift_result"><span class="id" title="definition">lift_result</span></a> <a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#res"><span class="id" title="variable">res</span></a>) <a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#exp"><span class="id" title="variable">exp</span></a>.<br/>
 
 <br/>
 <span class="id" title="keyword">End</span> <a class="idref" href="QCert.Compiler.CompilerDriver.CompEnv.html#QEnv"><span class="id" title="section">QEnv</span></a>.<br/>

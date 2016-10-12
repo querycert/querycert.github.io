@@ -45,6 +45,7 @@
 &nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fboptyping</span>:<a class="idref" href="QCert.Basic.Typing.ForeignOpsTyping.html#foreign_binary_op_typing"><span class="id" title="class">foreign_binary_op_typing</span></a>}.<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fuoptyping</span>:<a class="idref" href="QCert.Basic.Typing.ForeignOpsTyping.html#foreign_unary_op_typing"><span class="id" title="class">foreign_unary_op_typing</span></a>}.<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fttjs</span>: <a class="idref" href="QCert.Backend.ForeignToJavascript.html#foreign_to_javascript"><span class="id" title="class">ForeignToJavascript.foreign_to_javascript</span></a>}.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fts</span>: <a class="idref" href="QCert.Backend.ForeignToScala.html#foreign_to_scala"><span class="id" title="class">ForeignToScala.foreign_to_scala</span></a>}.<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="quote_string"><span class="id" title="definition">quote_string</span></a> (<span class="id" title="var">s</span>: <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> :=<br/>
@@ -89,7 +90,7 @@ Get code for a Spark DataType corresping to an rtype.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"StructType(Seq(StructField(""$data"", StringType), StructField(""$type"", ArrayType(StringType))))"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.TypeSystem.RType.html#7cc9944a3f4eb4a106d78a2cc198b329"><span class="id" title="constructor">Arrow₀</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> ⇒ "ARROW TYPE?"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.TypeSystem.RType.html#3ea65a13bd04f74641c53ac838b522c3"><span class="id" title="constructor">Foreign₀</span></a> <span class="id" title="var">ft</span> ⇒ "FOREIGN TYPE?"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.TypeSystem.RType.html#3ea65a13bd04f74641c53ac838b522c3"><span class="id" title="constructor">Foreign₀</span></a> <span class="id" title="var">ft</span> ⇒ <a class="idref" href="QCert.Backend.ForeignToScala.html#foreign_to_scala_spark_datatype"><span class="id" title="method">foreign_to_scala_spark_datatype</span></a> <span class="id" title="var">ft</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
@@ -252,9 +253,9 @@ Scala-level type of an rtype.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a> ⇒ "UNBRAND_REQUIRED_TYPE_ISSUE"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.Operators.RUnaryOps.html#ADistinct"><span class="id" title="constructor">ADistinct</span></a> ⇒ <a class="idref" href="QCert.Backend.DNNRCtoScala.html#postfix"><span class="id" title="variable">postfix</span></a> "distinct"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.Operators.RUnaryOps.html#AForeignUnaryOp"><span class="id" title="constructor">AForeignUnaryOp</span></a> <span class="id" title="var">o</span> ⇒ <a class="idref" href="QCert.Backend.ForeignToScala.html#foreign_to_scala_unary_op"><span class="id" title="method">foreign_to_scala_unary_op</span></a> <span class="id" title="var">o</span> <a class="idref" href="QCert.Backend.DNNRCtoScala.html#x"><span class="id" title="variable">x</span></a><br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.Operators.RUnaryOps.html#AForeignUnaryOp"><span class="id" title="constructor">AForeignUnaryOp</span></a> <span class="id" title="var">_</span> ⇒ "AFOREIGNUNARYOP???"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.Operators.RUnaryOps.html#ARecRemove"><span class="id" title="constructor">ARecRemove</span></a> <span class="id" title="var">_</span> ⇒ "ARECREMOVE???"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.Operators.RUnaryOps.html#ASingleton"><span class="id" title="constructor">ASingleton</span></a> ⇒ "SINGLETON???"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.Operators.RUnaryOps.html#AUArith"><span class="id" title="constructor">AUArith</span></a> <a class="idref" href="QCert.Basic.Operators.RUnaryOps.html#ArithLog2"><span class="id" title="constructor">ArithLog2</span></a> ⇒ "LOG2???" <br/>
@@ -356,6 +357,7 @@ Scala-level type of an rtype.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <span class="id" title="var">rt</span> ⇒<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Specif.html#proj1_sig"><span class="id" title="definition">proj1_sig</span></a> <span class="id" title="var">rt</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.TypeSystem.RType.html#5944c2f2529c320b50c1c3199901a9cd"><span class="id" title="constructor">Nat₀</span></a> ⇒ ".map((row) =&gt; row.getLong(0))"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="QCert.Basic.TypeSystem.RType.html#3ea65a13bd04f74641c53ac838b522c3"><span class="id" title="constructor">Foreign₀</span></a> <span class="id" title="var">_</span> ⇒ ".map((row) =&gt; row.getFloat(0))" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">_</span> ⇒ "" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span><br/>
