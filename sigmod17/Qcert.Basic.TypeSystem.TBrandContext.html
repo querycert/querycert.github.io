@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.Basic.TypeSystem.TBrandContext</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.Basic.TypeSystem.TBrandContext</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="TBrandContext"><span class="id" title="section">TBrandContext</span></a>.<br/>
+
+<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Implicitly, everything derives from Any 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="Any"><span class="id" title="definition">Any</span></a> {<span class="id" title="var">ftype</span>:<a class="idref" href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type"><span class="id" title="class">foreign_type</span></a>} {<span class="id" title="var">br</span>:<a class="idref" href="Qcert.Basic.Data.BrandRelation.html#brand_relation"><span class="id" title="class">brand_relation</span></a>} := <a class="idref" href="Qcert.Basic.TypeSystem.RType.html#Brand"><span class="id" title="definition">Brand</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a name="TBrandContext.Brand_Context"><span class="id" title="section">Brand_Context</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">ftype</span>:<a class="idref" href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type"><span class="id" title="class">foreign_type</span></a>}.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">br</span>:<a class="idref" href="Qcert.Basic.Data.BrandRelation.html#brand_relation"><span class="id" title="class">brand_relation</span></a>}.<br/>
+</div>
+
+<div class="doc">
+Represents a mapping from brands to types 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a name="brand_context"><span class="id" title="record">brand_context</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mkBrand_context"><span class="id" title="constructor">mkBrand_context</span></a> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="brand_context_types"><span class="id" title="projection">brand_context_types</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="Qcert.Basic.TypeSystem.RType.html#rtype"><span class="id" title="definition">rtype</span></a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="brand_context_types_sorted"><span class="id" title="projection">brand_context_types_sorted</span></a> : <a class="idref" href="Qcert.Basic.Util.RSort.html#is_list_sorted"><span class="id" title="definition">is_list_sorted</span></a> <a class="idref" href="Qcert.Basic.Util.RBindings.html#ODT_lt_dec"><span class="id" title="method">ODT_lt_dec</span></a> (<a class="idref" href="Qcert.Basic.Util.RAssoc.html#domain"><span class="id" title="definition">domain</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types"><span class="id" title="method">brand_context_types</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="brand_context_nodup"><span class="id" title="lemma">brand_context_nodup</span></a> {<span class="id" title="var">m</span>:<a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context"><span class="id" title="class">brand_context</span></a>} : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Lists.List.html#NoDup"><span class="id" title="inductive">NoDup</span></a> (<a class="idref" href="Qcert.Basic.Util.RAssoc.html#domain"><span class="id" title="definition">domain</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types"><span class="id" title="method">brand_context_types</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="brand_context_ext"><span class="id" title="lemma">brand_context_ext</span></a> <span class="id" title="var">m</span> <span class="id" title="var">pf1</span> <span class="id" title="var">pf1'</span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#mkBrand_context"><span class="id" title="constructor">mkBrand_context</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#m"><span class="id" title="variable">m</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#pf1"><span class="id" title="variable">pf1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#mkBrand_context"><span class="id" title="constructor">mkBrand_context</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#m"><span class="id" title="variable">m</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#pf1'"><span class="id" title="variable">pf1'</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="brand_context_fequal"><span class="id" title="lemma">brand_context_fequal</span></a> {<span class="id" title="var">m₁</span> <span class="id" title="var">m₂</span>}:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;@<a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types"><span class="id" title="method">brand_context_types</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#879a6ba6f15173139038a2029de50c60"><span class="id" title="variable">m₁</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> @<a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types"><span class="id" title="method">brand_context_types</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#4b041d8a28913ae390e2057df5e8c495"><span class="id" title="variable">m₂</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#879a6ba6f15173139038a2029de50c60"><span class="id" title="variable">m₁</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#4b041d8a28913ae390e2057df5e8c495"><span class="id" title="variable">m₂</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="brand_context_Rec"><span class="id" title="definition">brand_context_Rec</span></a> (<span class="id" title="var">m</span>:<a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context"><span class="id" title="class">brand_context</span></a>) := <a class="idref" href="Qcert.Basic.TypeSystem.RType.html#Rec"><span class="id" title="definition">Rec</span></a> <span class="id" title="keyword">Open</span> <span class="id" title="var">_</span> (<a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types_sorted"><span class="id" title="method">brand_context_types_sorted</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="brand_context_Rec_inj"><span class="id" title="lemma">brand_context_Rec_inj</span></a> (<span class="id" title="var">m1</span> <span class="id" title="var">m2</span>:<a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context"><span class="id" title="class">brand_context</span></a>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_Rec"><span class="id" title="definition">brand_context_Rec</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#m1"><span class="id" title="variable">m1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_Rec"><span class="id" title="definition">brand_context_Rec</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#m2"><span class="id" title="variable">m2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#m1"><span class="id" title="variable">m1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#m2"><span class="id" title="variable">m2</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#TBrandContext.Brand_Context"><span class="id" title="section">Brand_Context</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Basic.TypeSystem.TBrandContext.html#TBrandContext"><span class="id" title="section">TBrandContext</span></a>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

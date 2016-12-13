@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.Backend.ForeignToJava</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.Backend.ForeignToJava</h1>
+
+<div class="code">
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="ForeigntoJava"><span class="id" title="section">ForeigntoJava</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="java_json"><span class="id" title="inductive">java_json</span></a> : <span class="id" title="keyword">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <a name="mk_java_json"><span class="id" title="constructor">mk_java_json</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="from_java_json"><span class="id" title="definition">from_java_json</span></a> (<span class="id" title="var">obj</span>:<a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Backend.ForeignToJava.html#obj"><span class="id" title="variable">obj</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Backend.ForeignToJava.html#mk_java_json"><span class="id" title="constructor">mk_java_json</span></a> <span class="id" title="var">s</span> ⇒ <span class="id" title="var">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="java_json_NULL"><span class="id" title="definition">java_json_NULL</span></a> : <a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.Backend.ForeignToJava.html#mk_java_json"><span class="id" title="constructor">mk_java_json</span></a> "JsonNull.INSTANCE".<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="mk_java_json_primitive"><span class="id" title="definition">mk_java_json_primitive</span></a> (<span class="id" title="var">obj</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) : <a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.Backend.ForeignToJava.html#mk_java_json"><span class="id" title="constructor">mk_java_json</span></a> ("new JsonPrimitive(" <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> <a class="idref" href="Qcert.Backend.ForeignToJava.html#obj"><span class="id" title="variable">obj</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> ")").<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="mk_java_json_nat"><span class="id" title="definition">mk_java_json_nat</span></a> <span class="id" title="var">n</span> : <a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.Backend.ForeignToJava.html#mk_java_json_primitive"><span class="id" title="definition">mk_java_json_primitive</span></a> (<a class="idref" href="Qcert.Basic.Util.Digits.html#Z_to_string10"><span class="id" title="definition">Z_to_string10</span></a> <a class="idref" href="Qcert.Backend.ForeignToJava.html#n"><span class="id" title="variable">n</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="mk_java_json_bool"><span class="id" title="definition">mk_java_json_bool</span></a> (<span class="id" title="var">b</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>) : <a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.Backend.ForeignToJava.html#mk_java_json_primitive"><span class="id" title="definition">mk_java_json_primitive</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="keyword">if</span> <a class="idref" href="Qcert.Backend.ForeignToJava.html#b"><span class="id" title="variable">b</span></a> <span class="id" title="keyword">then</span> "true" <span class="id" title="keyword">else</span> "false").<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="mk_java_json_string"><span class="id" title="definition">mk_java_json_string</span></a> <span class="id" title="var">quotel</span> (<span class="id" title="var">s</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.Backend.ForeignToJava.html#mk_java_json_primitive"><span class="id" title="definition">mk_java_json_primitive</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.Basic.Operators.RUtilOps.html#bracketString"><span class="id" title="definition">bracketString</span></a> <a class="idref" href="Qcert.Backend.ForeignToJava.html#quotel"><span class="id" title="variable">quotel</span></a> <a class="idref" href="Qcert.Backend.ForeignToJava.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="Qcert.Backend.ForeignToJava.html#quotel"><span class="id" title="variable">quotel</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a name="foreign_to_java"><span class="id" title="record">foreign_to_java</span></a> {<span class="id" title="var">fruntime</span>:<a class="idref" href="Qcert.Basic.ForeignRuntime.html#foreign_runtime"><span class="id" title="class">foreign_runtime</span></a>}: <span class="id" title="keyword">Type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <a name="mk_foreign_to_java"><span class="id" title="constructor">mk_foreign_to_java</span></a> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="foreign_to_java_data"><span class="id" title="projection">foreign_to_java_data</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">quotel</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) (<span class="id" title="var">fd</span>:<a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data_type"><span class="id" title="method">foreign_data_type</span></a>) : <a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <a name="foreign_to_java_unary_op"><span class="id" title="projection">foreign_to_java_unary_op</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">indent</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>) (<span class="id" title="var">eol</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">quotel</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) (<span class="id" title="var">fu</span>:<a class="idref" href="Qcert.Basic.Operators.ForeignOps.html#foreign_unary_op_type"><span class="id" title="method">foreign_unary_op_type</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">d</span>:<a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a>) : <a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <a name="foreign_to_java_binary_op"><span class="id" title="projection">foreign_to_java_binary_op</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">indent</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>) (<span class="id" title="var">eol</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">quotel</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) (<span class="id" title="var">fb</span>:<a class="idref" href="Qcert.Basic.Operators.ForeignOps.html#foreign_binary_op_type"><span class="id" title="method">foreign_binary_op_type</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">d1</span> <span class="id" title="var">d2</span>:<a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a>) : <a class="idref" href="Qcert.Backend.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Backend.ForeignToJava.html#ForeigntoJava"><span class="id" title="section">ForeigntoJava</span></a>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

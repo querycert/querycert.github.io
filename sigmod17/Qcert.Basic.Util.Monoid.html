@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.Basic.Util.Monoid</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.Basic.Util.Monoid</h1>
+
+<div class="code">
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="Monoid"><span class="id" title="section">Monoid</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Definition of monoids over collections, loosely based on ideas
+        from "Optimizing object queries using an effective
+        calculus. Leonidas Fegaras and David Maier. In ACM
+        Transactions on Database Systems (TODS) 25.4 (2000): 457-516."
+
+<div class="paragraph"> </div>
+
+      Some of the type classes structure follow from:
+        "A Gentle Introduction to Type Classes and Relations in
+        Coq. Pierre Castéran and Matthieu Sozeau" 
+</div>
+<div class="code">
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="associative"><span class="id" title="definition">associative</span></a> {<span class="id" title="var">A</span>} <span class="id" title="var">eqA</span> `{<span class="id" title="var">equivA</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>} (<span class="id" title="var">op</span> : <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">∀</span> <span class="id" title="var">x₁</span> <span class="id" title="var">x₂</span> <span class="id" title="var">x₃</span>, <a class="idref" href="Qcert.Basic.Util.Monoid.html#op"><span class="id" title="variable">op</span></a> (<a class="idref" href="Qcert.Basic.Util.Monoid.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#a2b3673cec6531323f2e669d630bc7d1"><span class="id" title="variable">x₁</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#e82a155eb364fc2d05d8a81e34f0aac5"><span class="id" title="variable">x₂</span></a>) <a class="idref" href="Qcert.Basic.Util.Monoid.html#b70d86439f30ac02dd56318565495315"><span class="id" title="variable">x₃</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Equivalence.html#19766200eef106fd337d8f9453224f75"><span class="id" title="notation">===</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#a2b3673cec6531323f2e669d630bc7d1"><span class="id" title="variable">x₁</span></a> (<a class="idref" href="Qcert.Basic.Util.Monoid.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#e82a155eb364fc2d05d8a81e34f0aac5"><span class="id" title="variable">x₂</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#b70d86439f30ac02dd56318565495315"><span class="id" title="variable">x₃</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="commutative"><span class="id" title="definition">commutative</span></a> {<span class="id" title="var">A</span>} <span class="id" title="var">eqA</span> `{<span class="id" title="var">equivA</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>} (<span class="id" title="var">op</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#binary_operation"><span class="id" title="definition">binary_operation</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">∀</span> <span class="id" title="var">x₁</span> <span class="id" title="var">x₂</span>, <a class="idref" href="Qcert.Basic.Util.Monoid.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#a2b3673cec6531323f2e669d630bc7d1"><span class="id" title="variable">x₁</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#e82a155eb364fc2d05d8a81e34f0aac5"><span class="id" title="variable">x₂</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Equivalence.html#19766200eef106fd337d8f9453224f75"><span class="id" title="notation">===</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#e82a155eb364fc2d05d8a81e34f0aac5"><span class="id" title="variable">x₂</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#a2b3673cec6531323f2e669d630bc7d1"><span class="id" title="variable">x₁</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="idempotent"><span class="id" title="definition">idempotent</span></a> {<span class="id" title="var">A</span>} <span class="id" title="var">eqA</span> `{<span class="id" title="var">equivA</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>} (<span class="id" title="var">op</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#binary_operation"><span class="id" title="definition">binary_operation</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">∀</span> <span class="id" title="var">x</span>, <a class="idref" href="Qcert.Basic.Util.Monoid.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Equivalence.html#19766200eef106fd337d8f9453224f75"><span class="id" title="notation">===</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#x"><span class="id" title="variable">x</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="anti_idempotent"><span class="id" title="definition">anti_idempotent</span></a> {<span class="id" title="var">A</span>} <span class="id" title="var">eqA</span> `{<span class="id" title="var">equivA</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>} (<span class="id" title="var">op</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#binary_operation"><span class="id" title="definition">binary_operation</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">∀</span> <span class="id" title="var">x</span>, <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#not"><span class="id" title="definition">not</span></a> (<a class="idref" href="Qcert.Basic.Util.Monoid.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Equivalence.html#19766200eef106fd337d8f9453224f75"><span class="id" title="notation">===</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#x"><span class="id" title="variable">x</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="zero_left"><span class="id" title="definition">zero_left</span></a> {<span class="id" title="var">A</span>} <span class="id" title="var">eqA</span> `{<span class="id" title="var">equivA</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>} (<span class="id" title="var">op</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#binary_operation"><span class="id" title="definition">binary_operation</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>) (<span class="id" title="var">z</span> : <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">∀</span> <span class="id" title="var">x</span>, <a class="idref" href="Qcert.Basic.Util.Monoid.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#z"><span class="id" title="variable">z</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Equivalence.html#19766200eef106fd337d8f9453224f75"><span class="id" title="notation">===</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#x"><span class="id" title="variable">x</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="zero_right"><span class="id" title="definition">zero_right</span></a> {<span class="id" title="var">A</span>} <span class="id" title="var">eqA</span> `{<span class="id" title="var">equivA</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>} (<span class="id" title="var">op</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#binary_operation"><span class="id" title="definition">binary_operation</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>) (<span class="id" title="var">z</span> : <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">∀</span> <span class="id" title="var">x</span>, <a class="idref" href="Qcert.Basic.Util.Monoid.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#z"><span class="id" title="variable">z</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Equivalence.html#19766200eef106fd337d8f9453224f75"><span class="id" title="notation">===</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#x"><span class="id" title="variable">x</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a name="Monoid"><span class="id" title="record">Monoid</span></a> (<span class="id" title="var">A</span>:<span class="id" title="keyword">Type</span>) (<span class="id" title="var">eqA</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><span class="id" title="keyword">Prop</span>) {<span class="id" title="var">equivB</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="merge"><span class="id" title="projection">merge</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="z"><span class="id" title="projection">z</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="merge_morphism"><span class="id" title="projection">merge_morphism</span></a> :&gt; <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>) <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a> ;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="z_morphism"><span class="id" title="projection">z_morphism</span></a> :&gt; <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>) <a class="idref" href="Qcert.Basic.Util.Monoid.html#z"><span class="id" title="method">z</span></a>;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="merge_assoc"><span class="id" title="projection">merge_assoc</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#associative"><span class="id" title="definition">associative</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="z_left"><span class="id" title="projection">z_left</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#zero_left"><span class="id" title="definition">zero_left</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#z"><span class="id" title="method">z</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="z_right"><span class="id" title="projection">z_right</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#zero_right"><span class="id" title="definition">zero_right</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#z"><span class="id" title="method">z</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Infix</span> <a name="3d1ad3ddea589a87a6d8097c878b0874"><span class="id" title="notation">&quot;</span></a>⊕" := <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a> (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 70). &nbsp;&nbsp;<span class="id" title="keyword">Infix</span> <a name="1e738a6ca8fe933c65613619bc0c85b0"><span class="id" title="notation">&quot;</span></a>ζ" := <a class="idref" href="Qcert.Basic.Util.Monoid.html#z"><span class="id" title="method">z</span></a> (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 70). 
+<br/>
+</div>
+
+<div class="doc">
+A collection monoid. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a name="CollMonoid"><span class="id" title="record">CollMonoid</span></a> {<span class="id" title="var">A</span> <span class="id" title="var">U</span>:<span class="id" title="keyword">Type</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">eqA</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><span class="id" title="keyword">Prop</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">monoid</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#Monoid"><span class="id" title="class">Monoid</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="unit"><span class="id" title="projection">unit</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#U"><span class="id" title="variable">U</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+A commutative monoid. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a name="CMonoid"><span class="id" title="record">CMonoid</span></a> {<span class="id" title="var">A</span>:<span class="id" title="keyword">Type</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">eqA</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><span class="id" title="keyword">Prop</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">monoid</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#Monoid"><span class="id" title="class">Monoid</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="c_merge_comm"><span class="id" title="projection">c_merge_comm</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#commutative"><span class="id" title="definition">commutative</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+An idempotent monoid. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a name="IMonoid"><span class="id" title="record">IMonoid</span></a> {<span class="id" title="var">A</span>:<span class="id" title="keyword">Type</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">eqA</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><span class="id" title="keyword">Prop</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">monoid</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#Monoid"><span class="id" title="class">Monoid</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="i_merge_idem"><span class="id" title="projection">i_merge_idem</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#idempotent"><span class="id" title="definition">idempotent</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+An anti-idempotent monoid. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a name="AIMonoid"><span class="id" title="record">AIMonoid</span></a> {<span class="id" title="var">A</span>:<span class="id" title="keyword">Type</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">eqA</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><span class="id" title="keyword">Prop</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">monoid</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#Monoid"><span class="id" title="class">Monoid</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="ai_merge_anti_idem"><span class="id" title="projection">ai_merge_anti_idem</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#anti_idempotent"><span class="id" title="definition">anti_idempotent</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+A commutative &amp; idempotent monoid. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a name="CIMonoid"><span class="id" title="record">CIMonoid</span></a> {<span class="id" title="var">A</span>:<span class="id" title="keyword">Type</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">eqA</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><span class="id" title="keyword">Prop</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">monoid</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#Monoid"><span class="id" title="class">Monoid</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="ci_merge_comm"><span class="id" title="projection">ci_merge_comm</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#commutative"><span class="id" title="definition">commutative</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="ci_merge_idem"><span class="id" title="projection">ci_merge_idem</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#idempotent"><span class="id" title="definition">idempotent</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+A commutative &amp; anti-idempotent monoid. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Class</span> <a name="CAIMonoid"><span class="id" title="record">CAIMonoid</span></a> {<span class="id" title="var">A</span>:<span class="id" title="keyword">Type</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">eqA</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><span class="id" title="keyword">Prop</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id" title="var">monoid</span>:<a class="idref" href="Qcert.Basic.Util.Monoid.html#Monoid"><span class="id" title="class">Monoid</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cai_merge_comm"><span class="id" title="projection">cai_merge_comm</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#commutative"><span class="id" title="definition">commutative</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cai_merge_idem"><span class="id" title="projection">cai_merge_idem</span></a>: <a class="idref" href="Qcert.Basic.Util.Monoid.html#anti_idempotent"><span class="id" title="definition">anti_idempotent</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#eqA"><span class="id" title="variable">eqA</span></a> <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Basic.Util.Monoid.html#Monoid"><span class="id" title="section">Monoid</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Infix</span> <a name="64a6660c5ed3e47856f7e7c848c9c807"><span class="id" title="notation">&quot;</span></a>⊕" := <a class="idref" href="Qcert.Basic.Util.Monoid.html#merge"><span class="id" title="method">merge</span></a> (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 70). <span class="id" title="keyword">Infix</span> <a name="076d9495db97fad2ed87f9b28a54c877"><span class="id" title="notation">&quot;</span></a>ζ" := <a class="idref" href="Qcert.Basic.Util.Monoid.html#z"><span class="id" title="method">z</span></a> (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 70). 
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
