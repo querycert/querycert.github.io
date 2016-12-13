@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.Basic.Operators.RBinaryOps</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.Basic.Operators.RBinaryOps</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="RBinaryOps"><span class="id" title="section">RBinaryOps</span></a>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fdata</span>:<a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data"><span class="id" title="class">foreign_data</span></a>}.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fbop</span>:<a class="idref" href="Qcert.Basic.Operators.ForeignOps.html#foreign_binary_op"><span class="id" title="class">foreign_binary_op</span></a>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="ArithBOp"><span class="id" title="inductive">ArithBOp</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a name="ArithPlus"><span class="id" title="constructor">ArithPlus</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a name="ArithMinus"><span class="id" title="constructor">ArithMinus</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a name="ArithMult"><span class="id" title="constructor">ArithMult</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a name="ArithMin"><span class="id" title="constructor">ArithMin</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a name="ArithMax"><span class="id" title="constructor">ArithMax</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a name="ArithDivide"><span class="id" title="constructor">ArithDivide</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a name="ArithRem"><span class="id" title="constructor">ArithRem</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="binOp"><span class="id" title="inductive">binOp</span></a> : <span class="id" title="keyword">Set</span> :=<br/>
+&nbsp;&nbsp;| <a name="AEq"><span class="id" title="constructor">AEq</span></a>: <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>                  <br/>
+&nbsp;&nbsp;| <a name="AConcat"><span class="id" title="constructor">AConcat</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>             <br/>
+&nbsp;&nbsp;| <a name="AMergeConcat"><span class="id" title="constructor">AMergeConcat</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>        <br/>
+&nbsp;&nbsp;| <a name="AAnd"><span class="id" title="constructor">AAnd</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>                <br/>
+&nbsp;&nbsp;| <a name="AOr"><span class="id" title="constructor">AOr</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>                 <br/>
+&nbsp;&nbsp;| <a name="ABArith"><span class="id" title="constructor">ABArith</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithBOp"><span class="id" title="inductive">ArithBOp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a> <br/>
+&nbsp;&nbsp;| <a name="ALt"><span class="id" title="constructor">ALt</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>                 <br/>
+&nbsp;&nbsp;| <a name="ALe"><span class="id" title="constructor">ALe</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>                 <br/>
+&nbsp;&nbsp;| <a name="AUnion"><span class="id" title="constructor">AUnion</span></a>: <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>               <br/>
+&nbsp;&nbsp;| <a name="AMinus"><span class="id" title="constructor">AMinus</span></a>: <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>               <br/>
+&nbsp;&nbsp;| <a name="AMin"><span class="id" title="constructor">AMin</span></a>: <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>                 <br/>
+&nbsp;&nbsp;| <a name="AMax"><span class="id" title="constructor">AMax</span></a>: <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>                 <br/>
+&nbsp;&nbsp;| <a name="AContains"><span class="id" title="constructor">AContains</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>           <br/>
+&nbsp;&nbsp;| <a name="ASConcat"><span class="id" title="constructor">ASConcat</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>            <br/>
+&nbsp;&nbsp;| <a name="AForeignBinaryOp"><span class="id" title="constructor">AForeignBinaryOp</span></a> (<span class="id" title="var">fb</span> : <a class="idref" href="Qcert.Basic.Operators.ForeignOps.html#foreign_binary_op_type"><span class="id" title="method">foreign_binary_op_type</span></a>) : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a><br/>
+&nbsp;&nbsp;.<br/>
+
+<br/>
+<span class="id" title="keyword">Global Instance</span> <a name="ArithBOp_eqdec"><span class="id" title="instance">ArithBOp_eqdec</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.EquivDec.html#EqDec"><span class="id" title="class">EqDec</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithBOp"><span class="id" title="inductive">ArithBOp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Global Instance</span> <a name="binOp_eqdec"><span class="id" title="instance">binOp_eqdec</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.EquivDec.html#EqDec"><span class="id" title="class">EqDec</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Global Instance</span> <a name="ToString_ArithBOp"><span class="id" title="instance">ToString_ArithBOp</span></a> : <a class="idref" href="Qcert.Basic.Util.RUtil.html#ToString"><span class="id" title="class">ToString</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithBOp"><span class="id" title="inductive">ArithBOp</span></a><br/>
+&nbsp;&nbsp;:= {<a class="idref" href="Qcert.Basic.Util.RUtil.html#toString"><span class="id" title="method">toString</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fun</span> (<span class="id" title="var">op</span>:<a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithBOp"><span class="id" title="inductive">ArithBOp</span></a>) ⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#op"><span class="id" title="variable">op</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithPlus"><span class="id" title="constructor">ArithPlus</span></a> ⇒ "ArithPlus"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithMinus"><span class="id" title="constructor">ArithMinus</span></a> ⇒ "ArithMinus"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithMult"><span class="id" title="constructor">ArithMult</span></a> ⇒ "ArithMult"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithMin"><span class="id" title="constructor">ArithMin</span></a> ⇒ "ArithMin"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithMax"><span class="id" title="constructor">ArithMax</span></a> ⇒ "ArithMax"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithDivide"><span class="id" title="constructor">ArithDivide</span></a> ⇒ "ArithDivide"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ArithRem"><span class="id" title="constructor">ArithRem</span></a> ⇒ "ArithRem"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+<span class="id" title="keyword">Global Instance</span> <a name="ToString_binOp"><span class="id" title="instance">ToString_binOp</span></a> : <a class="idref" href="Qcert.Basic.Util.RUtil.html#ToString"><span class="id" title="class">ToString</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a><br/>
+&nbsp;&nbsp;:= {<a class="idref" href="Qcert.Basic.Util.RUtil.html#toString"><span class="id" title="method">toString</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">fun</span> (<span class="id" title="var">op</span>:<a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>) ⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#op"><span class="id" title="variable">op</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AEq"><span class="id" title="constructor">AEq</span></a> ⇒ "AEq"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AUnion"><span class="id" title="constructor">AUnion</span></a> ⇒ "AUnion"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AConcat"><span class="id" title="constructor">AConcat</span></a>  ⇒ "AConcat"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AMergeConcat"><span class="id" title="constructor">AMergeConcat</span></a>  ⇒ "AMergeConcat"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AAnd"><span class="id" title="constructor">AAnd</span></a>  ⇒ "AAnd"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AOr"><span class="id" title="constructor">AOr</span></a>  ⇒ "AOr"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ABArith"><span class="id" title="constructor">ABArith</span></a> <span class="id" title="var">aop</span> ⇒ "(ABArith " <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.Basic.Util.RUtil.html#toString"><span class="id" title="method">toString</span></a> <span class="id" title="var">aop</span><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ALt"><span class="id" title="constructor">ALt</span></a>  ⇒ "ALt"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ALe"><span class="id" title="constructor">ALe</span></a>  ⇒ "ALe"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AMinus"><span class="id" title="constructor">AMinus</span></a> ⇒ "AMinus"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AMin"><span class="id" title="constructor">AMin</span></a> ⇒ "AMin"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AMax"><span class="id" title="constructor">AMax</span></a> ⇒ "AMax"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AContains"><span class="id" title="constructor">AContains</span></a>  ⇒ "AContains"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#ASConcat"><span class="id" title="constructor">ASConcat</span></a>  ⇒ "ASConcat"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AForeignBinaryOp"><span class="id" title="constructor">AForeignBinaryOp</span></a> <span class="id" title="var">fb</span> ⇒ <a class="idref" href="Qcert.Basic.Util.RUtil.html#toString"><span class="id" title="method">toString</span></a> <span class="id" title="var">fb</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#RBinaryOps"><span class="id" title="section">RBinaryOps</span></a>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Tactic Notation</span> "binOp_cases" <span class="id" title="var">tactic</span>(<span class="id" title="tactic">first</span>) <span class="id" title="var">ident</span>(<span class="id" title="var">c</span>) :=<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">first</span>;<br/>
+&nbsp;&nbsp;[ <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AEq"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AConcat"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AMergeConcat"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AAnd"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AOr"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "ABArith"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "ALt"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "ALe"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AUnion"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AMinus"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AMin"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AMax"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AContains"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "ASConcat"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;| <span class="id" title="var">Case_aux</span> <span class="id" title="var">c</span> "AForeignBinaryOp"%<span class="id" title="var">string</span>].<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

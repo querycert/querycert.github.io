@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.Basic.Data.DData</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.Basic.Data.DData</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="DData"><span class="id" title="section">DData</span></a>.<br/>
+
+<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Localized Data is:
+
+<div class="paragraph"> </div>
+
+<ul class="doclist">
+<li> Dlocal - single, non-distributed value
+
+</li>
+<li> Ddistr - distributed collection of values
+
+</li>
+</ul>
+   
+</div>
+<div class="code">
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fdata</span>:<a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data"><span class="id" title="class">foreign_data</span></a>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="ddata"><span class="id" title="inductive">ddata</span></a> :=<br/>
+&nbsp;&nbsp;| <a name="Dlocal"><span class="id" title="constructor">Dlocal</span></a> : <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a><br/>
+&nbsp;&nbsp;| <a name="Ddistr"><span class="id" title="constructor">Ddistr</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="ddata_eq_dec"><span class="id" title="lemma">ddata_eq_dec</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.EquivDec.html#EqDec"><span class="id" title="class">EqDec</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="localize_data"><span class="id" title="definition">localize_data</span></a> (<span class="id" title="var">ld</span>:<a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Basic.Data.DData.html#ld"><span class="id" title="variable">ld</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Data.DData.html#Dlocal"><span class="id" title="constructor">Dlocal</span></a> <span class="id" title="var">d</span> ⇒ <span class="id" title="var">d</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Data.DData.html#Ddistr"><span class="id" title="constructor">Ddistr</span></a> <span class="id" title="var">coll</span> ⇒ <a class="idref" href="Qcert.Basic.Data.RData.html#dcoll"><span class="id" title="constructor">dcoll</span></a> <span class="id" title="var">coll</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="localize_distr_is_id"><span class="id" title="lemma">localize_distr_is_id</span></a> (<span class="id" title="var">l</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.DData.html#localize_data"><span class="id" title="definition">localize_data</span></a> (<a class="idref" href="Qcert.Basic.Data.DData.html#Ddistr"><span class="id" title="constructor">Ddistr</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#l"><span class="id" title="variable">l</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#dcoll"><span class="id" title="constructor">dcoll</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#l"><span class="id" title="variable">l</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="checkLocal"><span class="id" title="definition">checkLocal</span></a> (<span class="id" title="var">ld</span>:<a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Basic.Data.DData.html#ld"><span class="id" title="variable">ld</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Data.DData.html#Dlocal"><span class="id" title="constructor">Dlocal</span></a> <span class="id" title="var">d</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <span class="id" title="var">d</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Data.DData.html#Ddistr"><span class="id" title="constructor">Ddistr</span></a> <span class="id" title="var">_</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="checkDistrAndCollect"><span class="id" title="definition">checkDistrAndCollect</span></a> (<span class="id" title="var">ld</span>:<a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Basic.Data.DData.html#ld"><span class="id" title="variable">ld</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Data.DData.html#Dlocal"><span class="id" title="constructor">Dlocal</span></a> <span class="id" title="var">_</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Data.DData.html#Ddistr"><span class="id" title="constructor">Ddistr</span></a> <span class="id" title="var">coll</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> (<a class="idref" href="Qcert.Basic.Data.RData.html#dcoll"><span class="id" title="constructor">dcoll</span></a> <span class="id" title="var">coll</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="unlocalize_data"><span class="id" title="definition">unlocalize_data</span></a> (<span class="id" title="var">dd</span>:<a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Basic.Data.DData.html#dd"><span class="id" title="variable">dd</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Data.DData.html#Ddistr"><span class="id" title="constructor">Ddistr</span></a> <span class="id" title="var">coll</span> ⇒ <a class="idref" href="Qcert.Basic.Data.RData.html#dcoll"><span class="id" title="constructor">dcoll</span></a> <span class="id" title="var">coll</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Basic.Data.DData.html#Dlocal"><span class="id" title="constructor">Dlocal</span></a> <span class="id" title="var">d</span> ⇒ <span class="id" title="var">d</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="unlocalize_distributed_id"><span class="id" title="lemma">unlocalize_distributed_id</span></a> (<span class="id" title="var">l</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.DData.html#unlocalize_data"><span class="id" title="definition">unlocalize_data</span></a> (<a class="idref" href="Qcert.Basic.Data.DData.html#Ddistr"><span class="id" title="constructor">Ddistr</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#l"><span class="id" title="variable">l</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#dcoll"><span class="id" title="constructor">dcoll</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#l"><span class="id" title="variable">l</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="dbindings"><span class="id" title="definition">dbindings</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="localize_denv"><span class="id" title="definition">localize_denv</span></a> (<span class="id" title="var">denv</span>:<a class="idref" href="Qcert.Basic.Data.DData.html#dbindings"><span class="id" title="definition">dbindings</span></a>) : <a class="idref" href="Qcert.Basic.Data.RData.html#bindings"><span class="id" title="definition">bindings</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Lists.List.html#map"><span class="id" title="definition">map</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">x</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#fst"><span class="id" title="definition">fst</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#x"><span class="id" title="variable">x</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#localize_data"><span class="id" title="definition">localize_data</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#snd"><span class="id" title="definition">snd</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#x"><span class="id" title="variable">x</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a>) <a class="idref" href="Qcert.Basic.Data.DData.html#denv"><span class="id" title="variable">denv</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="localize_denv_cons"><span class="id" title="lemma">localize_denv_cons</span></a> <span class="id" title="var">v</span> <span class="id" title="var">d</span> (<span class="id" title="var">denv</span>:<a class="idref" href="Qcert.Basic.Data.DData.html#dbindings"><span class="id" title="definition">dbindings</span></a>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.DData.html#localize_denv"><span class="id" title="definition">localize_denv</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.Basic.Data.DData.html#v"><span class="id" title="variable">v</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Qcert.Basic.Data.DData.html#Dlocal"><span class="id" title="constructor">Dlocal</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#d"><span class="id" title="variable">d</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#denv"><span class="id" title="variable">denv</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.Basic.Data.DData.html#v"><span class="id" title="variable">v</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Qcert.Basic.Data.DData.html#d"><span class="id" title="variable">d</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#localize_denv"><span class="id" title="definition">localize_denv</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#denv"><span class="id" title="variable">denv</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="dlocalization"><span class="id" title="inductive">dlocalization</span></a> :=<br/>
+&nbsp;&nbsp;| <a name="Vlocal"><span class="id" title="constructor">Vlocal</span></a> : <a class="idref" href="Qcert.Basic.Data.DData.html#dlocalization"><span class="id" title="inductive">dlocalization</span></a><br/>
+&nbsp;&nbsp;| <a name="Vdistr"><span class="id" title="constructor">Vdistr</span></a> : <a class="idref" href="Qcert.Basic.Data.DData.html#dlocalization"><span class="id" title="inductive">dlocalization</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="vdbindings"><span class="id" title="definition">vdbindings</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="Qcert.Basic.Data.DData.html#dlocalization"><span class="id" title="inductive">dlocalization</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="dlocalization_eq_dec"><span class="id" title="lemma">dlocalization_eq_dec</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.EquivDec.html#EqDec"><span class="id" title="class">EqDec</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#dlocalization"><span class="id" title="inductive">dlocalization</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Basic.Data.DData.html#DData"><span class="id" title="section">DData</span></a>.<br/>
+
+<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

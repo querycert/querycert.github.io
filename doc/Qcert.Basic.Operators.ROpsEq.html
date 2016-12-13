@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.Basic.Operators.ROpsEq</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.Basic.Operators.ROpsEq</h1>
+
+<div class="code">
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="ROpsEq"><span class="id" title="section">ROpsEq</span></a>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fdata</span>:<a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data"><span class="id" title="class">foreign_data</span></a>}.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fuop</span>:<a class="idref" href="Qcert.Basic.Operators.ForeignOps.html#foreign_unary_op"><span class="id" title="class">foreign_unary_op</span></a>}.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fbop</span>:<a class="idref" href="Qcert.Basic.Operators.ForeignOps.html#foreign_binary_op"><span class="id" title="class">foreign_binary_op</span></a>}.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="unaryop_eq"><span class="id" title="definition">unaryop_eq</span></a> (<span class="id" title="var">uop1</span> <span class="id" title="var">uop2</span>:<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#unaryOp"><span class="id" title="inductive">unaryOp</span></a>) : <span class="id" title="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">∀</span> (<span class="id" title="var">h</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">∀</span> (<span class="id" title="var">x</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.Basic.Operators.RUnaryOpsSem.html#fun_of_unaryop"><span class="id" title="definition">fun_of_unaryop</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#uop1"><span class="id" title="variable">uop1</span></a>) <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOpsSem.html#fun_of_unaryop"><span class="id" title="definition">fun_of_unaryop</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#uop2"><span class="id" title="variable">uop2</span></a>) <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#x"><span class="id" title="variable">x</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="unaryop_equiv"><span class="id" title="instance">unaryop_equiv</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#unaryop_eq"><span class="id" title="definition">unaryop_eq</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="binop_eq"><span class="id" title="definition">binop_eq</span></a> (<span class="id" title="var">bop1</span> <span class="id" title="var">bop2</span>:<a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a>) : <span class="id" title="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">∀</span> (<span class="id" title="var">h</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">∀</span> (<span class="id" title="var">x</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">∀</span> (<span class="id" title="var">y</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.Basic.Operators.RBinaryOpsSem.html#fun_of_binop"><span class="id" title="definition">fun_of_binop</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#bop1"><span class="id" title="variable">bop1</span></a>) <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#y"><span class="id" title="variable">y</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> (<a class="idref" href="Qcert.Basic.Operators.RBinaryOpsSem.html#fun_of_binop"><span class="id" title="definition">fun_of_binop</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#bop2"><span class="id" title="variable">bop2</span></a>) <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#y"><span class="id" title="variable">y</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="binop_equiv"><span class="id" title="instance">binop_equiv</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#binop_eq"><span class="id" title="definition">binop_eq</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#ROpsEq"><span class="id" title="section">ROpsEq</span></a>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
