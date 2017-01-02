@@ -132,6 +132,7 @@ where p.age = 32</textarea>
     <!-- Bootstrap Q*cert
     ================================================== -->
     <script src="qcertJS.js"></script>
+    <script src="qcertPreCompiler.js"></script>
     <script>
       var entityMap = {
       	"&": "&amp;",
@@ -153,7 +154,7 @@ where p.age = 32</textarea>
                       /* 'ascii' : if document.getElementByID("charset").value, */
                       /* 'javaimports' : document.getElementById("java_imports").value, */
                       'query' : document.getElementById("query").value };
-        document.getElementById("result").innerHTML = escapeHtml(main(input).result);
+        document.getElementById("result").innerHTML = escapeHtml(qcertPreCompile(input,false).result);
       }
       function clearButton() {
         document.getElementById("result").innerHTML = "";
