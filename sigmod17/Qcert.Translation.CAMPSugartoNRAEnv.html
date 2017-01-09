@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.Translation.CAMPSugartoNRAEnv</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.Translation.CAMPSugartoNRAEnv</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="CAMPSugartoNRAEnv"><span class="id" title="section">CAMPSugartoNRAEnv</span></a>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fruntime</span>:<a class="idref" href="Qcert.Basic.ForeignRuntime.html#foreign_runtime"><span class="id" title="class">foreign_runtime</span></a>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="algenv_of_pand"><span class="id" title="definition">algenv_of_pand</span></a> (<span class="id" title="var">p1</span> <span class="id" title="var">p2</span>:<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pat"><span class="id" title="inductive">pat</span></a>) : <a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#algenv"><span class="id" title="inductive">algenv</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Translation.CAMPtoNRAEnv.html#algenv_of_pat"><span class="id" title="definition">algenv_of_pat</span></a> (<a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#pand"><span class="id" title="definition">pand</span></a> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#p1"><span class="id" title="variable">p1</span></a> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#p2"><span class="id" title="variable">p2</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="algenv_for_pand"><span class="id" title="definition">algenv_for_pand</span></a> (<span class="id" title="var">q1</span> <span class="id" title="var">q2</span>: <a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#algenv"><span class="id" title="inductive">algenv</span></a>) : <a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#algenv"><span class="id" title="inductive">algenv</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#AFlatten"><span class="id" title="constructor">AFlatten</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANAppEnv"><span class="id" title="constructor">ANAppEnv</span></a> (<a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANMapEnv"><span class="id" title="constructor">ANMapEnv</span></a> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#q2"><span class="id" title="variable">q2</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#AFlatten"><span class="id" title="constructor">AFlatten</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANMap"><span class="id" title="constructor">ANMap</span></a> (<a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANBinop"><span class="id" title="constructor">ANBinop</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AMergeConcat"><span class="id" title="constructor">AMergeConcat</span></a> <a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANEnv"><span class="id" title="constructor">ANEnv</span></a> <a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANID"><span class="id" title="constructor">ANID</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANMap"><span class="id" title="constructor">ANMap</span></a> (<a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANConst"><span class="id" title="constructor">ANConst</span></a> (<a class="idref" href="Qcert.Basic.Data.RData.html#drec"><span class="id" title="constructor">drec</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANSelect"><span class="id" title="constructor">ANSelect</span></a> <a class="idref" href="Qcert.NRAEnv.Core.RAlgEnv.html#ANID"><span class="id" title="constructor">ANID</span></a> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#q1"><span class="id" title="variable">q1</span></a>))))).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="algenv_of_pand_works"><span class="id" title="lemma">algenv_of_pand_works</span></a> (<span class="id" title="var">p1</span> <span class="id" title="var">p2</span>:<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pat"><span class="id" title="inductive">pat</span></a>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Translation.CAMPtoNRAEnv.html#algenv_of_pat"><span class="id" title="definition">algenv_of_pat</span></a> (<a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#pand"><span class="id" title="definition">pand</span></a> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#p1"><span class="id" title="variable">p1</span></a> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#p2"><span class="id" title="variable">p2</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#algenv_for_pand"><span class="id" title="definition">algenv_for_pand</span></a> (<a class="idref" href="Qcert.Translation.CAMPtoNRAEnv.html#algenv_of_pat"><span class="id" title="definition">algenv_of_pat</span></a> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#p1"><span class="id" title="variable">p1</span></a>) (<a class="idref" href="Qcert.Translation.CAMPtoNRAEnv.html#algenv_of_pat"><span class="id" title="definition">algenv_of_pat</span></a> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#p2"><span class="id" title="variable">p2</span></a>).<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="algenv_of_WW"><span class="id" title="definition">algenv_of_WW</span></a> (<span class="id" title="var">p</span>:<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pat"><span class="id" title="inductive">pat</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Translation.CAMPtoNRAEnv.html#algenv_of_pat"><span class="id" title="definition">algenv_of_pat</span></a> (<a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#WW"><span class="id" title="definition">WW</span></a> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#p"><span class="id" title="variable">p</span></a>).<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Translation.CAMPSugartoNRAEnv.html#CAMPSugartoNRAEnv"><span class="id" title="section">CAMPSugartoNRAEnv</span></a>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

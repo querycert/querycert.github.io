@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.CAMP.Lang.CAMPSize</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.CAMP.Lang.CAMPSize</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="CAMPSize"><span class="id" title="section">CAMPSize</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fruntime</span>:<a class="idref" href="Qcert.Basic.ForeignRuntime.html#foreign_runtime"><span class="id" title="class">foreign_runtime</span></a>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Fixpoint</span> <a name="pat_size"><span class="id" title="definition">pat_size</span></a> (<span class="id" title="var">p</span>:<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pat"><span class="id" title="inductive">pat</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#p"><span class="id" title="variable">p</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pconst"><span class="id" title="constructor">pconst</span></a> <span class="id" title="var">d'</span> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#punop"><span class="id" title="constructor">punop</span></a> <span class="id" title="var">op</span> <span class="id" title="var">p₁</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₁</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pbinop"><span class="id" title="constructor">pbinop</span></a> <span class="id" title="var">op</span> <span class="id" title="var">p₁</span> <span class="id" title="var">p₂</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₁</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₂</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pmap"><span class="id" title="constructor">pmap</span></a> <span class="id" title="var">p₁</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₁</span>)<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#passert"><span class="id" title="constructor">passert</span></a> <span class="id" title="var">p₁</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₁</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#porElse"><span class="id" title="constructor">porElse</span></a> <span class="id" title="var">p₁</span> <span class="id" title="var">p₂</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₁</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₂</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pit"><span class="id" title="constructor">pit</span></a> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pletIt"><span class="id" title="constructor">pletIt</span></a> <span class="id" title="var">p₁</span> <span class="id" title="var">p₂</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₁</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₂</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pgetconstant"><span class="id" title="constructor">pgetconstant</span></a> <span class="id" title="var">_</span> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#penv"><span class="id" title="constructor">penv</span></a> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pletEnv"><span class="id" title="constructor">pletEnv</span></a> <span class="id" title="var">p₁</span> <span class="id" title="var">p₂</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₁</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <span class="id" title="var">p₂</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pleft"><span class="id" title="constructor">pleft</span></a> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pright"><span class="id" title="constructor">pright</span></a> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="pat_size_nzero"><span class="id" title="lemma">pat_size_nzero</span></a> (<span class="id" title="var">a</span>:<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pat"><span class="id" title="inductive">pat</span></a>) : <a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#pat_size"><span class="id" title="definition">pat_size</span></a> <a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#a"><span class="id" title="variable">a</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#32263a1c8b01baecdff9deb038955bc9"><span class="id" title="notation">≠</span></a> 0.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.CAMP.Lang.CAMPSize.html#CAMPSize"><span class="id" title="section">CAMPSize</span></a>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

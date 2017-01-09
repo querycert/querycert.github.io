@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.Rule.Lang.Rule</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.Rule.Lang.Rule</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="Rule"><span class="id" title="section">Rule</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fruntime</span>:<a class="idref" href="Qcert.Basic.ForeignRuntime.html#foreign_runtime"><span class="id" title="class">foreign_runtime</span></a>}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+rules and their semantics 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="rule"><span class="id" title="inductive">rule</span></a> :=<br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+a normal rule, matched against each working memory element in turn 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <a name="rule_when"><span class="id" title="constructor">rule_when</span></a> : <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pat"><span class="id" title="inductive">pat</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a><br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+a rule that should run against the entire working memory (as a collection of elements) 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <a name="rule_global"><span class="id" title="constructor">rule_global</span></a> : <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pat"><span class="id" title="inductive">pat</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a><br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+A rule that must not match any working memory element 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <a name="rule_not"><span class="id" title="constructor">rule_not</span></a> : <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pat"><span class="id" title="inductive">pat</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a><br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+This is the last part of a rule, and it allow the 
+        rule to return a value for each successful match-set. pit can be used as the identity 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <a name="rule_return"><span class="id" title="constructor">rule_return</span></a> : <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pat"><span class="id" title="inductive">pat</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Fixpoint</span> <a name="rule_to_pattern"><span class="id" title="definition">rule_to_pattern</span></a> (<span class="id" title="var">rule</span>:<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a>) : <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pat"><span class="id" title="inductive">pat</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="variable">rule</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule_when"><span class="id" title="constructor">rule_when</span></a> <span class="id" title="var">p</span> <span class="id" title="var">ps</span> ⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#punop"><span class="id" title="constructor">punop</span></a> <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#AFlatten"><span class="id" title="constructor">AFlatten</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#WW"><span class="id" title="definition">WW</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pmap"><span class="id" title="constructor">pmap</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pletEnv"><span class="id" title="constructor">pletEnv</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">p</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule_to_pattern"><span class="id" title="definition">rule_to_pattern</span></a> <span class="id" title="var">ps</span>))))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule_global"><span class="id" title="constructor">rule_global</span></a> <span class="id" title="var">p</span> <span class="id" title="var">ps</span> ⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#punop"><span class="id" title="constructor">punop</span></a> <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#AFlatten"><span class="id" title="constructor">AFlatten</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#makeSingleton"><span class="id" title="definition">makeSingleton</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pletEnv"><span class="id" title="constructor">pletEnv</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#WW"><span class="id" title="definition">WW</span></a> <span class="id" title="var">p</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule_to_pattern"><span class="id" title="definition">rule_to_pattern</span></a> <span class="id" title="var">ps</span>)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule_not"><span class="id" title="constructor">rule_not</span></a> <span class="id" title="var">p</span> <span class="id" title="var">ps</span> ⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#punop"><span class="id" title="constructor">punop</span></a> <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#AFlatten"><span class="id" title="constructor">AFlatten</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#makeSingleton"><span class="id" title="definition">makeSingleton</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pletEnv"><span class="id" title="constructor">pletEnv</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#notholds"><span class="id" title="definition">notholds</span></a> <span class="id" title="var">p</span> <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#a3aa7eecd886c4e5f796fc0a07397077"><span class="id" title="notation">RETURN</span></a> <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#8c5999ad9c1c0a797a8bad35c8ad1955"><span class="id" title="notation">BINDINGS</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule_to_pattern"><span class="id" title="definition">rule_to_pattern</span></a> <span class="id" title="var">ps</span>)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Rule.Lang.Rule.html#rule_return"><span class="id" title="constructor">rule_return</span></a> <span class="id" title="var">p</span> ⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#makeSingleton"><span class="id" title="definition">makeSingleton</span></a> <span class="id" title="var">p</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="eval_rule_debug"><span class="id" title="definition">eval_rule_debug</span></a> (<span class="id" title="var">h</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a>(<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)) (<span class="id" title="var">print_env</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>) (<span class="id" title="var">r</span>:<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a>) (<span class="id" title="var">world</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#presult_debug"><span class="id" title="inductive">presult_debug</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#interp_debug"><span class="id" title="definition">interp_debug</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Qcert.Basic.Env.RConstants.html#mkWorld"><span class="id" title="definition">mkWorld</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#world"><span class="id" title="variable">world</span></a>) <a class="idref" href="Qcert.Rule.Lang.Rule.html#print_env"><span class="id" title="variable">print_env</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a> (<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule_to_pattern"><span class="id" title="definition">rule_to_pattern</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#r"><span class="id" title="variable">r</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#dunit"><span class="id" title="constructor">dunit</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="eval_rule_res_to_string"><span class="id" title="definition">eval_rule_res_to_string</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">h</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a>(<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)) (<span class="id" title="var">print_env</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>) (<span class="id" title="var">r</span>:<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a>) (<span class="id" title="var">world</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">let</span> <span class="id" title="var">pp</span> := (<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule_to_pattern"><span class="id" title="definition">rule_to_pattern</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#r"><span class="id" title="variable">r</span></a>) <span class="id" title="keyword">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#print_presult_debug"><span class="id" title="definition">print_presult_debug</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#pp"><span class="id" title="variable">pp</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMP.Lang.CAMP.html#interp_debug"><span class="id" title="definition">interp_debug</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#h"><span class="id" title="variable">h</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.Basic.Env.RConstants.html#mkWorld"><span class="id" title="definition">mkWorld</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#world"><span class="id" title="variable">world</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Rule.Lang.Rule.html#print_env"><span class="id" title="variable">print_env</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#pp"><span class="id" title="variable">pp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#dunit"><span class="id" title="constructor">dunit</span></a>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Semantics of CAMP rules, returning a presult 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="eval_rule_res"><span class="id" title="definition">eval_rule_res</span></a> (<span class="id" title="var">h</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a>(<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)) (<span class="id" title="var">r</span>:<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a>) (<span class="id" title="var">world</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#presult"><span class="id" title="inductive">presult</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#interp"><span class="id" title="definition">interp</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Qcert.Basic.Env.RConstants.html#mkWorld"><span class="id" title="definition">mkWorld</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#world"><span class="id" title="variable">world</span></a>) (<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule_to_pattern"><span class="id" title="definition">rule_to_pattern</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#r"><span class="id" title="variable">r</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#dunit"><span class="id" title="constructor">dunit</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="eval_rule"><span class="id" title="definition">eval_rule</span></a> (<span class="id" title="var">h</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a>(<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)) (<span class="id" title="var">r</span>:<a class="idref" href="Qcert.Rule.Lang.Rule.html#rule"><span class="id" title="inductive">rule</span></a>) (<span class="id" title="var">world</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Rule.Lang.Rule.html#eval_rule_res"><span class="id" title="definition">eval_rule_res</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#r"><span class="id" title="variable">r</span></a> <a class="idref" href="Qcert.Rule.Lang.Rule.html#world"><span class="id" title="variable">world</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#Success"><span class="id" title="constructor">Success</span></a> <span class="id" title="var">l</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> (<span class="id" title="var">l</span><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#RecoverableError"><span class="id" title="constructor">RecoverableError</span></a> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#TerminalError"><span class="id" title="constructor">TerminalError</span></a> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Rule.Lang.Rule.html#Rule"><span class="id" title="section">Rule</span></a>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

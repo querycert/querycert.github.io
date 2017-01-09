@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.DNNRC.Lang.DatasetSize</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.DNNRC.Lang.DatasetSize</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="size"><span class="id" title="section">size</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fruntime</span>:<a class="idref" href="Qcert.Basic.ForeignRuntime.html#foreign_runtime"><span class="id" title="class">foreign_runtime</span></a>}.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">ftype</span>: <a class="idref" href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type"><span class="id" title="class">foreign_type</span></a>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Fixpoint</span> <a name="column_size"><span class="id" title="definition">column_size</span></a> (<span class="id" title="var">c</span>:<a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#column"><span class="id" title="inductive">column</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#c"><span class="id" title="variable">c</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CCol"><span class="id" title="constructor">CCol</span></a> <span class="id" title="var">_</span> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CDot"><span class="id" title="constructor">CDot</span></a> <span class="id" title="var">_</span> <span class="id" title="var">c0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CLit"><span class="id" title="constructor">CLit</span></a> <span class="id" title="var">_</span> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CPlus"><span class="id" title="constructor">CPlus</span></a> <span class="id" title="var">c1</span> <span class="id" title="var">c2</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CEq"><span class="id" title="constructor">CEq</span></a> <span class="id" title="var">c1</span> <span class="id" title="var">c2</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CLessThan"><span class="id" title="constructor">CLessThan</span></a>  <span class="id" title="var">c1</span> <span class="id" title="var">c2</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CNeg"><span class="id" title="constructor">CNeg</span></a> <span class="id" title="var">c0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CToString"><span class="id" title="constructor">CToString</span></a> <span class="id" title="var">c0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CSConcat"><span class="id" title="constructor">CSConcat</span></a> <span class="id" title="var">c1</span> <span class="id" title="var">c2</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CUDFCast"><span class="id" title="constructor">CUDFCast</span></a> <span class="id" title="var">_</span> <span class="id" title="var">c0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#CUDFUnbrand"><span class="id" title="constructor">CUDFUnbrand</span></a> <span class="id" title="var">_</span> <span class="id" title="var">c0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Fixpoint</span> <a name="dataset_size"><span class="id" title="definition">dataset_size</span></a> (<span class="id" title="var">d</span>:<a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#dataset"><span class="id" title="inductive">dataset</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#d"><span class="id" title="variable">d</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#DSVar"><span class="id" title="constructor">DSVar</span></a> <span class="id" title="var">_</span> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#DSSelect"><span class="id" title="constructor">DSSelect</span></a> <span class="id" title="var">scl</span> <span class="id" title="var">d0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> ( <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Lists.List.html#fold_left"><span class="id" title="definition">fold_left</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">acc</span> <span class="id" title="var">sc</span> ⇒ <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#snd"><span class="id" title="definition">snd</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#sc"><span class="id" title="variable">sc</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#acc"><span class="id" title="variable">acc</span></a>) <span class="id" title="var">scl</span> 0<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">)</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#dataset_size"><span class="id" title="definition">dataset_size</span></a> <span class="id" title="var">d0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#DSFilter"><span class="id" title="constructor">DSFilter</span></a> <span class="id" title="var">c0</span> <span class="id" title="var">d0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <span class="id" title="var">c0</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#dataset_size"><span class="id" title="definition">dataset_size</span></a> <span class="id" title="var">d0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#DSCartesian"><span class="id" title="constructor">DSCartesian</span></a> <span class="id" title="var">d1</span> <span class="id" title="var">d2</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#dataset_size"><span class="id" title="definition">dataset_size</span></a> <span class="id" title="var">d1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#dataset_size"><span class="id" title="definition">dataset_size</span></a> <span class="id" title="var">d2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#DSExplode"><span class="id" title="constructor">DSExplode</span></a> <span class="id" title="var">_</span> <span class="id" title="var">d0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#dataset_size"><span class="id" title="definition">dataset_size</span></a> <span class="id" title="var">d0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="column_size_nzero"><span class="id" title="lemma">column_size_nzero</span></a> (<span class="id" title="var">c</span>:<a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#column"><span class="id" title="inductive">column</span></a>) : <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#column_size"><span class="id" title="definition">column_size</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#c"><span class="id" title="variable">c</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#32263a1c8b01baecdff9deb038955bc9"><span class="id" title="notation">≠</span></a> 0.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="dataset_size_nzero"><span class="id" title="lemma">dataset_size_nzero</span></a> (<span class="id" title="var">d</span>:<a class="idref" href="Qcert.DNNRC.Lang.Dataset.html#dataset"><span class="id" title="inductive">dataset</span></a>) : <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#dataset_size"><span class="id" title="definition">dataset_size</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#d"><span class="id" title="variable">d</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#32263a1c8b01baecdff9deb038955bc9"><span class="id" title="notation">≠</span></a> 0.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.DNNRC.Lang.DatasetSize.html#size"><span class="id" title="section">size</span></a>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
