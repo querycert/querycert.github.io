@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.NRA.Lang.NRASugar</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.NRA.Lang.NRASugar</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="NRASugar"><span class="id" title="section">NRASugar</span></a>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fruntime</span>:<a class="idref" href="Qcert.Basic.ForeignRuntime.html#foreign_runtime"><span class="id" title="class">foreign_runtime</span></a>}.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_bind"><span class="id" title="definition">pat_bind</span></a> := <a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ADot"><span class="id" title="constructor">ADot</span></a> "PBIND") <a class="idref" href="Qcert.NRA.Lang.NRA.html#AID"><span class="id" title="constructor">AID</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_const_env"><span class="id" title="definition">pat_const_env</span></a> := <a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ADot"><span class="id" title="constructor">ADot</span></a> "PCONST") <a class="idref" href="Qcert.NRA.Lang.NRA.html#AID"><span class="id" title="constructor">AID</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_data"><span class="id" title="definition">pat_data</span></a> := <a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ADot"><span class="id" title="constructor">ADot</span></a> "PDATA") <a class="idref" href="Qcert.NRA.Lang.NRA.html#AID"><span class="id" title="constructor">AID</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_data_op"><span class="id" title="definition">pat_data_op</span></a> <span class="id" title="var">op</span> := <a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ADot"><span class="id" title="constructor">ADot</span></a> "PDATA") <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#op"><span class="id" title="variable">op</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_fail"><span class="id" title="definition">pat_fail</span></a> := <a class="idref" href="Qcert.NRA.Lang.NRA.html#AConst"><span class="id" title="constructor">AConst</span></a> (<a class="idref" href="Qcert.Basic.Data.RData.html#dcoll"><span class="id" title="constructor">dcoll</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_match"><span class="id" title="definition">pat_match</span></a> <span class="id" title="var">op</span> := <a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#AColl"><span class="id" title="constructor">AColl</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#op"><span class="id" title="variable">op</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_triple"><span class="id" title="definition">pat_triple</span></a> <span class="id" title="var">s1</span> <span class="id" title="var">s2</span> <span class="id" title="var">s3</span> (<span class="id" title="var">aconst</span>:<a class="idref" href="Qcert.NRA.Lang.NRA.html#nra"><span class="id" title="inductive">nra</span></a>) (<span class="id" title="var">abind</span>:<a class="idref" href="Qcert.NRA.Lang.NRA.html#nra"><span class="id" title="inductive">nra</span></a>) (<span class="id" title="var">adata</span>:<a class="idref" href="Qcert.NRA.Lang.NRA.html#nra"><span class="id" title="inductive">nra</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRA.Lang.NRA.html#ABinop"><span class="id" title="constructor">ABinop</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AConcat"><span class="id" title="constructor">AConcat</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARec"><span class="id" title="constructor">ARec</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#s1"><span class="id" title="variable">s1</span></a>) <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#aconst"><span class="id" title="variable">aconst</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRA.Lang.NRA.html#ABinop"><span class="id" title="constructor">ABinop</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AConcat"><span class="id" title="constructor">AConcat</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARec"><span class="id" title="constructor">ARec</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#s2"><span class="id" title="variable">s2</span></a>) <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#abind"><span class="id" title="variable">abind</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARec"><span class="id" title="constructor">ARec</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#s3"><span class="id" title="variable">s3</span></a>) <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#adata"><span class="id" title="variable">adata</span></a>)).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_context"><span class="id" title="definition">pat_context</span></a> (<span class="id" title="var">aconst</span>:<a class="idref" href="Qcert.NRA.Lang.NRA.html#nra"><span class="id" title="inductive">nra</span></a>) (<span class="id" title="var">abind</span>:<a class="idref" href="Qcert.NRA.Lang.NRA.html#nra"><span class="id" title="inductive">nra</span></a>) (<span class="id" title="var">adata</span>:<a class="idref" href="Qcert.NRA.Lang.NRA.html#nra"><span class="id" title="inductive">nra</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_triple"><span class="id" title="definition">pat_triple</span></a> "PCONST" "PBIND" "PDATA"  <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#aconst"><span class="id" title="variable">aconst</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#abind"><span class="id" title="variable">abind</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#adata"><span class="id" title="variable">adata</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_withbinding"><span class="id" title="definition">pat_withbinding</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_context"><span class="id" title="definition">pat_context</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_const_env"><span class="id" title="definition">pat_const_env</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_bind"><span class="id" title="definition">pat_bind</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_bind"><span class="id" title="definition">pat_bind</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_context_data"><span class="id" title="definition">pat_context_data</span></a> <span class="id" title="var">dconst</span> <span class="id" title="var">dbind</span> <span class="id" title="var">dpid</span> : <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RData.html#drec"><span class="id" title="constructor">drec</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>"PBIND"<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Qcert.NRA.Lang.NRASugar.html#dbind"><span class="id" title="variable">dbind</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>"PCONST"<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Qcert.NRA.Lang.NRASugar.html#dconst"><span class="id" title="variable">dconst</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>"PDATA"<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Qcert.NRA.Lang.NRASugar.html#dpid"><span class="id" title="variable">dpid</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="make_fixed_pat_context_data"><span class="id" title="definition">make_fixed_pat_context_data</span></a> (<span class="id" title="var">const</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) (<span class="id" title="var">env</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) : <a class="idref" href="Qcert.NRA.Lang.NRA.html#nra"><span class="id" title="inductive">nra</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.NRA.Lang.NRA.html#ABinop"><span class="id" title="constructor">ABinop</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AConcat"><span class="id" title="constructor">AConcat</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARec"><span class="id" title="constructor">ARec</span></a> "PBIND"%<span class="id" title="var">string</span>) (<a class="idref" href="Qcert.NRA.Lang.NRA.html#AConst"><span class="id" title="constructor">AConst</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#env"><span class="id" title="variable">env</span></a>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRA.Lang.NRA.html#ABinop"><span class="id" title="constructor">ABinop</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AConcat"><span class="id" title="constructor">AConcat</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARec"><span class="id" title="constructor">ARec</span></a> "PCONST"%<span class="id" title="var">string</span>) (<a class="idref" href="Qcert.NRA.Lang.NRA.html#AConst"><span class="id" title="constructor">AConst</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#const"><span class="id" title="variable">const</span></a>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRA.Lang.NRA.html#AUnop"><span class="id" title="constructor">AUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARec"><span class="id" title="constructor">ARec</span></a> "PDATA"%<span class="id" title="var">string</span>) <a class="idref" href="Qcert.NRA.Lang.NRA.html#AID"><span class="id" title="constructor">AID</span></a>)).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_wrap"><span class="id" title="definition">pat_wrap</span></a> <span class="id" title="var">op</span>  :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_triple"><span class="id" title="definition">pat_triple</span></a> "PCONST" "PBIND" "PDATA" <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_const_env"><span class="id" title="definition">pat_const_env</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_bind"><span class="id" title="definition">pat_bind</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#op"><span class="id" title="variable">op</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_wrap_a1"><span class="id" title="definition">pat_wrap_a1</span></a> <span class="id" title="var">op</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_triple"><span class="id" title="definition">pat_triple</span></a> "PCONST" "PBIND" "a1" <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_const_env"><span class="id" title="definition">pat_const_env</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_bind"><span class="id" title="definition">pat_bind</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#op"><span class="id" title="variable">op</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_wrap_bind_a1"><span class="id" title="definition">pat_wrap_bind_a1</span></a> <span class="id" title="var">op</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_triple"><span class="id" title="definition">pat_triple</span></a> "PCONST" "a1" "PDATA" <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_const_env"><span class="id" title="definition">pat_const_env</span></a>  <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_bind"><span class="id" title="definition">pat_bind</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#op"><span class="id" title="variable">op</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_wrap_with_bind"><span class="id" title="definition">pat_wrap_with_bind</span></a> <span class="id" title="var">op1</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_context"><span class="id" title="definition">pat_context</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_const_env"><span class="id" title="definition">pat_const_env</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#op1"><span class="id" title="variable">op1</span></a> <a class="idref" href="Qcert.NRA.Lang.NRA.html#AID"><span class="id" title="constructor">AID</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pat_project_wrap"><span class="id" title="definition">pat_project_wrap</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_wrap_with_bind"><span class="id" title="definition">pat_wrap_with_bind</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_fail"><span class="id" title="definition">pat_fail</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="data_normalized_pat_context_data"><span class="id" title="lemma">data_normalized_pat_context_data</span></a> <span class="id" title="var">h</span> <span class="id" title="var">constants</span> <span class="id" title="var">env</span> <span class="id" title="var">d</span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#constants"><span class="id" title="variable">constants</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#env"><span class="id" title="variable">env</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#d"><span class="id" title="variable">d</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_context_data"><span class="id" title="definition">pat_context_data</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#constants"><span class="id" title="variable">constants</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#env"><span class="id" title="variable">env</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#d"><span class="id" title="variable">d</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="data_normalized_pat_context_data_inv"><span class="id" title="lemma">data_normalized_pat_context_data_inv</span></a> <span class="id" title="var">h</span> <span class="id" title="var">constants</span> <span class="id" title="var">env</span> <span class="id" title="var">d</span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Qcert.NRA.Lang.NRASugar.html#pat_context_data"><span class="id" title="definition">pat_context_data</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#constants"><span class="id" title="variable">constants</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#env"><span class="id" title="variable">env</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#d"><span class="id" title="variable">d</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#constants"><span class="id" title="variable">constants</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d82a7d96d3659d805ffe732283716822"><span class="id" title="notation">∧</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#env"><span class="id" title="variable">env</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d82a7d96d3659d805ffe732283716822"><span class="id" title="notation">∧</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#d"><span class="id" title="variable">d</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.NRA.Lang.NRASugar.html#NRASugar"><span class="id" title="section">NRASugar</span></a>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

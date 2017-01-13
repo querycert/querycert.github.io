@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.NRA.Typing.TNRAExt</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.NRA.Typing.TNRAExt</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="TNRAExt"><span class="id" title="section">TNRAExt</span></a>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Typing for NRA 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">m</span>:<a class="idref" href="Qcert.Basic.BasicSystem.html#basic_model"><span class="id" title="class">basic_model</span></a>}.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="nraext_type"><span class="id" title="definition">nraext_type</span></a> <span class="id" title="var">Op</span> <span class="id" title="var">A</span> <span class="id" title="var">B</span> := <a class="idref" href="Qcert.NRA.Typing.TNRA.html#nra_type"><span class="id" title="inductive">nra_type</span></a> (<a class="idref" href="Qcert.NRA.Lang.NRAExt.html#nra_of_nraext"><span class="id" title="definition">nra_of_nraext</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#Op"><span class="id" title="variable">Op</span></a>) <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#B"><span class="id" title="variable">B</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Notation</span> <a name="6cbaa12343170b569a31c8b34754ee0f"><span class="id" title="notation">&quot;</span></a>Op ▷ A &gt;=&gt; B" := (<a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#nraext_type"><span class="id" title="definition">nraext_type</span></a> <span class="id" title="var">Op</span> <span class="id" title="var">A</span> <span class="id" title="var">B</span>) (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 70).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Main typing soundness theorem for the Extended NRA 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Theorem</span> <a name="typed_nraext_yields_typed_data"><span class="id" title="lemma">typed_nraext_yields_typed_data</span></a> {τ<span class="id" title="keyword">in</span> τ<span class="id" title="var">out</span>} (<span class="id" title="var">d</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) (<span class="id" title="var">op</span>:<a class="idref" href="Qcert.NRA.Lang.NRAExt.html#nraext"><span class="id" title="inductive">nraext</span></a>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#d"><span class="id" title="variable">d</span></a> <a class="idref" href="Qcert.Basic.Typing.TData.html#6f6814a5a6bfcefaa48ace91629a6b68"><span class="id" title="notation">▹</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#f55b86378bb250311ec0e9a28dc570b9"><span class="id" title="variable">τ</span></a><span class="id" title="keyword">in</span><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#6cbaa12343170b569a31c8b34754ee0f"><span class="id" title="notation">▷</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#f55b86378bb250311ec0e9a28dc570b9"><span class="id" title="variable">τ</span></a><span class="id" title="keyword">in</span> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#6cbaa12343170b569a31c8b34754ee0f"><span class="id" title="notation">&gt;=&gt;</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#c72029469d940d793c3823404ffcb02d"><span class="id" title="variable">τ</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#c72029469d940d793c3823404ffcb02d"><span class="id" title="variable">out</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#84eb6d2849dbf3581b1c0c05add5f2d8"><span class="id" title="notation">∃</span></a> <span class="id" title="var">x</span><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#84eb6d2849dbf3581b1c0c05add5f2d8"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#84eb6d2849dbf3581b1c0c05add5f2d8"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.Basic.Data.BrandRelation.html#brand_relation_brands"><span class="id" title="method">brand_relation_brands</span></a> <a class="idref" href="Qcert.NRA.Lang.NRAExt.html#3bb3f930b532343847c4e72e3e21eb6b"><span class="id" title="notation">⊢</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.NRA.Lang.NRAExt.html#3bb3f930b532343847c4e72e3e21eb6b"><span class="id" title="notation">@ₓ</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#d"><span class="id" title="variable">d</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d82a7d96d3659d805ffe732283716822"><span class="id" title="notation">∧</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d82a7d96d3659d805ffe732283716822"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Qcert.Basic.Typing.TData.html#6f6814a5a6bfcefaa48ace91629a6b68"><span class="id" title="notation">▹</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#c72029469d940d793c3823404ffcb02d"><span class="id" title="variable">τ</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#c72029469d940d793c3823404ffcb02d"><span class="id" title="variable">out</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d82a7d96d3659d805ffe732283716822"><span class="id" title="notation">)</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#84eb6d2849dbf3581b1c0c05add5f2d8"><span class="id" title="notation">)</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Corrolaries of the main type soudness theorem 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="typed_nraext_total"><span class="id" title="definition">typed_nraext_total</span></a> {τ<span class="id" title="keyword">in</span> τ<span class="id" title="var">out</span>} (<span class="id" title="var">op</span>:<a class="idref" href="Qcert.NRA.Lang.NRAExt.html#nraext"><span class="id" title="inductive">nraext</span></a>) (<span class="id" title="var">d</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#d"><span class="id" title="variable">d</span></a> <a class="idref" href="Qcert.Basic.Typing.TData.html#6f6814a5a6bfcefaa48ace91629a6b68"><span class="id" title="notation">▹</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#f55b86378bb250311ec0e9a28dc570b9"><span class="id" title="variable">τ</span></a><span class="id" title="keyword">in</span><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#6cbaa12343170b569a31c8b34754ee0f"><span class="id" title="notation">▷</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#f55b86378bb250311ec0e9a28dc570b9"><span class="id" title="variable">τ</span></a><span class="id" title="keyword">in</span> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#6cbaa12343170b569a31c8b34754ee0f"><span class="id" title="notation">&gt;=&gt;</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#c72029469d940d793c3823404ffcb02d"><span class="id" title="variable">τ</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#c72029469d940d793c3823404ffcb02d"><span class="id" title="variable">out</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a>             <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Specif.html#72ca3fac4636a1b19c963b12162882cf"><span class="id" title="notation">{</span></a> <span class="id" title="var">x</span><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Specif.html#72ca3fac4636a1b19c963b12162882cf"><span class="id" title="notation">:</span></a><a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Specif.html#72ca3fac4636a1b19c963b12162882cf"><span class="id" title="notation">|</span></a> <span class="id" title="var">x</span> <a class="idref" href="Qcert.Basic.Typing.TData.html#6f6814a5a6bfcefaa48ace91629a6b68"><span class="id" title="notation">▹</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#c72029469d940d793c3823404ffcb02d"><span class="id" title="variable">τ</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#c72029469d940d793c3823404ffcb02d"><span class="id" title="variable">out</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Specif.html#72ca3fac4636a1b19c963b12162882cf"><span class="id" title="notation">}</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="tnraext_eval"><span class="id" title="definition">tnraext_eval</span></a> {τ<span class="id" title="keyword">in</span> τ<span class="id" title="var">out</span>} (<span class="id" title="var">op</span>:<a class="idref" href="Qcert.NRA.Lang.NRAExt.html#nraext"><span class="id" title="inductive">nraext</span></a>) (<span class="id" title="var">d</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#d"><span class="id" title="variable">d</span></a> <a class="idref" href="Qcert.Basic.Typing.TData.html#6f6814a5a6bfcefaa48ace91629a6b68"><span class="id" title="notation">▹</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#f55b86378bb250311ec0e9a28dc570b9"><span class="id" title="variable">τ</span></a><span class="id" title="keyword">in</span><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#op"><span class="id" title="variable">op</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#6cbaa12343170b569a31c8b34754ee0f"><span class="id" title="notation">▷</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#f55b86378bb250311ec0e9a28dc570b9"><span class="id" title="variable">τ</span></a><span class="id" title="keyword">in</span> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#6cbaa12343170b569a31c8b34754ee0f"><span class="id" title="notation">&gt;=&gt;</span></a> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#c72029469d940d793c3823404ffcb02d"><span class="id" title="variable">τ</span></a><a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#c72029469d940d793c3823404ffcb02d"><span class="id" title="variable">out</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>.<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#TNRAExt"><span class="id" title="section">TNRAExt</span></a>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Notation</span> <a name="76b9f3751593db0a80a23ecc062df50b"><span class="id" title="notation">&quot;</span></a>Op ▷ A &gt;=&gt; B" := (<a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#nraext_type"><span class="id" title="definition">nraext_type</span></a> <span class="id" title="var">Op</span> <span class="id" title="var">A</span> <span class="id" title="var">B</span>) (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 70) : <span class="id" title="var">nraext_scope</span>.<br/>
+<span class="id" title="keyword">Notation</span> <a name="1ae2b2bc469d22d1d8daf1a844db272e"><span class="id" title="notation">&quot;</span></a>Op @▷ d" := (<a class="idref" href="Qcert.NRA.Typing.TNRAExt.html#tnraext_eval"><span class="id" title="definition">tnraext_eval</span></a> <span class="id" title="var">Op</span> <span class="id" title="var">d</span>) (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 70) : <span class="id" title="var">nraext_scope</span>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
