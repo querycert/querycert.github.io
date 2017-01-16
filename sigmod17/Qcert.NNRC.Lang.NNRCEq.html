@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.NNRC.Lang.NNRCEq</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.NNRC.Lang.NNRCEq</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="NNRCEq"><span class="id" title="section">NNRCEq</span></a>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fruntime</span>:<a class="idref" href="Qcert.Basic.ForeignRuntime.html#foreign_runtime"><span class="id" title="class">foreign_runtime</span></a>}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Equivalence between expressions in the Named Nested Relational Calculus 
+<div class="paragraph"> </div>
+
+ Semantics of NNRC 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> (<span class="id" title="var">e1</span> <span class="id" title="var">e2</span>:<a class="idref" href="Qcert.NNRC.Core.cNNRC.html#nnrc"><span class="id" title="inductive">nnrc</span></a>) : <span class="id" title="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">∀</span> (<span class="id" title="var">h</span>:<a class="idref" href="Qcert.Basic.Data.BrandRelation.html#brand_relation_t"><span class="id" title="definition">brand_relation_t</span></a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">∀</span> (<span class="id" title="var">env</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#bindings"><span class="id" title="definition">bindings</span></a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Lists.List.html#Forall"><span class="id" title="inductive">Forall</span></a> (<a class="idref" href="Qcert.Basic.Data.RDataNorm.html#data_normalized"><span class="id" title="inductive">data_normalized</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#h"><span class="id" title="variable">h</span></a>) (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Lists.List.html#map"><span class="id" title="definition">map</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Datatypes.html#snd"><span class="id" title="definition">snd</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#env"><span class="id" title="variable">env</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc_ext_eval"><span class="id" title="definition">nnrc_ext_eval</span></a> <span class="id" title="var">_</span> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#env"><span class="id" title="variable">env</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> @<a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc_ext_eval"><span class="id" title="definition">nnrc_ext_eval</span></a> <span class="id" title="var">_</span> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#env"><span class="id" title="variable">env</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#e2"><span class="id" title="variable">e2</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="nnrc_ext_equiv"><span class="id" title="instance">nnrc_ext_equiv</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.RelationClasses.html#Equivalence"><span class="id" title="class">Equivalence</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="var_ext_proper"><span class="id" title="instance">var_ext_proper</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a>) <a class="idref" href="Qcert.NNRC.Core.cNNRC.html#NNRCVar"><span class="id" title="constructor">NNRCVar</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="const_ext_proper"><span class="id" title="instance">const_ext_proper</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a>) <a class="idref" href="Qcert.NNRC.Core.cNNRC.html#NNRCConst"><span class="id" title="constructor">NNRCConst</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="binop_ext_proper"><span class="id" title="instance">binop_ext_proper</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#binop_eq"><span class="id" title="definition">binop_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a>) <a class="idref" href="Qcert.NNRC.Core.cNNRC.html#NNRCBinop"><span class="id" title="constructor">NNRCBinop</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="unop_ext_proper"><span class="id" title="instance">unop_ext_proper</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="Qcert.Basic.Operators.ROpsEq.html#unaryop_eq"><span class="id" title="definition">unaryop_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a>) <a class="idref" href="Qcert.NNRC.Core.cNNRC.html#NNRCUnop"><span class="id" title="constructor">NNRCUnop</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="let_ext_proper"><span class="id" title="instance">let_ext_proper</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a>) <a class="idref" href="Qcert.NNRC.Core.cNNRC.html#NNRCLet"><span class="id" title="constructor">NNRCLet</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="for_ext_proper"><span class="id" title="instance">for_ext_proper</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a>) <a class="idref" href="Qcert.NNRC.Core.cNNRC.html#NNRCFor"><span class="id" title="constructor">NNRCFor</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="if_ext_proper"><span class="id" title="instance">if_ext_proper</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a>) <a class="idref" href="Qcert.NNRC.Core.cNNRC.html#NNRCIf"><span class="id" title="constructor">NNRCIf</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="either_ext_proper"><span class="id" title="instance">either_ext_proper</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a>) <a class="idref" href="Qcert.NNRC.Core.cNNRC.html#NNRCEither"><span class="id" title="constructor">NNRCEither</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="group_by_ext_proper"><span class="id" title="instance">group_by_ext_proper</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#Proper"><span class="id" title="class">Proper</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.5pl2/stdlib/Coq.Classes.Morphisms.html#5bcff5fca4c3a87e683dd8ca07bab63f"><span class="id" title="notation">==&gt;</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a>) <a class="idref" href="Qcert.NNRC.Core.cNNRC.html#NNRCGroupBy"><span class="id" title="constructor">NNRCGroupBy</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#NNRCEq"><span class="id" title="section">NNRCEq</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Notation</span> <a name="3de1b9bc3350b69ca799b802e6d52d12"><span class="id" title="notation">&quot;</span></a>X ≡ᶜ Y" := (<a class="idref" href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_ext_eq"><span class="id" title="definition">nnrc_ext_eq</span></a> <span class="id" title="var">X</span> <span class="id" title="var">Y</span>) (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 90) : <span class="id" title="var">nnrc_scope</span>. 
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
