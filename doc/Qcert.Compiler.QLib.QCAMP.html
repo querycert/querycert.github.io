@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.Compiler.QLib.QCAMP</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.Compiler.QLib.QCAMP</h1>
+
+<div class="code">
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Module</span> <a name="QCAMP"><span class="id" title="module">QCAMP</span></a>(<span class="id" title="var">runtime</span>:<a class="idref" href="Qcert.Compiler.Model.CompilerRuntime.html#CompilerRuntime"><span class="id" title="module">CompilerRuntime</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Module</span> <a name="QCAMP.Data"><span class="id" title="module">Data</span></a> := <a class="idref" href="Qcert.Compiler.QLib.QData.html#QData"><span class="id" title="module">QData.QData</span></a>(<a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#runtime"><span class="id" title="module">runtime</span></a>).<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Module</span> <a name="QCAMP.Ops"><span class="id" title="module">Ops</span></a> := <a class="idref" href="Qcert.Compiler.QLib.QOperators.html#QOperators"><span class="id" title="module">QOperators.QOperators</span></a>(<a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#runtime"><span class="id" title="module">runtime</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.expr"><span class="id" title="definition">expr</span></a> : <span class="id" title="keyword">Set</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#camp"><span class="id" title="inductive">CAMP.camp</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.camp"><span class="id" title="definition">camp</span></a> : <span class="id" title="keyword">Set</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.t"><span class="id" title="definition">t</span></a> : <span class="id" title="keyword">Set</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pconst"><span class="id" title="definition">pconst</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.t"><span class="id" title="definition">Data.t</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pconst"><span class="id" title="constructor">CAMP.pconst</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.punop"><span class="id" title="definition">punop</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.op"><span class="id" title="definition">Ops.Unary.op</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#punop"><span class="id" title="constructor">CAMP.punop</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pbinop"><span class="id" title="definition">pbinop</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.op"><span class="id" title="definition">Ops.Binary.op</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pbinop"><span class="id" title="constructor">CAMP.pbinop</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pmap"><span class="id" title="definition">pmap</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pmap"><span class="id" title="constructor">CAMP.pmap</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.passert"><span class="id" title="definition">passert</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#passert"><span class="id" title="constructor">CAMP.passert</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.porelse"><span class="id" title="definition">porelse</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#porElse"><span class="id" title="constructor">CAMP.porElse</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pit"><span class="id" title="definition">pit</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pit"><span class="id" title="constructor">CAMP.pit</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pletit"><span class="id" title="definition">pletit</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pletIt"><span class="id" title="constructor">CAMP.pletIt</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pgetconstant"><span class="id" title="definition">pgetconstant</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pgetconstant"><span class="id" title="constructor">CAMP.pgetconstant</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.penv"><span class="id" title="definition">penv</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#penv"><span class="id" title="constructor">CAMP.penv</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pletenv"><span class="id" title="definition">pletenv</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pletEnv"><span class="id" title="constructor">CAMP.pletEnv</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pleft"><span class="id" title="definition">pleft</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pleft"><span class="id" title="constructor">CAMP.pleft</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pright"><span class="id" title="definition">pright</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#pright"><span class="id" title="constructor">CAMP.pright</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pnow"><span class="id" title="definition">pnow</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#pnow"><span class="id" title="definition">CAMPSugar.pnow</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pnull"><span class="id" title="definition">pnull</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#pnull"><span class="id" title="definition">CAMPSugar.pnull</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pbdot"><span class="id" title="definition">pbdot</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#pbdot"><span class="id" title="definition">CAMPSugar.pbdot</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pbsomedot"><span class="id" title="definition">pbsomedot</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#pbsomedot"><span class="id" title="definition">CAMPSugar.pbsomedot</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.returnVariables"><span class="id" title="definition">returnVariables</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#returnVariables"><span class="id" title="definition">CAMPSugar.returnVariables</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.stringConcat"><span class="id" title="definition">stringConcat</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#stringConcat"><span class="id" title="definition">CAMPSugar.stringConcat</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.toString"><span class="id" title="definition">toString</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#toString"><span class="id" title="definition">CAMPSugar.toString</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.camp_binop_reduce"><span class="id" title="definition">camp_binop_reduce</span></a> : <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.op"><span class="id" title="definition">Ops.Binary.op</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#camp_binop_reduce"><span class="id" title="definition">CAMPSugar.camp_binop_reduce</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pvarwith"><span class="id" title="definition">pvarwith</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#pvarwith"><span class="id" title="definition">CAMPSugar.pvarwith</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.withVar"><span class="id" title="definition">withVar</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#withVar"><span class="id" title="definition">CAMPSugar.withVar</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.pIS"><span class="id" title="definition">pIS</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#pIS"><span class="id" title="definition">CAMPSugar.pIS</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="QCAMP.lookup"><span class="id" title="definition">lookup</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.expr"><span class="id" title="definition">expr</span></a> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#lookup"><span class="id" title="definition">CAMPSugar.lookup</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Compiler.QLib.QCAMP.html#QCAMP"><span class="id" title="module">QCAMP</span></a>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

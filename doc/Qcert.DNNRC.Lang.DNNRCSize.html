@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.DNNRC.Lang.DNNRCSize</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.DNNRC.Lang.DNNRCSize</h1>
+
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="size"><span class="id" title="section">size</span></a>.<br/>
+
+<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fruntime</span>:<a class="idref" href="Qcert.Basic.ForeignRuntime.html#foreign_runtime"><span class="id" title="class">foreign_runtime</span></a>}.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">A</span> <span class="id" title="var">plug_type</span>:<span class="id" title="keyword">Set</span>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> (<span class="id" title="var">plug_size</span>:<a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#size.plug_type"><span class="id" title="variable">plug_type</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Fixpoint</span> <a name="dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> (<span class="id" title="var">d</span>:@<a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#dnnrc"><span class="id" title="inductive">dnnrc</span></a> <span class="id" title="var">_</span> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#size.A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#size.plug_type"><span class="id" title="variable">plug_type</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#d"><span class="id" title="variable">d</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCVar"><span class="id" title="constructor">DNNRCVar</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCConst"><span class="id" title="constructor">DNNRCConst</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCBinop"><span class="id" title="constructor">DNNRCBinop</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">d1</span> <span class="id" title="var">d2</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCUnop"><span class="id" title="constructor">DNNRCUnop</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">d0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCLet"><span class="id" title="constructor">DNNRCLet</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">d1</span> <span class="id" title="var">d2</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCFor"><span class="id" title="constructor">DNNRCFor</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">d1</span> <span class="id" title="var">d2</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCIf"><span class="id" title="constructor">DNNRCIf</span></a> <span class="id" title="var">_</span> <span class="id" title="var">d1</span> <span class="id" title="var">d2</span> <span class="id" title="var">d3</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d2</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d3</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCEither"><span class="id" title="constructor">DNNRCEither</span></a> <span class="id" title="var">_</span> <span class="id" title="var">d1</span> <span class="id" title="var">_</span> <span class="id" title="var">d2</span> <span class="id" title="var">_</span> <span class="id" title="var">d3</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d1</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d2</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d3</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCGroupBy"><span class="id" title="constructor">DNNRCGroupBy</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">d0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCCollect"><span class="id" title="constructor">DNNRCCollect</span></a> <span class="id" title="var">_</span> <span class="id" title="var">d0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCDispatch"><span class="id" title="constructor">DNNRCDispatch</span></a> <span class="id" title="var">_</span> <span class="id" title="var">d0</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <span class="id" title="var">d0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#DNNRCAlg"><span class="id" title="constructor">DNNRCAlg</span></a> <span class="id" title="var">_</span> <span class="id" title="var">pt</span> <span class="id" title="var">sdl</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> ( 0) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="dnnrc_size_nzero"><span class="id" title="lemma">dnnrc_size_nzero</span></a> (<span class="id" title="var">d</span>:@<a class="idref" href="Qcert.DNNRC.Lang.DNNRC.html#dnnrc"><span class="id" title="inductive">dnnrc</span></a> <span class="id" title="var">_</span> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#size.A"><span class="id" title="variable">A</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#size.plug_type"><span class="id" title="variable">plug_type</span></a>) : <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#dnnrc_size"><span class="id" title="definition">dnnrc_size</span></a> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#d"><span class="id" title="variable">d</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#32263a1c8b01baecdff9deb038955bc9"><span class="id" title="notation">≠</span></a> 0.<br/>
+
+<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.DNNRC.Lang.DNNRCSize.html#size"><span class="id" title="section">size</span></a>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
