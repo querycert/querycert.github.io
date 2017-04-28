@@ -64,7 +64,14 @@ This is the last part of a rule, and it allow the
         rule to return a value for each successful match-set. pit can be used as the identity 
 </div>
 <div class="code">
-&nbsp;&nbsp;| <a name="rule_return"><span class="id" title="constructor">rule_return</span></a> : <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#camp"><span class="id" title="inductive">camp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.CAMPRule.Lang.CAMPRule.html#camp_rule"><span class="id" title="inductive">camp_rule</span></a>.<br/>
+&nbsp;&nbsp;| <a name="rule_return"><span class="id" title="constructor">rule_return</span></a> : <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#camp"><span class="id" title="inductive">camp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.CAMPRule.Lang.CAMPRule.html#camp_rule"><span class="id" title="inductive">camp_rule</span></a><br/>
+&nbsp;&nbsp;</div>
+
+<div class="doc">
+This allows a rule to simply match a camp pattern 
+</div>
+<div class="code">
+&nbsp;&nbsp;| <a name="rule_match"><span class="id" title="constructor">rule_match</span></a> : <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#camp"><span class="id" title="inductive">camp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.CAMPRule.Lang.CAMPRule.html#camp_rule"><span class="id" title="inductive">camp_rule</span></a>.<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Fixpoint</span> <a name="camp_rule_to_camp"><span class="id" title="definition">camp_rule_to_camp</span></a> (<span class="id" title="var">rule</span>:<a class="idref" href="Qcert.CAMPRule.Lang.CAMPRule.html#camp_rule"><span class="id" title="inductive">camp_rule</span></a>) : <a class="idref" href="Qcert.CAMP.Lang.CAMP.html#camp"><span class="id" title="inductive">camp</span></a><br/>
@@ -90,6 +97,8 @@ This is the last part of a rule, and it allow the
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.CAMPRule.Lang.CAMPRule.html#camp_rule_to_camp"><span class="id" title="definition">camp_rule_to_camp</span></a> <span class="id" title="var">ps</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMPRule.Lang.CAMPRule.html#rule_return"><span class="id" title="constructor">rule_return</span></a> <span class="id" title="var">p</span> ⇒<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.CAMP.Lang.CAMPSugar.html#makeSingleton"><span class="id" title="definition">makeSingleton</span></a> <span class="id" title="var">p</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.CAMPRule.Lang.CAMPRule.html#rule_match"><span class="id" title="constructor">rule_match</span></a> <span class="id" title="var">p</span> ⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">p</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
