@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Qcert.Compiler.Model.DateTimeModelPart</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Qcert.Compiler.Model.DateTimeModelPart</h1>
+
+<div class="code">
+
+<br/>
+
+<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Extraction to OCaml is currently a stub ******* &lt;/WARNING&gt; 
+<div class="paragraph"> </div>
+
+ Defines the foreign support for date/time numbers
+     Posits axioms for the basic data/operators, and 
+     defines how they are extracted to ocaml (using helper functions
+     defined in qcert/ocaml/...../Util.ml)
+     
+<div class="paragraph"> </div>
+
+ Defines the notion of a time scale 
+</div>
+<div class="code">
+<span class="id" title="keyword">Inductive</span> <a name="time_scale"><span class="id" title="inductive">time_scale</span></a><br/>
+&nbsp;&nbsp;:= <a name="ts_second"><span class="id" title="constructor">ts_second</span></a><br/>
+&nbsp;&nbsp;&nbsp;| <a name="ts_minute"><span class="id" title="constructor">ts_minute</span></a><br/>
+&nbsp;&nbsp;&nbsp;| <a name="ts_hour"><span class="id" title="constructor">ts_hour</span></a><br/>
+&nbsp;&nbsp;&nbsp;| <a name="ts_day"><span class="id" title="constructor">ts_day</span></a><br/>
+&nbsp;&nbsp;&nbsp;| <a name="ts_week"><span class="id" title="constructor">ts_week</span></a><br/>
+&nbsp;&nbsp;&nbsp;| <a name="ts_month"><span class="id" title="constructor">ts_month</span></a><br/>
+&nbsp;&nbsp;&nbsp;| <a name="ts_year"><span class="id" title="constructor">ts_year</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a name="time_scale_eqdec"><span class="id" title="instance">time_scale_eqdec</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Classes.EquivDec.html#EqDec"><span class="id" title="class">EqDec</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale"><span class="id" title="inductive">time_scale</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="time_scale_to_string"><span class="id" title="definition">time_scale_to_string</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">ts</span>:<a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale"><span class="id" title="inductive">time_scale</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><br/>
+&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#ts"><span class="id" title="variable">ts</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#ts_second"><span class="id" title="constructor">ts_second</span></a> ⇒ "SECOND"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#ts_minute"><span class="id" title="constructor">ts_minute</span></a> ⇒ "MINUTE"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#ts_hour"><span class="id" title="constructor">ts_hour</span></a> ⇒ "HOUR"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#ts_day"><span class="id" title="constructor">ts_day</span></a> ⇒ "DAY"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#ts_week"><span class="id" title="constructor">ts_week</span></a> ⇒ "WEEK"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#ts_month"><span class="id" title="constructor">ts_month</span></a> ⇒ "MONTH"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#ts_year"><span class="id" title="constructor">ts_year</span></a> ⇒ "YEAR"%<span class="id" title="var">string</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a name="time_scale_tostring"><span class="id" title="instance">time_scale_tostring</span></a> : <a class="idref" href="Qcert.Basic.Util.RUtil.html#ToString"><span class="id" title="class">ToString</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale"><span class="id" title="inductive">time_scale</span></a><br/>
+&nbsp;&nbsp;:= { <a class="idref" href="Qcert.Basic.Util.RUtil.html#toString"><span class="id" title="method">toString</span></a> := <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale_to_string"><span class="id" title="definition">time_scale_to_string</span></a> }.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="time_scale_to_java_string"><span class="id" title="definition">time_scale_to_java_string</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">ts</span>:<a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale"><span class="id" title="inductive">time_scale</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><br/>
+&nbsp;&nbsp;:= "TimeScale." <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale_to_string"><span class="id" title="definition">time_scale_to_string</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#ts"><span class="id" title="variable">ts</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Program Instance</span> <a name="time_scale_foreign_data"><span class="id" title="instance">time_scale_foreign_data</span></a> : <a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data"><span class="id" title="class">foreign_data</span></a><br/>
+&nbsp;&nbsp;:= {<a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data_type"><span class="id" title="method">foreign_data_type</span></a> := <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale"><span class="id" title="inductive">time_scale</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data_dec"><span class="id" title="method">foreign_data_dec</span></a> := <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale_eqdec"><span class="id" title="instance">time_scale_eqdec</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data_tostring"><span class="id" title="method">foreign_data_tostring</span></a> := <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale_tostring"><span class="id" title="instance">time_scale_tostring</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data_normalized"><span class="id" title="method">foreign_data_normalized</span></a> <span class="id" title="var">ts</span> := <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#True"><span class="id" title="inductive">True</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data_normalize"><span class="id" title="method">foreign_data_normalize</span></a> <span class="id" title="var">ts</span> := <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#ts"><span class="id" title="variable">ts</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_DURATION"><span class="id" title="axiom">TIME_DURATION</span></a> : <span class="id" title="keyword">Set</span>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_DURATION</span> ⇒ "string".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_DURATION_eq"><span class="id" title="axiom">TIME_DURATION_eq</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_DURATION"><span class="id" title="axiom">TIME_DURATION</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_DURATION"><span class="id" title="axiom">TIME_DURATION</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_DURATION_eq</span> ⇒ "(fun x y -&gt; x = y)".<br/>
+
+<br/>
+<span class="id" title="keyword">Conjecture</span> <a name="TIME_DURATION_eq_correct"><span class="id" title="axiom">TIME_DURATION_eq_correct</span></a> :<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">∀</span> <span class="id" title="var">f1</span> <span class="id" title="var">f2</span>, (<a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_DURATION_eq"><span class="id" title="axiom">TIME_DURATION_eq</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#f1"><span class="id" title="variable">f1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#f2"><span class="id" title="variable">f2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#df1ced36fc33ce188051218bca314374"><span class="id" title="notation">↔</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#f1"><span class="id" title="variable">f1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#f2"><span class="id" title="variable">f2</span></a>).<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_DURATION_tostring"><span class="id" title="axiom">TIME_DURATION_tostring</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_DURATION"><span class="id" title="axiom">TIME_DURATION</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_DURATION_tostring</span> ⇒ "(fun x -&gt; Util.char_list_of_string x)".<br/>
+
+<br/>
+<span class="id" title="keyword">Program Instance</span> <a name="time_duration_foreign_data"><span class="id" title="instance">time_duration_foreign_data</span></a> : <a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data"><span class="id" title="class">foreign_data</span></a><br/>
+&nbsp;&nbsp;:= {<a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data_type"><span class="id" title="method">foreign_data_type</span></a> := <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_DURATION"><span class="id" title="axiom">TIME_DURATION</span></a>}.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> : <span class="id" title="keyword">Set</span>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT</span> ⇒ "string".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_eq"><span class="id" title="axiom">TIME_POINT_eq</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_eq</span> ⇒ "(fun x y -&gt; x = y)".<br/>
+
+<br/>
+<span class="id" title="keyword">Conjecture</span> <a name="TIME_POINT_eq_correct"><span class="id" title="axiom">TIME_POINT_eq_correct</span></a> :<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">∀</span> <span class="id" title="var">f1</span> <span class="id" title="var">f2</span>, (<a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT_eq"><span class="id" title="axiom">TIME_POINT_eq</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#f1"><span class="id" title="variable">f1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#f2"><span class="id" title="variable">f2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#true"><span class="id" title="constructor">true</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#df1ced36fc33ce188051218bca314374"><span class="id" title="notation">↔</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#f1"><span class="id" title="variable">f1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#f2"><span class="id" title="variable">f2</span></a>).<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_tostring"><span class="id" title="axiom">TIME_POINT_tostring</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_tostring</span> ⇒ "(fun x -&gt; Util.char_list_of_string x)".<br/>
+
+<br/>
+<span class="id" title="keyword">Program Instance</span> <a name="time_point_foreign_data"><span class="id" title="instance">time_point_foreign_data</span></a> : <a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data"><span class="id" title="class">foreign_data</span></a><br/>
+&nbsp;&nbsp;:= {<a class="idref" href="Qcert.Basic.Data.ForeignData.html#foreign_data_type"><span class="id" title="method">foreign_data_type</span></a> := <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a>}.<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_from_string"><span class="id" title="axiom">TIME_POINT_from_string</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_from_string</span> ⇒ "(fun x -&gt; Util.string_of_char_list x)".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_DURATION_from_string"><span class="id" title="axiom">TIME_DURATION_from_string</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_DURATION"><span class="id" title="axiom">TIME_DURATION</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_DURATION_from_string</span> ⇒ "(fun x -&gt; Util.string_of_char_list x)".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_to_scale"><span class="id" title="axiom">TIME_POINT_to_scale</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale"><span class="id" title="inductive">time_scale</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_to_scale</span> ⇒ "(fun x -&gt; Ts_second)".<br/>
+
+<br/>
+<span class="id" title="keyword">Inductive</span> <a name="time_unary_op"><span class="id" title="inductive">time_unary_op</span></a><br/>
+&nbsp;&nbsp;:=<br/>
+&nbsp;&nbsp;| <a name="uop_time_to_scale"><span class="id" title="constructor">uop_time_to_scale</span></a><br/>
+&nbsp;&nbsp;| <a name="uop_time_from_string"><span class="id" title="constructor">uop_time_from_string</span></a><br/>
+&nbsp;&nbsp;| <a name="uop_time_duration_from_string"><span class="id" title="constructor">uop_time_duration_from_string</span></a><br/>
+.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="time_unary_op_tostring"><span class="id" title="definition">time_unary_op_tostring</span></a> (<span class="id" title="var">f</span>:<a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_unary_op"><span class="id" title="inductive">time_unary_op</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a><br/>
+&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#f"><span class="id" title="variable">f</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#uop_time_to_scale"><span class="id" title="constructor">uop_time_to_scale</span></a> ⇒ "ATimeToScale"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#uop_time_from_string"><span class="id" title="constructor">uop_time_from_string</span></a> ⇒ "ATimeFromString"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#uop_time_duration_from_string"><span class="id" title="constructor">uop_time_duration_from_string</span></a> ⇒ "ATimeDurationFromString"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="time_to_java_unary_op"><span class="id" title="definition">time_to_java_unary_op</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">indent</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>) (<span class="id" title="var">eol</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">quotel</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>) (<span class="id" title="var">fu</span>:<a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_unary_op"><span class="id" title="inductive">time_unary_op</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">d</span>:<a class="idref" href="Qcert.Translation.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a>) : <a class="idref" href="Qcert.Translation.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a><br/>
+&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#fu"><span class="id" title="variable">fu</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#uop_time_to_scale"><span class="id" title="constructor">uop_time_to_scale</span></a> ⇒ <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_unary_op0"><span class="id" title="definition">mk_java_unary_op0</span></a> "time_to_scale" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d"><span class="id" title="variable">d</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#uop_time_from_string"><span class="id" title="constructor">uop_time_from_string</span></a> ⇒ <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_unary_op0"><span class="id" title="definition">mk_java_unary_op0</span></a> "time_from_string" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d"><span class="id" title="variable">d</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#uop_time_duration_from_string"><span class="id" title="constructor">uop_time_duration_from_string</span></a> ⇒ <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_unary_op0"><span class="id" title="definition">mk_java_unary_op0</span></a> "time_duration_from_string" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d"><span class="id" title="variable">d</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="time_to_javascript_unary_op"><span class="id" title="definition">time_to_javascript_unary_op</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">indent</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>) (<span class="id" title="var">eol</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">quotel</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>) (<span class="id" title="var">fu</span>:<a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_unary_op"><span class="id" title="inductive">time_unary_op</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">d</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a><br/>
+&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#fu"><span class="id" title="variable">fu</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#uop_time_to_scale"><span class="id" title="constructor">uop_time_to_scale</span></a> ⇒ "timePointToScale(" <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d"><span class="id" title="variable">d</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#uop_time_from_string"><span class="id" title="constructor">uop_time_from_string</span></a> ⇒ "timeFromString(" <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d"><span class="id" title="variable">d</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#uop_time_duration_from_string"><span class="id" title="constructor">uop_time_duration_from_string</span></a> ⇒ "new TimeDuration(" <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d"><span class="id" title="variable">d</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_as"><span class="id" title="axiom">TIME_POINT_as</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale"><span class="id" title="inductive">time_scale</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_as</span> ⇒ "(fun x y -&gt; x)".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_shift"><span class="id" title="axiom">TIME_POINT_shift</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_DURATION"><span class="id" title="axiom">TIME_DURATION</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_shift</span> ⇒ "(fun x y -&gt; x)".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_ne"><span class="id" title="axiom">TIME_POINT_ne</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_ne</span> ⇒ "(fun x y -&gt; x &lt;&gt; y)".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_lt"><span class="id" title="axiom">TIME_POINT_lt</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_lt</span> ⇒ "(fun x y -&gt; x &lt; y)".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_le"><span class="id" title="axiom">TIME_POINT_le</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_le</span> ⇒ "(fun x y -&gt; x &lt;= y)".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_gt"><span class="id" title="axiom">TIME_POINT_gt</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_gt</span> ⇒ "(fun x y -&gt; x &gt; y)".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_POINT_ge"><span class="id" title="axiom">TIME_POINT_ge</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_POINT_ge</span> ⇒ "(fun x y -&gt; x &gt;= y)".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_DURATION_from_scale"><span class="id" title="axiom">TIME_DURATION_from_scale</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_scale"><span class="id" title="inductive">time_scale</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Numbers.BinNums.html#Z"><span class="id" title="inductive">Z</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_DURATION"><span class="id" title="axiom">TIME_DURATION</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_DURATION_from_scale</span> ⇒ "(fun x y -&gt; """")".<br/>
+
+<br/>
+<span class="id" title="keyword">Axiom</span> <a name="TIME_DURATION_between"><span class="id" title="axiom">TIME_DURATION_between</span></a> : <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_POINT"><span class="id" title="axiom">TIME_POINT</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#TIME_DURATION"><span class="id" title="axiom">TIME_DURATION</span></a>.<br/>
+<span class="id" title="keyword">Extract</span> <span class="id" title="var">Inlined</span> <span class="id" title="var">Constant</span> <span class="id" title="var">TIME_DURATION_between</span> ⇒ "(fun x y -&gt; """")".<br/>
+
+<br/>
+<span class="id" title="keyword">Inductive</span> <a name="time_binary_op"><span class="id" title="inductive">time_binary_op</span></a><br/>
+&nbsp;&nbsp;:=<br/>
+&nbsp;&nbsp;| <a name="bop_time_as"><span class="id" title="constructor">bop_time_as</span></a> <br/>
+&nbsp;&nbsp;| <a name="bop_time_shift"><span class="id" title="constructor">bop_time_shift</span></a><br/>
+&nbsp;&nbsp;| <a name="bop_time_ne"><span class="id" title="constructor">bop_time_ne</span></a><br/>
+&nbsp;&nbsp;| <a name="bop_time_lt"><span class="id" title="constructor">bop_time_lt</span></a><br/>
+&nbsp;&nbsp;| <a name="bop_time_le"><span class="id" title="constructor">bop_time_le</span></a><br/>
+&nbsp;&nbsp;| <a name="bop_time_gt"><span class="id" title="constructor">bop_time_gt</span></a><br/>
+&nbsp;&nbsp;| <a name="bop_time_ge"><span class="id" title="constructor">bop_time_ge</span></a><br/>
+&nbsp;&nbsp;| <a name="bop_time_duration_from_scale"><span class="id" title="constructor">bop_time_duration_from_scale</span></a><br/>
+&nbsp;&nbsp;| <a name="bop_time_duration_between"><span class="id" title="constructor">bop_time_duration_between</span></a><br/>
+.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="time_binary_op_tostring"><span class="id" title="definition">time_binary_op_tostring</span></a> (<span class="id" title="var">f</span>:<a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_binary_op"><span class="id" title="inductive">time_binary_op</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a><br/>
+&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#f"><span class="id" title="variable">f</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_as"><span class="id" title="constructor">bop_time_as</span></a> ⇒ "ATimeAs"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_shift"><span class="id" title="constructor">bop_time_shift</span></a> ⇒ "ATimeShift"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_ne"><span class="id" title="constructor">bop_time_ne</span></a> ⇒ "ATimeNe"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_lt"><span class="id" title="constructor">bop_time_lt</span></a> ⇒ "ATimeLt"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_le"><span class="id" title="constructor">bop_time_le</span></a> ⇒ "ATimeLe"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_gt"><span class="id" title="constructor">bop_time_gt</span></a> ⇒ "ATimeGt"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_ge"><span class="id" title="constructor">bop_time_ge</span></a> ⇒ "ATimeGe"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_duration_from_scale"><span class="id" title="constructor">bop_time_duration_from_scale</span></a> ⇒ "ATimeDurationFromScale"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_duration_between"><span class="id" title="constructor">bop_time_duration_between</span></a> ⇒ "ATimeDurationBetween"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="jsFunc"><span class="id" title="definition">jsFunc</span></a> (<span class="id" title="var">name</span> <span class="id" title="var">d1</span> <span class="id" title="var">d2</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)<br/>
+&nbsp;&nbsp;:= <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#name"><span class="id" title="variable">name</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> "(" <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> ", " <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#6c3bece79abbc48868e7371c2d2fa55c"><span class="id" title="notation">++</span></a> ")".<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="time_to_java_binary_op"><span class="id" title="definition">time_to_java_binary_op</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">indent</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>) (<span class="id" title="var">eol</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">quotel</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>) (<span class="id" title="var">fb</span>:<a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_binary_op"><span class="id" title="inductive">time_binary_op</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">d1</span> <span class="id" title="var">d2</span>:<a class="idref" href="Qcert.Translation.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a>) : <a class="idref" href="Qcert.Translation.ForeignToJava.html#java_json"><span class="id" title="inductive">java_json</span></a><br/>
+&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#fb"><span class="id" title="variable">fb</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_as"><span class="id" title="constructor">bop_time_as</span></a> ⇒ <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_binary_op0"><span class="id" title="definition">mk_java_binary_op0</span></a> "time_point_as" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_shift"><span class="id" title="constructor">bop_time_shift</span></a> ⇒ <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_binary_op0"><span class="id" title="definition">mk_java_binary_op0</span></a> "time_point_shift" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_ne"><span class="id" title="constructor">bop_time_ne</span></a> ⇒  <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_binary_op0"><span class="id" title="definition">mk_java_binary_op0</span></a> "time_point_ne" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_lt"><span class="id" title="constructor">bop_time_lt</span></a> ⇒  <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_binary_op0"><span class="id" title="definition">mk_java_binary_op0</span></a> "time_point_lt" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_le"><span class="id" title="constructor">bop_time_le</span></a> ⇒  <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_binary_op0"><span class="id" title="definition">mk_java_binary_op0</span></a> "time_point_le" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_gt"><span class="id" title="constructor">bop_time_gt</span></a> ⇒  <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_binary_op0"><span class="id" title="definition">mk_java_binary_op0</span></a> "time_point_gt" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_ge"><span class="id" title="constructor">bop_time_ge</span></a> ⇒ <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_binary_op0"><span class="id" title="definition">mk_java_binary_op0</span></a> "time_point_ge" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_duration_from_scale"><span class="id" title="constructor">bop_time_duration_from_scale</span></a> ⇒ <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_binary_op0"><span class="id" title="definition">mk_java_binary_op0</span></a> "time_duration_from_scale" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_duration_between"><span class="id" title="constructor">bop_time_duration_between</span></a> ⇒ <a class="idref" href="Qcert.Translation.NNRCtoJava.html#mk_java_binary_op0"><span class="id" title="definition">mk_java_binary_op0</span></a> "time_duration_between" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="time_to_javascript_binary_op"><span class="id" title="definition">time_to_javascript_binary_op</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">indent</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>) (<span class="id" title="var">eol</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">quotel</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>) (<span class="id" title="var">fb</span>:<a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#time_binary_op"><span class="id" title="inductive">time_binary_op</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">d1</span> <span class="id" title="var">d2</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">String.string</span></a><br/>
+&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#fb"><span class="id" title="variable">fb</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_as"><span class="id" title="constructor">bop_time_as</span></a> ⇒ <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#jsFunc"><span class="id" title="definition">jsFunc</span></a> "timePointAs" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_shift"><span class="id" title="constructor">bop_time_shift</span></a> ⇒ <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#jsFunc"><span class="id" title="definition">jsFunc</span></a> "timePointShift" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_ne"><span class="id" title="constructor">bop_time_ne</span></a> ⇒  <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#jsFunc"><span class="id" title="definition">jsFunc</span></a> "timePointNe" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_lt"><span class="id" title="constructor">bop_time_lt</span></a> ⇒  <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#jsFunc"><span class="id" title="definition">jsFunc</span></a> "timePointLt" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_le"><span class="id" title="constructor">bop_time_le</span></a> ⇒  <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#jsFunc"><span class="id" title="definition">jsFunc</span></a> "timePointLe" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_gt"><span class="id" title="constructor">bop_time_gt</span></a> ⇒  <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#jsFunc"><span class="id" title="definition">jsFunc</span></a> "timePointGt" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_ge"><span class="id" title="constructor">bop_time_ge</span></a> ⇒ <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#jsFunc"><span class="id" title="definition">jsFunc</span></a> "timePointGe" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_duration_from_scale"><span class="id" title="constructor">bop_time_duration_from_scale</span></a> ⇒  <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#jsFunc"><span class="id" title="definition">jsFunc</span></a> "timeDurationFromScale" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#bop_time_duration_between"><span class="id" title="constructor">bop_time_duration_between</span></a> ⇒ <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#jsFunc"><span class="id" title="definition">jsFunc</span></a> "timeDurationBetween" <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d1"><span class="id" title="variable">d1</span></a> <a class="idref" href="Qcert.Compiler.Model.DateTimeModelPart.html#d2"><span class="id" title="variable">d2</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
