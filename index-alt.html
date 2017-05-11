@@ -84,9 +84,20 @@
 <h3>What is Q*cert?</h3>
 
 <p>
-  Q*cert is first and foremost a query compiler: it takes some input
-      query and generates code for execution. It supports several
-      target backends, including Java, Javascript and Spark.</p>
+  Q*cert is a query compiler: it takes some input query and generates
+  code for execution. It supports several input languages like
+  subsets of OQL, SQL. It produces code It supports several target
+  backends, including Java, JavaScript and Spark.
+
+  Q*cert is composed of several intermediate languages where the
+  semantics of each of them is precisely defined using the Coq proof
+  assistant. It allows to prove properties on these languages and the
+  correctness of the translation from one to another.
+
+  This architecture made of small well defined components make Q*cert
+  a platform for implementing or verifying new query languages and
+  optimizations.
+</p>
 
 <!--
       <h3>Why Q*cert?</h3>
@@ -132,25 +143,27 @@
 
       <a href="qcert-pipeline-alt.png"><img src="qcert-pipeline-alt.png" width="600" alt="Compilation Paths"/></a>
 
-      <ul>
-	<li><a href="doc/Qcert.LambdaNRA.Lang.LambdaNRA.html">𝝀NRA</a>: NRA with Lambdas</li>
-	<li><a href="doc/Qcert.SQL.Lang.SQL.html">SQL</a>: Structured Query Language</li>
-	<li><a href="doc/Qcert.OQL.Lang.OQL.html">OQL</a>: Object Query Language</li>
-	<li><a href="doc/Qcert.TechRule.Lang.TechRule.html">TechRule</a>: ODM technical rules</li>
-	<li><a href="doc/Qcert.DesignRule.Lang.DesignRule.html">DesignerRule</a>: ODM designer rules</li>
-	<li><a href="doc/Qcert.CAMPRule.Lang.CAMPRule.html">CAMPRule</a>: Rule Macros for CAMP</li>
-	<li><a href="doc/Qcert.CAMP.Lang.CAMP.html">CAMP</a>: Calculus of Aggregating Matching Patterns</li>
-	<li><a href="doc/Qcert.NRA.Lang.NRA.html">NRA</a>: Nested Relational Algebra</li>
-	<li><a href="doc/Qcert.NRAEnv.Lang.NRAEnv.html">NRAe</a>: NRA with Environments</li>
-	<li><a href="doc/Qcert.NRAEnv.Core.cNRAEnv.html">cNRAe</a>: Core NRAe</li>
-	<li><a href="doc/Qcert.NNRC.Lang.NNRC.html">NNRC</a>: Named Nested Relational Calculus</li>
-	<li><a href="doc/Qcert.NNRC.Core.cNNRC.html">cNNRC</a>: Core NNRC</li>
-	<li><a href="doc/Qcert.DNNRC.Lang.DNNRC.html">DNNRC</a>: Distributed NNRC</li>
-	<li><a href="doc/Qcert.DNNRC.Typing.TDNNRCDataset.html">tDNNRC</a>: Typed DNNRC</li>
-	<li><a href="doc/Qcert.NNRCMR.Lang.NNRCMR.html">NNRCMR</a>: NNRC + Map/Reduce</li>
-	<li><a href="doc/Qcert.CldMR.Lang.CldMR.html">CldMR</a>: NNRC + Cloudant Map/Reduce</li>
-      </ul>
-
+      <p>
+	The supported languages are:
+	<ul>
+	  <li><a href="doc/Qcert.LambdaNRA.Lang.LambdaNRA.html#lambda_nra">𝝀NRA</a>: NRA with Lambdas</li>
+	  <li><a href="doc/Qcert.SQL.Lang.SQL.html#sql">SQL</a>: Structured Query Language</li>
+	  <li><a href="doc/Qcert.OQL.Lang.OQL.html#oql">OQL</a>: Object Query Language</li>
+	  <li><a href="doc/Qcert.TechRule.Lang.TechRule.html#tech_rule">TechRule</a>: ODM technical rules</li>
+	  <li><a href="doc/Qcert.DesignRule.Lang.DesignRule.html#designer_rule">DesignerRule</a>: ODM designer rules</li>
+	  <li><a href="doc/Qcert.CAMPRule.Lang.CAMPRule.html#camp_rule">CAMPRule</a>: Rule Macros for CAMP</li>
+	  <li><a href="doc/Qcert.CAMP.Lang.CAMP.html#camp">CAMP</a>: Calculus of Aggregating Matching Patterns</li>
+	  <li><a href="doc/Qcert.NRA.Lang.NRA.html#nra">NRA</a>: Nested Relational Algebra</li>
+	  <li><a href="doc/Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">NRAe</a>: NRA with Environments</li>
+	  <li><a href="doc/Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core">cNRAe</a>: Core NRAe</li>
+	  <li><a href="doc/Qcert.NNRC.Lang.NNRC.html#nnrc">NNRC</a>: Named Nested Relational Calculus</li>
+	  <li><a href="doc/Qcert.NNRC.Core.cNNRC.html#nnrc_core">cNNRC</a>: Core NNRC</li>
+	  <li><a href="doc/Qcert.DNNRC.Lang.DNNRC.html#dnnrc">DNNRC</a>: Distributed NNRC</li>
+	  <li><a href="doc/Qcert.DNNRC.Typing.TDNNRCDataset.html#dnnrc_typed">tDNNRC</a>: Typed DNNRC</li>
+	  <li><a href="doc/Qcert.NNRCMR.Lang.NNRCMR.html#nnrcmr">NNRCMR</a>: NNRC + Map/Reduce</li>
+	  <li><a href="doc/Qcert.CldMR.Lang.CldMR.html#cldmr">CldMR</a>: NNRC + Cloudant Map/Reduce</li>
+	</ul>
+      </p>
 
       <h3>Documentation</h3>
 
