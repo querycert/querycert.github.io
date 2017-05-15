@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module QUtil</title>
+<meta name="description" content="Documentation of Coq module QUtil" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module QUtil</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="CompilerRuntime.html">CompilerRuntime</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="BasicRuntime.html">BasicRuntime</a></span> <span class="id"><a href="NNRCMRRuntime.html">NNRCMRRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="TDNNRCInfer.html">TDNNRCInfer</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="CompEnv.html">CompEnv</a></span>.<br/>
+<br/>
+<span class="kwd">Module</span> <span class="id"><a name="QUtil">QUtil</a></span>(<span class="id">runtime</span>:<span class="id"><a href="CompilerRuntime.html#CompilerRuntime">CompilerRuntime</a></span>).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.mr_reduce_empty">mr_reduce_empty</a></span> := <span class="id"><a href="NNRCMR.html#mr_reduce_empty">mr_reduce_empty</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.type_annotation">type_annotation</a></span> {<span class="id">br</span>:<span class="id"><a href="BrandRelation.html#brand_relation">brand_relation</a></span>} (<span class="id">A</span>:<span class="kwd">Set</span>): <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="TDNNRCInfer.html#type_annotation">TDNNRCInfer.type_annotation</a></span> <span class="id"><a href="QUtil.html#A">A</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.ta_base">ta_base</a></span> {<span class="id">br</span>:<span class="id"><a href="BrandRelation.html#brand_relation">brand_relation</a></span>} (<span class="id">A</span>:<span class="kwd">Set</span>) (<span class="id">ta</span>:<span class="id"><a href="QUtil.html#QUtil.type_annotation">type_annotation</a></span> <span class="id"><a href="QUtil.html#A">A</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="TDNNRCInfer.html#ta_base">TDNNRCInfer.ta_base</a></span> <span class="id"><a href="QUtil.html#ta">ta</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.ta_inferred">ta_inferred</a></span> {<span class="id">br</span>:<span class="id"><a href="BrandRelation.html#brand_relation">brand_relation</a></span>} (<span class="id">A</span>:<span class="kwd">Set</span>) (<span class="id">ta</span>:<span class="id"><a href="QUtil.html#QUtil.type_annotation">type_annotation</a></span> <span class="id"><a href="QUtil.html#A">A</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="TDNNRCInfer.html#ta_inferred">TDNNRCInfer.ta_inferred</a></span> <span class="id"><a href="QUtil.html#ta">ta</a></span> .<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.ta_required">ta_required</a></span> {<span class="id">br</span>:<span class="id"><a href="BrandRelation.html#brand_relation">brand_relation</a></span>} (<span class="id">A</span>:<span class="kwd">Set</span>) (<span class="id">ta</span>:<span class="id"><a href="QUtil.html#QUtil.type_annotation">type_annotation</a></span> <span class="id"><a href="QUtil.html#A">A</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="TDNNRCInfer.html#ta_required">TDNNRCInfer.ta_required</a></span> <span class="id"><a href="QUtil.html#ta">ta</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.validate_lifted_success">validate_lifted_success</a></span> := <span class="id"><a href="CompEnv.html#validate_lifted_success">validate_lifted_success</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.mkDistLoc">mkDistLoc</a></span> := <span class="id"><a href="RConstants.html#mkConstants">mkConstants</a></span> <span class="id"><a href="DConstants.html#mkDistLoc">mkDistLoc</a></span>. <br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.mkDistWorld">mkDistWorld</a></span> <span class="id">env</span> := <span class="id"><a href="RConstants.html#mkConstants">mkConstants</a></span> (<span class="id"><a href="DConstants.html#mkDistWorld">mkDistWorld</a></span> <span class="id"><a href="QUtil.html#env">env</a></span>). <br/>
+<span class="kwd">End</span> <span class="id"><a href="QUtil.html#QUtil">QUtil</a></span>.<br/>
+<br/>
+</div>
+<div class="footer"><hr/>Generated by coq2html</div>
+</body>
+</html>

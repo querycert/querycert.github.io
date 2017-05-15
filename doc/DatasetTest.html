@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module DatasetTest</title>
+<meta name="description" content="Documentation of Coq module DatasetTest" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module DatasetTest</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Utils.html">Utils</a></span> <span class="id"><a href="BasicRuntime.html">BasicRuntime</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="LambdaNRA.html">LambdaNRA</a></span> <span class="id"><a href="LambdaNRAEq.html">LambdaNRAEq</a></span> <span class="id"><a href="LambdaNRAtoNRAEnv.html">LambdaNRAtoNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="TrivialCompiler.html">TrivialCompiler</a></span>.<br/>
+<span class="kwd">Import</span> <span class="id">TrivialCompiler</span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="DatasetTests">DatasetTests</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="LambdaNRATest.html">LambdaNRATest</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="A4">A4</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="LambdaNRA.html#LNRAMap">LNRAMap</a></span> (<span class="id"><a href="LambdaNRA.html#LNRALambda">LNRALambda</a></span> "<span class="id">p</span>" (<span class="id"><a href="LambdaNRA.html#LNRAUnop">LNRAUnop</a></span> (<span class="id"><a href="RUnaryOps.html#ADot">ADot</a></span> "<span class="id">name</span>") (<span class="id"><a href="LambdaNRA.html#LNRAVar">LNRAVar</a></span> "<span class="id">p</span>"))) (<span class="id"><a href="LambdaNRA.html#LNRATable">LNRATable</a></span> "<span class="id">Persons</span>").<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="CompDriver.html">CompDriver</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="a">a</a></span> := <span class="id"><a href="CompDriver.html#lambda_nra_to_nraenv">lambda_nra_to_nraenv</a></span> <span class="id"><a href="DatasetTest.html#A4">A4</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="b">b</a></span> := <span class="id"><a href="CompDriver.html#nraenv_to_nnrc">nraenv_to_nnrc</a></span> <span class="id"><a href="DatasetTest.html#a">a</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="c">c</a></span> := <span class="id"><a href="CompDriver.html#nnrc_to_dnnrc_dataset">nnrc_to_dnnrc_dataset</a></span> (("<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id"><a href="DData.html#Vdistr">Vdistr</a></span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="id"><a href="DatasetTest.html#b">b</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="CAMPTest.html">CAMPTest</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="BasicSystem.html">BasicSystem</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="TrivialModel.html">TrivialModel</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="TDataTest.html">TDataTest</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="kwd">Program</span>.<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="TCAMPTest.html">TCAMPTest</a></span>.<br/>
+&nbsp;&nbsp;<span class="id">Existing</span> <span class="kwd">Instance</span> <span class="id">CPModel</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="PersonsType">PersonsType</a></span> := <span class="id"><a href="DType.html#Tdistr">Tdistr</a></span> <span class="id"><a href="TCAMPTest.html#CustomerType">CustomerType</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tdenv">tdenv</a></span> :<span class="id"><a href="TDBindings.html#tdbindings">tdbindings</a></span> := (("<span class="id">CONST</span>$<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id"><a href="DatasetTest.html#PersonsType">PersonsType</a></span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
+<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="d">d</a></span> := <span class="id"><a href="CompDriver.html#dnnrc_dataset_to_dnnrc_typed_dataset">dnnrc_dataset_to_dnnrc_typed_dataset</a></span> <span class="id"><a href="DatasetTest.html#c">c</a></span> <span class="id"><a href="DatasetTest.html#tdenv">tdenv</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="e">e</a></span>:= <span class="id"><a href="RLift.html#lift">lift</a></span> <span class="id"><a href="CompDriver.html#dnnrc_typed_dataset_optim">dnnrc_typed_dataset_optim</a></span> <span class="id"><a href="DatasetTest.html#d">d</a></span>.<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="CompEval.html">CompEval</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="NRATest.html">NRATest</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="env">env</a></span> := (("<span class="id">CONST</span>$<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id"><a href="NRATest.html#persons">persons</a></span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="ev">ev</a></span> := <span class="id"><a href="RLift.html#lift">lift</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; @<span class="id"><a href="CompEval.html#eval_dnnrc_typed_dataset">eval_dnnrc_typed_dataset</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> [] <span class="id"><a href="DatasetTest.html#x">x</a></span> <span class="id"><a href="DatasetTest.html#env">env</a></span>) <span class="id"><a href="DatasetTest.html#e">e</a></span>.<br/>
+<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="DatasetTest.html#DatasetTests">DatasetTests</a></span>.<br/>
+<br/>
+</div>
+<div class="footer"><hr/>Generated by coq2html</div>
+</body>
+</html>
