@@ -176,7 +176,7 @@ on Nashorn, the JavaScript engine of Java.
 The command to launch the runner is:
 ```
 java \
-  -cp ~/qcert/samples/bin:~/qcert/lib/gson-2.7.jar \
+  -cp $HOME/qcert/samples/bin:$HOME/qcert/lib/gson-2.7.jar \
   testing.runners.RunJavascript \
   -input ../io/icfp17.io -runtime ../harness.js icfp17.js
 ```
@@ -238,7 +238,7 @@ replaced by Cloudant username and password provided in the
 credentials.
 ```
 java \
-  -cp ~/qcert/samples/bin:~/qcert/lib/commons-codec-1.6.jar:~/qcert/lib/gson-2.7.jar:~/qcert/lib/commons-logging.jar:~/qcert/lib/httpcore-4.3.2.jar:~/qcert/lib/commons-collections-3.2.2.jar:~/qcert/lib/cloudant-client-1.2.3.jar:~/qcert/lib/httpclient-4.3.4.jar \
+  -cp $HOME/qcert/samples/bin:$HOME/qcert/lib/commons-codec-1.6.jar:$HOME/qcert/lib/gson-2.7.jar:$HOME/qcert/lib/commons-logging.jar:$HOME/qcert/lib/httpcore-4.3.2.jar:$HOME/qcert/lib/commons-collections-3.2.2.jar:$HOME/qcert/lib/cloudant-client-1.2.3.jar:$HOME/qcert/lib/httpclient-4.3.4.jar \
   -Dcloudant_user=$USERNAME \
   -Dcloudant_password=$PASSWORD \
   testing.runners.RunCloudant \
@@ -250,7 +250,7 @@ keep the databases in Cloudant to be able to observe them after the
 execution of the test, we can add the option `-keep-db`:
 ```
 java \
-  -cp ~/qcert/samples/bin:~/qcert/lib/commons-codec-1.6.jar:~/qcert/lib/gson-2.7.jar:~/qcert/lib/commons-logging.jar:~/qcert/lib/httpcore-4.3.2.jar:~/qcert/lib/commons-collections-3.2.2.jar:~/qcert/lib/cloudant-client-1.2.3.jar:~/qcert/lib/httpclient-4.3.4.jar \
+  -cp $HOME/qcert/samples/bin:$HOME/qcert/lib/commons-codec-1.6.jar:$HOME/qcert/lib/gson-2.7.jar:$HOME/qcert/lib/commons-logging.jar:$HOME/qcert/lib/httpcore-4.3.2.jar:$HOME/qcert/lib/commons-collections-3.2.2.jar:$HOME/qcert/lib/cloudant-client-1.2.3.jar:$HOME/qcert/lib/httpclient-4.3.4.jar \
   -Dcloudant_user=$USERNAME \
   -Dcloudant_password=$PASSWORD \
   testing.runners.RunCloudant \
@@ -387,9 +387,10 @@ Install Q*cert:
 ```
 cd
 wget https://querycert.github.io/icfp17/resources/icfp17.pdf
-wget https://querycert.github.io/icfp17/resources/samples.tgz
 wget https://querycert.github.io/icfp17/resources/README.md
+wget https://querycert.github.io/icfp17/resources/samples.tgz
 tar xvfz samples.tgz
+rm samples.tgz
 git clone https://github.com/querycert/qcert.git
 git checkout c7e017e2f475f4435cd8d867a43eca7c80471e9e
 cd qcert
