@@ -1,7 +1,7 @@
 # Prototyping a Query Compiler Using Coq (Artifact)
 
 The artifact accompanying the ICFP 2017 paper entitled _Experience
-Report: Prototyping a Query Compiler Using Coq_ is distribued as a
+Report: Prototyping a Query Compiler Using Coq_ is distributed as a
 virtual appliance using the Open Virtualization Format. It is a Linux
 image containing:
 - the paper: `~/icfp17.pdf`
@@ -21,8 +21,6 @@ in `~/qcert/README.md`.
 
 
 ## Getting Started
-
-### Launch the Q*Cert compiler
 
 Launch the virtual machine `icfp17.voa` using a virtualization player
 like VirtualBox (https://www.virtualbox.org).  The virtual machine was
@@ -48,7 +46,7 @@ This should display the command line options for the compiler.
 
 ## Compile and execute a query step by step
 
-We detail step by step how to compiler the query
+We detail step by step how to compile the query
 `~/samples/camp_rule/icfp17.camp_rule` presented in the paper. Then,
 we show how to use the Makefile to simplify the compilation.
 
@@ -123,7 +121,7 @@ rm icfp17_camp* icfp17_rule*
 Now that we have seen how to compile a query, we are going to see how
 to execute the generated code.
 
-In order to perform the evaluation we will need some additional
+In order to perform the evaluation, we will need some additional
 information that is going to be provided in the JSON file
 `~/samples/io/icfp.io`.
 
@@ -182,7 +180,7 @@ java \
   testing.runners.RunJavascript \
   -input ../io/icfp17.io -runtime ../harness.js icfp17.js
 ```
-This program execute the JavaScript code on the input data and compare
+This program executes the JavaScript code on the input data and compare
 it with the expected result.
 
 You can notice in the command line that the runner is parameterized by
