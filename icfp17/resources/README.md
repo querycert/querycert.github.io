@@ -264,9 +264,9 @@ the corresponding source code and SemRule code are available
 respectively in the directories `~/samples/defl` and
 `~/samples/tech_rule`.
 
-A Makefile is provided in the directory `~/samples/camp_rule`:
+A Makefile is provided in the directory `~/samples`:
 ```
-cd `~/samples/camp_rule`
+cd ~/samples
 ```
 
 The target `compile` of the Makefile compiles all the examples in
