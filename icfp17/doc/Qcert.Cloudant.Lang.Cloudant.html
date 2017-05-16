@@ -21,16 +21,58 @@
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Section</span> <a name="Cloudant"><span class="id" title="section">Cloudant</span></a>.<br/>
-
-<br/>
 </div>
 
 <div class="doc">
-Cloudant programs are in serialized form 
+Cloudant is a representation for the emitted cloudant code. It is
+composed of a list of Cloudant design documents, a final expression,
+and a list of effective
+parameters.
+<ul class="doclist">
+<li> The list of Cloudant design document describes map-reduce views evaluated on the server side. Those design documents are in JSON serialized form.
+
+</li>
+<li> The final expression is used to compute the final result from the output of the views, and evaluated on the client side.
+
+</li>
+<li> The list of effective parameters are the names of the databases where the result of the views are stored
+
+</li>
+</ul>
+
+<div class="paragraph"> </div>
+
+ Summary:
+<ul class="doclist">
+<li> Language: Cloudant (Emitted code for Cloudant)
+
+</li>
+<li> Based on: Cloudant DB documentation.
+
+</li>
+<li> URL: https://console.ng.bluemix.net/docs/services/Cloudant/api/creating_views.htmlviews-mapreduce-
+- Languages translating to Cloudant: CldMR
+- Languages translating from Cloudant: 
+
+</li>
+</ul>
+
 </div>
 <div class="code">
-&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cloudant"><span class="id" title="definition">cloudant</span></a> := (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a>)%<span class="id" title="var">type</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <a name="Cloudant"><span class="id" title="section">Cloudant</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Record</span> <a name="cloudant_design"><span class="id" title="record">cloudant_design</span></a> := <a name="mkCloudantDesign"><span class="id" title="constructor">mkCloudantDesign</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="cloudant_design_inputdb"><span class="id" title="projection">cloudant_design_inputdb</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cloudant_design_doc"><span class="id" title="projection">cloudant_design_doc</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>; }.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Record</span> <a name="cloudant"><span class="id" title="record">cloudant</span></a> := <a name="mkCloudant"><span class="id" title="constructor">mkCloudant</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="cloudant_designs"><span class="id" title="projection">cloudant_designs</span></a>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Cloudant.Lang.Cloudant.html#cloudant_design"><span class="id" title="record">cloudant_design</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cloudant_final_expr"><span class="id" title="projection">cloudant_final_expr</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cloudant_effective_parameters"><span class="id" title="projection">cloudant_effective_parameters</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>; }.<br/>
 
 <br/>
 <span class="id" title="keyword">End</span> <a class="idref" href="Qcert.Cloudant.Lang.Cloudant.html#Cloudant"><span class="id" title="section">Cloudant</span></a>.<br/>

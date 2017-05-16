@@ -21,18 +21,136 @@
 <div class="code">
 
 <br/>
+</div>
+
+<div class="doc">
+NRAEnv is nested relational algebra, extended with operations to
+  facilitate encoding of environment manipulation. It serves as the
+  main intermediate language for optimization. 
+<div class="paragraph"> </div>
+
+ NRAEnv is a thin layer over the core language cNRAEnv. As cNRAEnv,
+  NRAEnv is combinators-based, i.e., it is evaluated with only a
+  static global environment, but no notion of local
+  variables. 
+<div class="paragraph"> </div>
+
+ Additional operators in NRAEnv can be easily expressed in terms of
+  the core cNRAEnv, but are useful for optimization purposes. Those
+  operators notably include joins and group-by. 
+<div class="paragraph"> </div>
+
+ NRAEnv builds on a large body of work from the database
+community. For a complete treatment on nested relational algebras, we
+refer to Guido Moerkotte's "Building Query Compilers", Chapter 7.
+
+<div class="paragraph"> </div>
+
+   http://pi3.informatik.uni-mannheim.de/~moer/querycompiler.pdf 
+<div class="paragraph"> </div>
+
+ Summary:
+
+<div class="paragraph"> </div>
+
+<ul class="doclist">
+<li> Language: NRAEnv (Nested Relational Algebra with Environments)
+
+</li>
+<li> Based on: "Handling Environments in a Nested Relational Algebra with
+  Combinators and an Implementation in a Verified Query Compiler"
+  Joshua Auerbach, Martin Hirzel, Louis Mandel, Avraham Shinnar, and
+  Jérôme Siméon. SIGMOD'2017.
+
+</li>
+<li> translating to NRAEnv: LambdaNRA, SQL, OQL, CAMP, cNRAEnv
+
+</li>
+<li> translating from NRAEnv: NNRC, cNRAEnv 
+</li>
+</ul>
+
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Section</span> <a name="NRAEnv"><span class="id" title="section">NRAEnv</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab3"></a><h1 class="section">Abstract Syntax</h1>
+
+</div>
+<div class="code">
 
 <br/>
-
-<br/>
-
-<br/>
-
-<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> (<span class="id" title="var">h</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a>(<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)).<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Context</span> {<span class="id" title="var">fruntime</span>:<a class="idref" href="Qcert.Basic.ForeignRuntime.html#foreign_runtime"><span class="id" title="class">foreign_runtime</span></a>}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+As much as possible, notations are aligned with those of S. Cluet
+   and G. Moerkotte. Nested queries in object bases. In Proc. Int.
+   Workshop on Database Programming Languages , pages 226-242,
+   1993. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="nraenv"><span class="id" title="inductive">nraenv</span></a> : <span class="id" title="keyword">Set</span> :=<br/>
+&nbsp;&nbsp;| <a name="NRAEnvID"><span class="id" title="constructor">NRAEnvID</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                                         <br/>
+&nbsp;&nbsp;| <a name="NRAEnvConst"><span class="id" title="constructor">NRAEnvConst</span></a> : <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                              <br/>
+&nbsp;&nbsp;| <a name="NRAEnvBinop"><span class="id" title="constructor">NRAEnvBinop</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>         <br/>
+&nbsp;&nbsp;| <a name="NRAEnvUnop"><span class="id" title="constructor">NRAEnvUnop</span></a> : <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#unaryOp"><span class="id" title="inductive">unaryOp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                  <br/>
+&nbsp;&nbsp;| <a name="NRAEnvMap"><span class="id" title="constructor">NRAEnvMap</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                    <br/>
+&nbsp;&nbsp;| <a name="NRAEnvMapConcat"><span class="id" title="constructor">NRAEnvMapConcat</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>              <br/>
+&nbsp;&nbsp;| <a name="NRAEnvProduct"><span class="id" title="constructor">NRAEnvProduct</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                <br/>
+&nbsp;&nbsp;| <a name="NRAEnvSelect"><span class="id" title="constructor">NRAEnvSelect</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                 <br/>
+&nbsp;&nbsp;| <a name="NRAEnvDefault"><span class="id" title="constructor">NRAEnvDefault</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                <br/>
+&nbsp;&nbsp;| <a name="NRAEnvEither"><span class="id" title="constructor">NRAEnvEither</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                 <br/>
+&nbsp;&nbsp;| <a name="NRAEnvEitherConcat"><span class="id" title="constructor">NRAEnvEitherConcat</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>           <br/>
+&nbsp;&nbsp;| <a name="NRAEnvApp"><span class="id" title="constructor">NRAEnvApp</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                    <br/>
+&nbsp;&nbsp;| <a name="NRAEnvGetConstant"><span class="id" title="constructor">NRAEnvGetConstant</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                      <br/>
+&nbsp;&nbsp;| <a name="NRAEnvEnv"><span class="id" title="constructor">NRAEnvEnv</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                                        <br/>
+&nbsp;&nbsp;| <a name="NRAEnvAppEnv"><span class="id" title="constructor">NRAEnvAppEnv</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                 <br/>
+&nbsp;&nbsp;| <a name="NRAEnvMapEnv"><span class="id" title="constructor">NRAEnvMapEnv</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                           <br/>
+&nbsp;&nbsp;| <a name="NRAEnvFlatMap"><span class="id" title="constructor">NRAEnvFlatMap</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>                <br/>
+&nbsp;&nbsp;| <a name="NRAEnvJoin"><span class="id" title="constructor">NRAEnvJoin</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>         <br/>
+&nbsp;&nbsp;| <a name="NRAEnvProject"><span class="id" title="constructor">NRAEnvProject</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>           <br/>
+&nbsp;&nbsp;| <a name="NRAEnvGroupBy"><span class="id" title="constructor">NRAEnvGroupBy</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <br/>
+&nbsp;&nbsp;| <a name="NRAEnvUnnest"><span class="id" title="constructor">NRAEnvUnnest</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>       <br/>
+&nbsp;&nbsp;.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Equality between two NRAEnv expressions is decidable. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="nraenv_eqdec"><span class="id" title="instance">nraenv_eqdec</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Classes.EquivDec.html#EqDec"><span class="id" title="class">EqDec</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab4"></a><h1 class="section">Macros</h1>
+
+<div class="paragraph"> </div>
+
+ All the additional operators are defined in terms of the core cNRAEnv. 
+<div class="paragraph"> </div>
+
+<a name="lab5"></a><h2 class="section">Join operations</h2>
+
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="join"><span class="id" title="definition">join</span></a> (<span class="id" title="var">op1</span> <span class="id" title="var">op2</span> <span class="id" title="var">op3</span> : <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a>) : <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a> :=<br/>
@@ -47,6 +165,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANSelect"><span class="id" title="constructor">ANSelect</span></a> (<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANBinop"><span class="id" title="constructor">ANBinop</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AEq"><span class="id" title="constructor">AEq</span></a> (<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANSelect"><span class="id" title="constructor">ANSelect</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op1"><span class="id" title="variable">op1</span></a> (<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANProduct"><span class="id" title="constructor">ANProduct</span></a> ((<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#AColl"><span class="id" title="constructor">AColl</span></a>) <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANID"><span class="id" title="constructor">ANID</span></a>) <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op3"><span class="id" title="variable">op3</span></a>)) (<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANConst"><span class="id" title="constructor">ANConst</span></a> (<a class="idref" href="Qcert.Basic.Data.RData.html#dcoll"><span class="id" title="constructor">dcoll</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>))) <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op2"><span class="id" title="variable">op2</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab6"></a><h2 class="section">Map operations</h2>
+
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="map_add_rec"><span class="id" title="definition">map_add_rec</span></a> (<span class="id" title="var">s</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) (<span class="id" title="var">op1</span> <span class="id" title="var">op2</span> : <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a>) : <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a> :=<br/>
@@ -59,6 +184,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#AFlatten"><span class="id" title="constructor">AFlatten</span></a> (<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANMap"><span class="id" title="constructor">ANMap</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op1"><span class="id" title="variable">op1</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op2"><span class="id" title="variable">op2</span></a>).<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab7"></a><h2 class="section">Projection</h2>
+
+</div>
+<div class="code">
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="project"><span class="id" title="definition">project</span></a> (<span class="id" title="var">fields</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) (<span class="id" title="var">op</span>:<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a>) : <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANMap"><span class="id" title="constructor">ANMap</span></a> (<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARecProject"><span class="id" title="constructor">ARecProject</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#fields"><span class="id" title="variable">fields</span></a>) <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANID"><span class="id" title="constructor">ANID</span></a>) <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op"><span class="id" title="variable">op</span></a>.<br/>
 
@@ -67,15 +199,31 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANMap"><span class="id" title="constructor">ANMap</span></a> ((<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARecRemove"><span class="id" title="constructor">ARecRemove</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#s"><span class="id" title="variable">s</span></a>)) <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANID"><span class="id" title="constructor">ANID</span></a>) <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op"><span class="id" title="variable">op</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab8"></a><h2 class="section">Renaming</h2>
+
+</div>
+<div class="code">
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="map_rename_rec"><span class="id" title="definition">map_rename_rec</span></a> (<span class="id" title="var">s1</span> <span class="id" title="var">s2</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) (<span class="id" title="var">op</span>:<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a>) : <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANMap"><span class="id" title="constructor">ANMap</span></a> ((<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANBinop"><span class="id" title="constructor">ANBinop</span></a> <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#AConcat"><span class="id" title="constructor">AConcat</span></a>) ((<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARec"><span class="id" title="constructor">ARec</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#s2"><span class="id" title="variable">s2</span></a>)) ((<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ADot"><span class="id" title="constructor">ADot</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#s1"><span class="id" title="variable">s1</span></a>)) <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANID"><span class="id" title="constructor">ANID</span></a>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARecRemove"><span class="id" title="constructor">ARecRemove</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#s1"><span class="id" title="variable">s1</span></a>)) <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANID"><span class="id" title="constructor">ANID</span></a>)) <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op"><span class="id" title="variable">op</span></a>.<br/>
 
 <br/>
+</div>
 
-<br/>
+<div class="doc">
+<a name="lab9"></a><h2 class="section">Grouping</h2>
 
-<br/>
+<div class="paragraph"> </div>
+
+ Defining group-by in terms of the core is more tricky, but is
+     possible. You need to do two passes, and compare elements with
+     the same set of attribute names which means you need to
+     encapsulate each branch with distinct record names. 
+</div>
+<div class="code">
 
 <br/>
 
@@ -95,6 +243,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANProduct"><span class="id" title="constructor">ANProduct</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#AColl"><span class="id" title="constructor">AColl</span></a> (<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARec"><span class="id" title="constructor">ARec</span></a> "4") (<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#map_to_rec"><span class="id" title="definition">map_to_rec</span></a> "3" <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op"><span class="id" title="variable">op</span></a>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#map_to_rec"><span class="id" title="definition">map_to_rec</span></a> "2" (<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#map_to_rec"><span class="id" title="definition">map_to_rec</span></a> "1" (<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ADistinct"><span class="id" title="constructor">ADistinct</span></a> (<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#project"><span class="id" title="definition">project</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#sl"><span class="id" title="variable">sl</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op"><span class="id" title="variable">op</span></a>))))).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+This is an alternative definition that isn't quite as
+      inefficient. It stores the result of the input operator in the
+      environment so it isn't computed twice. This is still
+      quadratic. 
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="group_by_with_env"><span class="id" title="definition">group_by_with_env</span></a> (<span class="id" title="var">g</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) (<span class="id" title="var">sl</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) (<span class="id" title="var">op</span> : <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a>) : <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a> :=<br/>
@@ -118,8 +277,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARec"><span class="id" title="constructor">ARec</span></a> "$pregroup") <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op"><span class="id" title="variable">op</span></a>).<br/>
 
 <br/>
+</div>
 
-<br/>
+<div class="doc">
+<a name="lab10"></a><h2 class="section">Unnesting</h2>
+
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="unnest_one"><span class="id" title="definition">unnest_one</span></a> (<span class="id" title="var">s</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) (<span class="id" title="var">op</span>:<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a>) : <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a> :=<br/>
@@ -130,36 +294,16 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANMap"><span class="id" title="constructor">ANMap</span></a> ((<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARecRemove"><span class="id" title="constructor">ARecRemove</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#a"><span class="id" title="variable">a</span></a>)) <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANID"><span class="id" title="constructor">ANID</span></a>) (<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANMapConcat"><span class="id" title="constructor">ANMapConcat</span></a> (<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANMap"><span class="id" title="constructor">ANMap</span></a> ((<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ARec"><span class="id" title="constructor">ARec</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#b"><span class="id" title="variable">b</span></a>)) <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANID"><span class="id" title="constructor">ANID</span></a>) ((<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANUnop"><span class="id" title="constructor">ANUnop</span></a> (<a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#ADot"><span class="id" title="constructor">ADot</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#a"><span class="id" title="variable">a</span></a>)) <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANID"><span class="id" title="constructor">ANID</span></a>)) <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#op"><span class="id" title="variable">op</span></a>).<br/>
 
 <br/>
+</div>
 
-<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="nraenv"><span class="id" title="inductive">nraenv</span></a> : <span class="id" title="keyword">Set</span> :=<br/>
-&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;| <a name="NRAEnvID"><span class="id" title="constructor">NRAEnvID</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvConst"><span class="id" title="constructor">NRAEnvConst</span></a> : <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvBinop"><span class="id" title="constructor">NRAEnvBinop</span></a> : <a class="idref" href="Qcert.Basic.Operators.RBinaryOps.html#binOp"><span class="id" title="inductive">binOp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvUnop"><span class="id" title="constructor">NRAEnvUnop</span></a> : <a class="idref" href="Qcert.Basic.Operators.RUnaryOps.html#unaryOp"><span class="id" title="inductive">unaryOp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvMap"><span class="id" title="constructor">NRAEnvMap</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvMapConcat"><span class="id" title="constructor">NRAEnvMapConcat</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvProduct"><span class="id" title="constructor">NRAEnvProduct</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvSelect"><span class="id" title="constructor">NRAEnvSelect</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvDefault"><span class="id" title="constructor">NRAEnvDefault</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvEither"><span class="id" title="constructor">NRAEnvEither</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvEitherConcat"><span class="id" title="constructor">NRAEnvEitherConcat</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvApp"><span class="id" title="constructor">NRAEnvApp</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvGetConstant"><span class="id" title="constructor">NRAEnvGetConstant</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvEnv"><span class="id" title="constructor">NRAEnvEnv</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvAppEnv"><span class="id" title="constructor">NRAEnvAppEnv</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvMapEnv"><span class="id" title="constructor">NRAEnvMapEnv</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;| <a name="NRAEnvFlatMap"><span class="id" title="constructor">NRAEnvFlatMap</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvJoin"><span class="id" title="constructor">NRAEnvJoin</span></a> : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvProject"><span class="id" title="constructor">NRAEnvProject</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvGroupBy"><span class="id" title="constructor">NRAEnvGroupBy</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;| <a name="NRAEnvUnnest"><span class="id" title="constructor">NRAEnvUnnest</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a><br/>
-&nbsp;&nbsp;.<br/>
+<div class="doc">
+<a name="lab11"></a><h1 class="section">Evaluation Semantics</h1>
 
-<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Global Instance</span> <a name="nraenv_eqdec"><span class="id" title="instance">nraenv_eqdec</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Classes.EquivDec.html#EqDec"><span class="id" title="class">EqDec</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#eq"><span class="id" title="inductive">eq</span></a>.<br/>
+<div class="paragraph"> </div>
+
+ The semantics of NRAEnv is defined as macro-expansion to the core language cNRAEnv. 
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Fixpoint</span> <a name="nraenv_core_of_nraenv"><span class="id" title="definition">nraenv_core_of_nraenv</span></a> (<span class="id" title="var">e</span>:<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>) : <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a> :=<br/>
@@ -188,6 +332,23 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="nraenv_eval"><span class="id" title="definition">nraenv_eval</span></a> <span class="id" title="var">c</span> (<span class="id" title="var">e</span>:<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>) (<span class="id" title="var">env</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) (<span class="id" title="var">x</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core_eval"><span class="id" title="definition">nraenv_core_eval</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnv.h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#c"><span class="id" title="variable">c</span></a> (<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv"><span class="id" title="definition">nraenv_core_of_nraenv</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#e"><span class="id" title="variable">e</span></a>) <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#env"><span class="id" title="variable">env</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#x"><span class="id" title="variable">x</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab12"></a><h1 class="section">Round-tripping</h1>
+
+<div class="paragraph"> </div>
+
+ Just checking that cNRAEnv can be lifted back to NRAEnv, and
+  showing that we can round-trip. 
+</div>
+<div class="code">
+
+<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Fixpoint</span> <a name="nraenv_of_nraenv_core"><span class="id" title="definition">nraenv_of_nraenv_core</span></a> (<span class="id" title="var">a</span>:<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a>) : <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#a"><span class="id" title="variable">a</span></a> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#ANID"><span class="id" title="constructor">ANID</span></a> ⇒ <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvID"><span class="id" title="constructor">NRAEnvID</span></a><br/>
@@ -213,16 +374,22 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv"><span class="id" title="definition">nraenv_core_of_nraenv</span></a> (<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_of_nraenv_core"><span class="id" title="definition">nraenv_of_nraenv_core</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#a"><span class="id" title="variable">a</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#a"><span class="id" title="variable">a</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab13"></a><h1 class="section">Toplevel</h1>
+
+<div class="paragraph"> </div>
+
+ Top-level evaluation is used externally by the Q*cert
+  compiler. It takes an NRAEnv expression and a global environment as
+  input. The initial current environment is set to an empty record,
+  and the initial current value to unit. 
+</div>
+<div class="code">
+
+<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a name="NRAEnv.Top"><span class="id" title="section">Top</span></a>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Context</span> (<span class="id" title="var">h</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a>(<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)).<br/>
-
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="nraenv_eval"><span class="id" title="definition">nraenv_eval</span></a> <span class="id" title="var">c</span> (<span class="id" title="var">e</span>:<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>) (<span class="id" title="var">env</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) (<span class="id" title="var">x</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core_eval"><span class="id" title="definition">nraenv_core_eval</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnv.Top.h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#c"><span class="id" title="variable">c</span></a> (<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv"><span class="id" title="definition">nraenv_core_of_nraenv</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#e"><span class="id" title="variable">e</span></a>) <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#env"><span class="id" title="variable">env</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#x"><span class="id" title="variable">x</span></a>.<br/>
-
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="initial_nraenv_ident"><span class="id" title="lemma">initial_nraenv_ident</span></a> <span class="id" title="var">c</span> (<span class="id" title="var">e</span>:<a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core"><span class="id" title="inductive">nraenv_core</span></a>) (<span class="id" title="var">env</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) (<span class="id" title="var">x</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_eval"><span class="id" title="definition">nraenv_eval</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#c"><span class="id" title="variable">c</span></a> (<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_of_nraenv_core"><span class="id" title="definition">nraenv_of_nraenv_core</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#e"><span class="id" title="variable">e</span></a>) <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#env"><span class="id" title="variable">env</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.NRAEnv.Core.cNRAEnv.html#nraenv_core_eval"><span class="id" title="definition">nraenv_core_eval</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnv.Top.h"><span class="id" title="variable">h</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#c"><span class="id" title="variable">c</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#e"><span class="id" title="variable">e</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#env"><span class="id" title="variable">env</span></a> <a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#x"><span class="id" title="variable">x</span></a>.<br/>
 
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="nraenv_eval_top"><span class="id" title="definition">nraenv_eval_top</span></a> (<span class="id" title="var">q</span>:<a class="idref" href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv"><span class="id" title="inductive">nraenv</span></a>) (<span class="id" title="var">env</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#bindings"><span class="id" title="definition">bindings</span></a>) :=<br/>

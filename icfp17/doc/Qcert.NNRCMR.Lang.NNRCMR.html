@@ -21,11 +21,31 @@
 <div class="code">
 
 <br/>
+</div>
+
+<div class="doc">
+NNRCMR is a language to describe chains of Map/Reduce, followed by
+some local computation over the result. 
+<div class="paragraph"> </div>
+
+ Summary:
+<ul class="doclist">
+<li> Language: NNRCMR (Named Nested Relational Calculus with Map/Reduce)
+
+</li>
+<li> Languages translating to NNRCMR: NNRC
+
+</li>
+<li> Languages translating from NNRCMR: NNRC, DNNRC, CldMR, SparkRDD
+
+</li>
+</ul>
+
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Section</span> <a name="NNRCMR"><span class="id" title="section">NNRCMR</span></a>.<br/>
-
-<br/>
-
-<br/>
 
 <br/>
 
@@ -41,7 +61,26 @@
 </div>
 
 <div class="doc">
-Named Nested Relational Calculus + Map Reduce 
+<a name="lab25"></a><h1 class="section">Abstract Syntax</h1>
+
+<div class="paragraph"> </div>
+
+ Named Nested Relational Calculus + Map Reduce 
+<div class="paragraph"> </div>
+
+ Different kind of map functions:
+<ul class="doclist">
+<li> MapDist: <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.Lattice.html#A"><span class="id" title="variable">A</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.RUtil.html#B"><span class="id" title="variable">B</span></a></span> function applied on each element of the input distributed collection.
+
+</li>
+<li> MapDistFlatten: <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.Lattice.html#A"><span class="id" title="variable">A</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Data.RRelation.html#coll"><span class="id" title="variable">coll</span></a></span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.RUtil.html#B"><span class="id" title="variable">B</span></a></span> function applied on each element of the input distributed collection, the ressult of the map is flattened.
+
+</li>
+<li> MapScalar: <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.Lattice.html#A"><span class="id" title="variable">A</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Data.RRelation.html#coll"><span class="id" title="variable">coll</span></a></span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.RUtil.html#B"><span class="id" title="variable">B</span></a></span> function applied on the scalar
+   
+</li>
+</ul>
+
 </div>
 <div class="code">
 
@@ -52,6 +91,30 @@ Named Nested Relational Calculus + Map Reduce
 &nbsp;&nbsp;| <a name="MapScalar"><span class="id" title="constructor">MapScalar</span></a>  : <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#map_fun"><span class="id" title="inductive">map_fun</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+Different kind of reduce functions:
+<ul class="doclist">
+<li> RedId: return the collection computed flattened by the map
+
+</li>
+<li> RedCollect red: apply the function red of that <span class="inlinecode"><a class="idref" href="Qcert.Basic.TypeSystem.RType.html#Coll"><span class="id" title="definition">Coll</span></a></span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.Lattice.html#A"><span class="id" title="variable">A</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.RUtil.html#B"><span class="id" title="variable">B</span></a></span>
+  on the collection of all the elements computed by the map
+
+</li>
+<li> RedOp: apply a built-in reduction operator that returns a
+  scalar
+
+</li>
+<li> RedSingleton: supposes that the input of the reduce is a
+  list with one element and returns this element.
+   
+</li>
+</ul>
+
+</div>
+<div class="code">
 &nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="reduce_op"><span class="id" title="inductive">reduce_op</span></a> :=<br/>
 &nbsp;&nbsp;| <a name="RedOpForeign"><span class="id" title="constructor">RedOpForeign</span></a> : <a class="idref" href="Qcert.NNRCMR.Lang.ForeignReduceOps.html#foreign_reduce_op_type"><span class="id" title="method">foreign_reduce_op_type</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_op"><span class="id" title="inductive">reduce_op</span></a>.<br/>
 
@@ -63,17 +126,54 @@ Named Nested Relational Calculus + Map Reduce
 &nbsp;&nbsp;| <a name="RedSingleton"><span class="id" title="constructor">RedSingleton</span></a> : <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_fun"><span class="id" title="inductive">reduce_fun</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+A map-reduce job <span class="inlinecode"><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr"><span class="id" title="record">mr</span></a></span> is applied to a collection fetched in the
+      environment at the location <span class="inlinecode"><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr"><span class="id" title="record">mr</span></a>.(<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr_input"><span class="id" title="projection">mr_input</span></a>)</span> and the result store
+      in the environment at the location <span class="inlinecode"><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr"><span class="id" title="record">mr</span></a>.(<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr_output"><span class="id" title="projection">mr_output</span></a>)</span>.
+
+<div class="paragraph"> </div>
+
+      A function <span class="inlinecode"><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr"><span class="id" title="record">mr</span></a>.(<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr_map"><span class="id" title="projection">mr_map</span></a>)</span> is applied on the input to produce a
+      collection of type <span class="inlinecode"><a class="idref" href="Qcert.Basic.Data.RRelation.html#coll"><span class="id" title="variable">coll</span></a></span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.RUtil.html#B"><span class="id" title="variable">B</span></a></span>.
+
+<div class="paragraph"> </div>
+
+     Then, the functions <span class="inlinecode"><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr"><span class="id" title="record">mr</span></a>.(<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr_reduce"><span class="id" title="projection">mr_reduce</span></a>)</span> is applied on all the
+     elements generated by the map.  
+</div>
+<div class="code">
 &nbsp;&nbsp;<span class="id" title="keyword">Record</span> <a name="mr"><span class="id" title="record">mr</span></a> := <a name="mkMR"><span class="id" title="constructor">mkMR</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="mr_input"><span class="id" title="projection">mr_input</span></a>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>; <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mr_output"><span class="id" title="projection">mr_output</span></a>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>; <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mr_map"><span class="id" title="projection">mr_map</span></a>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#map_fun"><span class="id" title="inductive">map_fun</span></a>; <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mr_reduce"><span class="id" title="projection">mr_reduce</span></a>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_fun"><span class="id" title="inductive">reduce_fun</span></a>  }.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="mr_input"><span class="id" title="projection">mr_input</span></a>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>;           <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mr_output"><span class="id" title="projection">mr_output</span></a>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>;          <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mr_map"><span class="id" title="projection">mr_map</span></a>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#map_fun"><span class="id" title="inductive">map_fun</span></a>;         <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mr_reduce"><span class="id" title="projection">mr_reduce</span></a>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_fun"><span class="id" title="inductive">reduce_fun</span></a> }. 
+<br/>
+</div>
+
+<div class="doc">
+A NNRC expression is a chain of map-reduce, with a last expression describing final/local computation 
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Record</span> <a name="nnrcmr"><span class="id" title="record">nnrcmr</span></a> := <a name="mkMRChain"><span class="id" title="constructor">mkMRChain</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="mr_inputs_loc"><span class="id" title="projection">mr_inputs_loc</span></a>: <a class="idref" href="Qcert.Basic.Data.DData.html#vdbindings"><span class="id" title="definition">vdbindings</span></a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mr_chain"><span class="id" title="projection">mr_chain</span></a>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr"><span class="id" title="record">mr</span></a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mr_last"><span class="id" title="projection">mr_last</span></a>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#dlocalization"><span class="id" title="inductive">dlocalization</span></a>); }.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="mr_inputs_loc"><span class="id" title="projection">mr_inputs_loc</span></a>: <a class="idref" href="Qcert.Basic.Data.DData.html#vdbindings"><span class="id" title="definition">vdbindings</span></a>;                                  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mr_chain"><span class="id" title="projection">mr_chain</span></a>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr"><span class="id" title="record">mr</span></a>;                                          <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="mr_last"><span class="id" title="projection">mr_last</span></a>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.Basic.Data.DData.html#dlocalization"><span class="id" title="inductive">dlocalization</span></a>); }. 
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab26"></a><h1 class="section">Sanitization</h1>
+
+<div class="paragraph"> </div>
+
+ This contains support functions in order to emit code which
+      follows lexical constraints imposed by the Spark. 
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a name="NNRCMR.sanitize_local"><span class="id" title="section">sanitize_local</span></a>.<br/>
@@ -194,6 +294,19 @@ Named Nested Relational Calculus + Map Reduce
 &nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#NNRCMR.sanitize_dbs"><span class="id" title="section">sanitize_dbs</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab27"></a><h1 class="section">Well-formedness</h1>
+
+<div class="paragraph"> </div>
+
+******************************
+<a name="lab28"></a><h2 class="section">Well formation constraints **
+</h2>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="mr_causally_consistent"><span class="id" title="definition">mr_causally_consistent</span></a> (<span class="id" title="var">mr1</span> <span class="id" title="var">mr2</span>:<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr"><span class="id" title="record">mr</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a><br/>
@@ -274,6 +387,19 @@ Named Nested Relational Calculus + Map Reduce
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab29"></a><h1 class="section">Evaluation Semantics</h1>
+
+<div class="paragraph"> </div>
+
+***********************
+<a name="lab30"></a><h2 class="section">Semantics of NNNRCMR **
+</h2>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a name="NNRCMR.Semantics"><span class="id" title="section">Semantics</span></a>.<br/>
@@ -282,6 +408,19 @@ Named Nested Relational Calculus + Map Reduce
 &nbsp;&nbsp;<span class="id" title="keyword">Context</span> (<span class="id" title="var">h</span>:<a class="idref" href="Qcert.Basic.Data.BrandRelation.html#brand_relation_t"><span class="id" title="definition">brand_relation_t</span></a>).<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab31"></a><h2 class="section">Map</h2>
+
+<div class="paragraph"> </div>
+
+******************
+<a name="lab32"></a><h1 class="section">Semantics of map *
+</h1>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="mr_map_eval"><span class="id" title="definition">mr_map_eval</span></a> (<span class="id" title="var">map</span>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#map_fun"><span class="id" title="inductive">map_fun</span></a>) (<span class="id" title="var">input_d</span>: <a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) :=<br/>
@@ -323,6 +462,19 @@ Named Nested Relational Calculus + Map Reduce
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab33"></a><h2 class="section">Reduce</h2>
+
+<div class="paragraph"> </div>
+
+*********************
+<a name="lab34"></a><h1 class="section">Semantics of reduce *
+</h1>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="reduce_op_eval"><span class="id" title="definition">reduce_op_eval</span></a> (<span class="id" title="var">rop</span>:<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_op"><span class="id" title="inductive">reduce_op</span></a>) (<span class="id" title="var">dl</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a><br/>
@@ -349,6 +501,19 @@ Named Nested Relational Calculus + Map Reduce
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab35"></a><h2 class="section">Map/Reduce</h2>
+
+<div class="paragraph"> </div>
+
+*****************************
+<a name="lab36"></a><h1 class="section">Semantics of one map-reduce *
+</h1>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="mr_eval"><span class="id" title="definition">mr_eval</span></a> (<span class="id" title="var">mr</span>:<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr"><span class="id" title="record">mr</span></a>) (<span class="id" title="var">d</span>: <a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> (<a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a>) :=<br/>
@@ -363,6 +528,19 @@ Named Nested Relational Calculus + Map Reduce
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr_eval"><span class="id" title="definition">mr_eval</span></a> (<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mkMR"><span class="id" title="constructor">mkMR</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr_input2"><span class="id" title="variable">mr_input2</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr_output2"><span class="id" title="variable">mr_output2</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#map_fun"><span class="id" title="variable">map_fun</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#red"><span class="id" title="variable">red</span></a>) <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#d"><span class="id" title="variable">d</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab37"></a><h2 class="section">Map/Reduce Chain</h2>
+
+<div class="paragraph"> </div>
+
+************************************
+<a name="lab38"></a><h1 class="section">Semantics of a chain of map-reduce *
+</h1>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="merge_env"><span class="id" title="definition">merge_env</span></a> (<span class="id" title="var">x</span>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>) (<span class="id" title="var">d</span>: <a class="idref" href="Qcert.Basic.Data.DData.html#ddata"><span class="id" title="inductive">ddata</span></a>) (<span class="id" title="var">env</span>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#nrcmr_env"><span class="id" title="definition">nrcmr_env</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#nrcmr_env"><span class="id" title="definition">nrcmr_env</span></a> :=<br/>
@@ -455,6 +633,24 @@ Named Nested Relational Calculus + Map Reduce
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#NNRCMR.Semantics"><span class="id" title="section">Semantics</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab39"></a><h1 class="section">A 'lazy' semantics</h1>
+
+<div class="paragraph"> </div>
+
+ In the alternative 'lazy' semantics, evaluation of a given
+  map/reduce isn't triggered unless there is at least one value in its
+  input collection. 
+<div class="paragraph"> </div>
+
+ This alternative semantics provides a model which is closer to
+  the run-time behavior of some targets, e.g., for Cloudant. 
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a name="NNRCMR.SemanticsLazy"><span class="id" title="section">SemanticsLazy</span></a>.<br/>
@@ -565,6 +761,19 @@ Named Nested Relational Calculus + Map Reduce
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#NNRCMR.ReduceEmpty"><span class="id" title="section">ReduceEmpty</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab40"></a><h1 class="section">NNRCMR Library</h1>
+
+<div class="paragraph"> </div>
+
+ The following are built-in Map/Reduces which can be useful for
+  translation, optimization, etc. 
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a name="NNRCMR.mr_library"><span class="id" title="section">mr_library</span></a>.<br/>

@@ -21,6 +21,84 @@
 <div class="code">
 
 <br/>
+</div>
+
+<div class="doc">
+CldMR is a language to describe chains of Map/Reduce views in the
+Cloudant Database, followed by some local computation over the result
+of the views. 
+<div class="paragraph"> </div>
+
+ Cloudant's notion of 'views' provides some of the capabilities
+    that are available in more common Map/Reduce framework such as Hadoop,
+    but has a number of different properties. 
+<div class="paragraph"> </div>
+
+ Cloudant notion of views is less expressive than general purpose
+    Map/Reduce but offers the following additional capabilities:
+<ul class="doclist">
+<li> Cloudant views can be chained through a special directive called
+  dbcopy which creates a new database that can be the input to a
+  subsequent Cloudant view.
+
+</li>
+<li> Cloudant views are computed in an incremental fashion, i.e., changes
+  on the input are propagated with limited recomputation and
+  exploiting results from previous executions which are cached. 
+</li>
+</ul>
+
+<div class="paragraph"> </div>
+
+ To achieve that, Cloudant views relies on a number of invariants,
+    which we expose and try to enforce. The most important invariants
+    are:
+<ul class="doclist">
+<li> A <span class="inlinecode"><a class="idref" href="Qcert.Translation.CldMRtoCloudant.html#dbcopy"><span class="id" title="variable">dbcopy</span></a></span> can only be present if a reduce is present as well.
+
+</li>
+<li> the result of a <span class="inlinecode"><a class="idref" href="Qcert.Translation.CldMRtoCloudant.html#dbcopy"><span class="id" title="variable">dbcopy</span></a></span> directive is implicitely coerced into a a
+  database in the form of key/value pairs, which are used to populate
+  the newly created database/view.
+
+</li>
+<li> A subsequent map over that dbcopy must access data accordingly (in
+  such key/values JSON structure).
+
+</li>
+<li> The "reduce" part of Cloudant views is heavily constrained and must
+  provide two distinct functions: one called <span class="inlinecode"><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce"><span class="id" title="variable">reduce</span></a></span>, the other
+  called <span class="inlinecode"><span class="id" title="var">rereduce</span></span>. The <span class="inlinecode"><span class="id" title="var">rereduce</span></span> function must be associative and
+  commutative.  
+</li>
+</ul>
+
+<div class="paragraph"> </div>
+
+ Finally, Cloudant views support special purposes reducers for the
+most common aggregate functions (count, sum, and average). We provide
+a representation to take advantage of those. 
+<div class="paragraph"> </div>
+
+ Summary:
+<ul class="doclist">
+<li> Language: CldMR (Cloudant Map/Reduce)
+
+</li>
+<li> Based on: Cloudant DB documentation.
+
+</li>
+<li> URL: https://console.ng.bluemix.net/docs/services/Cloudant/api/creating_views.htmlviews-mapreduce-
+- Languages translating to CldMR: NNRCMR
+- Languages translating from CldMR: Cloudant
+
+</li>
+</ul>
+
+</div>
+<div class="code">
+
+<br/>
 <span class="id" title="keyword">Section</span> <a name="CldMR"><span class="id" title="section">CldMR</span></a>.<br/>
 
 <br/>
@@ -39,85 +117,44 @@
 </div>
 
 <div class="doc">
-This provides support for the specific kind of quote
-      "map/reduce" unquote that Cloudant actually provides.
+<a name="lab53"></a><h1 class="section">Abstract Syntax</h1>
 
 <div class="paragraph"> </div>
 
-      In many ways, Cloudant's notion of 'views', despite being called
-      a map/reduce and providing some of the capabilities that are
-      available in more common M/R framework such as Hadoop, is quite
-      a different beast. Those differences are not entirely arbitrary,
-      and the framework is at once less expressive than M/R and also
-      more powerful and offers the following capabilities:
+ As in NNRCMR, all local computation inside the map or the reduce
+  in CldMR is described using NNRC expressions. 
+<div class="paragraph"> </div>
+
+<a name="lab54"></a><h2 class="section">Map</h2>
 
 <div class="paragraph"> </div>
 
+ The <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.RBindings.html#map"><span class="id" title="section">map</span></a></span> part of a Cloudant view is described using two
+  components:
 <ul class="doclist">
-<li> Cloudant M/R can be chained through a special directive called
-        dbcopy which creates a new database that can be the input to a
-        subsequent Cloudant M/R view.
-
-<div class="paragraph"> </div>
-
+<li> a map function which can be either a map or a flat_map, which is
+  applied to every document in the input database.
 
 </li>
-<li> Cloudant M/R can be executed in an incremental fashion, i.e.,
-        changes on the input are propagated with limited recomputation
-        and exploiting results from previous executions which are
-        cached.
-
+<li> an emit function which controls the generation of keys passed to the
+  reduce. The emit function is either: (i) <span class="inlinecode"><a class="idref" href="Qcert.Compiler.QLib.QData.html#QData.dist"><span class="id" title="section">dist</span></a></span> which creates unique
+  id's for the result of the map and results in a distributed
+  collection, (ii) <span class="inlinecode"><span class="id" title="var">collect</span></span> which is enforcing accumulation to a
+  single output document with a single key. 
 </li>
 </ul>
 
 <div class="paragraph"> </div>
 
-      To achieve that, Cloudant's M/R relies on a number of
-      invariants, which we here try and expse and enforce. The most
-      important such invariants are:
-
+ Note that as opposed to NNRCMR, the collect is specified in the
+  map rather than the reduce, since it has to be controlled through an
+  emit. 
 <div class="paragraph"> </div>
 
-<ul class="doclist">
-<li> dbcopy can only be present if a reduce is present as well
-
-<div class="paragraph"> </div>
-
-
-</li>
-<li> the result of a dbcopy directive is implicitely cast into as
-        collection of JSON documents in the form of key/value pairs,
-        which are used to populate the newly created database/view.
-
-<div class="paragraph"> </div>
-
-
-</li>
-<li> A subsequent map over that dbcopy must access data accordingly
-        (in such key/values JSON structure).
-
-<div class="paragraph"> </div>
-
-
-</li>
-<li> The "reduce" part of Cloudant M/R is heavily constrained and
-        must provide two distinct functions: one called reduce, the
-        other called rereduce. The rereduce function must be
-        associative and commutative.
-
-</li>
-</ul>
-
-<div class="paragraph"> </div>
-
- 
-<div class="paragraph"> </div>
-
- Named Nested Relational Calculus + Map Reduce FOR CLOUDANT 
+ Also note that this model does not cover a group-by semantics
+  but only simpler forms of reduce. 
 </div>
 <div class="code">
-
-<br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="cld_map_fun"><span class="id" title="inductive">cld_map_fun</span></a> :=<br/>
@@ -125,14 +162,22 @@ This provides support for the specific kind of quote
 &nbsp;&nbsp;| <a name="CldMapFlatten"><span class="id" title="constructor">CldMapFlatten</span></a> : <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_map_fun"><span class="id" title="inductive">cld_map_fun</span></a>. 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="cld_map_emit"><span class="id" title="inductive">cld_map_emit</span></a> :=<br/>
-&nbsp;&nbsp;| <a name="CldEmitDist"><span class="id" title="constructor">CldEmitDist</span></a> : <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_map_emit"><span class="id" title="inductive">cld_map_emit</span></a><br/>
-&nbsp;&nbsp;| <a name="CldEmitCollect"><span class="id" title="constructor">CldEmitCollect</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_map_emit"><span class="id" title="inductive">cld_map_emit</span></a>.<br/>
-
+&nbsp;&nbsp;| <a name="CldEmitDist"><span class="id" title="constructor">CldEmitDist</span></a> : <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_map_emit"><span class="id" title="inductive">cld_map_emit</span></a>                     <br/>
+&nbsp;&nbsp;| <a name="CldEmitCollect"><span class="id" title="constructor">CldEmitCollect</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_map_emit"><span class="id" title="inductive">cld_map_emit</span></a>. 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Record</span> <a name="cld_map"><span class="id" title="record">cld_map</span></a> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a name="mkMapCld"><span class="id" title="constructor">mkMapCld</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="map_fun"><span class="id" title="projection">map_fun</span></a>: <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_map_fun"><span class="id" title="inductive">cld_map_fun</span></a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="map_emit"><span class="id" title="projection">map_emit</span></a>: <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_map_emit"><span class="id" title="inductive">cld_map_emit</span></a> }.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab55"></a><h2 class="section">Reduce</h2>
+
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="cld_numeric_type"><span class="id" title="inductive">cld_numeric_type</span></a> :=<br/>
@@ -144,29 +189,62 @@ This provides support for the specific kind of quote
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="cld_reduce_op"><span class="id" title="inductive">cld_reduce_op</span></a> :=<br/>
-&nbsp;&nbsp;| <a name="CldRedOpCount"><span class="id" title="constructor">CldRedOpCount</span></a> : <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_op"><span class="id" title="inductive">cld_reduce_op</span></a><br/>
-&nbsp;&nbsp;| <a name="CldRedOpSum"><span class="id" title="constructor">CldRedOpSum</span></a> (<span class="id" title="var">typ</span>:<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_numeric_type"><span class="id" title="inductive">cld_numeric_type</span></a>): <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_op"><span class="id" title="inductive">cld_reduce_op</span></a><br/>
-&nbsp;&nbsp;| <a name="CldRedOpStats"><span class="id" title="constructor">CldRedOpStats</span></a> (<span class="id" title="var">typ</span>:<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_numeric_type"><span class="id" title="inductive">cld_numeric_type</span></a>): <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_op"><span class="id" title="inductive">cld_reduce_op</span></a>.<br/>
-
+&nbsp;&nbsp;| <a name="CldRedOpCount"><span class="id" title="constructor">CldRedOpCount</span></a> : <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_op"><span class="id" title="inductive">cld_reduce_op</span></a>                          <br/>
+&nbsp;&nbsp;| <a name="CldRedOpSum"><span class="id" title="constructor">CldRedOpSum</span></a> (<span class="id" title="var">typ</span>:<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_numeric_type"><span class="id" title="inductive">cld_numeric_type</span></a>): <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_op"><span class="id" title="inductive">cld_reduce_op</span></a>      <br/>
+&nbsp;&nbsp;| <a name="CldRedOpStats"><span class="id" title="constructor">CldRedOpStats</span></a> (<span class="id" title="var">typ</span>:<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_numeric_type"><span class="id" title="inductive">cld_numeric_type</span></a>): <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_op"><span class="id" title="inductive">cld_reduce_op</span></a>. 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="cld_reduce_fun"><span class="id" title="inductive">cld_reduce_fun</span></a> :=<br/>
-&nbsp;&nbsp;| <a name="CldRedId"><span class="id" title="constructor">CldRedId</span></a> : <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_fun"><span class="id" title="inductive">cld_reduce_fun</span></a><br/>
-&nbsp;&nbsp;| <a name="CldRedAggregate"><span class="id" title="constructor">CldRedAggregate</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_fun"><span class="id" title="inductive">cld_reduce_fun</span></a><br/>
-&nbsp;&nbsp;| <a name="CldRedOp"><span class="id" title="constructor">CldRedOp</span></a> : <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_op"><span class="id" title="inductive">cld_reduce_op</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_fun"><span class="id" title="inductive">cld_reduce_fun</span></a>.<br/>
+&nbsp;&nbsp;| <a name="CldRedId"><span class="id" title="constructor">CldRedId</span></a> : <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_fun"><span class="id" title="inductive">cld_reduce_fun</span></a>                                 <br/>
+&nbsp;&nbsp;| <a name="CldRedAggregate"><span class="id" title="constructor">CldRedAggregate</span></a> :                                         <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_fun"><span class="id" title="inductive">cld_reduce_fun</span></a><br/>
+&nbsp;&nbsp;| <a name="CldRedOp"><span class="id" title="constructor">CldRedOp</span></a> : <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_op"><span class="id" title="inductive">cld_reduce_op</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_fun"><span class="id" title="inductive">cld_reduce_fun</span></a>. 
+<br/>
+</div>
+
+<div class="doc">
+In the case of the arbirary reduce operation: the first function
+      is the <span class="inlinecode"><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce"><span class="id" title="variable">reduce</span></a></span> and applied once on each key/value pair
+      resulting from the map <span class="inlinecode">(<a class="idref" href="Qcert.Basic.Util.RBindings.html#K"><span class="id" title="variable">K</span></a></span> <span class="inlinecode">×</span> <span class="inlinecode"><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a></span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.RUtil.html#B"><span class="id" title="variable">B</span></a>)</span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.RLift.html#C"><span class="id" title="variable">C</span></a></span>; the second function
+      is the <span class="inlinecode"><span class="id" title="var">rereduce</span></span> and applied on the result of the first
+      function <span class="inlinecode">(<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a></span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.RLift.html#C"><span class="id" title="variable">C</span></a>)</span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="Qcert.Basic.Util.RLift.html#C"><span class="id" title="variable">C</span></a></span>. 
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Record</span> <a name="cld_reduce"><span class="id" title="record">cld_reduce</span></a> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a name="mkReduceCld"><span class="id" title="constructor">mkReduceCld</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="reduce_fun"><span class="id" title="projection">reduce_fun</span></a>: <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_fun"><span class="id" title="inductive">cld_reduce_fun</span></a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="reduce_output"><span class="id" title="projection">reduce_output</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>  }.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="reduce_fun"><span class="id" title="projection">reduce_fun</span></a>: <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce_fun"><span class="id" title="inductive">cld_reduce_fun</span></a>;   <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="reduce_output"><span class="id" title="projection">reduce_output</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a> }. 
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab56"></a><h2 class="section">Map/Reduce View</h2>
+
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Record</span> <a name="cldmr_step"><span class="id" title="record">cldmr_step</span></a> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a name="mkMRCld"><span class="id" title="constructor">mkMRCld</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="cldmr_step_input"><span class="id" title="projection">cldmr_step_input</span></a>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>;               <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cldmr_step_map"><span class="id" title="projection">cldmr_step_map</span></a>: <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_map"><span class="id" title="record">cld_map</span></a>;             <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cldmr_step_reduce"><span class="id" title="projection">cldmr_step_reduce</span></a>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce"><span class="id" title="record">cld_reduce</span></a>; <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cldmr_step_reduce_default"><span class="id" title="projection">cldmr_step_reduce_default</span></a>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a> }.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a name="cldmr_step_input"><span class="id" title="projection">cldmr_step_input</span></a>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>;                    <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cldmr_step_map"><span class="id" title="projection">cldmr_step_map</span></a>: <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_map"><span class="id" title="record">cld_map</span></a>;                  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cldmr_step_reduce"><span class="id" title="projection">cldmr_step_reduce</span></a>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_reduce"><span class="id" title="record">cld_reduce</span></a>;     <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cldmr_step_reduce_default"><span class="id" title="projection">cldmr_step_reduce_default</span></a>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a> }. 
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab57"></a><h2 class="section">Map/Reduce Chains</h2>
+
+<div class="paragraph"> </div>
+
+ The top-level data structure includes a list of Map/Reduce
+  views, followed by an additional expressions which is used to gather
+  all the results from the views and compute the final results. This
+  is meant to be evaluated locally. 
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Record</span> <a name="cldmr"><span class="id" title="record">cldmr</span></a> :=<br/>
@@ -175,6 +253,15 @@ This provides support for the specific kind of quote
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="cldmr_last"><span class="id" title="projection">cldmr_last</span></a>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">((</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a> }.<br/>
 
 <br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab58"></a><h1 class="section">Well-formed properties</h1>
+
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldmr_step_causally_consistent"><span class="id" title="definition">cldmr_step_causally_consistent</span></a> (<span class="id" title="var">mr1</span> <span class="id" title="var">mr2</span>:<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldmr_step"><span class="id" title="record">cldmr_step</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a><br/>
@@ -237,6 +324,23 @@ This provides support for the specific kind of quote
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="init_vval"><span class="id" title="definition">init_vval</span></a> := "vval$"%<span class="id" title="var">string</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab59"></a><h1 class="section">Evaluation Semantics</h1>
+
+<div class="paragraph"> </div>
+
+*******************************
+<a name="lab60"></a><h2 class="section">Semantics of ♥ CloudantMR ♥ **
+</h2>
+   
+<div class="paragraph"> </div>
+
+ A few useful functions for key manipulation, lifting and
+  building the initial CldMR environment. 
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="add_keys_to_binding"><span class="id" title="definition">add_keys_to_binding</span></a> (<span class="id" title="var">binding</span>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> :=<br/>
@@ -250,6 +354,17 @@ This provides support for the specific kind of quote
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+The evaluation relies on the existence of an initial database
+  containing a single document with the unit value. This is necessary
+  in order to trigger computation when all other input databases are
+  empty. 
+</div>
+<div class="code">
+
+<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cld_load_init_env"><span class="id" title="definition">cld_load_init_env</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" title="var">initunit</span>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>) (<span class="id" title="var">cenv</span>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>)) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#bindings"><span class="id" title="definition">bindings</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:=<br/>
@@ -261,6 +376,19 @@ This provides support for the specific kind of quote
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab61"></a><h2 class="section">Map</h2>
+
+<div class="paragraph"> </div>
+
+******************
+<a name="lab62"></a><h1 class="section">Semantics of map *
+</h1>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="apply_map_fun_with_keys"><span class="id" title="definition">apply_map_fun_with_keys</span></a> (<span class="id" title="var">doc</span>:<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>) (<span class="id" title="var">body</span>:<a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a>) :<br/>
@@ -327,10 +455,21 @@ This provides support for the specific kind of quote
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Qcert.Basic.Util.RLift.html#lift"><span class="id" title="definition">lift</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#cons"><span class="id" title="constructor">cons</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#d"><span class="id" title="variable">d</span></a>) (<a class="idref" href="Qcert.Basic.Util.RLift.html#lift"><span class="id" title="definition">lift</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">kvs</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#map"><span class="id" title="definition">map</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#snd"><span class="id" title="definition">snd</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#kvs"><span class="id" title="variable">kvs</span></a>) <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#coll"><span class="id" title="variable">coll</span></a>).<br/>
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="mapIdCollect_is_map"><span class="id" title="lemma">mapIdCollect_is_map</span></a> (<span class="id" title="var">map</span>:<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="Qcert.NNRC.Lang.NNRC.html#nnrc"><span class="id" title="definition">nnrc</span></a>) (<span class="id" title="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>) (<span class="id" title="var">coll</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Qcert.Basic.Util.RLift.html#lift"><span class="id" title="definition">lift</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMRUtil.html#cld_get_values"><span class="id" title="definition">cld_get_values</span></a> (<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldmr_step_map_eval"><span class="id" title="definition">cldmr_step_map_eval</span></a> (<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#mkMapCld"><span class="id" title="constructor">mkMapCld</span></a> (<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#CldMapId"><span class="id" title="constructor">CldMapId</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#map"><span class="id" title="variable">map</span></a>) (<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#CldEmitCollect"><span class="id" title="constructor">CldEmitCollect</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#n"><span class="id" title="variable">n</span></a>)) (<a class="idref" href="Qcert.CldMR.Lang.CldMRUtil.html#init_keys"><span class="id" title="definition">init_keys</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#coll"><span class="id" title="variable">coll</span></a>)) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#mr_map_eval"><span class="id" title="definition">mr_map_eval</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#CldMR.h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#MapDist"><span class="id" title="constructor">MapDist</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#map"><span class="id" title="variable">map</span></a>) (<a class="idref" href="Qcert.Basic.Data.DData.html#Ddistr"><span class="id" title="constructor">Ddistr</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#coll"><span class="id" title="variable">coll</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">)</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab63"></a><h2 class="section">Reduce</h2>
+
+<div class="paragraph"> </div>
+
+***********************
+<a name="lab64"></a><h1 class="section">Semantics of group_by *
+</h1>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldmr_step_group_by_eval"><span class="id" title="definition">cldmr_step_group_by_eval</span></a> (<span class="id" title="var">l</span>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>)) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a>) :=<br/>
@@ -424,6 +563,19 @@ This provides support for the specific kind of quote
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">(</span></a><a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldmr_step_reduce_eval"><span class="id" title="definition">cldmr_step_reduce_eval</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#CldRedId"><span class="id" title="constructor">CldRedId</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#l"><span class="id" title="variable">l</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#l"><span class="id" title="variable">l</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab65"></a><h2 class="section">Map/Reduce View</h2>
+
+<div class="paragraph"> </div>
+
+*****************************
+<a name="lab66"></a><h1 class="section">Semantics of one map-reduce *
+</h1>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldmr_step_eval"><span class="id" title="definition">cldmr_step_eval</span></a> (<span class="id" title="var">mr</span>:<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldmr_step"><span class="id" title="record">cldmr_step</span></a>) (<span class="id" title="var">coll</span>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>)) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a><a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>) :=<br/>
@@ -438,10 +590,19 @@ This provides support for the specific kind of quote
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
 
-<br/>
+<div class="doc">
+<a name="lab67"></a><h2 class="section">Map/Reduce Chain</h2>
 
-<br/>
+<div class="paragraph"> </div>
+
+************************************
+<a name="lab68"></a><h1 class="section">Semantics of a chain of map-reduce *
+</h1>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cld_merge_env"><span class="id" title="definition">cld_merge_env</span></a> (<span class="id" title="var">x</span>: <a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>) (<span class="id" title="var">coll</span>: <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a>) (<span class="id" title="var">env</span>: <a class="idref" href="Qcert.Basic.Data.RData.html#bindings"><span class="id" title="definition">bindings</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#bindings"><span class="id" title="definition">bindings</span></a> :=<br/>
@@ -508,6 +669,23 @@ This provides support for the specific kind of quote
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab69"></a><h1 class="section">Map/Reduce Chain Library</h1>
+
+<div class="paragraph"> </div>
+
+ The following are built-in map/reduce which are useful for
+  translations purposes. 
+<div class="paragraph"> </div>
+
+*****************
+<a name="lab70"></a><h2 class="section">CLDMR library **
+</h2>
+   
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a name="CldMR.cldmr_step_library"><span class="id" title="section">cldmr_step_library</span></a>.<br/>
@@ -533,58 +711,33 @@ This provides support for the specific kind of quote
 &nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#CldMR.cldmr_step_library"><span class="id" title="section">cldmr_step_library</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab71"></a><h1 class="section">Toplevel</h1>
+
+<div class="paragraph"> </div>
+
+ Top-level evaluation is used externally by the Q*cert
+  compiler. It is parameterized by a given database name for the
+  'initial database'. It takes a CldMR chain and a global environment
+  as input. 
+</div>
+<div class="code">
 
 <br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a name="CldMR.sanitize"><span class="id" title="section">sanitize</span></a>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldAllowedIdentifierInitialCharacters"><span class="id" title="definition">cldAllowedIdentifierInitialCharacters</span></a> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">[</span></a>"a"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"b"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"c"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"d"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"e"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"f"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"g"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"h"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"i"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"j"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"k"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"l"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"m"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"n"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"o"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"p"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"q"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"r"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"s"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"t"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"u"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"v"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"w"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"x"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"y"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"z"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">]</span></a>%<span class="id" title="var">char</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Section</span> <a name="CldMR.Top"><span class="id" title="section">Top</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldmr_eval_top"><span class="id" title="definition">cldmr_eval_top</span></a> (<span class="id" title="var">vinit</span>:<a class="idref" href="Qcert.NNRCMR.Lang.NNRCMR.html#var"><span class="id" title="definition">var</span></a>) (<span class="id" title="var">q</span>:<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldmr"><span class="id" title="record">cldmr</span></a>) (<span class="id" title="var">cenv</span>:<a class="idref" href="Qcert.Basic.Data.RData.html#bindings"><span class="id" title="definition">bindings</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="Qcert.Basic.Data.RData.html#data"><span class="id" title="inductive">data</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">cenv</span> := <a class="idref" href="Qcert.Basic.Env.RConstants.html#mkConstants"><span class="id" title="definition">mkConstants</span></a> (<a class="idref" href="Qcert.Basic.Util.RBindings.html#rec_sort"><span class="id" title="definition">rec_sort</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cenv"><span class="id" title="variable">cenv</span></a>) <span class="id" title="keyword">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cld_load_init_env"><span class="id" title="definition">cld_load_init_env</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#vinit"><span class="id" title="variable">vinit</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cenv"><span class="id" title="variable">cenv</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <span class="id" title="var">cenv</span> ⇒ <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldmr_eval"><span class="id" title="definition">cldmr_eval</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cenv"><span class="id" title="variable">cenv</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#q"><span class="id" title="variable">q</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#None"><span class="id" title="constructor">None</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldAllowedIdentifierCharacters_fromdocs"><span class="id" title="definition">cldAllowedIdentifierCharacters_fromdocs</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">[</span></a>"a"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"b"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"c"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"d"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"e"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"f"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"g"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"h"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"i"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"j"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"k"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"l"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"m"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"n"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"o"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"p"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"q"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"r"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"s"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"t"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"u"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"v"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"w"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"x"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"y"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"z"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"0"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"1"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"2"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"3"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"4"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"5"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"6"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"7"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"8"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"9"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"_"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"$"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>","<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"+"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"-"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"/"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">]</span></a>%<span class="id" title="var">char</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#CldMR.Top"><span class="id" title="section">Top</span></a>.<br/>
 
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldAllowedIdentifierCharacters"><span class="id" title="definition">cldAllowedIdentifierCharacters</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">[</span></a>"a"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"b"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"c"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"d"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"e"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"f"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"g"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"h"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"i"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"j"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"k"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"l"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"m"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"n"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"o"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"p"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"q"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"r"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"s"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"t"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"u"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"v"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"w"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"x"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"y"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"z"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"0"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"1"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"2"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"3"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"4"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"5"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"6"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"7"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"8"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"9"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">;</span></a>"_"<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#f83abbde7679bdbfec6afddd39d41e15"><span class="id" title="notation">]</span></a>%<span class="id" title="var">char</span>.<br/>
-
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldIdentifierInitialCharacterToAdd"><span class="id" title="definition">cldIdentifierInitialCharacterToAdd</span></a> := "z"%<span class="id" title="var">char</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldIdenitiferCharacterForReplacement"><span class="id" title="definition">cldIdenitiferCharacterForReplacement</span></a> := "z"%<span class="id" title="var">char</span>.<br/>
-
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldIdentifierFixInitial"><span class="id" title="definition">cldIdentifierFixInitial</span></a> (<span class="id" title="var">ident</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>) : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">match</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#ident"><span class="id" title="variable">ident</span></a> <span class="id" title="keyword">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#EmptyString"><span class="id" title="constructor">EmptyString</span></a> ⇒<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#String"><span class="id" title="constructor">String</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldIdentifierInitialCharacterToAdd"><span class="id" title="definition">cldIdentifierInitialCharacterToAdd</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#EmptyString"><span class="id" title="constructor">EmptyString</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#String"><span class="id" title="constructor">String</span></a> <span class="id" title="var">a</span> <span class="id" title="var">_</span> ⇒<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">if</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#in_dec"><span class="id" title="lemma">in_dec</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.Ascii.html#ascii_dec"><span class="id" title="definition">ascii_dec</span></a> <span class="id" title="var">a</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldAllowedIdentifierInitialCharacters"><span class="id" title="definition">cldAllowedIdentifierInitialCharacters</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">then</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#ident"><span class="id" title="variable">ident</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">else</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#String"><span class="id" title="constructor">String</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldIdentifierInitialCharacterToAdd"><span class="id" title="definition">cldIdentifierInitialCharacterToAdd</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#ident"><span class="id" title="variable">ident</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
-
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldIdentifierSanitizeChar"><span class="id" title="definition">cldIdentifierSanitizeChar</span></a> (<span class="id" title="var">a</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.Ascii.html#ascii"><span class="id" title="inductive">ascii</span></a>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" title="keyword">if</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#a"><span class="id" title="variable">a</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Classes.EquivDec.html#7a685bfbc4244b7a2e1f8ce9d7060e7a"><span class="id" title="notation">==</span></a> "$"%<span class="id" title="var">char</span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">then</span> "_"%<span class="id" title="var">char</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">else</span> <span class="id" title="keyword">if</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#in_dec"><span class="id" title="lemma">in_dec</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.Ascii.html#ascii_dec"><span class="id" title="definition">ascii_dec</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#a"><span class="id" title="variable">a</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldAllowedIdentifierCharacters"><span class="id" title="definition">cldAllowedIdentifierCharacters</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">then</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#a"><span class="id" title="variable">a</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">else</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldIdenitiferCharacterForReplacement"><span class="id" title="definition">cldIdenitiferCharacterForReplacement</span></a>.<br/>
-
-<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldIdentifierSanitizeBody"><span class="id" title="definition">cldIdentifierSanitizeBody</span></a> (<span class="id" title="var">ident</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.Basic.Util.RString.html#map_string"><span class="id" title="definition">map_string</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldIdentifierSanitizeChar"><span class="id" title="definition">cldIdentifierSanitizeChar</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#ident"><span class="id" title="variable">ident</span></a>.<br/>
-
-<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldIdentifierSanitize"><span class="id" title="definition">cldIdentifierSanitize</span></a> (<span class="id" title="var">ident</span>:<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldIdentifierFixInitial"><span class="id" title="definition">cldIdentifierFixInitial</span></a> (<a class="idref" href="Qcert.CldMR.Lang.CldMR.html#cldIdentifierSanitizeBody"><span class="id" title="definition">cldIdentifierSanitizeBody</span></a> (<a class="idref" href="Qcert.Basic.Util.RAssoc.html#mk_lower"><span class="id" title="definition">mk_lower</span></a> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#ident"><span class="id" title="variable">ident</span></a>)).<br/>
-
-<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldSafeSeparator"><span class="id" title="definition">cldSafeSeparator</span></a> := "_"%<span class="id" title="var">string</span>.<br/>
-
-<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="cldAvoidList"><span class="id" title="definition">cldAvoidList</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Strings.String.html#string"><span class="id" title="inductive">string</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Lists.List.html#145bedf8a5d4a541831f3f70db03085c"><span class="id" title="notation">[]</span></a>.<br/>
-
-<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#CldMR.sanitize"><span class="id" title="section">sanitize</span></a>.<br/>
 <span class="id" title="keyword">End</span> <a class="idref" href="Qcert.CldMR.Lang.CldMR.html#CldMR"><span class="id" title="section">CldMR</span></a>.<br/>
 
 <br/>
