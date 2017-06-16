@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module TNNRCEq</title>
+<meta name="description" content="Documentation of Coq module TNNRCEq" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module TNNRCEq</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="TNNRCEq">TNNRCEq</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html">Equivalence</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Setoids.Setoid.html">Setoid</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="kwd">Program</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Utils.html">Utils</a></span> <span class="id"><a href="BasicSystem.html">BasicSystem</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="cNNRC.html">cNNRC</a></span> <span class="id"><a href="NNRC.html">NNRC</a></span> <span class="id"><a href="TNNRC.html">TNNRC</a></span>.<br/>
+<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">m</span>:<span class="id"><a href="BasicSystem.html#basic_model">basic_model</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> (<span class="id">e1</span> <span class="id">e2</span>:<span class="id"><a href="NNRC.html#nnrc">nnrc</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (τ<span class="id">env</span> : <span class="id"><a href="TBindings.html#tbindings">tbindings</a></span>) (τ<span class="id">out</span>:<span class="id"><a href="RType.html#rtype">rtype</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="TNNRC.html#nnrc_ext_type">nnrc_ext_type</a></span> τ<span class="id">env</span> <span class="id"><a href="TNNRCEq.html#e1">e1</a></span> τ<span class="id">out</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="TNNRC.html#nnrc_ext_type">nnrc_ext_type</a></span> τ<span class="id">env</span> <span class="id"><a href="TNNRCEq.html#e2">e2</a></span> τ<span class="id">out</span>) /\ (<span class="kwd">forall</span> (<span class="id">env</span>:<span class="id"><a href="RData.html#bindings">bindings</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="TNNRCEq.html#env">env</a></span> τ<span class="id">env</span> -&gt; @<span class="id"><a href="NNRC.html#nnrc_ext_eval">nnrc_ext_eval</a></span> <span class="id">_</span> <span class="id"><a href="BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id"><a href="TNNRCEq.html#env">env</a></span> <span class="id"><a href="TNNRCEq.html#e1">e1</a></span> = @<span class="id"><a href="NNRC.html#nnrc_ext_eval">nnrc_ext_eval</a></span> <span class="id">_</span> <span class="id"><a href="BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id"><a href="TNNRCEq.html#env">env</a></span> <span class="id"><a href="TNNRCEq.html#e2">e2</a></span>).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Notation</span> "<span class="id">e1</span> ⇒ᶜ <span class="id">e2</span>" := (<span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> <span class="id">e1</span> <span class="id">e2</span>) (<span class="tactic">at</span> <span class="id">level</span> 80).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="NNRCEq.html">NNRCEq</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nnrc_scope</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="data_normalized_bindings_type_map">data_normalized_bindings_type_map</a></span> <span class="id">env</span> τ<span class="id">env</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="TNNRCEq.html#env">env</a></span> τ<span class="id">env</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="TNNRCEq.html#env">env</a></span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2467')">Proof.</div>
+<div class="proofscript" id="proof2467">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="TData.html#Forall_map">Forall_map</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="TBindings.html#bindings_type_Forall_normalized">bindings_type_Forall_normalized</a></span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">data_normalized_bindings_type_map</span>.<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_ext_rewrites_typed_with_untyped">nnrc_ext_rewrites_typed_with_untyped</a></span> (<span class="id">e1</span> <span class="id">e2</span>:<span class="id"><a href="NNRC.html#nnrc">nnrc</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="TNNRCEq.html#e1">e1</a></span> ≡ᶜ <span class="id"><a href="TNNRCEq.html#e2">e2</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span>  {τ<span class="id">env</span>: <span class="id"><a href="TBindings.html#tbindings">tbindings</a></span>} {τ<span class="id">out</span>:<span class="id"><a href="RType.html#rtype">rtype</a></span>}, <span class="id"><a href="TNNRC.html#nnrc_ext_type">nnrc_ext_type</a></span> τ<span class="id">env</span> <span class="id"><a href="TNNRCEq.html#e1">e1</a></span> τ<span class="id">out</span> -&gt; <span class="id"><a href="TNNRC.html#nnrc_ext_type">nnrc_ext_type</a></span> τ<span class="id">env</span> <span class="id"><a href="TNNRCEq.html#e2">e2</a></span> τ<span class="id">out</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id"><a href="TNNRCEq.html#e1">e1</a></span> ⇒ᶜ <span class="id"><a href="TNNRCEq.html#e2">e2</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2468')">Proof.</div>
+<div class="proofscript" id="proof2468">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">auto</span> 2; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="TcNNRC.html">TcNNRC</a></span> <span class="id"><a href="TOps.html">TOps</a></span>.<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="TNNRCEq.html#nnrc_type">nnrc_type</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="TNNRCEq.html#unaryOp_type">unaryOp_type</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="TNNRCEq.html#binOp_type">binOp_type</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="ROpsEq.html">ROpsEq</a></span>.<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="tnnrc_ext_rewrites_to_pre">tnnrc_ext_rewrites_to_pre</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PreOrder">PreOrder</a></span> <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2469')">Proof.</div>
+<div class="proofscript" id="proof2469">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">try</span> <span class="tactic">assumption</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> <span class="kwd">in</span> *; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H</span> τ<span class="id">env</span> τ<span class="id">out</span> <span class="id">H1</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H</span>; <span class="tactic">clear</span> <span class="id">H</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H0</span> τ<span class="id">env</span> τ<span class="id">out</span> <span class="id">H</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">try</span> <span class="tactic">assumption</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H2</span> <span class="id">env</span>); <span class="tactic">try</span> <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H3</span> <span class="id">env</span>); <span class="tactic">try</span> <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_ext_var_tproper">nnrc_ext_var_tproper</a></span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>) <span class="id"><a href="cNNRC.html#NNRCVar">NNRCVar</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2470')">Proof.</div>
+<div class="proofscript" id="proof2470">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">try</span> <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_ext_const_tproper">nnrc_ext_const_tproper</a></span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>) <span class="id"><a href="cNNRC.html#NNRCConst">NNRCConst</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2471')">Proof.</div>
+<div class="proofscript" id="proof2471">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">try</span> <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_ext_binop_tproper">nnrc_ext_binop_tproper</a></span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>) <span class="id"><a href="cNNRC.html#NNRCBinop">NNRCBinop</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2472')">Proof.</div>
+<div class="proofscript" id="proof2472">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H</span> <span class="kwd">in</span> *; <span class="tactic">clear</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H2</span>; <span class="tactic">clear</span> <span class="id">H2</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H0</span>  τ<span class="id">env</span> τ₁ <span class="id">H8</span>); <span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span> <span class="id">H8</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H1</span>  τ<span class="id">env</span> τ₂ <span class="id">H9</span>); <span class="tactic">elim</span> <span class="id">H1</span>; <span class="tactic">clear</span> <span class="id">H1</span> <span class="id">H9</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H0</span>  τ<span class="id">env</span> τ₁ <span class="id">H8</span>); <span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span> <span class="id">H8</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H1</span>  τ<span class="id">env</span> τ₂ <span class="id">H9</span>); <span class="tactic">elim</span> <span class="id">H1</span>; <span class="tactic">clear</span> <span class="id">H1</span> <span class="id">H9</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="NNRC.html#nnrc_ext_eval">nnrc_ext_eval</a></span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H2</span> <span class="id">env</span> <span class="id">H</span>); <span class="tactic">rewrite</span> (<span class="id">H3</span> <span class="id">env</span> <span class="id">H</span>); <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_ext_unop_tproper">nnrc_ext_unop_tproper</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>) <span class="id"><a href="cNNRC.html#NNRCUnop">NNRCUnop</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2473')">Proof.</div>
+<div class="proofscript" id="proof2473">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H</span> <span class="kwd">in</span> *; <span class="tactic">clear</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H1</span>; <span class="tactic">clear</span> <span class="id">H1</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H0</span>  τ<span class="id">env</span> τ₁ <span class="id">H6</span>); <span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span> <span class="id">H6</span>; <span class="tactic">intros</span>; <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H0</span>  τ<span class="id">env</span> τ₁ <span class="id">H6</span>); <span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span> <span class="id">H6</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="NNRC.html#nnrc_ext_eval">nnrc_ext_eval</a></span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>. <span class="tactic">rewrite</span> (<span class="id">H1</span> <span class="id">env</span> <span class="id">H</span>); <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_ext_let_tproper">nnrc_ext_let_tproper</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>) <span class="id"><a href="cNNRC.html#NNRCLet">NNRCLet</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2474')">Proof.</div>
+<div class="proofscript" id="proof2474">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="NNRC.html#nnrc_ext_eval">nnrc_ext_eval</a></span>,<span class="id"><a href="TNNRC.html#nnrc_ext_type">nnrc_ext_type</a></span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H2</span>; <span class="tactic">clear</span> <span class="id">H2</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H0</span> τ<span class="id">env</span> τ₁ <span class="id">H8</span>); <span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span> <span class="id">H8</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H1</span> ((<span class="id">y</span>, τ₁) :: τ<span class="id">env</span>) τ<span class="id">out</span> <span class="id">H9</span>); <span class="tactic">elim</span> <span class="id">H1</span>; <span class="tactic">clear</span> <span class="id">H1</span> <span class="id">H9</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H0</span> <span class="id">env</span> <span class="id">H3</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id">env</span> (<span class="id"><a href="NNRC.html#nnrc_ext_to_nnrc">nnrc_ext_to_nnrc</a></span> <span class="id">y0</span>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H2</span> ((<span class="id">y</span>, <span class="id">d</span>) :: <span class="id">env</span>)); <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="TBindings.html#bindings_type">bindings_type</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall2_cons">Forall2_cons</a></span>; <span class="tactic">try</span> <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>; <span class="tactic">split</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id"><a href="TNNRC.html#typed_nnrc_ext_yields_typed_data">typed_nnrc_ext_yields_typed_data</a></span> <span class="id">_</span> τ₁ <span class="id">env</span> τ<span class="id">env</span> <span class="id">y0</span> <span class="id">H3</span> <span class="id">H</span>); <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H5</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H6</span>; <span class="tactic">clear</span> <span class="id">H6</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="NNRC.html#nnrc_ext_eval">nnrc_ext_eval</a></span>,<span class="id"><a href="TNNRC.html#nnrc_ext_type">nnrc_ext_type</a></span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H4</span> <span class="kwd">in</span> <span class="id">H6</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H6</span>; <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="TData.html">TData</a></span>.<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dcoll_wt">dcoll_wt</a></span> (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="RData.html#data">data</a></span>) (τ:<span class="id"><a href="RType.html#rtype">rtype</a></span>) (τ<span class="id">env</span>:<span class="id"><a href="TBindings.html#tbindings">tbindings</a></span>) (<span class="id">env</span>:<span class="id"><a href="RData.html#bindings">bindings</a></span>) (<span class="id">e</span>:<span class="id"><a href="NNRC.html#nnrc">nnrc</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="TNNRCEq.html#env">env</a></span> τ<span class="id">env</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="TcNNRC.html#nnrc_type">nnrc_type</a></span> τ<span class="id">env</span> <span class="id"><a href="TNNRCEq.html#e">e</a></span> (<span class="id"><a href="RType.html#Coll">Coll</a></span> τ) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id"><a href="TNNRCEq.html#env">env</a></span> <span class="id"><a href="TNNRCEq.html#e">e</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="RData.html#dcoll">dcoll</a></span> <span class="id"><a href="TNNRCEq.html#l">l</a></span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">x</span>:<span class="id"><a href="RData.html#data">data</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="TNNRCEq.html#x">x</a></span> <span class="id"><a href="TNNRCEq.html#l">l</a></span> -&gt; (<span class="id"><a href="TData.html#data_type">data_type</a></span> <span class="id"><a href="TNNRCEq.html#x">x</a></span> τ).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2475')">Proof.</div>
+<div class="proofscript" id="proof2475">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id"><a href="TcNNRC.html#typed_nnrc_yields_typed_data">typed_nnrc_yields_typed_data</a></span> <span class="id">_</span> (<span class="id"><a href="RType.html#Coll">Coll</a></span> τ) <span class="id">env</span> τ<span class="id">env</span> <span class="id">e</span> <span class="id">H</span> <span class="id">H0</span>); <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H3</span>; <span class="tactic">clear</span> <span class="id">H3</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H3</span>; <span class="tactic">clear</span> <span class="id">H3</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H3</span> <span class="kwd">in</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H1</span>; <span class="tactic">clear</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">dependent</span> <span class="tactic">induction</span> <span class="id">H4</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">rtype_equalizer</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">H1</span> <span class="id">x0</span> <span class="id">H2</span>).<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_ext_for_tproper">nnrc_ext_for_tproper</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>) <span class="id"><a href="cNNRC.html#NNRCFor">NNRCFor</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2476')">Proof.</div>
+<div class="proofscript" id="proof2476">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H2</span>; <span class="tactic">clear</span> <span class="id">H2</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H0</span>  τ<span class="id">env</span> (<span class="id"><a href="RType.html#Coll">Coll</a></span> τ₁) <span class="id">H8</span>); <span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span> <span class="id">H8</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H1</span>  ((<span class="id">y</span>, τ₁) :: τ<span class="id">env</span>) τ₂ <span class="id">H9</span>); <span class="tactic">elim</span> <span class="id">H1</span>; <span class="tactic">clear</span> <span class="id">H1</span> <span class="id">H9</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="NNRC.html#nnrc_ext_eval">nnrc_ext_eval</a></span>,<span class="id"><a href="TNNRC.html#nnrc_ext_type">nnrc_ext_type</a></span> <span class="kwd">in</span> *; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H0</span> <span class="id">env</span> <span class="id">H3</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id">env</span> (<span class="id"><a href="NNRC.html#nnrc_ext_to_nnrc">nnrc_ext_to_nnrc</a></span> <span class="id">y0</span>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="kwd">forall</span> <span class="id">x</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="TNNRCEq.html#x">x</a></span> <span class="id">l</span> -&gt; (<span class="id"><a href="TData.html#data_type">data_type</a></span> <span class="id"><a href="TNNRCEq.html#x">x</a></span> τ₁))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">by</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="tactic">apply</span> (<span class="id"><a href="TNNRCEq.html#dcoll_wt">dcoll_wt</a></span> <span class="id">l</span> τ₁ τ<span class="id">env</span> <span class="id">env</span> (<span class="id"><a href="NNRC.html#nnrc_ext_to_nnrc">nnrc_ext_to_nnrc</a></span> <span class="id">y0</span>)); <span class="tactic">assumption</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">clear</span> <span class="id">H4</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="kwd">forall</span> <span class="id">x</span> : <span class="id"><a href="RData.html#data">data</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="TNNRCEq.html#x">x</a></span> <span class="id">l</span> -&gt; <span class="id"><a href="TData.html#data_type">data_type</a></span> <span class="id"><a href="TNNRCEq.html#x">x</a></span> τ₁)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">by</span> (<span class="tactic">intros</span>; <span class="tactic">apply</span> (<span class="id">H5</span> <span class="id">x</span>); <span class="id">right</span>; <span class="tactic">assumption</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">IHl</span> <span class="id">H</span>); <span class="tactic">clear</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H2</span> ((<span class="id">y</span>, <span class="id">a</span>) :: <span class="id">env</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> ((<span class="id">y</span>, <span class="id">a</span>) :: <span class="id">env</span>) (<span class="id"><a href="NNRC.html#nnrc_ext_to_nnrc">nnrc_ext_to_nnrc</a></span> <span class="id">y1</span>)); <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> ((<span class="id"><a href="RRelation.html#rmap">rmap</a></span> (<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="RData.html#data">data</a></span> =&gt; <span class="id"><a href="cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> ((<span class="id">y</span>, <span class="id"><a href="TNNRCEq.html#d1">d1</a></span>) :: <span class="id">env</span>) (<span class="id"><a href="NNRC.html#nnrc_ext_to_nnrc">nnrc_ext_to_nnrc</a></span> <span class="id">x1</span>)) <span class="id">l</span>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> ((<span class="id"><a href="RRelation.html#rmap">rmap</a></span> (<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="RData.html#data">data</a></span> =&gt; <span class="id"><a href="cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> ((<span class="id">y</span>, <span class="id"><a href="TNNRCEq.html#d1">d1</a></span>) :: <span class="id">env</span>) (<span class="id"><a href="NNRC.html#nnrc_ext_to_nnrc">nnrc_ext_to_nnrc</a></span> <span class="id">y1</span>)) <span class="id">l</span>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="TBindings.html#bindings_type">bindings_type</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall2_cons">Forall2_cons</a></span>; <span class="tactic">try</span> <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>; <span class="tactic">split</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">H5</span> <span class="id">a</span>); <span class="id">left</span>; <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_ext_if_tproper">nnrc_ext_if_tproper</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>) <span class="id"><a href="cNNRC.html#NNRCIf">NNRCIf</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2477')">Proof.</div>
+<div class="proofscript" id="proof2477">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H2</span>; <span class="tactic">clear</span> <span class="id">H2</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H</span>  τ<span class="id">env</span> <span class="id"><a href="RType.html#Bool">Bool</a></span> <span class="id">H7</span>); <span class="tactic">elim</span> <span class="id">H</span>; <span class="tactic">clear</span> <span class="id">H</span> <span class="id">H7</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H0</span>  τ<span class="id">env</span> τ<span class="id">out</span> <span class="id">H9</span>); <span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span> <span class="id">H9</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H1</span>  τ<span class="id">env</span> τ<span class="id">out</span> <span class="id">H10</span>); <span class="tactic">elim</span> <span class="id">H1</span>; <span class="tactic">clear</span> <span class="id">H1</span> <span class="id">H10</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="NNRC.html#nnrc_ext_eval">nnrc_ext_eval</a></span>,<span class="id"><a href="TNNRC.html#nnrc_ext_type">nnrc_ext_type</a></span> <span class="kwd">in</span> *; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H2</span> <span class="id">env</span> <span class="id">H5</span>). <span class="tactic">rewrite</span> (<span class="id">H3</span> <span class="id">env</span> <span class="id">H5</span>). <span class="tactic">rewrite</span> (<span class="id">H4</span> <span class="id">env</span> <span class="id">H5</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_ext_either_tproper">nnrc_ext_either_tproper</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>) <span class="id"><a href="cNNRC.html#NNRCEither">NNRCEither</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2478')">Proof.</div>
+<div class="proofscript" id="proof2478">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="NNRC.html#nnrc_ext_eval">nnrc_ext_eval</a></span>,<span class="id"><a href="TNNRC.html#nnrc_ext_type">nnrc_ext_type</a></span> <span class="kwd">in</span> *; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H4</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H4</span>; <span class="tactic">clear</span> <span class="id">H4</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">H</span> <span class="id">_</span> <span class="id">_</span> <span class="id">H10</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">H1</span> <span class="id">_</span> <span class="id">_</span> <span class="id">H11</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">H3</span> <span class="id">_</span> <span class="id">_</span> <span class="id">H12</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">clear</span> <span class="id">H</span> <span class="id">H1</span> <span class="id">H3</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; [<span class="tactic">eauto</span> | ]; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H2</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (@<span class="id"><a href="TcNNRC.html#typed_nnrc_yields_typed_data">typed_nnrc_yields_typed_data</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span>  <span class="id">H</span> <span class="id">H0</span>) <span class="kwd">as</span> [?[??]].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="TData.html#data_type_Either_inv">data_type_Either_inv</a></span> <span class="kwd">in</span> <span class="id">H3</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">H3</span> <span class="kwd">as</span> [[?[??]]|[?[??]]]; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">H5</span>. <span class="id">constructor</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eapply</span> <span class="id">H7</span>. <span class="id">constructor</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="group_by_macro_eq">group_by_macro_eq</a></span> <span class="id">g</span> <span class="id">sl</span> <span class="id">n1</span> <span class="id">n2</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="cNNRC.html#NNRCGroupBy">NNRCGroupBy</a></span> <span class="id"><a href="TNNRCEq.html#g">g</a></span> <span class="id"><a href="TNNRCEq.html#sl">sl</a></span> <span class="id"><a href="TNNRCEq.html#n1">n1</a></span> ⇒ᶜ <span class="id"><a href="cNNRC.html#NNRCGroupBy">NNRCGroupBy</a></span> <span class="id"><a href="TNNRCEq.html#g">g</a></span> <span class="id"><a href="TNNRCEq.html#sl">sl</a></span> <span class="id"><a href="TNNRCEq.html#n2">n2</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;-&gt; <span class="id"><a href="NNRC.html#nnrc_group_by">nnrc_group_by</a></span> <span class="id"><a href="TNNRCEq.html#g">g</a></span> <span class="id"><a href="TNNRCEq.html#sl">sl</a></span> <span class="id"><a href="TNNRCEq.html#n1">n1</a></span> ⇒ᶜ <span class="id"><a href="NNRC.html#nnrc_group_by">nnrc_group_by</a></span> <span class="id"><a href="TNNRCEq.html#g">g</a></span> <span class="id"><a href="TNNRCEq.html#sl">sl</a></span> <span class="id"><a href="TNNRCEq.html#n2">n2</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2479')">Proof.</div>
+<div class="proofscript" id="proof2479">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Opaque</span> <span class="id"><a href="NNRC.html#nnrc_group_by">nnrc_group_by</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="TNNRC.html#nnrc_ext_type">nnrc_ext_type</a></span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="NNRC.html#nnrc_ext_eval">nnrc_ext_eval</a></span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">simpl</span>. <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">simpl</span>. <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Transparent</span> <span class="id"><a href="NNRC.html#nnrc_group_by">nnrc_group_by</a></span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_ext_groupby_tproper">nnrc_ext_groupby_tproper</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> ==&gt; <span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span>) <span class="id"><a href="cNNRC.html#NNRCGroupBy">NNRCGroupBy</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2480')">Proof.</div>
+<div class="proofscript" id="proof2480">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="TNNRCEq.html#group_by_macro_eq">group_by_macro_eq</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="NNRC.html#nnrc_group_by">nnrc_group_by</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="TNNRCEq.html#TNNRCEq">TNNRCEq</a></span>.<br/>
+<br/>
+<span class="kwd">Notation</span> "<span class="id">e1</span> ⇒ᶜ <span class="id">e2</span>" := (<span class="id"><a href="TNNRCEq.html#tnnrc_ext_rewrites_to">tnnrc_ext_rewrites_to</a></span> <span class="id">e1</span> <span class="id">e2</span>) (<span class="tactic">at</span> <span class="id">level</span> 80).<br/>
+<br/>
+</div>
+<div class="footer"><hr/>Generated by coq2html</div>
+</body>
+</html>

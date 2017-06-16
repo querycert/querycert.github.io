@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module ForeignToReduceOps</title>
+<meta name="description" content="Documentation of Coq module ForeignToReduceOps" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module ForeignToReduceOps</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ForeignToReduceOps">ForeignToReduceOps</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Utils.html">Utils</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="BasicRuntime.html">BasicRuntime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="NNRCMRRuntime.html">NNRCMRRuntime</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id"><a name="foreign_to_reduce_op">foreign_to_reduce_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fruntime</span>:<span class="id"><a href="ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fredop</span>:<span class="id"><a href="ForeignReduceOps.html#foreign_reduce_op">foreign_reduce_op</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="kwd">Type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="mk_foreign_to_reduce_op">mk_foreign_to_reduce_op</a></span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="foreign_to_reduce_op_of_unary_op">foreign_to_reduce_op_of_unary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id"><a href="RUnaryOps.html#unaryOp">unaryOp</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="NNRCMR.html#reduce_op">reduce_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_reduce_op_of_unary_op_correct">foreign_to_reduce_op_of_unary_op_correct</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id"><a href="RUnaryOps.html#unaryOp">unaryOp</a></span>) (<span class="id">rop</span>:<span class="id"><a href="NNRCMR.html#reduce_op">reduce_op</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id"><a href="BrandRelation.html#brand_relation_t">brand_relation_t</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">dl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="RData.html#data">data</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="ForeignToReduceOps.html#foreign_to_reduce_op_of_unary_op">foreign_to_reduce_op_of_unary_op</a></span> <span class="id"><a href="ForeignToReduceOps.html#uop">uop</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="ForeignToReduceOps.html#rop">rop</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="RUnaryOpsSem.html#fun_of_unaryop">fun_of_unaryop</a></span> <span class="id"><a href="ForeignToReduceOps.html#br">br</a></span> <span class="id"><a href="ForeignToReduceOps.html#uop">uop</a></span> (<span class="id"><a href="RData.html#dcoll">dcoll</a></span> <span class="id"><a href="ForeignToReduceOps.html#dl">dl</a></span>) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="NNRCMR.html#reduce_op_eval">reduce_op_eval</a></span> <span class="id"><a href="ForeignToReduceOps.html#br">br</a></span> <span class="id"><a href="ForeignToReduceOps.html#rop">rop</a></span> <span class="id"><a href="ForeignToReduceOps.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_reduce_op_to_unary_op">foreign_to_reduce_op_to_unary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id"><a href="NNRCMR.html#reduce_op">reduce_op</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="RUnaryOps.html#unaryOp">unaryOp</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_reduce_op_to_unary_op_correct">foreign_to_reduce_op_to_unary_op_correct</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">rop</span>:<span class="id"><a href="NNRCMR.html#reduce_op">reduce_op</a></span>) (<span class="id">uop</span>:<span class="id"><a href="RUnaryOps.html#unaryOp">unaryOp</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id"><a href="BrandRelation.html#brand_relation_t">brand_relation_t</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">dl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="RData.html#data">data</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="ForeignToReduceOps.html#foreign_to_reduce_op_to_unary_op">foreign_to_reduce_op_to_unary_op</a></span> <span class="id"><a href="ForeignToReduceOps.html#rop">rop</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="ForeignToReduceOps.html#uop">uop</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="NNRCMR.html#reduce_op_eval">reduce_op_eval</a></span> <span class="id"><a href="ForeignToReduceOps.html#br">br</a></span> <span class="id"><a href="ForeignToReduceOps.html#rop">rop</a></span> <span class="id"><a href="ForeignToReduceOps.html#dl">dl</a></span> =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="RUnaryOpsSem.html#fun_of_unaryop">fun_of_unaryop</a></span> <span class="id"><a href="ForeignToReduceOps.html#br">br</a></span> <span class="id"><a href="ForeignToReduceOps.html#uop">uop</a></span> (<span class="id"><a href="RData.html#dcoll">dcoll</a></span> <span class="id"><a href="ForeignToReduceOps.html#dl">dl</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="ForeignToReduceOps.html#ForeignToReduceOps">ForeignToReduceOps</a></span>.<br/>
+<br/>
+<br/>
+</div>
+<div class="footer"><hr/>Generated by coq2html</div>
+</body>
+</html>
