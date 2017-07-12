@@ -452,7 +452,7 @@ Install Q\*cert:
     tar xvfz samples.tgz
     rm samples.tgz
     git clone https://github.com/querycert/qcert.git
-    git checkout c7e017e2f475f4435cd8d867a43eca7c80471e9e
+    git checkout tags/icfp2017
     cd qcert
     make -j 9 qcert && make extraction && make javacode && make -C samples
     echo 'export PATH="$HOME/qcert/bin:$PATH"' >> ~/.bashrc
