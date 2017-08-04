@@ -1,4 +1,4 @@
-PDF2SVG=/tmp/pdf2svg/pdf2svg
+PDF2SVG=pdf2svg
 
 all: figure.pdf figure.svg figure.png
 

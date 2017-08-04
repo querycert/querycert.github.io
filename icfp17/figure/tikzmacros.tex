@@ -82,6 +82,11 @@
        node [pos=0.5](#2-optim) {}
        node [yshift = 0.5em,below] {\href{#3}{\phantom{XXX}} \\ \href{#3}{\phantom{XXX}}} ();
 }
+\newcommand{\tikzoptimdotted}[3][]{
+   \path[trans, draw=#1!150, fill=#1!150] (#2) edge [looseness=10, loop above, dotted]
+       node [pos=0.5](#2-optim) {}
+       node [yshift = 0.5em,below] {\href{#3}{\phantom{XXX}} \\ \href{#3}{\phantom{XXX}}} ();
+}
 
 \newcommand{\transref}[2]{
    \foreach \i in {0,...,#1} { node [pos=\i/#1, circle] {\href{#2}{\phantom{X}}}}
