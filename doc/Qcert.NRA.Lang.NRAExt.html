@@ -111,8 +111,8 @@
 &nbsp;&nbsp;.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraext_eqdec">nraext_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#nraext">nraext</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1512')">Proof.</div>
-<div class="proofscript" id="proof1512">
+<div class="toggleproof" onclick="toggleDisplay('proof1516')">Proof.</div>
+<div class="proofscript" id="proof1516">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#nraext">nraext</a></span>,  {<span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#x">x</a></span> = <span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#y">y</a></span>} + {<span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#x">x</a></span> &lt;&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#y">y</a></span>}).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Operators.RBinaryOps.html#binOp_eqdec">binOp_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Operators.RUnaryOps.html#unaryOp_eqdec">unaryOp_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Data.RData.html#data_eqdec">data_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html#string_eqdec">string_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#list_eqdec">list_eqdec</a></span>; <span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html#string_eqdec">string_eqdec</a></span>].<br/>
@@ -166,8 +166,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nraext_roundtrip">nraext_roundtrip</a></span> (<span class="id">a</span>:<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra">nra</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#nra_of_nraext">nra_of_nraext</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#nraext_of_nra">nraext_of_nra</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#a">a</a></span>)) = <span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#a">a</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1513')">Proof.</div>
-<div class="proofscript" id="proof1513">
+<div class="toggleproof" onclick="toggleDisplay('proof1517')">Proof.</div>
+<div class="proofscript" id="proof1517">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>; <span class="tactic">try</span> (<span class="tactic">rewrite</span> <span class="id">IHa1</span>; <span class="tactic">rewrite</span> <span class="id">IHa2</span>; <span class="tactic">try</span> <span class="tactic">rewrite</span> <span class="id">IHa3</span>; <span class="tactic">reflexivity</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">IHa</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
