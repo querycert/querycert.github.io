@@ -14,38 +14,38 @@
 <h1 class="title">Module Qcert.Translation.ForeignToReduceOps</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Section</span> <span class="id">ForeignToReduceOps</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EquivDec</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Utils</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">BasicRuntime</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">NNRCMRRuntime</span>.<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ForeignToReduceOps">ForeignToReduceOps</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Util.Utils.html">Utils</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.BasicRuntime.html">BasicRuntime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRCMR.NNRCMRRuntime.html">NNRCMRRuntime</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id">foreign_to_reduce_op</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fruntime</span>:<span class="id">foreign_runtime</span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fredop</span>:<span class="id">foreign_reduce_op</span>}<br/>
+&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id"><a name="foreign_to_reduce_op">foreign_to_reduce_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Basic.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fredop</span>:<span class="id"><a href="Qcert.NNRCMR.Lang.ForeignReduceOps.html#foreign_reduce_op">foreign_reduce_op</a></span>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="kwd">Type</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mk_foreign_to_reduce_op</span> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">foreign_to_reduce_op_of_unary_op</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id">unaryOp</span>) : <span class="id">option</span> <span class="id">reduce_op</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_to_reduce_op_of_unary_op_correct</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id">unaryOp</span>) (<span class="id">rop</span>:<span class="id">reduce_op</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id">brand_relation_t</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">dl</span>:<span class="id">list</span> <span class="id">data</span>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">foreign_to_reduce_op_of_unary_op</span> <span class="id">uop</span> = <span class="id">Some</span> <span class="id">rop</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">fun_of_unaryop</span> <span class="id">br</span> <span class="id">uop</span> (<span class="id">dcoll</span> <span class="id">dl</span>) =<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">reduce_op_eval</span> <span class="id">br</span> <span class="id">rop</span> <span class="id">dl</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_to_reduce_op_to_unary_op</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id">reduce_op</span>) : <span class="id">option</span> <span class="id">unaryOp</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_to_reduce_op_to_unary_op_correct</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">rop</span>:<span class="id">reduce_op</span>) (<span class="id">uop</span>:<span class="id">unaryOp</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id">brand_relation_t</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">dl</span>:<span class="id">list</span> <span class="id">data</span>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">foreign_to_reduce_op_to_unary_op</span> <span class="id">rop</span> = <span class="id">Some</span> <span class="id">uop</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">reduce_op_eval</span> <span class="id">br</span> <span class="id">rop</span> <span class="id">dl</span> =<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">fun_of_unaryop</span> <span class="id">br</span> <span class="id">uop</span> (<span class="id">dcoll</span> <span class="id">dl</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="mk_foreign_to_reduce_op">mk_foreign_to_reduce_op</a></span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="foreign_to_reduce_op_of_unary_op">foreign_to_reduce_op_of_unary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id"><a href="Qcert.Basic.Operators.RUnaryOps.html#unaryOp">unaryOp</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_op">reduce_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_reduce_op_of_unary_op_correct">foreign_to_reduce_op_of_unary_op_correct</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id"><a href="Qcert.Basic.Operators.RUnaryOps.html#unaryOp">unaryOp</a></span>) (<span class="id">rop</span>:<span class="id"><a href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_op">reduce_op</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">dl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#foreign_to_reduce_op_of_unary_op">foreign_to_reduce_op_of_unary_op</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#uop">uop</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#rop">rop</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Operators.RUnaryOpsSem.html#fun_of_unaryop">fun_of_unaryop</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#br">br</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#uop">uop</a></span> (<span class="id"><a href="Qcert.Basic.Data.RData.html#dcoll">dcoll</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#dl">dl</a></span>) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_op_eval">reduce_op_eval</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#br">br</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#rop">rop</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_reduce_op_to_unary_op">foreign_to_reduce_op_to_unary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id"><a href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_op">reduce_op</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Basic.Operators.RUnaryOps.html#unaryOp">unaryOp</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_reduce_op_to_unary_op_correct">foreign_to_reduce_op_to_unary_op_correct</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">rop</span>:<span class="id"><a href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_op">reduce_op</a></span>) (<span class="id">uop</span>:<span class="id"><a href="Qcert.Basic.Operators.RUnaryOps.html#unaryOp">unaryOp</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">dl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#foreign_to_reduce_op_to_unary_op">foreign_to_reduce_op_to_unary_op</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#rop">rop</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#uop">uop</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCMR.Lang.NNRCMR.html#reduce_op_eval">reduce_op_eval</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#br">br</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#rop">rop</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#dl">dl</a></span> =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Operators.RUnaryOpsSem.html#fun_of_unaryop">fun_of_unaryop</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#br">br</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#uop">uop</a></span> (<span class="id"><a href="Qcert.Basic.Data.RData.html#dcoll">dcoll</a></span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#dl">dl</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
 <br/>
-<span class="kwd">End</span> <span class="id">ForeignToReduceOps</span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Translation.ForeignToReduceOps.html#ForeignToReduceOps">ForeignToReduceOps</a></span>.<br/>
 <br/>
 <br/>
 

@@ -14,49 +14,49 @@
 <h1 class="title">Module Qcert.CAMPRule.Typing.TCAMPRule</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Section</span> <span class="id">TCAMPRule</span>.<br/>
+<span class="kwd">Section</span> <span class="id"><a name="TCAMPRule">TCAMPRule</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">String</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">List</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EquivDec</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">BasicSystem</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Export</span> <span class="id">CAMPRule</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">TCAMP</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.BasicSystem.html">BasicSystem</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Export</span> <span class="id"><a href="Qcert.CAMPRule.Lang.CAMPRule.html">CAMPRule</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.CAMP.Typing.TCAMP.html">TCAMP</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">camp_scope</span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string</span>.<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">m</span>:<span class="id">basic_model</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.BasicSystem.html#basic_model">basic_model</a></span>}.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">mkTWorld</span> (τ<span class="id">world</span>:<span class="id">rtype</span>) : <span class="id">tbindings</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= ("<span class="id">WORLD</span>",<span class="id">Coll</span> τ<span class="id">world</span>)::<span class="id">nil</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="mkTWorld">mkTWorld</a></span> (τ<span class="id">world</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#rtype">rtype</a></span>) : <span class="id"><a href="Qcert.Basic.Typing.TBindings.html#tbindings">tbindings</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= ("<span class="id">WORLD</span>",<span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">world</span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">camp_rule_type</span> (τ<span class="id">world</span> τ<span class="id">out</span>:<span class="id">rtype</span>) (<span class="id">r</span>:<span class="id">camp_rule</span>) : <span class="kwd">Prop</span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">camp_type</span> (<span class="id">mkTWorld</span> τ<span class="id">world</span>) <span class="id">nil</span> (<span class="id">camp_rule_to_camp</span> <span class="id">r</span>) <span class="id">Unit</span> τ<span class="id">out</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="camp_rule_type">camp_rule_type</a></span> (τ<span class="id">world</span> τ<span class="id">out</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#rtype">rtype</a></span>) (<span class="id">r</span>:<span class="id"><a href="Qcert.CAMPRule.Lang.CAMPRule.html#camp_rule">camp_rule</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.CAMP.Typing.TCAMP.html#camp_type">camp_type</a></span> (<span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#mkTWorld">mkTWorld</a></span> τ<span class="id">world</span>) <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> (<span class="id"><a href="Qcert.CAMPRule.Lang.CAMPRule.html#camp_rule_to_camp">camp_rule_to_camp</a></span> <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#r">r</a></span>) <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Unit">Unit</a></span> τ<span class="id">out</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id">typed_rule_correct</span> {τ<span class="id">world</span> τ<span class="id">out</span>} (<span class="id">r</span>:<span class="id">camp_rule</span>):<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">camp_rule_type</span> τ<span class="id">world</span> τ<span class="id">out</span> <span class="id">r</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">world</span>:<span class="id">list</span> <span class="id">data</span>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">bindings_type</span> (<span class="id">mkWorld</span> <span class="id">world</span>) (<span class="id">mkTWorld</span> τ<span class="id">world</span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">exists</span> <span class="id">d</span>, <span class="id">eval_camp_rule</span> <span class="id">brand_relation_brands</span>  <span class="id">r</span> <span class="id">world</span> = <span class="id">Some</span> (<span class="id">d</span>::<span class="id">nil</span>) /\ (<span class="id">data_type</span> <span class="id">d</span> τ<span class="id">out</span>))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\/ (<span class="id">eval_camp_rule</span> <span class="id">brand_relation_brands</span> <span class="id">r</span> <span class="id">world</span> = <span class="id">Some</span> <span class="id">nil</span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="typed_rule_correct">typed_rule_correct</a></span> {τ<span class="id">world</span> τ<span class="id">out</span>} (<span class="id">r</span>:<span class="id"><a href="Qcert.CAMPRule.Lang.CAMPRule.html#camp_rule">camp_rule</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#camp_rule_type">camp_rule_type</a></span> τ<span class="id">world</span> τ<span class="id">out</span> <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#r">r</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">world</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Typing.TBindings.html#bindings_type">bindings_type</a></span> (<span class="id"><a href="Qcert.Basic.Env.RConstants.html#mkWorld">mkWorld</a></span> <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#world">world</a></span>) (<span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#mkTWorld">mkTWorld</a></span> τ<span class="id">world</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">exists</span> <span class="id">d</span>, <span class="id"><a href="Qcert.CAMPRule.Lang.CAMPRule.html#eval_camp_rule">eval_camp_rule</a></span> <span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span>  <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#r">r</a></span> <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#world">world</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#d">d</a></span>::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) /\ (<span class="id"><a href="Qcert.Basic.Typing.TData.html#data_type">data_type</a></span> <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#d">d</a></span> τ<span class="id">out</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\/ (<span class="id"><a href="Qcert.CAMPRule.Lang.CAMPRule.html#eval_camp_rule">eval_camp_rule</a></span> <span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#r">r</a></span> <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#world">world</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof2697')">Proof.</div>
 <div class="proofscript" id="proof2697">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">eval_camp_rule</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">camp_rule_type</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id">typed_camp_success_or_recoverable</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">m</span> (<span class="id">mkWorld</span> <span class="id">world</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">mkTWorld</span> τ<span class="id">world</span>) <span class="id">nil</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Unit</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.CAMPRule.Lang.CAMPRule.html#eval_camp_rule">eval_camp_rule</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#camp_rule_type">camp_rule_type</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id"><a href="Qcert.CAMP.Typing.TCAMP.html#typed_camp_success_or_recoverable">typed_camp_success_or_recoverable</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#TCAMPRule.m">m</a></span> (<span class="id"><a href="Qcert.Basic.Env.RConstants.html#mkWorld">mkWorld</a></span> <span class="id">world</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#mkTWorld">mkTWorld</a></span> τ<span class="id">world</span>) <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Unit">Unit</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;τ<span class="id">out</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">camp_rule_to_camp</span> <span class="id">r</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nil</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dunit</span>); <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.CAMPRule.Lang.CAMPRule.html#camp_rule_to_camp">camp_rule_to_camp</a></span> <span class="id">r</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.RData.html#dunit">dunit</a></span>); <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">cut_to</span> <span class="id">H1</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id">eval_camp_rule_res</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="Qcert.CAMPRule.Lang.CAMPRule.html#eval_camp_rule_res">eval_camp_rule_res</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">H1</span> <span class="kwd">as</span> [<span class="id">x</span> [<span class="id">eqq1</span> ?]].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">eqq1</span>.<br/>
@@ -68,7 +68,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-<span class="kwd">End</span> <span class="id">TCAMPRule</span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#TCAMPRule">TCAMPRule</a></span>.<br/>
 <br/>
 
 </div>

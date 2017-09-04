@@ -14,30 +14,30 @@
 <h1 class="title">Module Qcert.Compiler.QLib.QUtil</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">BasicRuntime</span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">CompilerRuntime</span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">NNRCMRRuntime</span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">tDNNRCRuntime</span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">CompEnv</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.BasicRuntime.html">BasicRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Model.CompilerRuntime.html">CompilerRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRCMR.NNRCMRRuntime.html">NNRCMRRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.tDNNRC.tDNNRCRuntime.html">tDNNRCRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Driver.CompEnv.html">CompEnv</a></span>.<br/>
 <br/>
-<span class="kwd">Module</span> <span class="id">QUtil</span>(<span class="id">runtime</span>:<span class="id">CompilerRuntime</span>).<br/>
+<span class="kwd">Module</span> <span class="id"><a name="QUtil">QUtil</a></span>(<span class="id">runtime</span>:<span class="id"><a href="Qcert.Compiler.Model.CompilerRuntime.html#CompilerRuntime">CompilerRuntime</a></span>).<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">mr_reduce_empty</span> := <span class="id">mr_reduce_empty</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.mr_reduce_empty">mr_reduce_empty</a></span> := <span class="id"><a href="Qcert.NNRCMR.Lang.NNRCMR.html#mr_reduce_empty">mr_reduce_empty</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">type_annotation</span> {<span class="id">br</span>:<span class="id">brand_relation</span>} (<span class="id">A</span>:<span class="kwd">Set</span>): <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">tDNNRC.type_annotation</span> <span class="id">A</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.type_annotation">type_annotation</a></span> {<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} (<span class="id">A</span>:<span class="kwd">Set</span>): <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#type_annotation">tDNNRC.type_annotation</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#A">A</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">ta_base</span> {<span class="id">br</span>:<span class="id">brand_relation</span>} (<span class="id">A</span>:<span class="kwd">Set</span>) (<span class="id">ta</span>:<span class="id">type_annotation</span> <span class="id">A</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">tDNNRC.ta_base</span> <span class="id">ta</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">ta_inferred</span> {<span class="id">br</span>:<span class="id">brand_relation</span>} (<span class="id">A</span>:<span class="kwd">Set</span>) (<span class="id">ta</span>:<span class="id">type_annotation</span> <span class="id">A</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">tDNNRC.ta_inferred</span> <span class="id">ta</span> .<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">ta_required</span> {<span class="id">br</span>:<span class="id">brand_relation</span>} (<span class="id">A</span>:<span class="kwd">Set</span>) (<span class="id">ta</span>:<span class="id">type_annotation</span> <span class="id">A</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">tDNNRC.ta_required</span> <span class="id">ta</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.ta_base">ta_base</a></span> {<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} (<span class="id">A</span>:<span class="kwd">Set</span>) (<span class="id">ta</span>:<span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#QUtil.type_annotation">type_annotation</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#A">A</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#ta_base">tDNNRC.ta_base</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#ta">ta</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.ta_inferred">ta_inferred</a></span> {<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} (<span class="id">A</span>:<span class="kwd">Set</span>) (<span class="id">ta</span>:<span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#QUtil.type_annotation">type_annotation</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#A">A</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#ta_inferred">tDNNRC.ta_inferred</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#ta">ta</a></span> .<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.ta_required">ta_required</a></span> {<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} (<span class="id">A</span>:<span class="kwd">Set</span>) (<span class="id">ta</span>:<span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#QUtil.type_annotation">type_annotation</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#A">A</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#ta_required">tDNNRC.ta_required</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#ta">ta</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">validate_lifted_success</span> := <span class="id">validate_lifted_success</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.validate_lifted_success">validate_lifted_success</a></span> := <span class="id"><a href="Qcert.Compiler.Driver.CompEnv.html#validate_lifted_success">validate_lifted_success</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">mkDistWorld</span> <span class="id">env</span> := <span class="id">mkDistWorld</span> <span class="id">env</span>.<br/>
-<span class="kwd">End</span> <span class="id">QUtil</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QUtil.mkDistWorld">mkDistWorld</a></span> <span class="id">env</span> := <span class="id"><a href="Qcert.Basic.Env.DConstants.html#mkDistWorld">mkDistWorld</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#env">env</a></span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Compiler.QLib.QUtil.html#QUtil">QUtil</a></span>.<br/>
 <br/>
 
 </div>

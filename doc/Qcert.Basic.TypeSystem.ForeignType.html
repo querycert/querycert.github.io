@@ -14,25 +14,25 @@
 <h1 class="title">Module Qcert.Basic.TypeSystem.ForeignType</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Section</span> <span class="id">TForeign</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EquivDec</span>.<br/>
+<span class="kwd">Section</span> <span class="id"><a name="TForeign">TForeign</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Lattice</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Util.Lattice.html">Lattice</a></span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id">foreign_type</span> : <span class="kwd">Type</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mk_foreign_type</span> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">foreign_type_type</span> : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_type_dec</span> :&gt; <span class="id">EqDec</span> <span class="id">foreign_type_type</span> <span class="id">eq</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_type_lattice</span> :&gt; <span class="id">Lattice</span> <span class="id">foreign_type_type</span> <span class="id">eq</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_type_sub</span> (<span class="id">a</span> <span class="id">b</span> : <span class="id">foreign_type_type</span>) : <span class="kwd">Prop</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_type_sub_dec</span> (<span class="id">a</span> <span class="id">b</span> : <span class="id">foreign_type_type</span>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="id">foreign_type_sub</span> <span class="id">a</span> <span class="id">b</span>} + {~ <span class="id">foreign_type_sub</span> <span class="id">a</span> <span class="id">b</span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_type_sub_pre</span> :&gt; <span class="id">PreOrder</span> <span class="id">foreign_type_sub</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_type_sub_part</span> :&gt; <span class="id">PartialOrder</span> <span class="id">eq</span> <span class="id">foreign_type_sub</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_type_olattice</span> :&gt; <span class="id">OLattice</span> <span class="id">eq</span> <span class="id">foreign_type_sub</span><br/>
+&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id"><a name="foreign_type">foreign_type</a></span> : <span class="kwd">Type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="mk_foreign_type">mk_foreign_type</a></span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="foreign_type_type">foreign_type_type</a></span> : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_type_dec">foreign_type_dec</a></span> :&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type_type">foreign_type_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_type_lattice">foreign_type_lattice</a></span> :&gt; <span class="id"><a href="Qcert.Basic.Util.Lattice.html#Lattice">Lattice</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type_type">foreign_type_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_type_sub">foreign_type_sub</a></span> (<span class="id">a</span> <span class="id">b</span> : <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type_type">foreign_type_type</a></span>) : <span class="kwd">Prop</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_type_sub_dec">foreign_type_sub_dec</a></span> (<span class="id">a</span> <span class="id">b</span> : <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type_type">foreign_type_type</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type_sub">foreign_type_sub</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#a">a</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#b">b</a></span>} + {~ <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type_sub">foreign_type_sub</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#a">a</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#b">b</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_type_sub_pre">foreign_type_sub_pre</a></span> :&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PreOrder">PreOrder</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type_sub">foreign_type_sub</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_type_sub_part">foreign_type_sub_part</a></span> :&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PartialOrder">PartialOrder</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type_sub">foreign_type_sub</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_type_olattice">foreign_type_olattice</a></span> :&gt; <span class="id"><a href="Qcert.Basic.Util.Lattice.html#OLattice">OLattice</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type_sub">foreign_type_sub</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
 &nbsp;&nbsp;<br/>
-<span class="kwd">End</span> <span class="id">TForeign</span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#TForeign">TForeign</a></span>.<br/>
 <br/>
 
 </div>

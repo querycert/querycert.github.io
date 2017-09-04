@@ -15,67 +15,67 @@
 <div class="coq">
 <br/>
 <br/>
-<span class="kwd">Section</span> <span class="id">ROpsEq</span>.<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ROpsEq">ROpsEq</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Equivalence</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Morphisms</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Setoid</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EquivDec</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html">Equivalence</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Setoids.Setoid.html">Setoid</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="kwd">Program</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">List</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">String</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Utils</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">BrandRelation</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">RData</span> <span class="id">RDataNorm</span> <span class="id">RRelation</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">RUtilOps</span> <span class="id">RBinaryOpsSem</span> <span class="id">RUnaryOpsSem</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignData</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignOps</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Util.Utils.html">Utils</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Data.BrandRelation.html">BrandRelation</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Data.RData.html">RData</a></span> <span class="id"><a href="Qcert.Basic.Data.RDataNorm.html">RDataNorm</a></span> <span class="id"><a href="Qcert.Basic.Data.RRelation.html">RRelation</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Operators.RUtilOps.html">RUtilOps</a></span> <span class="id"><a href="Qcert.Basic.Operators.RBinaryOpsSem.html">RBinaryOpsSem</a></span> <span class="id"><a href="Qcert.Basic.Operators.RUnaryOpsSem.html">RUnaryOpsSem</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Data.ForeignData.html">ForeignData</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html">ForeignOps</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fdata</span>:<span class="id">foreign_data</span>}.<br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fuop</span>:<span class="id">foreign_unary_op</span>}.<br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fbop</span>:<span class="id">foreign_binary_op</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fdata</span>:<span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data">foreign_data</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fuop</span>:<span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_unary_op">foreign_unary_op</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fbop</span>:<span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_binary_op">foreign_binary_op</a></span>}.<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">unaryop_eq</span> (<span class="id">uop1</span> <span class="id">uop2</span>:<span class="id">unaryOp</span>) : <span class="kwd">Prop</span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">h</span>:<span class="id">list</span> (<span class="id">string</span>*<span class="id">string</span>)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">x</span>:<span class="id">data</span>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">data_normalized</span> <span class="id">h</span> <span class="id">x</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">fun_of_unaryop</span> <span class="id">h</span> <span class="id">uop1</span>) <span class="id">x</span> = (<span class="id">fun_of_unaryop</span> <span class="id">h</span> <span class="id">uop2</span>) <span class="id">x</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="unaryop_eq">unaryop_eq</a></span> (<span class="id">uop1</span> <span class="id">uop2</span>:<span class="id"><a href="Qcert.Basic.Operators.RUnaryOps.html#unaryOp">unaryOp</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">h</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">x</span>:<span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#h">h</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#x">x</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Basic.Operators.RUnaryOpsSem.html#fun_of_unaryop">fun_of_unaryop</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#h">h</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#uop1">uop1</a></span>) <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#x">x</a></span> = (<span class="id"><a href="Qcert.Basic.Operators.RUnaryOpsSem.html#fun_of_unaryop">fun_of_unaryop</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#h">h</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#uop2">uop2</a></span>) <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#x">x</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id">unaryop_equiv</span> : <span class="id">Equivalence</span> <span class="id">unaryop_eq</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="unaryop_equiv">unaryop_equiv</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#unaryop_eq">unaryop_eq</a></span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1034')">Proof.</div>
 <div class="proofscript" id="proof1034">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id">Reflexive</span>, <span class="id">unaryop_eq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Reflexive">Reflexive</a></span>, <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#unaryop_eq">unaryop_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id">Symmetric</span>, <span class="id">unaryop_eq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Symmetric">Symmetric</a></span>, <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#unaryop_eq">unaryop_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">rewrite</span> <span class="id">H</span> <span class="tactic">by</span> <span class="tactic">trivial</span>; <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id">Transitive</span>, <span class="id">unaryop_eq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span>, <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#unaryop_eq">unaryop_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">rewrite</span> <span class="id">H</span>, <span class="id">H0</span> <span class="tactic">by</span> <span class="tactic">trivial</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">binop_eq</span> (<span class="id">bop1</span> <span class="id">bop2</span>:<span class="id">binOp</span>) : <span class="kwd">Prop</span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">h</span>:<span class="id">list</span> (<span class="id">string</span>*<span class="id">string</span>)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">x</span>:<span class="id">data</span>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">data_normalized</span> <span class="id">h</span> <span class="id">x</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">y</span>:<span class="id">data</span>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">data_normalized</span> <span class="id">h</span> <span class="id">x</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">fun_of_binop</span> <span class="id">h</span> <span class="id">bop1</span>) <span class="id">x</span> <span class="id">y</span> = (<span class="id">fun_of_binop</span> <span class="id">h</span> <span class="id">bop2</span>) <span class="id">x</span> <span class="id">y</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="binop_eq">binop_eq</a></span> (<span class="id">bop1</span> <span class="id">bop2</span>:<span class="id"><a href="Qcert.Basic.Operators.RBinaryOps.html#binOp">binOp</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">h</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">x</span>:<span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#h">h</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#x">x</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">y</span>:<span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#h">h</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#x">x</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Basic.Operators.RBinaryOpsSem.html#fun_of_binop">fun_of_binop</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#h">h</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#bop1">bop1</a></span>) <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#x">x</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#y">y</a></span> = (<span class="id"><a href="Qcert.Basic.Operators.RBinaryOpsSem.html#fun_of_binop">fun_of_binop</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#h">h</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#bop2">bop2</a></span>) <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#x">x</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#y">y</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id">binop_equiv</span> : <span class="id">Equivalence</span> <span class="id">binop_eq</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="binop_equiv">binop_equiv</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#binop_eq">binop_eq</a></span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1035')">Proof.</div>
 <div class="proofscript" id="proof1035">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id">Reflexive</span>, <span class="id">binop_eq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Reflexive">Reflexive</a></span>, <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#binop_eq">binop_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id">Symmetric</span>, <span class="id">binop_eq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Symmetric">Symmetric</a></span>, <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#binop_eq">binop_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">rewrite</span> (<span class="id">H</span> <span class="id">h</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>; <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id">Transitive</span>, <span class="id">binop_eq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span>, <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#binop_eq">binop_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">rewrite</span> (<span class="id">H</span> <span class="id">h</span>), (<span class="id">H0</span> <span class="id">h</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-<span class="kwd">End</span> <span class="id">ROpsEq</span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Basic.Operators.ROpsEq.html#ROpsEq">ROpsEq</a></span>.<br/>
 <br/>
 
 </div>

@@ -14,24 +14,24 @@
 <h1 class="title">Module Qcert.Basic.Data.ForeignData</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Section</span> <span class="id">ForeignData</span>.<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ForeignData">ForeignData</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EquivDec</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">RUtil</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html">RUtil</a></span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id">foreign_data</span> : <span class="kwd">Type</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mk_foreign_data</span> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">foreign_data_type</span> : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_data_dec</span> :&gt; <span class="id">EqDec</span> <span class="id">foreign_data_type</span> <span class="id">eq</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_data_normalized</span> (<span class="id">a</span> : <span class="id">foreign_data_type</span>) : <span class="kwd">Prop</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_data_normalize</span> (<span class="id">a</span> : <span class="id">foreign_data_type</span>) : <span class="id">foreign_data_type</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_data_normalize_normalizes</span> (<span class="id">a</span> : <span class="id">foreign_data_type</span>) : <span class="id">foreign_data_normalized</span> (<span class="id">foreign_data_normalize</span> <span class="id">a</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_data_normalize_idempotent</span> (<span class="id">a</span> : <span class="id">foreign_data_type</span>) : <span class="id">foreign_data_normalized</span> <span class="id">a</span> -&gt; <span class="id">foreign_data_normalize</span> <span class="id">a</span> = <span class="id">a</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_data_tostring</span> :&gt; <span class="id">ToString</span> <span class="id">foreign_data_type</span><br/>
+&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id"><a name="foreign_data">foreign_data</a></span> : <span class="kwd">Type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="mk_foreign_data">mk_foreign_data</a></span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="foreign_data_type">foreign_data_type</a></span> : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_data_dec">foreign_data_dec</a></span> :&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_type">foreign_data_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_data_normalized">foreign_data_normalized</a></span> (<span class="id">a</span> : <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_type">foreign_data_type</a></span>) : <span class="kwd">Prop</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_data_normalize">foreign_data_normalize</a></span> (<span class="id">a</span> : <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_type">foreign_data_type</a></span>) : <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_type">foreign_data_type</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_data_normalize_normalizes">foreign_data_normalize_normalizes</a></span> (<span class="id">a</span> : <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_type">foreign_data_type</a></span>) : <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_normalized">foreign_data_normalized</a></span> (<span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_normalize">foreign_data_normalize</a></span> <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#a">a</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_data_normalize_idempotent">foreign_data_normalize_idempotent</a></span> (<span class="id">a</span> : <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_type">foreign_data_type</a></span>) : <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_normalized">foreign_data_normalized</a></span> <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#a">a</a></span> -&gt; <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_normalize">foreign_data_normalize</a></span> <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#a">a</a></span> = <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#a">a</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_data_tostring">foreign_data_tostring</a></span> :&gt; <span class="id"><a href="Qcert.Basic.Util.RUtil.html#ToString">ToString</a></span> <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data_type">foreign_data_type</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
 <br/>
-<span class="kwd">End</span> <span class="id">ForeignData</span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Basic.Data.ForeignData.html#ForeignData">ForeignData</a></span>.<br/>
 <br/>
 <br/>
 
