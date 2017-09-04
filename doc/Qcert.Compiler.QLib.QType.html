@@ -14,91 +14,91 @@
 <h1 class="title">Module Qcert.Compiler.QLib.QType</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Model.CompilerRuntime.html">CompilerRuntime</a></span> <span class="kwd">Types</span>.<br/>
-<span class="kwd">Require</span> <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html">RType</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.TypingRuntime.html">TypingRuntime</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.JSON.JSONtoData.html">JSONtoData</a></span>.<br/>
-<span class="kwd">Require</span> <span class="id"><a href="Qcert.Translation.DatatoSparkDF.html">DatatoSparkDF</a></span>.<br/>
-<span class="kwd">Require</span> <span class="id"><a href="Qcert.Basic.Data.RData.html">RData</a></span>.<br/>
-<span class="kwd">Require</span> <span class="id"><a href="Qcert.Basic.Typing.TUtil.html">TUtil</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">CompilerRuntime</span> <span class="kwd">Types</span>.<br/>
+<span class="kwd">Require</span> <span class="id">RType</span> <span class="id">String</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">TypingRuntime</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">JSONtoData</span>.<br/>
+<span class="kwd">Require</span> <span class="id">DatatoSparkDF</span>.<br/>
+<span class="kwd">Require</span> <span class="id">RData</span>.<br/>
+<span class="kwd">Require</span> <span class="id">TUtil</span>.<br/>
 <br/>
-<span class="kwd">Module</span> <span class="id"><a name="QType">QType</a></span>(<span class="id">runtime</span>:<span class="id"><a href="Qcert.Compiler.Model.CompilerRuntime.html#CompilerRuntime">CompilerRuntime</a></span>).<br/>
+<span class="kwd">Module</span> <span class="id">QType</span>(<span class="id">runtime</span>:<span class="id">CompilerRuntime</span>).<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.empty_brand_model">empty_brand_model</a></span> (<span class="id">x</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#unit">unit</a></span>) := <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#empty_brand_model">TBrandModel.empty_brand_model</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">empty_brand_model</span> (<span class="id">x</span>:<span class="id">unit</span>) := <span class="id">TBrandModel.empty_brand_model</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.record_kind">record_kind</a></span> : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#record_kind">RType.record_kind</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">record_kind</span> : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.record_kind</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.open_kind">open_kind</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.record_kind">record_kind</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Open">RType.Open</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">open_kind</span> : <span class="id">record_kind</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Open</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.closed_kind">closed_kind</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.record_kind">record_kind</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Closed">RType.Closed</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">closed_kind</span> : <span class="id">record_kind</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Closed</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.qtype_struct">qtype_struct</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">qtype_struct</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="kwd">Set</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.rtype</span>₀.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.qtype">qtype</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#rtype">RType.rtype</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.t">t</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">qtype</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.rtype</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">t</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">qtype</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.sorted_pf_type">sorted_pf_type</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} <span class="id">srl</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.Util.RSort.html#is_list_sorted">RSort.is_list_sorted</a></span> <span class="id"><a href="Qcert.Basic.Util.RBindings.html#ODT_lt_dec">RBindings.ODT_lt_dec</a></span> (@<span class="id"><a href="Qcert.Basic.Util.RAssoc.html#domain">RAssoc.domain</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QType.html#srl">srl</a></span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sorted_pf_type</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} <span class="id">srl</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RSort.is_list_sorted</span> <span class="id">RBindings.ODT_lt_dec</span> (@<span class="id">RAssoc.domain</span> <span class="id">String.string</span> <span class="id">qtype</span> <span class="id">srl</span>) = <span class="id">true</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.bottom">bottom</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Bottom">RType.Bottom</a></span>.  <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.top">top</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Top">RType.Top</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.unit">unit</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Unit">RType.Unit</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.nat">nat</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Nat">RType.Nat</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.bool">bool</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Bool">RType.Bool</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.string">string</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#String">RType.String</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.bag">bag</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Coll">RType.Coll</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.record">record</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.record_kind">record_kind</a></span> -&gt; <span class="kwd">forall</span> (<span class="id">r</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span>*<span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span>)), <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.sorted_pf_type">sorted_pf_type</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QType.html#r">r</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Rec">RType.Rec</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.either">either</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Either">RType.Either</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.arrow">arrow</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Arrow">RType.Arrow</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.brand">brand</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#Brand">RType.Brand</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">bottom</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Bottom</span>.  <br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">top</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Top</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">unit</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Unit</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">nat</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Nat</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">bool</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Bool</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">string</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.String</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">bag</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">qtype</span> -&gt; <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Coll</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">record</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">record_kind</span> -&gt; <span class="kwd">forall</span> (<span class="id">r</span>:<span class="id">list</span> (<span class="id">String.string</span>*<span class="id">qtype</span>)), <span class="id">sorted_pf_type</span> <span class="id">r</span> -&gt; <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Rec</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">either</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">qtype</span> -&gt; <span class="id">qtype</span> -&gt; <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Either</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">arrow</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">qtype</span> -&gt; <span class="id">qtype</span> -&gt; <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Arrow</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">brand</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">list</span> <span class="id">String.string</span> -&gt; <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">RType.Brand</span>.<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.brand_model">brand_model</a></span> : <span class="kwd">Set</span> := <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model">brand_model</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.make_brand_model">make_brand_model</a></span> := <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#make_brand_model_fails">make_brand_model_fails</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.typing_runtime">typing_runtime</a></span> : <span class="kwd">Set</span> := <span class="id"><a href="Qcert.Basic.TypingRuntime.html#typing_runtime">typing_runtime</a></span>.<br/>
-<br/>
-&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.json_to_rtype">json_to_rtype</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} := <span class="id"><a href="Qcert.Basic.JSON.JSONtoData.html#json_to_rtype">json_to_rtype</a></span>.  <br/>
-<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.json_to_rtype_with_fail">json_to_rtype_with_fail</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} := <span class="id"><a href="Qcert.Basic.JSON.JSONtoData.html#json_to_rtype_with_fail">json_to_rtype_with_fail</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">brand_model</span> : <span class="kwd">Set</span> := <span class="id">brand_model</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">make_brand_model</span> := <span class="id">make_brand_model_fails</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">typing_runtime</span> : <span class="kwd">Set</span> := <span class="id">typing_runtime</span>.<br/>
 <br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.qcert_dtype">qcert_dtype</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.TypeSystem.DType.html#drtype">DType.drtype</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.dt">dt</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qcert_dtype">qcert_dtype</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">json_to_rtype</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} := <span class="id">json_to_rtype</span>.  <br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.json_to_drtype">json_to_drtype</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Basic.JSON.JSON.html#json">JSON.json</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qcert_dtype">qcert_dtype</a></span> := <span class="id"><a href="Qcert.Basic.JSON.JSONtoData.html#json_to_drtype">json_to_drtype</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">json_to_rtype_with_fail</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} := <span class="id">json_to_rtype_with_fail</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.json_to_vrtype_with_fail">json_to_vrtype_with_fail</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} : <span class="id"><a href="Qcert.Basic.JSON.JSON.html#json">JSON.json</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> * <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span>) := <span class="id"><a href="Qcert.Basic.JSON.JSONtoData.html#json_to_vrtype_with_fail">json_to_vrtype_with_fail</a></span>.<br/>
-<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.tlocal">tlocal</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>}  : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qcert_dtype">qcert_dtype</a></span> := <span class="id"><a href="Qcert.Basic.TypeSystem.DType.html#Tlocal">DType.Tlocal</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.tdistr">tdistr</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>}  : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qcert_dtype">qcert_dtype</a></span> := <span class="id"><a href="Qcert.Basic.TypeSystem.DType.html#Tdistr">DType.Tdistr</a></span>.<br/>
-<br/>
-<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.qtype_uncoll">qtype_uncoll</a></span> (<span class="id">m</span>:<span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.brand_model">brand_model</a></span>) : <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id"><a href="Qcert.Basic.Typing.TUtil.html#tuncoll">TUtil.tuncoll</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.Compiler.QLib.QType.html#m">m</a></span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QType.data_to_sjson">data_to_sjson</a></span> (<span class="id">m</span>:<span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.brand_model">brand_model</a></span>) : <span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType.qtype">qtype</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id"><a href="Qcert.Translation.DatatoSparkDF.html#data_to_sjson">DatatoSparkDF.data_to_sjson</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id"><a href="Qcert.Compiler.QLib.QType.html#m">m</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">qcert_dtype</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">DType.drtype</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">dt</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">qcert_dtype</span>.<br/>
 <br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.Compiler.QLib.QType.html#QType">QType</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">json_to_drtype</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">JSON.json</span> -&gt; <span class="id">qcert_dtype</span> := <span class="id">json_to_drtype</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">json_to_vrtype_with_fail</span> {<span class="id">m</span>:<span class="id">brand_relation</span>} : <span class="id">JSON.json</span> -&gt; <span class="id">option</span> (<span class="id">String.string</span> * <span class="id">qtype</span>) := <span class="id">json_to_vrtype_with_fail</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">tlocal</span> {<span class="id">m</span>:<span class="id">brand_relation</span>}  : <span class="id">qtype</span> -&gt; <span class="id">qcert_dtype</span> := <span class="id">DType.Tlocal</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">tdistr</span> {<span class="id">m</span>:<span class="id">brand_relation</span>}  : <span class="id">qtype</span> -&gt; <span class="id">qcert_dtype</span> := <span class="id">DType.Tdistr</span>.<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">qtype_uncoll</span> (<span class="id">m</span>:<span class="id">brand_model</span>) : <span class="id">qtype</span> -&gt; <span class="id">option</span> <span class="id">qtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id">TUtil.tuncoll</span> <span class="id">_</span> <span class="id">m</span>.<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">data_to_sjson</span> (<span class="id">m</span>:<span class="id">brand_model</span>) : <span class="id">data</span> -&gt; <span class="id">qtype</span> -&gt; <span class="id">option</span> <span class="id">String.string</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id">DatatoSparkDF.data_to_sjson</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">m</span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id">QType</span>.<br/>
 <br/>
 
 </div>

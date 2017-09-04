@@ -14,59 +14,59 @@
 <h1 class="title">Module Qcert.Compiler.QLib.QLambdaNRA</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Model.CompilerRuntime.html">CompilerRuntime</a></span>.<br/>
-<span class="kwd">Require</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
-<span class="kwd">Require</span> <span class="id"><a href="Qcert.Compiler.QLib.QData.html">QData</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QOperators.html">QOperators</a></span>.<br/>
-<span class="kwd">Require</span> <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html">LambdaNRA</a></span> <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRASugar.html">LambdaNRASugar</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">CompilerRuntime</span>.<br/>
+<span class="kwd">Require</span> <span class="id">String</span>.<br/>
+<span class="kwd">Require</span> <span class="id">QData</span> <span class="id">QOperators</span>.<br/>
+<span class="kwd">Require</span> <span class="id">LambdaNRA</span> <span class="id">LambdaNRASugar</span>.<br/>
 <br/>
-<span class="kwd">Module</span> <span class="id"><a name="QLambdaNRA">QLambdaNRA</a></span>(<span class="id">runtime</span>:<span class="id"><a href="Qcert.Compiler.Model.CompilerRuntime.html#CompilerRuntime">CompilerRuntime</a></span>).<br/>
+<span class="kwd">Module</span> <span class="id">QLambdaNRA</span>(<span class="id">runtime</span>:<span class="id">CompilerRuntime</span>).<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id"><a name="QLambdaNRA.Data">Data</a></span> := <span class="id"><a href="Qcert.Compiler.QLib.QData.html#QData">QData.QData</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#runtime">runtime</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id"><a name="QLambdaNRA.Ops">Ops</a></span> := <span class="id"><a href="Qcert.Compiler.QLib.QOperators.html#QOperators">QOperators.QOperators</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#runtime">runtime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id">Data</span> := <span class="id">QData.QData</span> <span class="id">runtime</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id">Ops</span> := <span class="id">QOperators.QOperators</span> <span class="id">runtime</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.expr">expr</a></span> : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#lambda_nra">LambdaNRA.lambda_nra</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.lambda_expr">lambda_expr</a></span> : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#lnra_lambda">LambdaNRA.lnra_lambda</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.t">t</a></span> : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.var">var</a></span> : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">expr</span> : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.lambda_nra</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">lambda_expr</span> : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.lnra_lambda</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">t</span> : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">expr</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">var</span> : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">String.string</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.lalambda">lalambda</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.var">var</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.lambda_expr">lambda_expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRALambda">LambdaNRA.LNRALambda</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.lavar">lavar</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.var">var</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRAVar">LambdaNRA.LNRAVar</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.laconst">laconst</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.qdata">Data.qdata</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRAConst">LambdaNRA.LNRAConst</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.ltable">ltable</a></span>  : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRATable">LambdaNRA.LNRATable</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.labinop">labinop</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.op">Ops.Binary.op</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRABinop">LambdaNRA.LNRABinop</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.launop">launop</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.op">Ops.Unary.op</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRAUnop">LambdaNRA.LNRAUnop</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.lamap">lamap</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.lambda_expr">lambda_expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRAMap">LambdaNRA.LNRAMap</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.lafilter">lafilter</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.lambda_expr">lambda_expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRAFilter">LambdaNRA.LNRAFilter</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.lamapconcat">lamapconcat</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.lambda_expr">lambda_expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRAMapConcat">LambdaNRA.LNRAMapConcat</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.laproduct">laproduct</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRAProduct">LambdaNRA.LNRAProduct</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">lalambda</span> : <span class="id">var</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">lambda_expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.LNRALambda</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">lavar</span> : <span class="id">var</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.LNRAVar</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">laconst</span> : <span class="id">Data.qdata</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.LNRAConst</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">ltable</span>  : <span class="id">String.string</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.LNRATable</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">labinop</span> : <span class="id">Ops.Binary.op</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.LNRABinop</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">launop</span> : <span class="id">Ops.Unary.op</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.LNRAUnop</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">lamap</span> : <span class="id">lambda_expr</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.LNRAMap</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">lafilter</span> : <span class="id">lambda_expr</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.LNRAFilter</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">lamapconcat</span> : <span class="id">lambda_expr</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.LNRAMapConcat</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">laproduct</span> : <span class="id">expr</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRA.LNRAProduct</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.ladot">ladot</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRASugar.html#LNRADot">LambdaNRASugar.LNRADot</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.laarrow">laarrow</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRASugar.html#LNRAArrow">LambdaNRASugar.LNRAArrow</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.lastruct">lastruct</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> * <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span>) -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRASugar.html#LNRAStruct">LambdaNRASugar.LNRAStruct</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.laflatmap">laflatmap</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.lambda_expr">lambda_expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRASugar.html#LNRAFlatMap">LambdaNRASugar.LNRAFlatMap</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">ladot</span> : <span class="id">String.string</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">expr</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRASugar.LNRADot</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">laarrow</span> : <span class="id">String.string</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">expr</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRASugar.LNRAArrow</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">lastruct</span> : <span class="id">list</span> (<span class="id">String.string</span> * <span class="id">expr</span>) -&gt; <span class="id">expr</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRASugar.LNRAStruct</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">laflatmap</span> : <span class="id">lambda_expr</span> -&gt; <span class="id">expr</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRASugar.LNRAFlatMap</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QLambdaNRA.latableify">latableify</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA.expr">expr</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRASugar.html#la_tableify">LambdaNRASugar.la_tableify</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">latableify</span> : <span class="id">expr</span> -&gt; <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">LambdaNRASugar.la_tableify</span>.<br/>
 <br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.Compiler.QLib.QLambdaNRA.html#QLambdaNRA">QLambdaNRA</a></span>.<br/>
+<span class="kwd">End</span> <span class="id">QLambdaNRA</span>.<br/>
 <br/>
 
 </div>

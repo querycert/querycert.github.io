@@ -14,215 +14,215 @@
 <h1 class="title">Module Qcert.Basic.TypeSystem.TBrandModel</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Section</span> <span class="id"><a name="TBrandModel">TBrandModel</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.ListSet.html">ListSet</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Sumbool.html">Sumbool</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html">Basics</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Eqdep_dec.html">Eqdep_dec</a></span>.<br/>
+<span class="kwd">Section</span> <span class="id">TBrandModel</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">String</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">List</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ListSet</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Sumbool</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Arith</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Bool</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Morphisms</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Basics</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EquivDec</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Eqdep_dec</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Util.Utils.html">Utils</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Utils</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html">ForeignType</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.TypeSystem.RType.html">RType</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Export</span> <span class="id"><a href="Qcert.Basic.Data.BrandRelation.html">BrandRelation</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Export</span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html">TBrandContext</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.TypeSystem.RSubtype.html">RSubtype</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.TypeSystem.RConsistentSubtype.html">RConsistentSubtype</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignType</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">RType</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Export</span> <span class="id">BrandRelation</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Export</span> <span class="id">TBrandContext</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">RSubtype</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">RConsistentSubtype</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="sub_brand_context">sub_brand_context</a></span> {<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} {<span class="id">ftype</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type">foreign_type</a></span>} (<span class="id">m1</span> <span class="id">m2</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context">brand_context</a></span>) :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.TypeSystem.RSubtype.html#subtype">subtype</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_Rec">brand_context_Rec</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#m1">m1</a></span>) (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_Rec">brand_context_Rec</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#m2">m2</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sub_brand_context</span> {<span class="id">br</span>:<span class="id">brand_relation</span>} {<span class="id">ftype</span>:<span class="id">foreign_type</span>} (<span class="id">m1</span> <span class="id">m2</span>:<span class="id">brand_context</span>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">subtype</span> (<span class="id">brand_context_Rec</span> <span class="id">m1</span>) (<span class="id">brand_context_Rec</span> <span class="id">m2</span>).<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="TBrandModel.brand_model_types">brand_model_types</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftype</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type">foreign_type</a></span>} {<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>} {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context">brand_context</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id">brand_model_types</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftype</span>:<span class="id">foreign_type</span>} {<span class="id">br</span>:<span class="id">brand_relation</span>} {<span class="id">m</span>:<span class="id">brand_context</span>}.<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="brand_model_domain_t">brand_model_domain_t</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">forall</span> <span class="id">a</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#a">a</a></span> (<span class="id"><a href="Qcert.Basic.Util.RAssoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#a">a</a></span> (<span class="id"><a href="Qcert.Basic.Util.RAssoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types">brand_context_types</a></span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">brand_model_domain_t</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">forall</span> <span class="id">a</span>, <span class="id">In</span> <span class="id">a</span> (<span class="id">domain</span> <span class="id">brand_relation_brands</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">In</span> <span class="id">a</span> (<span class="id">domain</span> <span class="id">brand_context_types</span>).<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="brand_model_subtype_weak_t">brand_model_subtype_weak_t</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">brand_model_subtype_weak_t</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">a</span> <span class="id">b</span> τ<span class="id">a</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#a">a</a></span>,<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#b">b</a></span>) <span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#a">a</a></span>,τ<span class="id">a</span>) <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types">brand_context_types</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> (τ<span class="id">b</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#rtype">rtype</a></span>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#b">b</a></span>,τ<span class="id">b</span>) <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types">brand_context_types</a></span> /\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.TypeSystem.RSubtype.html#subtype">subtype</a></span> τ<span class="id">a</span> τ<span class="id">b</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">In</span> (<span class="id">a</span>,<span class="id">b</span>) <span class="id">brand_relation_brands</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">In</span> (<span class="id">a</span>,τ<span class="id">a</span>) <span class="id">brand_context_types</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> (τ<span class="id">b</span>:<span class="id">rtype</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">In</span> (<span class="id">b</span>,τ<span class="id">b</span>) <span class="id">brand_context_types</span> /\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">subtype</span> τ<span class="id">a</span> τ<span class="id">b</span>.<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="brand_model_subtype_t">brand_model_subtype_t</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">brand_model_subtype_t</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">a</span> <span class="id">b</span> τ<span class="id">a</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#a">a</a></span>,<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#b">b</a></span>) <span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#a">a</a></span>,τ<span class="id">a</span>) <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types">brand_context_types</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{τ<span class="id">b</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.RType.html#rtype">rtype</a></span> | <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#b">b</a></span>,τ<span class="id">b</span>) <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types">brand_context_types</a></span> /\ <span class="id"><a href="Qcert.Basic.TypeSystem.RSubtype.html#subtype">subtype</a></span> τ<span class="id">a</span> τ<span class="id">b</span>}.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">In</span> (<span class="id">a</span>,<span class="id">b</span>) <span class="id">brand_relation_brands</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">In</span> (<span class="id">a</span>,τ<span class="id">a</span>) <span class="id">brand_context_types</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{τ<span class="id">b</span>:<span class="id">rtype</span> | <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">In</span> (<span class="id">b</span>,τ<span class="id">b</span>) <span class="id">brand_context_types</span> /\ <span class="id">subtype</span> τ<span class="id">a</span> τ<span class="id">b</span>}.<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="TBrandModel.brand_model_types.brand_model_types_dec">brand_model_types_dec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id">brand_model_types_dec</span>.<br/>
 <br/>
-<span class="kwd">Lemma</span> <span class="id"><a name="brand_model_domain_dec">brand_model_domain_dec</a></span> :<br/>
-&nbsp;&nbsp;{<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_domain_t">brand_model_domain_t</a></span> }<br/>
-&nbsp;&nbsp;+  {~ <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_domain_t">brand_model_domain_t</a></span>}.<br/>
+<span class="kwd">Lemma</span> <span class="id">brand_model_domain_dec</span> :<br/>
+&nbsp;&nbsp;{<span class="id">brand_model_domain_t</span> }<br/>
+&nbsp;&nbsp;+  {~ <span class="id">brand_model_domain_t</span>}.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1294')">Proof.</div>
 <div class="proofscript" id="proof1294">
-&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="Qcert.Basic.Util.RList.html#incl_list_dec">incl_list_dec</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span>).<br/>
+&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">incl_list_dec</span> <span class="id">string_dec</span>).<br/>
 Defined.</div>
 <br/>
-<span class="kwd">Lemma</span> <span class="id"><a name="brand_model_subtype_weak_dec">brand_model_subtype_weak_dec</a></span> :<br/>
-&nbsp;&nbsp;{<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_t">brand_model_subtype_weak_t</a></span>}<br/>
-&nbsp;&nbsp;+  {~ <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_t">brand_model_subtype_weak_t</a></span>}.<br/>
+<span class="kwd">Lemma</span> <span class="id">brand_model_subtype_weak_dec</span> :<br/>
+&nbsp;&nbsp;{<span class="id">brand_model_subtype_weak_t</span>}<br/>
+&nbsp;&nbsp;+  {~ <span class="id">brand_model_subtype_weak_t</span>}.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1295')">Proof.</div>
 <div class="proofscript" id="proof1295">
-&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_t">brand_model_subtype_weak_t</a></span>.<br/>
-&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#forallb">forallb</a></span><br/>
+&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">brand_model_subtype_weak_t</span>.<br/>
+&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">forallb</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">ab</span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup">lookup</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types">brand_context_types</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#ab">ab</a></span>) <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">ta</span> =&gt; <span class="kwd">match</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup">lookup</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types">brand_context_types</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#ab">ab</a></span>) <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">tb</span> =&gt; <span class="kwd">if</span> <span class="id"><a href="Qcert.Basic.TypeSystem.RSubtype.html#subtype_dec">subtype_dec</a></span> <span class="id">ta</span> <span class="id">tb</span> <span class="kwd">then</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> <span class="kwd">else</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">lookup</span> <span class="id">string_dec</span> <span class="id">brand_context_types</span> (<span class="id">fst</span> <span class="id">ab</span>) <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">Some</span> <span class="id">ta</span> =&gt; <span class="kwd">match</span> <span class="id">lookup</span> <span class="id">string_dec</span> <span class="id">brand_context_types</span> (<span class="id">snd</span> <span class="id">ab</span>) <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">Some</span> <span class="id">tb</span> =&gt; <span class="kwd">if</span> <span class="id">subtype_dec</span> <span class="id">ta</span> <span class="id">tb</span> <span class="kwd">then</span> <span class="id">true</span> <span class="kwd">else</span> <span class="id">false</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">None</span> =&gt; <span class="id">false</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">None</span> =&gt; <span class="id">true</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">brand_relation_brands</span>).<br/>
 &nbsp;&nbsp;- <span class="id">left</span>. <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#forallb_forall">forallb_forall</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">forallb_forall</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H</span> <span class="id">_</span> <span class="id">H0</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_case_in</span> <span class="id">H</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">rewrite</span> <span class="id">H2</span> <span class="kwd">in</span> *.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup_in">lookup_in</a></span> <span class="kwd">in</span> <span class="id">H2</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Basic.Util.RAssoc.html#nodup_in_eq">nodup_in_eq</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_nodup">brand_context_nodup</a></span> <span class="id">H1</span> <span class="id">H2</span>); <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">lookup_in</span> <span class="kwd">in</span> <span class="id">H2</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id">nodup_in_eq</span> <span class="id">brand_context_nodup</span> <span class="id">H1</span> <span class="id">H2</span>); <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_case_in</span> <span class="id">H</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">rewrite</span> <span class="id">H3</span> <span class="kwd">in</span> *. <span class="id">match_destr_in</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup_in">lookup_in</a></span> <span class="kwd">in</span> <span class="id">H3</span>. <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">lookup_in</span> <span class="kwd">in</span> <span class="id">H3</span>. <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">r0</span>; <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">rewrite</span> <span class="id">H3</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;+  <span class="tactic">rewrite</span> <span class="id">H2</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup_none_nin">lookup_none_nin</a></span> <span class="kwd">in</span> <span class="id">H2</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#in_dom">in_dom</a></span> <span class="kwd">in</span> <span class="id">H1</span>. <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">lookup_none_nin</span> <span class="kwd">in</span> <span class="id">H2</span>. <span class="tactic">apply</span> <span class="id">in_dom</span> <span class="kwd">in</span> <span class="id">H1</span>. <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;- <span class="id">right</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html#forallb_not_existb">forallb_not_existb</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#negb_false_iff">negb_false_iff</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#existsb_exists">existsb_exists</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">forallb_not_existb</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">rewrite</span> <span class="id">negb_false_iff</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">existsb_exists</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">H</span> <span class="kwd">as</span> [[? ?] [<span class="id">inn</span> <span class="id">ne</span>]].<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#negb_true_iff">negb_true_iff</a></span> <span class="kwd">in</span> <span class="id">ne</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">negb_true_iff</span> <span class="kwd">in</span> <span class="id">ne</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_case_in</span> <span class="id">ne</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">rewrite</span> <span class="id">H</span> <span class="kwd">in</span> <span class="id">ne</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">fb</span>. <span class="id">specialize</span> (<span class="id">fb</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">inn</span> (<span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup_in">lookup_in</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">H</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">fb</span>. <span class="id">specialize</span> (<span class="id">fb</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">inn</span> (<span class="id">lookup_in</span> <span class="id">_</span> <span class="id">_</span> <span class="id">H</span>)).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">fb</span> <span class="kwd">as</span> [? [<span class="id">inn2</span> <span class="id">sub</span>]].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_case_in</span> <span class="id">ne</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">rewrite</span> <span class="id">H0</span> <span class="kwd">in</span> <span class="id">ne</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup_in">lookup_in</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Basic.Util.RAssoc.html#nodup_in_eq">nodup_in_eq</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_nodup">brand_context_nodup</a></span> <span class="id">H0</span> <span class="id">inn2</span>); <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">lookup_in</span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id">nodup_in_eq</span> <span class="id">brand_context_nodup</span> <span class="id">H0</span> <span class="id">inn2</span>); <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr_in</span> <span class="id">ne</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup_none_nin">lookup_none_nin</a></span> <span class="kwd">in</span> <span class="id">H0</span>.  <span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#in_dom">in_dom</a></span> <span class="kwd">in</span> <span class="id">inn2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">apply</span> <span class="id">lookup_none_nin</span> <span class="kwd">in</span> <span class="id">H0</span>.  <span class="tactic">apply</span> <span class="id">in_dom</span> <span class="kwd">in</span> <span class="id">inn2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">rewrite</span> <span class="id">H</span> <span class="kwd">in</span> *. <span class="tactic">discriminate</span>. <br/>
 Defined.</div>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#TBrandModel.brand_model_types.brand_model_types_dec">brand_model_types_dec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id">brand_model_types_dec</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#TBrandModel.brand_model_types">brand_model_types</a></span>.<br/>
+<span class="kwd">End</span> <span class="id">brand_model_types</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftype</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type">foreign_type</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftype</span>:<span class="id">foreign_type</span>}.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id"><a name="brand_model">brand_model</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="mkBrand_model">mkBrand_model</a></span> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="brand_model_relation">brand_model_relation</a></span> :&gt; <span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="brand_model_context">brand_model_context</a></span> :&gt; <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context">brand_context</a></span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="brand_model_domain_b">brand_model_domain_b</a></span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Util.RUtil.html#holds">holds</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_domain_dec">brand_model_domain_dec</a></span>);<br/>
+&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id">brand_model</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">mkBrand_model</span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">brand_model_relation</span> :&gt; <span class="id">brand_relation</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">brand_model_context</span> :&gt; <span class="id">brand_context</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">brand_model_domain_b</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">holds</span> (<span class="id">brand_model_domain_dec</span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="brand_model_subtype_weak_b">brand_model_subtype_weak_b</a></span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Util.RUtil.html#holds">holds</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_dec">brand_model_subtype_weak_dec</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">brand_model_subtype_weak_b</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">holds</span> (<span class="id">brand_model_subtype_weak_dec</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
 <br/>
-<span class="kwd">Section</span> <span class="id"><a name="TBrandModel.brand_model_prop">brand_model_prop</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model">brand_model</a></span>}.<br/>
-<span class="kwd">Lemma</span> <span class="id"><a name="brand_model_domain">brand_model_domain</a></span> :<br/>
-&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_domain_t">brand_model_domain_t</a></span>.<br/>
+<span class="kwd">Section</span> <span class="id">brand_model_prop</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">m</span>:<span class="id">brand_model</span>}.<br/>
+<span class="kwd">Lemma</span> <span class="id">brand_model_domain</span> :<br/>
+&nbsp;&nbsp;<span class="id">brand_model_domain_t</span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1296')">Proof.</div>
 <div class="proofscript" id="proof1296">
-&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_domain_b">brand_model_domain_b</a></span>).<br/>
-&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html#holds">holds</a></span>, <span class="id"><a href="Qcert.Basic.Util.RUtil.html#is_true">is_true</a></span>; <span class="id">match_destr</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id">brand_model_domain_b</span>).<br/>
+&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">holds</span>, <span class="id">is_true</span>; <span class="id">match_destr</span>.<br/>
 Qed.</div>
 <br/>
-<span class="kwd">Lemma</span> <span class="id"><a name="brand_model_subtype_weak">brand_model_subtype_weak</a></span> :<br/>
-&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_t">brand_model_subtype_weak_t</a></span>.<br/>
+<span class="kwd">Lemma</span> <span class="id">brand_model_subtype_weak</span> :<br/>
+&nbsp;&nbsp;<span class="id">brand_model_subtype_weak_t</span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1297')">Proof.</div>
 <div class="proofscript" id="proof1297">
-&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_b">brand_model_subtype_weak_b</a></span>).<br/>
-&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html#holds">holds</a></span>, <span class="id"><a href="Qcert.Basic.Util.RUtil.html#is_true">is_true</a></span>; <span class="id">match_destr</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id">brand_model_subtype_weak_b</span>).<br/>
+&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">holds</span>, <span class="id">is_true</span>; <span class="id">match_destr</span>.<br/>
 Qed.</div>
 <br/>
-<span class="kwd">Lemma</span> <span class="id"><a name="brand_model_subtype">brand_model_subtype</a></span> :<br/>
-&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_t">brand_model_subtype_t</a></span>.<br/>
+<span class="kwd">Lemma</span> <span class="id">brand_model_subtype</span> :<br/>
+&nbsp;&nbsp;<span class="id">brand_model_subtype_t</span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1298')">Proof.</div>
 <div class="proofscript" id="proof1298">
-&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_b">brand_model_subtype_weak_b</a></span>).<br/>
-&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html#holds">holds</a></span>, <span class="id"><a href="Qcert.Basic.Util.RUtil.html#is_true">is_true</a></span>; <span class="id">match_destr</span>.<br/>
-&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_t">brand_model_subtype_t</a></span>, <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_t">brand_model_subtype_weak_t</a></span> <span class="kwd">in</span> *;<br/>
+&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id">brand_model_subtype_weak_b</span>).<br/>
+&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">holds</span>, <span class="id">is_true</span>; <span class="id">match_destr</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">brand_model_subtype_t</span>, <span class="id">brand_model_subtype_weak_t</span> <span class="kwd">in</span> *;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup">lookup</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_types">brand_context_types</a></span> <span class="id">b0</span>); <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">lookup</span> <span class="id">string_dec</span> <span class="id">brand_context_types</span> <span class="id">b0</span>); <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;- <span class="id">exists</span> <span class="id">r</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">b</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">H0</span> <span class="id">H1</span>) <span class="kwd">as</span> [? [<span class="id">inn</span> <span class="id">sub</span>]].<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup_in">lookup_in</a></span> <span class="kwd">in</span> <span class="id">H2</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Basic.Util.RAssoc.html#nodup_in_eq">nodup_in_eq</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context_nodup">brand_context_nodup</a></span> <span class="id">H2</span> <span class="id">inn</span>). <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">lookup_in</span> <span class="kwd">in</span> <span class="id">H2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id">nodup_in_eq</span> <span class="id">brand_context_nodup</span> <span class="id">H2</span> <span class="id">inn</span>). <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
-&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup_none_nin">lookup_none_nin</a></span> <span class="kwd">in</span> <span class="id">H2</span>. <span class="tactic">elim</span> <span class="id">H2</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">lookup_none_nin</span> <span class="kwd">in</span> <span class="id">H2</span>. <span class="tactic">elim</span> <span class="id">H2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">b</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">H0</span> <span class="id">H1</span>) <span class="kwd">as</span> [? [??]].<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#in_dom">in_dom</a></span> <span class="kwd">in</span> <span class="id">H3</span>. <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">in_dom</span> <span class="kwd">in</span> <span class="id">H3</span>. <span class="tactic">trivial</span>.<br/>
 Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#TBrandModel.brand_model_prop">brand_model_prop</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id">brand_model_prop</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="brand_model_ext">brand_model_ext</a></span> <span class="id">a</span> <span class="id">b</span> <span class="id">pf1</span> <span class="id">pf2</span> <span class="id">pf1</span>' <span class="id">pf2</span>' :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#mkBrand_model">mkBrand_model</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#a">a</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#b">b</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#pf1">pf1</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#pf2">pf2</a></span>  = <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#mkBrand_model">mkBrand_model</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#a">a</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#b">b</a></span> <span class="id">pf1</span>' <span class="id">pf2</span>'.<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id">brand_model_ext</span> <span class="id">a</span> <span class="id">b</span> <span class="id">pf1</span> <span class="id">pf2</span> <span class="id">pf1</span>' <span class="id">pf2</span>' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">mkBrand_model</span> <span class="id">a</span> <span class="id">b</span> <span class="id">pf1</span> <span class="id">pf2</span>  = <span class="id">mkBrand_model</span> <span class="id">a</span> <span class="id">b</span> <span class="id">pf1</span>' <span class="id">pf2</span>'.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1299')">Proof.</div>
 <div class="proofscript" id="proof1299">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>; <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Eqdep_dec.html#UIP_dec">UIP_dec</a></span>; <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html#bool_dec">bool_dec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>; <span class="tactic">apply</span> <span class="id">UIP_dec</span>; <span class="tactic">apply</span> <span class="id">bool_dec</span>.<br/>
 &nbsp;&nbsp;Defined.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="make_brand_model">make_brand_model</a></span> (<span class="id">b</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>) (<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context">brand_context</a></span>)<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">make_brand_model</span> (<span class="id">b</span>:<span class="id">brand_relation</span>) (<span class="id">m</span>:<span class="id">brand_context</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">pf</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Basic.Util.RUtil.html#is_true">is_true</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_domain_dec">brand_model_domain_dec</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; <span class="id"><a href="Qcert.Basic.Util.RUtil.html#is_true">is_true</a></span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_dec">brand_model_subtype_weak_dec</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>) : <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model">brand_model</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">is_true</span> (<span class="id">brand_model_domain_dec</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; <span class="id">is_true</span> (<span class="id">brand_model_subtype_weak_dec</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) = <span class="id">true</span>) : <span class="id">brand_model</span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1300')">Proof.</div>
 <div class="proofscript" id="proof1300">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html#is_true">is_true</a></span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">is_true</span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_case_in</span> <span class="id">pf</span>; <span class="tactic">intros</span> ? <span class="id">eqq</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">case_eq</span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_dec">brand_model_subtype_weak_dec</a></span>); <span class="tactic">intros</span> ? <span class="id">eqq2</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> (@<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#mkBrand_model">mkBrand_model</a></span> <span class="id">b</span> <span class="id">m</span>); <span class="tactic">unfold</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html#holds">holds</a></span>, <span class="id"><a href="Qcert.Basic.Util.RUtil.html#is_true">is_true</a></span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">case_eq</span> (<span class="id">brand_model_subtype_weak_dec</span>); <span class="tactic">intros</span> ? <span class="id">eqq2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> (@<span class="id">mkBrand_model</span> <span class="id">b</span> <span class="id">m</span>); <span class="tactic">unfold</span> <span class="id">holds</span>, <span class="id">is_true</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="tactic">rewrite</span> <span class="id">eqq</span>; <span class="tactic">try</span> <span class="tactic">rewrite</span> <span class="id">eqq2</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">rewrite</span> <span class="id">eqq</span>, <span class="id">eqq2</span> <span class="kwd">in</span> <span class="id">pf</span>. <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">pf</span>. <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">eqq</span> <span class="kwd">in</span> <span class="id">pf</span>. <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">pf</span>. <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;Defined.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="make_brand_model_fails">make_brand_model_fails</a></span> (<span class="id">b</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>) (<span class="id">m</span>:<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#brand_context">brand_context</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model">brand_model</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">make_brand_model_fails</span> (<span class="id">b</span>:<span class="id">brand_relation</span>) (<span class="id">m</span>:<span class="id">brand_context</span>) : <span class="id">option</span> <span class="id">brand_model</span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1301')">Proof.</div>
 <div class="proofscript" id="proof1301">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#make_brand_model">make_brand_model</a></span> <span class="id">b</span> <span class="id">m</span>); <span class="tactic">intros</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Basic.Util.RUtil.html#is_true">is_true</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_domain_dec">brand_model_domain_dec</a></span>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Basic.Util.RUtil.html#is_true">is_true</a></span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#brand_model_subtype_weak_dec">brand_model_subtype_weak_dec</a></span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">specialize</span> (<span class="id">H</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">exact</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">H</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">exact</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">exact</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">exact</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id">make_brand_model</span> <span class="id">b</span> <span class="id">m</span>); <span class="tactic">intros</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">is_true</span> <span class="id">brand_model_domain_dec</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">is_true</span> <span class="id">brand_model_subtype_weak_dec</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">specialize</span> (<span class="id">H</span> <span class="id">eq_refl</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">exact</span> (<span class="id">Some</span> <span class="id">H</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">exact</span> <span class="id">None</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">exact</span> <span class="id">None</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">exact</span> <span class="id">None</span>.<br/>
 &nbsp;&nbsp;Defined.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Program</span> <span class="kwd">Definition</span> <span class="id"><a name="empty_brand_model">empty_brand_model</a></span> := <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#make_brand_model">make_brand_model</a></span> (<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#mkBrand_relation">mkBrand_relation</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id">_</span> <span class="id">_</span>) (<span class="id"><a href="Qcert.Basic.TypeSystem.TBrandContext.html#mkBrand_context">mkBrand_context</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id">_</span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Program</span> <span class="kwd">Definition</span> <span class="id">empty_brand_model</span> := <span class="id">make_brand_model</span> (<span class="id">mkBrand_relation</span> <span class="id">nil</span> <span class="id">_</span> <span class="id">_</span>) (<span class="id">mkBrand_context</span> <span class="id">nil</span> <span class="id">_</span>).<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof1302')">Next Obligation.</div>
 <div class="proofscript" id="proof1302">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html#holds">holds</a></span>. <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">holds</span>. <span class="tactic">auto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <div class="toggleproof" onclick="toggleDisplay('proof1303')">Next Obligation.</div>
 <div class="proofscript" id="proof1303">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Basic.Util.RUtil.html#holds">holds</a></span>. <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">holds</span>. <span class="tactic">auto</span>.<br/>
 &nbsp;&nbsp;Defined.</div>
 <br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.Basic.TypeSystem.TBrandModel.html#TBrandModel">TBrandModel</a></span>.<br/>
+<span class="kwd">End</span> <span class="id">TBrandModel</span>.<br/>
 <br/>
 <br/>
 

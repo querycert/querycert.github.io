@@ -14,86 +14,86 @@
 <h1 class="title">Module Qcert.Compiler.QLib.QCAMP</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Model.CompilerRuntime.html">CompilerRuntime</a></span>.<br/>
-<span class="kwd">Require</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span> <span class="id"><a href="Qcert.Basic.Data.BrandRelation.html">BrandRelation</a></span>.<br/>
-<span class="kwd">Require</span> <span class="id"><a href="Qcert.CAMP.CAMPRuntime.html">CAMPRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">CompilerRuntime</span>.<br/>
+<span class="kwd">Require</span> <span class="id">String</span> <span class="id">BrandRelation</span>.<br/>
+<span class="kwd">Require</span> <span class="id">CAMPRuntime</span>.<br/>
 <br/>
-<span class="kwd">Require</span> <span class="id"><a href="Qcert.Compiler.QLib.QOperators.html">QOperators</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QData.html">QData</a></span>.<br/>
+<span class="kwd">Require</span> <span class="id">QOperators</span> <span class="id">QData</span>.<br/>
 <br/>
-<span class="kwd">Module</span> <span class="id"><a name="QCAMP">QCAMP</a></span>(<span class="id">runtime</span>:<span class="id"><a href="Qcert.Compiler.Model.CompilerRuntime.html#CompilerRuntime">CompilerRuntime</a></span>).<br/>
+<span class="kwd">Module</span> <span class="id">QCAMP</span>(<span class="id">runtime</span>:<span class="id">CompilerRuntime</span>).<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id"><a name="QCAMP.Data">Data</a></span> := <span class="id"><a href="Qcert.Compiler.QLib.QData.html#QData">QData.QData</a></span>(<span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#runtime">runtime</a></span>).<br/>
-&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id"><a name="QCAMP.Ops">Ops</a></span> := <span class="id"><a href="Qcert.Compiler.QLib.QOperators.html#QOperators">QOperators.QOperators</a></span>(<span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#runtime">runtime</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id">Data</span> := <span class="id">QData.QData</span>(<span class="id">runtime</span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id">Ops</span> := <span class="id">QOperators.QOperators</span>(<span class="id">runtime</span>).<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.camp">camp</a></span> : <span class="kwd">Set</span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#camp">CAMP.camp</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.t">t</a></span> : <span class="kwd">Set</span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">camp</span> : <span class="kwd">Set</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.camp</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">t</span> : <span class="kwd">Set</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">camp</span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pconst">pconst</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.t">Data.t</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#pconst">CAMP.pconst</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.punop">punop</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.op">Ops.Unary.op</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#punop">CAMP.punop</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pbinop">pbinop</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.op">Ops.Binary.op</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#pbinop">CAMP.pbinop</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pmap">pmap</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#pmap">CAMP.pmap</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.passert">passert</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#passert">CAMP.passert</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.porelse">porelse</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#porElse">CAMP.porElse</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pit">pit</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#pit">CAMP.pit</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pletit">pletit</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#pletIt">CAMP.pletIt</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pgetConstant">pgetConstant</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#pgetConstant">CAMP.pgetConstant</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.penv">penv</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#penv">CAMP.penv</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pletenv">pletenv</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#pletEnv">CAMP.pletEnv</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pleft">pleft</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#pleft">CAMP.pleft</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pright">pright</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#pright">CAMP.pright</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pconst</span> : <span class="id">Data.t</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.pconst</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">punop</span> : <span class="id">Ops.Unary.op</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.punop</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pbinop</span> : <span class="id">Ops.Binary.op</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.pbinop</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pmap</span> : <span class="id">camp</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.pmap</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">passert</span> : <span class="id">camp</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.passert</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">porelse</span> : <span class="id">camp</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.porElse</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pit</span> : <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.pit</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pletit</span> : <span class="id">camp</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.pletIt</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pgetConstant</span> : <span class="id">String.string</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.pgetConstant</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">penv</span> : <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.penv</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pletenv</span> : <span class="id">camp</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.pletEnv</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pleft</span> : <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.pleft</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pright</span> : <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMP.pright</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pnow">pnow</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#pnow">CAMPSugar.pnow</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pnow</span> : <span class="id">camp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.pnow</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pnull">pnull</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#pnull">CAMPSugar.pnull</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pnull</span> : <span class="id">camp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.pnull</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pbdot">pbdot</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#pbdot">CAMPSugar.pbdot</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pbdot</span> : <span class="id">String.string</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.pbdot</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pbsomedot">pbsomedot</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#pbsomedot">CAMPSugar.pbsomedot</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pbsomedot</span> : <span class="id">String.string</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.pbsomedot</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.returnVariables">returnVariables</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#returnVariables">CAMPSugar.returnVariables</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">returnVariables</span> : <span class="id">list</span> <span class="id">String.string</span> -&gt; <span class="id">camp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.returnVariables</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.stringConcat">stringConcat</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#stringConcat">CAMPSugar.stringConcat</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">stringConcat</span> : <span class="id">camp</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.stringConcat</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.toString">toString</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#toString">CAMPSugar.toString</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">toString</span> : <span class="id">camp</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.toString</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.camp_binop_reduce">camp_binop_reduce</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.op">Ops.Binary.op</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#camp_binop_reduce">CAMPSugar.camp_binop_reduce</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">camp_binop_reduce</span> : <span class="id">Ops.Binary.op</span> -&gt; <span class="id">list</span> <span class="id">camp</span> -&gt; <span class="id">camp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.camp_binop_reduce</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pvarwith">pvarwith</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#pvarwith">CAMPSugar.pvarwith</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pvarwith</span> : <span class="id">String.string</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.pvarwith</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.withVar">withVar</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#withVar">CAMPSugar.withVar</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">withVar</span> : <span class="id">String.string</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.withVar</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.pIS">pIS</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#pIS">CAMPSugar.pIS</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">pIS</span> : <span class="id">String.string</span> -&gt; <span class="id">camp</span> -&gt; <span class="id">camp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.pIS</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QCAMP.lookup">lookup</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP.camp">camp</a></span> <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#lookup">CAMPSugar.lookup</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">lookup</span> : <span class="id">String.string</span> -&gt; <span class="id">camp</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">CAMPSugar.lookup</span>.<br/>
 &nbsp;&nbsp;<br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.Compiler.QLib.QCAMP.html#QCAMP">QCAMP</a></span>.<br/>
+<span class="kwd">End</span> <span class="id">QCAMP</span>.<br/>
 
 </div>
 <div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>

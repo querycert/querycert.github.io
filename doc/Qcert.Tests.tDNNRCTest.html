@@ -14,63 +14,63 @@
 <h1 class="title">Module Qcert.Tests.tDNNRCTest</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">String</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">List</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Arith</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EquivDec</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Morphisms</span>.<br/>
 <br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Util.Utils.html">Utils</a></span> <span class="id"><a href="Qcert.Basic.BasicRuntime.html">BasicRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Utils</span> <span class="id">BasicRuntime</span>.<br/>
 <br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html">LambdaNRA</a></span> <span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRAEq.html">LambdaNRAEq</a></span> <span class="id"><a href="Qcert.Translation.LambdaNRAtoNRAEnv.html">LambdaNRAtoNRAEnv</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.TrivialCompiler.html">TrivialCompiler</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">LambdaNRA</span> <span class="id">LambdaNRAEq</span> <span class="id">LambdaNRAtoNRAEnv</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">TrivialCompiler</span>.<br/>
 <span class="kwd">Import</span> <span class="id">TrivialCompiler</span>.<br/>
 <br/>
-<span class="kwd">Section</span> <span class="id"><a name="tDNNRCTests">tDNNRCTests</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Tests.LambdaNRATest.html">LambdaNRATest</a></span>.<br/>
+<span class="kwd">Section</span> <span class="id">tDNNRCTests</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">LambdaNRATest</span>.<br/>
 <br/>
 &nbsp;&nbsp;<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="A4">A4</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRAMap">LNRAMap</a></span> (<span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRALambda">LNRALambda</a></span> "<span class="id">p</span>" (<span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRAUnop">LNRAUnop</a></span> (<span class="id"><a href="Qcert.Basic.Operators.RUnaryOps.html#ADot">ADot</a></span> "<span class="id">name</span>") (<span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRAVar">LNRAVar</a></span> "<span class="id">p</span>"))) (<span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#LNRATable">LNRATable</a></span> "<span class="id">Persons</span>").<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">A4</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">LNRAMap</span> (<span class="id">LNRALambda</span> "<span class="id">p</span>" (<span class="id">LNRAUnop</span> (<span class="id">ADot</span> "<span class="id">name</span>") (<span class="id">LNRAVar</span> "<span class="id">p</span>"))) (<span class="id">LNRATable</span> "<span class="id">Persons</span>").<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html">CompDriver</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">CompDriver</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="a">a</a></span> := <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#lambda_nra_to_nraenv">lambda_nra_to_nraenv</a></span> <span class="id"><a href="Qcert.Tests.tDNNRCTest.html#A4">A4</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="b">b</a></span> := <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#nraenv_to_nnrc">nraenv_to_nnrc</a></span> <span class="id"><a href="Qcert.Tests.tDNNRCTest.html#a">a</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="c">c</a></span> := <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#nnrc_to_dnnrc">nnrc_to_dnnrc</a></span> (("<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id"><a href="Qcert.Basic.Data.DData.html#Vdistr">Vdistr</a></span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="id"><a href="Qcert.Tests.tDNNRCTest.html#b">b</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">a</span> := <span class="id">lambda_nra_to_nraenv</span> <span class="id">A4</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">b</span> := <span class="id">nraenv_to_nnrc</span> <span class="id">a</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">c</span> := <span class="id">nnrc_to_dnnrc</span> (("<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id">Vdistr</span>)::<span class="id">nil</span>) <span class="id">b</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Tests.CAMPTest.html">CAMPTest</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.BasicSystem.html">BasicSystem</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Model.TrivialModel.html">TrivialModel</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Tests.TDataTest.html">TDataTest</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">CAMPTest</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">BasicSystem</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">TrivialModel</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">TDataTest</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="kwd">Program</span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Tests.TCAMPTest.html">TCAMPTest</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">TCAMPTest</span>.<br/>
 &nbsp;&nbsp;<span class="id">Existing</span> <span class="kwd">Instance</span> <span class="id">CPModel</span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="PersonsType">PersonsType</a></span> := <span class="id"><a href="Qcert.Basic.TypeSystem.DType.html#Tdistr">Tdistr</a></span> <span class="id"><a href="Qcert.Tests.TCAMPTest.html#CustomerType">CustomerType</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tdenv">tdenv</a></span> :<span class="id"><a href="Qcert.Basic.Typing.TDBindings.html#tdbindings">tdbindings</a></span> := (("<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id"><a href="Qcert.Tests.tDNNRCTest.html#PersonsType">PersonsType</a></span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">PersonsType</span> := <span class="id">Tdistr</span> <span class="id">CustomerType</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">tdenv</span> :<span class="id">tdbindings</span> := (("<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id">PersonsType</span>)::<span class="id">nil</span>).<br/>
 <br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="d">d</a></span> := <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#dnnrc_to_dnnrc_typed">dnnrc_to_dnnrc_typed</a></span> <span class="id"><a href="Qcert.Tests.tDNNRCTest.html#c">c</a></span> <span class="id"><a href="Qcert.Tests.tDNNRCTest.html#tdenv">tdenv</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">d</span> := <span class="id">dnnrc_to_dnnrc_typed</span> <span class="id">c</span> <span class="id">tdenv</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="e">e</a></span>:= <span class="id"><a href="Qcert.Basic.Util.RLift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#dnnrc_typed_optim">dnnrc_typed_optim</a></span> <span class="id"><a href="Qcert.Tests.tDNNRCTest.html#d">d</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">e</span>:= <span class="id">lift</span> <span class="id">dnnrc_typed_optim</span> <span class="id">d</span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Driver.CompEval.html">CompEval</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">CompEval</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Tests.NRATest.html">NRATest</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">NRATest</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="env">env</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Env.DConstants.html#mkDistConstants">mkDistConstants</a></span> (("<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id"><a href="Qcert.Basic.Data.DData.html#Vdistr">Vdistr</a></span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (("<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id"><a href="Qcert.Tests.NRATest.html#persons">persons</a></span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="ev">ev</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Tests.tDNNRCTest.html#env">env</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">denv</span> =&gt; <span class="id"><a href="Qcert.Basic.Util.RLift.html#lift">lift</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; @<span class="id"><a href="Qcert.Compiler.Driver.CompEval.html#eval_dnnrc_typed">eval_dnnrc_typed</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> [] <span class="id"><a href="Qcert.Tests.tDNNRCTest.html#x">x</a></span> <span class="id">denv</span>) <span class="id"><a href="Qcert.Tests.tDNNRCTest.html#e">e</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">env</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">mkDistConstants</span> (("<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id">Vdistr</span>)::<span class="id">nil</span>) (("<span class="id">Persons</span>"%<span class="id">string</span>,<span class="id">persons</span>)::<span class="id">nil</span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">ev</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">env</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">Some</span> <span class="id">denv</span> =&gt; <span class="id">lift</span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; @<span class="id">eval_dnnrc_typed</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> [] <span class="id">x</span> <span class="id">denv</span>) <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">None</span> =&gt; <span class="id">None</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
 <br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.Tests.tDNNRCTest.html#tDNNRCTests">tDNNRCTests</a></span>.<br/>
+<span class="kwd">End</span> <span class="id">tDNNRCTests</span>.<br/>
 <br/>
 
 </div>

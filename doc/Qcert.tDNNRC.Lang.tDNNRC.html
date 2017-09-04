@@ -14,37 +14,37 @@
 <h1 class="title">Module Qcert.tDNNRC.Lang.tDNNRC</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Section</span> <span class="id"><a name="tDNNRC">tDNNRC</a></span>.<br/>
+<span class="kwd">Section</span> <span class="id">tDNNRC</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.BasicSystem.html">BasicSystem</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.DNNRC.DNNRCSystem.html">DNNRCSystem</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">BasicSystem</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">DNNRCSystem</span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Basic.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftype</span>: <span class="id"><a href="Qcert.Basic.TypeSystem.ForeignType.html#foreign_type">ForeignType.foreign_type</a></span>}.<br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation">brand_relation</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id">foreign_runtime</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftype</span>: <span class="id">ForeignType.foreign_type</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">br</span>:<span class="id">brand_relation</span>}.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Record</span> <span class="id"><a name="type_annotation">type_annotation</a></span> {<span class="id">A</span>:<span class="kwd">Set</span>} : <span class="kwd">Set</span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="mkType_annotation">mkType_annotation</a></span> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="ta_base">ta_base</a></span>:<span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#A">A</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="ta_inferred">ta_inferred</a></span>:<span class="id"><a href="Qcert.Basic.TypeSystem.DType.html#drtype">drtype</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="ta_required">ta_required</a></span>:<span class="id"><a href="Qcert.Basic.TypeSystem.DType.html#drtype">drtype</a></span><br/>
+&nbsp;&nbsp;<span class="kwd">Record</span> <span class="id">type_annotation</span> {<span class="id">A</span>:<span class="kwd">Set</span>} : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">mkType_annotation</span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">ta_base</span>:<span class="id">A</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">ta_inferred</span>:<span class="id">drtype</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">ta_required</span>:<span class="id">drtype</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Global</span> <span class="id">Arguments</span> <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#type_annotation">type_annotation</a></span> : <span class="tactic">clear</span> <span class="id">implicits</span>. <br/>
-&nbsp;&nbsp;<span class="kwd">Global</span> <span class="id">Arguments</span> <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#mkType_annotation">mkType_annotation</a></span> {<span class="id">A</span>} <span class="id">ta_base</span> <span class="id">ta_inferred</span> <span class="id">ta_required</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="id">Arguments</span> <span class="id">type_annotation</span> : <span class="tactic">clear</span> <span class="id">implicits</span>. <br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="id">Arguments</span> <span class="id">mkType_annotation</span> {<span class="id">A</span>} <span class="id">ta_base</span> <span class="id">ta_inferred</span> <span class="id">ta_required</span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="dnnrc_dataframe_typed">dnnrc_dataframe_typed</a></span> := @<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc">dnnrc</a></span> <span class="id">_</span> (<span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#type_annotation">type_annotation</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#unit">unit</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.Dataframe.html#dataframe">dataframe</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">dnnrc_dataframe_typed</span> := @<span class="id">dnnrc</span> <span class="id">_</span> (<span class="id">type_annotation</span> <span class="id">unit</span>) <span class="id">dataframe</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="tDNNRC.Top">Top</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> (<span class="id">h</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id">Top</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> (<span class="id">h</span>:<span class="id">brand_relation_t</span>).<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="dnnrc_dataframe_typed_eval_top">dnnrc_dataframe_typed_eval_top</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">q</span>:<span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#dnnrc_dataframe_typed">dnnrc_dataframe_typed</a></span>) (<span class="id">cenv</span>:<span class="id"><a href="Qcert.Basic.Data.DData.html#dbindings">dbindings</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Util.RLift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Basic.Data.DData.html#unlocalize_data">unlocalize_data</a></span> (@<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_eval">dnnrc_eval</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#tDNNRC.Top.h">h</a></span> (<span class="id"><a href="Qcert.Basic.Util.RBindings.html#rec_sort">rec_sort</a></span> <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#cenv">cenv</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.Dataframe.html#SparkIRPlug">SparkIRPlug</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#q">q</a></span>).<br/>
-&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#tDNNRC.Top">Top</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">dnnrc_dataframe_typed_eval_top</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">q</span>:<span class="id">dnnrc_dataframe_typed</span>) (<span class="id">cenv</span>:<span class="id">dbindings</span>) : <span class="id">option</span> <span class="id">data</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">lift</span> <span class="id">unlocalize_data</span> (@<span class="id">dnnrc_eval</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">h</span> (<span class="id">rec_sort</span> <span class="id">cenv</span>) <span class="id">SparkIRPlug</span> <span class="id">nil</span> <span class="id">q</span>).<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id">Top</span>.<br/>
 &nbsp;&nbsp;<br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#tDNNRC">tDNNRC</a></span>.<br/>
+<span class="kwd">End</span> <span class="id">tDNNRC</span>.<br/>
 <br/>
 
 </div>

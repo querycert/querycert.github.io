@@ -14,54 +14,54 @@
 <h1 class="title">Module Qcert.Basic.Operators.ForeignOps</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Section</span> <span class="id"><a name="ForeignOp">ForeignOp</a></span>.<br/>
+<span class="kwd">Section</span> <span class="id">ForeignOp</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EquivDec</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Util.Utils.html">Utils</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Data.RData.html">RData</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Data.ForeignData.html">ForeignData</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Data.RDataNorm.html">RDataNorm</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Data.BrandRelation.html">BrandRelation</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Utils</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">RData</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignData</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">RDataNorm</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">BrandRelation</span>.<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id"><a name="foreign_unary_op">foreign_unary_op</a></span> {<span class="id">fdata</span>:<span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data">foreign_data</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id">foreign_unary_op</span> {<span class="id">fdata</span>:<span class="id">foreign_data</span>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="kwd">Type</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="mk_foreign_unary_op">mk_foreign_unary_op</a></span> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="foreign_unary_op_type">foreign_unary_op_type</a></span> : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_unary_op_dec">foreign_unary_op_dec</a></span> :&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_unary_op_type">foreign_unary_op_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_unary_op_tostring">foreign_unary_op_tostring</a></span> :&gt; <span class="id"><a href="Qcert.Basic.Util.RUtil.html#ToString">ToString</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_unary_op_type">foreign_unary_op_type</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_unary_op_interp">foreign_unary_op_interp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">op</span>:<span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_unary_op_type">foreign_unary_op_type</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d</span>:<span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_unary_op_normalized">foreign_unary_op_normalized</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">op</span>:<span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_unary_op_type">foreign_unary_op_type</a></span>) (<span class="id">d</span> <span class="id">o</span>:<span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_unary_op_interp">foreign_unary_op_interp</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#br">br</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#op">op</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#d">d</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#o">o</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#br">br</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#d">d</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#br">br</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#o">o</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mk_foreign_unary_op</span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">foreign_unary_op_type</span> : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_unary_op_dec</span> :&gt; <span class="id">EqDec</span> <span class="id">foreign_unary_op_type</span> <span class="id">eq</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_unary_op_tostring</span> :&gt; <span class="id">ToString</span> <span class="id">foreign_unary_op_type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_unary_op_interp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id">brand_relation_t</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">op</span>:<span class="id">foreign_unary_op_type</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d</span>:<span class="id">data</span>) : <span class="id">option</span> <span class="id">data</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_unary_op_normalized</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id">brand_relation_t</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">op</span>:<span class="id">foreign_unary_op_type</span>) (<span class="id">d</span> <span class="id">o</span>:<span class="id">data</span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">foreign_unary_op_interp</span> <span class="id">br</span> <span class="id">op</span> <span class="id">d</span> = <span class="id">Some</span> <span class="id">o</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">data_normalized</span> <span class="id">br</span> <span class="id">d</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">data_normalized</span> <span class="id">br</span> <span class="id">o</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id"><a name="foreign_binary_op">foreign_binary_op</a></span> {<span class="id">fdata</span>:<span class="id"><a href="Qcert.Basic.Data.ForeignData.html#foreign_data">foreign_data</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id">foreign_binary_op</span> {<span class="id">fdata</span>:<span class="id">foreign_data</span>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="kwd">Type</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="mk_foreign_binary_op">mk_foreign_binary_op</a></span> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="foreign_binary_op_type">foreign_binary_op_type</a></span> : <span class="kwd">Set</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_binary_op_dec">foreign_binary_op_dec</a></span> :&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_binary_op_type">foreign_binary_op_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_binary_op_tostring">foreign_binary_op_tostring</a></span> :&gt; <span class="id"><a href="Qcert.Basic.Util.RUtil.html#ToString">ToString</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_binary_op_type">foreign_binary_op_type</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_binary_op_interp">foreign_binary_op_interp</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">op</span>:<span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_binary_op_type">foreign_binary_op_type</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d1</span> <span class="id">d2</span>:<span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_binary_op_normalized">foreign_binary_op_normalized</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">op</span>:<span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_binary_op_type">foreign_binary_op_type</a></span>) (<span class="id">d1</span> <span class="id">d2</span> <span class="id">o</span>:<span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#foreign_binary_op_interp">foreign_binary_op_interp</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#br">br</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#op">op</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#d1">d1</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#d2">d2</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#o">o</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#br">br</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#d1">d1</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#br">br</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#d2">d2</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#br">br</a></span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#o">o</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mk_foreign_binary_op</span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">foreign_binary_op_type</span> : <span class="kwd">Set</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_binary_op_dec</span> :&gt; <span class="id">EqDec</span> <span class="id">foreign_binary_op_type</span> <span class="id">eq</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_binary_op_tostring</span> :&gt; <span class="id">ToString</span> <span class="id">foreign_binary_op_type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_binary_op_interp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id">brand_relation_t</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">op</span>:<span class="id">foreign_binary_op_type</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d1</span> <span class="id">d2</span>:<span class="id">data</span>) : <span class="id">option</span> <span class="id">data</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">foreign_binary_op_normalized</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id">brand_relation_t</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">op</span>:<span class="id">foreign_binary_op_type</span>) (<span class="id">d1</span> <span class="id">d2</span> <span class="id">o</span>:<span class="id">data</span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">foreign_binary_op_interp</span> <span class="id">br</span> <span class="id">op</span> <span class="id">d1</span> <span class="id">d2</span> = <span class="id">Some</span> <span class="id">o</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">data_normalized</span> <span class="id">br</span> <span class="id">d1</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">data_normalized</span> <span class="id">br</span> <span class="id">d2</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">data_normalized</span> <span class="id">br</span> <span class="id">o</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
 <br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.Basic.Operators.ForeignOps.html#ForeignOp">ForeignOp</a></span>.<br/>
+<span class="kwd">End</span> <span class="id">ForeignOp</span>.<br/>
 <br/>
 
 </div>

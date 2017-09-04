@@ -14,25 +14,25 @@
 <h1 class="title">Module Qcert.SQLPP.Lang.SQLPP</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Section</span> <span class="id"><a name="SQLPP">SQLPP</a></span>.<br/>
+<span class="kwd">Section</span> <span class="id">SQLPP</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">String</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ZArith</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">List</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Arith</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EquivDec</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Util.Utils.html">Utils</a></span> <span class="id"><a href="Qcert.Basic.BasicSystem.html">BasicSystem</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Utils</span> <span class="id">BasicSystem</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Basic.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id">foreign_runtime</span>}.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Data.RDataSort.html">RDataSort</a></span>. <br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">RDataSort</span>. <br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Unset</span> <span class="id">Elimination</span> <span class="id">Schemes</span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="sqlpp_order_spec">sqlpp_order_spec</a></span> : <span class="kwd">Set</span> := <span class="id"><a href="Qcert.Basic.Data.RDataSort.html#SortDesc">SortDesc</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="sqlpp_distinct">sqlpp_distinct</a></span> : <span class="kwd">Set</span> := <span class="id"><a name="SPDistinct">SPDistinct</a></span> | <span class="id"><a name="SPAll">SPAll</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="sqlpp_join_type">sqlpp_join_type</a></span> : <span class="kwd">Set</span> := <span class="id"><a name="SPInner">SPInner</a></span> | <span class="id"><a name="SPLeftOuter">SPLeftOuter</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sqlpp_order_spec</span> : <span class="kwd">Set</span> := <span class="id">SortDesc</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id">sqlpp_distinct</span> : <span class="kwd">Set</span> := <span class="id">SPDistinct</span> | <span class="id">SPAll</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id">sqlpp_join_type</span> : <span class="kwd">Set</span> := <span class="id">SPInner</span> | <span class="id">SPLeftOuter</span>.<br/>
 <br/>
 <div class="doc">The SQLPP grammar according to AsterixDB
 <pre>
@@ -60,16 +60,16 @@ an Expression and Expression is actually the top-level production.
 Most of the non-terminals below "Expression" are there to show precedence, which is important in the grammar but
 is not needed in the AST.  So, the AST is basically a huge inductive set on Expression.  </div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="sqlpp_expr">sqlpp_expr</a></span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id">sqlpp_expr</span> : <span class="kwd">Set</span> :=<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPPositive">SPPositive</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPNegative">SPNegative</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPExists">SPExists</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPNot">SPNot</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPIsNull">SPIsNull</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPIsMissing">SPIsMissing</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPIsUnknown">SPIsUnknown</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>                                  <br/>
+&nbsp;&nbsp;| <span class="id">SPPositive</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPNegative</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPExists</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPNot</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPIsNull</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPIsMissing</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPIsUnknown</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span>                                  <br/>
 <br/>
 <div class="doc">                                
 Valid operators for the second form (binary operators) are
@@ -78,129 +78,129 @@ plus, minus, mult, div, mod, exp, concat, in, fuzzy-eq, eq, neq, lt, gt, le, ge,
 Note that we restrict the RHS of 'like' to be a String literal, which is more restrictive than the language spec.
 </div>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPPlus">SPPlus</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPMinus">SPMinus</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPMult">SPMult</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPDiv">SPDiv</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPMod">SPMod</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPExp">SPExp</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPConcat">SPConcat</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPIn">SPIn</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPEq">SPEq</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPFuzzyEq">SPFuzzyEq</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPNeq">SPNeq</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPLt">SPLt</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPGt">SPGt</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPLe">SPLe</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPGe">SPGe</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPLike">SPLike</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPAnd">SPAnd</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPOr">SPOr</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
+&nbsp;&nbsp;| <span class="id">SPPlus</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPMinus</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPMult</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPDiv</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPMod</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPExp</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPConcat</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPIn</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPEq</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPFuzzyEq</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPNeq</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPLt</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPGt</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPLe</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPGe</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPLike</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">string</span> -&gt; <span class="id">sqlpp_expr</span> <br/>
+&nbsp;&nbsp;| <span class="id">SPAnd</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPOr</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
 &nbsp;&nbsp;<br/>
 <div class="doc">Finally, the ternery BETWEEN operator </div>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPBetween">SPBetween</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>                                         <br/>
+&nbsp;&nbsp;| <span class="id">SPBetween</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span>                                         <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPSimpleCase">SPSimpleCase</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_when_then">sqlpp_when_then</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPSearchedCase">SPSearchedCase</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_when_then">sqlpp_when_then</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
+&nbsp;&nbsp;| <span class="id">SPSimpleCase</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">list</span> <span class="id">sqlpp_when_then</span> -&gt; <span class="id">option</span> <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPSearchedCase</span> : <span class="id">list</span> <span class="id">sqlpp_when_then</span> -&gt; <span class="id">option</span> <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPSome">SPSome</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>) -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPEvery">SPEvery</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>) -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
+&nbsp;&nbsp;| <span class="id">SPSome</span> : <span class="id">list</span> (<span class="id">string</span> * <span class="id">sqlpp_expr</span>) -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPEvery</span> : <span class="id">list</span> (<span class="id">string</span> * <span class="id">sqlpp_expr</span>) -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
 &nbsp;&nbsp;<br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPDot">SPDot</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>                                                            <br/>
+&nbsp;&nbsp;| <span class="id">SPDot</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">string</span> -&gt; <span class="id">sqlpp_expr</span>                                                            <br/>
 <br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPIndex">SPIndex</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPIndexAny">SPIndexAny</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
+&nbsp;&nbsp;| <span class="id">SPIndex</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
+&nbsp;&nbsp;| <span class="id">SPIndexAny</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
 <br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPLiteral">SPLiteral</a></span> : <span class="id"><a href="Qcert.Basic.Data.RData.html#data">data</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPNull">SPNull</a></span> | <span class="id"><a name="SPMissing">SPMissing</a></span><br/>
+&nbsp;&nbsp;| <span class="id">SPLiteral</span> : <span class="id">data</span> -&gt; <span class="id">sqlpp_expr</span> <br/>
+&nbsp;&nbsp;| <span class="id">SPNull</span> | <span class="id">SPMissing</span><br/>
 <br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPVarRef">SPVarRef</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>                                   <br/>
+&nbsp;&nbsp;| <span class="id">SPVarRef</span> : <span class="id">string</span> -&gt; <span class="id">sqlpp_expr</span>                                   <br/>
 <br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPFunctionCall">SPFunctionCall</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
+&nbsp;&nbsp;| <span class="id">SPFunctionCall</span> : <span class="id">string</span> -&gt; <span class="id">list</span> <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPArray">SPArray</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>                                                   <br/>
+&nbsp;&nbsp;| <span class="id">SPArray</span> : <span class="id">list</span> <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span>                                                   <br/>
 <br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPBag">SPBag</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>                                  <br/>
+&nbsp;&nbsp;| <span class="id">SPBag</span> : <span class="id">list</span> <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span>                                  <br/>
 <br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPObject">SPObject</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>) -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
+&nbsp;&nbsp;| <span class="id">SPObject</span> : <span class="id">list</span> (<span class="id">string</span> * <span class="id">sqlpp_expr</span>) -&gt; <span class="id">sqlpp_expr</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPQuery">SPQuery</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_select_statement">sqlpp_select_statement</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span><br/>
+&nbsp;&nbsp;| <span class="id">SPQuery</span> : <span class="id">sqlpp_select_statement</span> -&gt; <span class="id">sqlpp_expr</span><br/>
 &nbsp;&nbsp;<br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_select_statement">sqlpp_select_statement</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;<span class="id"><a name="SPSelectStmt">SPSelectStmt</a></span> :<br/>
-&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>)     <br/>
-&nbsp;&nbsp;-&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_select_block">sqlpp_select_block</a></span>  <br/>
-&nbsp;&nbsp;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_union_element">sqlpp_union_element</a></span>  <br/>
-&nbsp;&nbsp;-&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_order_by">sqlpp_order_by</a></span>  <br/>
-&nbsp;&nbsp;-&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_select_statement">sqlpp_select_statement</a></span><br/>
+<span class="kwd">with</span> <span class="id">sqlpp_select_statement</span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;<span class="id">SPSelectStmt</span> :<br/>
+&nbsp;&nbsp;<span class="id">list</span> (<span class="id">string</span> * <span class="id">sqlpp_expr</span>)     <br/>
+&nbsp;&nbsp;-&gt; <span class="id">sqlpp_select_block</span>  <br/>
+&nbsp;&nbsp;-&gt; <span class="id">list</span> <span class="id">sqlpp_union_element</span>  <br/>
+&nbsp;&nbsp;-&gt; <span class="id">sqlpp_order_by</span>  <br/>
+&nbsp;&nbsp;-&gt; <span class="id">sqlpp_select_statement</span><br/>
 <br/>
 <br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_select_block">sqlpp_select_block</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;<span class="id"><a name="SPSelectBlock">SPSelectBlock</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_select">sqlpp_select</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_from">sqlpp_from</a></span>   <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>)  <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_where">sqlpp_where</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_group_by">sqlpp_group_by</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>)  <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>   <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_select_block">sqlpp_select_block</a></span><br/>
+<span class="kwd">with</span> <span class="id">sqlpp_select_block</span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;<span class="id">SPSelectBlock</span> : <span class="id">sqlpp_select</span> -&gt; <span class="id">list</span> <span class="id">sqlpp_from</span>   <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id">list</span> (<span class="id">string</span> * <span class="id">sqlpp_expr</span>)  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id">sqlpp_where</span> -&gt; <span class="id">sqlpp_group_by</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id">list</span> (<span class="id">string</span> * <span class="id">sqlpp_expr</span>)  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id">option</span> <span class="id">sqlpp_expr</span>   <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id">sqlpp_select_block</span><br/>
 <br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_union_element">sqlpp_union_element</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPBlock">SPBlock</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_select_block">sqlpp_select_block</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_union_element">sqlpp_union_element</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPSubquery">SPSubquery</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_select_statement">sqlpp_select_statement</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_union_element">sqlpp_union_element</a></span>        <br/>
+<span class="kwd">with</span> <span class="id">sqlpp_union_element</span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;| <span class="id">SPBlock</span> : <span class="id">sqlpp_select_block</span> -&gt; <span class="id">sqlpp_union_element</span><br/>
+&nbsp;&nbsp;| <span class="id">SPSubquery</span> : <span class="id">sqlpp_select_statement</span> -&gt; <span class="id">sqlpp_union_element</span>        <br/>
 <br/>
 <br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_select">sqlpp_select</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPSelectSQL">SPSelectSQL</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_distinct">sqlpp_distinct</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_project">sqlpp_project</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_select">sqlpp_select</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPSelectValue">SPSelectValue</a></span>: <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_distinct">sqlpp_distinct</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_select">sqlpp_select</a></span><br/>
+<span class="kwd">with</span> <span class="id">sqlpp_select</span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;| <span class="id">SPSelectSQL</span> : <span class="id">sqlpp_distinct</span> -&gt; <span class="id">list</span> <span class="id">sqlpp_project</span> -&gt; <span class="id">sqlpp_select</span><br/>
+&nbsp;&nbsp;| <span class="id">SPSelectValue</span>: <span class="id">sqlpp_distinct</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_select</span><br/>
 &nbsp;&nbsp;<br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_project">sqlpp_project</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPProject">SPProject</a></span> : (<span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_project">sqlpp_project</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPProjectStar">SPProjectStar</a></span><br/>
+<span class="kwd">with</span> <span class="id">sqlpp_project</span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;| <span class="id">SPProject</span> : (<span class="id">sqlpp_expr</span> * <span class="id">option</span> <span class="id">string</span>) -&gt; <span class="id">sqlpp_project</span><br/>
+&nbsp;&nbsp;| <span class="id">SPProjectStar</span><br/>
 &nbsp;&nbsp;<br/>
 <br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_from">sqlpp_from</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPFrom">SPFrom</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_join_clause">sqlpp_join_clause</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_from">sqlpp_from</a></span><br/>
+<span class="kwd">with</span> <span class="id">sqlpp_from</span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;| <span class="id">SPFrom</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">option</span> <span class="id">string</span> -&gt; <span class="id">list</span> <span class="id">sqlpp_join_clause</span> -&gt; <span class="id">sqlpp_from</span><br/>
 <br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_join_clause">sqlpp_join_clause</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPJoin">SPJoin</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_join_type">sqlpp_join_type</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_join_clause">sqlpp_join_clause</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPUnnest">SPUnnest</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_join_type">sqlpp_join_type</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_join_clause">sqlpp_join_clause</a></span>  <br/>
-<br/>
-<br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_where">sqlpp_where</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPWhere">SPWhere</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_where">sqlpp_where</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="SPNoWhere">SPNoWhere</a></span><br/>
+<span class="kwd">with</span> <span class="id">sqlpp_join_clause</span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;| <span class="id">SPJoin</span> : <span class="id">sqlpp_join_type</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">option</span> <span class="id">string</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_join_clause</span><br/>
+&nbsp;&nbsp;| <span class="id">SPUnnest</span> : <span class="id">sqlpp_join_type</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">option</span> <span class="id">string</span> -&gt; <span class="id">option</span> <span class="id">string</span> -&gt; <span class="id">sqlpp_join_clause</span>  <br/>
 <br/>
 <br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_group_by">sqlpp_group_by</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;| <span class="id"><a name="SPGroupBy">SPGroupBy</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)   <br/>
-&nbsp;&nbsp;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>))  <br/>
-&nbsp;&nbsp;-&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_group_by">sqlpp_group_by</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="SPNoGroupBy">SPNoGroupBy</a></span><br/>
+<span class="kwd">with</span> <span class="id">sqlpp_where</span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;| <span class="id">SPWhere</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_where</span><br/>
+&nbsp;&nbsp;| <span class="id">SPNoWhere</span><br/>
+<br/>
+<br/>
+<span class="kwd">with</span> <span class="id">sqlpp_group_by</span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;| <span class="id">SPGroupBy</span> : <span class="id">list</span> (<span class="id">sqlpp_expr</span> * <span class="id">option</span> <span class="id">string</span>)   <br/>
+&nbsp;&nbsp;-&gt; <span class="id">option</span> (<span class="id">string</span> * <span class="id">list</span> (<span class="id">string</span> * <span class="id">string</span>))  <br/>
+&nbsp;&nbsp;-&gt; <span class="id">sqlpp_group_by</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">SPNoGroupBy</span><br/>
 <br/>
 &nbsp;<br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_order_by">sqlpp_order_by</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;| <span class="id"><a name="SPOrderBy">SPOrderBy</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> * <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_order_spec">sqlpp_order_spec</a></span>) -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_order_by">sqlpp_order_by</a></span><br/>
-&nbsp;| <span class="id"><a name="SPNoOrderBy">SPNoOrderBy</a></span><br/>
+<span class="kwd">with</span> <span class="id">sqlpp_order_by</span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;| <span class="id">SPOrderBy</span> : <span class="id">list</span> (<span class="id">sqlpp_expr</span> * <span class="id">sqlpp_order_spec</span>) -&gt; <span class="id">sqlpp_order_by</span><br/>
+&nbsp;| <span class="id">SPNoOrderBy</span><br/>
 &nbsp;<br/>
-<span class="kwd">with</span> <span class="id"><a name="sqlpp_when_then">sqlpp_when_then</a></span> : <span class="kwd">Set</span>:=<br/>
-&nbsp;| <span class="id"><a name="SPWhenThen">SPWhenThen</a></span> : <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span> -&gt; <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_when_then">sqlpp_when_then</a></span>	<br/>
+<span class="kwd">with</span> <span class="id">sqlpp_when_then</span> : <span class="kwd">Set</span>:=<br/>
+&nbsp;| <span class="id">SPWhenThen</span> : <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_expr</span> -&gt; <span class="id">sqlpp_when_then</span>	<br/>
 .	<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="sqlpp">sqlpp</a></span> : <span class="kwd">Set</span> := <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sqlpp</span> : <span class="kwd">Set</span> := <span class="id">sqlpp_expr</span>.<br/>
 <br/>
 &nbsp;&nbsp;<br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SQLPP">SQLPP</a></span>.<br/>
+<span class="kwd">End</span> <span class="id">SQLPP</span>.<br/>
 <br/>
 
 </div>

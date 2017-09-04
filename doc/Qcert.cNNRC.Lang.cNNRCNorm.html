@@ -14,86 +14,86 @@
 <h1 class="title">Module Qcert.cNNRC.Lang.cNNRCNorm</h1>
 <div class="coq">
 <br/>
-<span class="kwd">Section</span> <span class="id"><a name="cNNRCNorm">cNNRCNorm</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.BasicRuntime.html">BasicRuntime</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html">cNNRC</a></span>.<br/>
+<span class="kwd">Section</span> <span class="id">cNNRCNorm</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">String</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">List</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Arith</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EquivDec</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Morphisms</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">BasicRuntime</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">cNNRC</span>.<br/>
 <br/>
 <div class="doc">Named Nested Relational Calculus </div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Basic.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}. <br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> (<span class="id">h</span>:<span class="id"><a href="Qcert.Basic.Data.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>).<br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> (<span class="id">c</span>:<span class="id"><a href="Qcert.Basic.Data.RData.html#bindings">bindings</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id">foreign_runtime</span>}. <br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> (<span class="id">h</span>:<span class="id">brand_relation_t</span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> (<span class="id">c</span>:<span class="id">bindings</span>).<br/>
 &nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_core_eval_normalized">nnrc_core_eval_normalized</a></span> <span class="id">env</span> <span class="id">e</span> {<span class="id">o</span>} :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.c">c</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.c">c</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#env">env</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#e">e</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#o">o</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#env">env</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#o">o</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id">nnrc_core_eval_normalized</span> <span class="id">env</span> <span class="id">e</span> {<span class="id">o</span>} :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Forall</span> (<span class="id">data_normalized</span> <span class="id">h</span>) (<span class="id">map</span> <span class="id">snd</span> <span class="id">c</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrc_core_eval</span> <span class="id">h</span> <span class="id">c</span> <span class="id">env</span> <span class="id">e</span> = <span class="id">Some</span> <span class="id">o</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Forall</span> (<span class="id">data_normalized</span> <span class="id">h</span>) (<span class="id">map</span> <span class="id">snd</span> <span class="id">env</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">data_normalized</span> <span class="id">h</span> <span class="id">o</span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof2364')">Proof.</div>
 <div class="proofscript" id="proof2364">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">env</span> <span class="id">o</span>. <span class="id">nnrc_cases</span> (<span class="tactic">induction</span> <span class="id">e</span>) <span class="id">Case</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">env</span> <span class="id">o</span> <span class="id">Hc</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRCGetConstant</span>"%<span class="id">string</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">Hc</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Basic.Data.RRelation.html#edot">edot</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#assoc_lookupr_in">assoc_lookupr_in</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">Forall_forall</span> <span class="kwd">in</span> <span class="id">Hc</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">edot</span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">apply</span> <span class="id">assoc_lookupr_in</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">Hc</span> <span class="id">o</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#in_map_iff">in_map_iff</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">in_map_iff</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> (<span class="id">v</span>,<span class="id">o</span>); <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRCVar</span>"%<span class="id">string</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#lookup_in">lookup_in</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">Forall_forall</span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">lookup_in</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">H0</span> <span class="id">o</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#in_map_iff">in_map_iff</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">in_map_iff</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> (<span class="id">v</span>,<span class="id">o</span>); <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRCConst</span>"%<span class="id">string</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>; <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Data.RDataNorm.html#normalize_normalizes">normalize_normalizes</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">normalize_normalizes</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRCBinop</span>"%<span class="id">string</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.c">c</a></span> <span class="id">env</span> <span class="id">e1</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">nnrc_core_eval</span> <span class="id">h</span> <span class="id">c</span> <span class="id">env</span> <span class="id">e1</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="tactic">rewrite</span> <span class="id">eqq1</span> <span class="kwd">in</span> *;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.c">c</a></span> <span class="id">env</span> <span class="id">e2</span>); [<span class="tactic">intros</span> ? <span class="id">eqq2</span> | <span class="tactic">intros</span> <span class="id">eqq2</span>];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">nnrc_core_eval</span> <span class="id">h</span> <span class="id">c</span> <span class="id">env</span> <span class="id">e2</span>); [<span class="tactic">intros</span> ? <span class="id">eqq2</span> | <span class="tactic">intros</span> <span class="id">eqq2</span>];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">eqq2</span> <span class="kwd">in</span> *); <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.Basic.Operators.RBinaryOpsSem.html#fun_of_binop_normalized">fun_of_binop_normalized</a></span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id">fun_of_binop_normalized</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRCUnop</span>"%<span class="id">string</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.c">c</a></span> <span class="id">env</span> <span class="id">e</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">nnrc_core_eval</span> <span class="id">h</span> <span class="id">c</span> <span class="id">env</span> <span class="id">e</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">eqq1</span> <span class="kwd">in</span> *;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.Basic.Operators.RUnaryOpsSem.html#fun_of_unaryop_normalized">fun_of_unaryop_normalized</a></span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id">fun_of_unaryop_normalized</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRCLet</span>"%<span class="id">string</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.c">c</a></span> <span class="id">env</span> <span class="id">e1</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">nnrc_core_eval</span> <span class="id">h</span> <span class="id">c</span> <span class="id">env</span> <span class="id">e1</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">eqq1</span> <span class="kwd">in</span> *;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.c">c</a></span> ((<span class="id">v</span>,<span class="id">d</span>)::<span class="id">env</span>) <span class="id">e2</span>); [<span class="tactic">intros</span> ? <span class="id">eqq2</span> | <span class="tactic">intros</span> <span class="id">eqq2</span>];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">nnrc_core_eval</span> <span class="id">h</span> <span class="id">c</span> ((<span class="id">v</span>,<span class="id">d</span>)::<span class="id">env</span>) <span class="id">e2</span>); [<span class="tactic">intros</span> ? <span class="id">eqq2</span> | <span class="tactic">intros</span> <span class="id">eqq2</span>];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">eqq2</span> <span class="kwd">in</span> *;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id">IHe2</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRCFor</span>"%<span class="id">string</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.c">c</a></span> <span class="id">env</span> <span class="id">e1</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">nnrc_core_eval</span> <span class="id">h</span> <span class="id">c</span> <span class="id">env</span> <span class="id">e1</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">eqq1</span> <span class="kwd">in</span> *;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">IHe1</span> <span class="id">_</span> <span class="id">_</span> <span class="id">Hc</span> <span class="id">eqq1</span> <span class="id">H0</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">IHe1</span>; <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RLift.html#some_lift">some_lift</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">some_lift</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">H</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="Qcert.Basic.Data.RRelation.html#rmap_Forall">rmap_Forall</a></span> <span class="id">e</span> <span class="id">H2</span>); <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">rmap_Forall</span> <span class="id">e</span> <span class="id">H2</span>); <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">IHe2</span> <span class="id">_</span> <span class="id">_</span> <span class="id">Hc</span> <span class="id">H</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRCIf</span>"%<span class="id">string</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.c">c</a></span> <span class="id">env</span> <span class="id">e1</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">nnrc_core_eval</span> <span class="id">h</span> <span class="id">c</span> <span class="id">env</span> <span class="id">e1</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">eqq1</span> <span class="kwd">in</span> *;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRCEither</span>"%<span class="id">string</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.h">h</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm.c">c</a></span> <span class="id">env</span> <span class="id">e1</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">nnrc_core_eval</span> <span class="id">h</span> <span class="id">c</span> <span class="id">env</span> <span class="id">e1</span>); [<span class="tactic">intros</span> ? <span class="id">eqq1</span> | <span class="tactic">intros</span> <span class="id">eqq1</span>];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">eqq1</span> <span class="kwd">in</span> *;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">IHe1</span> <span class="id">_</span> <span class="id">_</span> <span class="id">Hc</span> <span class="id">eqq1</span> <span class="id">H0</span>).<br/>
@@ -106,7 +106,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>; <span class="tactic">intros</span>; <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCNorm.html#cNNRCNorm">cNNRCNorm</a></span>.<br/>
+<span class="kwd">End</span> <span class="id">cNNRCNorm</span>.<br/>
 <br/>
 <span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">nnrc_core_eval_normalized</span>.<br/>
 <br/>
