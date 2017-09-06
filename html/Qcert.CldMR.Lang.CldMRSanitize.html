@@ -23,14 +23,16 @@ follows lexical constraints imposed by Cloudant. </div>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Mergesort.html">Sorting.Mergesort</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
-<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Util.Utils.html">Utils</a></span> <span class="id"><a href="Qcert.Basic.BasicRuntime.html">BasicRuntime</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRC.NNRCRuntime.html">NNRCRuntime</a></span> <span class="id"><a href="Qcert.NNRCMR.NNRCMRRuntime.html">NNRCMRRuntime</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.CldMR.Lang.CldMRUtil.html">CldMRUtil</a></span> <span class="id"><a href="Qcert.CldMR.Lang.ForeignCloudant.html">ForeignCloudant</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.CommonRuntime.html">CommonRuntime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRC.NNRCRuntime.html">NNRCRuntime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRCMR.NNRCMRRuntime.html">NNRCMRRuntime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.CldMR.Lang.CldMRUtil.html">CldMRUtil</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.CldMR.Lang.ForeignCloudant.html">ForeignCloudant</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">list_scope</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Basic.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
 &nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fredop</span>:<span class="id"><a href="Qcert.NNRCMR.Lang.ForeignReduceOps.html#foreign_reduce_op">foreign_reduce_op</a></span>}.<br/>
 &nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fcloudant</span>:<span class="id"><a href="Qcert.CldMR.Lang.ForeignCloudant.html#foreign_cloudant">foreign_cloudant</a></span>}.<br/>
 <br/>
@@ -71,10 +73,10 @@ follows lexical constraints imposed by Cloudant. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">else</span> <span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#cldIdenitiferCharacterForReplacement">cldIdenitiferCharacterForReplacement</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="cldIdentifierSanitizeBody">cldIdentifierSanitizeBody</a></span> (<span class="id">ident</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Basic.Util.RString.html#map_string">map_string</a></span> <span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#cldIdentifierSanitizeChar">cldIdentifierSanitizeChar</a></span> <span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#ident">ident</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Utils.StringAdd.html#map_string">map_string</a></span> <span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#cldIdentifierSanitizeChar">cldIdentifierSanitizeChar</a></span> <span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#ident">ident</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="cldIdentifierSanitize">cldIdentifierSanitize</a></span> (<span class="id">ident</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#cldIdentifierFixInitial">cldIdentifierFixInitial</a></span> (<span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#cldIdentifierSanitizeBody">cldIdentifierSanitizeBody</a></span> (<span class="id"><a href="Qcert.Basic.Util.RAssoc.html#mk_lower">mk_lower</a></span> <span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#ident">ident</a></span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#cldIdentifierFixInitial">cldIdentifierFixInitial</a></span> (<span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#cldIdentifierSanitizeBody">cldIdentifierSanitizeBody</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#mk_lower">mk_lower</a></span> <span class="id"><a href="Qcert.CldMR.Lang.CldMRSanitize.html#ident">ident</a></span>)).<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="cldSafeSeparator">cldSafeSeparator</a></span> := "<span class="id">_</span>"%<span class="id">string</span>.<br/>
 <br/>

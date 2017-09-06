@@ -15,30 +15,34 @@
 <div class="coq">
 <br/>
 <br/>
-<span class="kwd">Section</span> <span class="id"><a name="ROptimEnvContext">ROptimEnvContext</a></span>.<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NRAEnvRewriteContext">NRAEnvRewriteContext</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html">Equivalence</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Setoids.Setoid.html">Setoid</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="kwd">Program</span>.<br/>
-<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.CommonRuntime.html">CommonRuntime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRA.NRARuntime.html">NRARuntime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.cNRAEnv.cNRAEnvRuntime.html">cNRAEnvRuntime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRA.Context.NRAContext.html">NRAContext</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRA.Optim.NRARewriteContext.html">NRARewriteContext</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html">cNRAEnvContext</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContextLift.html">cNRAEnvContextLift</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRAEnv.Optim.NRAEnvRewrite.html">NRAEnvRewrite</a></span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Basic.Util.Utils.html">Utils</a></span> <span class="id"><a href="Qcert.Basic.BasicRuntime.html">BasicRuntime</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRA.Lang.NRA.html">NRA</a></span> <span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnv.html">cNRAEnv</a></span> <span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnvEq.html">cNRAEnvEq</a></span>.<br/>
-&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRA.Context.NRAContext.html">NRAContext</a></span> <span class="id"><a href="Qcert.NRAEnv.Optim.NRAEnvRewrite.html">NRAEnvRewrite</a></span> <span class="id"><a href="Qcert.NRA.Optim.NRARewriteContext.html">NRARewriteContext</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html">cNRAEnvContext</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContextLift.html">cNRAEnvContextLift</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nraenv_core_ctxt</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Basic.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Ltac</span> <span class="id">simpl_domain_eq_const</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="tactic">repeat</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">goal</span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [<span class="id">H</span>: <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#domain">domain</a></span> ?<span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> |- <span class="id">_</span> ] =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#domain_nil">domain_nil</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">subst</span> <span class="id">x</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [<span class="id">H</span>: <span class="id"><a href="Qcert.Basic.Util.RAssoc.html#domain">domain</a></span> ?<span class="id">x</span> = <span class="id">_</span>::<span class="id">_</span> |- <span class="id">_</span> ] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [<span class="id">H</span>: <span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> ?<span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> |- <span class="id">_</span> ] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Assoc.html#domain_nil">domain_nil</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">subst</span> <span class="id">x</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [<span class="id">H</span>: <span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> ?<span class="id">x</span> = <span class="id">_</span>::<span class="id">_</span> |- <span class="id">_</span> ] =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">n</span> := <span class="tactic">fresh</span> "<span class="id">n</span>" <span class="kwd">in</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">a</span> := <span class="tactic">fresh</span> "<span class="id">a</span>" <span class="kwd">in</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span> <span class="kwd">as</span> [|[<span class="id">n</span> <span class="id">a</span>]]; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">clear</span> <span class="id">H</span>;<br/>
@@ -47,10 +51,10 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Ltac</span> <span class="id">simpl_plugins</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">goal</span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<span class="id">H1</span>:<span class="id"><a href="Qcert.Basic.Util.RSort.html#is_list_sorted">is_list_sorted</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Compare_dec.html#lt_dec">lt_dec</a></span> ?<span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">H2</span>:<span class="id"><a href="Qcert.Basic.Util.RList.html#equivlist">equivlist</a></span> ?<span class="id">x</span> ?<span class="id">y</span> |- <span class="id">_</span> ] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<span class="id">H1</span>:<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Compare_dec.html#lt_dec">lt_dec</a></span> ?<span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">H2</span>:<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> ?<span class="id">x</span> ?<span class="id">y</span> |- <span class="id">_</span> ] =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRA.Optim.NRARewriteContext.html#insertion_sort_equivlist_nat">insertion_sort_equivlist_nat</a></span> <span class="kwd">in</span> <span class="id">H2</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id"><a href="Qcert.Basic.Util.RSort.html#insertion_sort_sorted_is_id">insertion_sort_sorted_is_id</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">H1</span>) <span class="kwd">in</span> <span class="id">H2</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_sorted_is_id">insertion_sort_sorted_is_id</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">H1</span>) <span class="kwd">in</span> <span class="id">H2</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H2</span>; <span class="id">simpl_domain_eq_const</span>; <span class="tactic">clear</span> <span class="id">H1</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
@@ -94,7 +98,7 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 <br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.NRAEnv.Optim.NRAEnvRewriteContext.html#ROptimEnvContext">ROptimEnvContext</a></span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.NRAEnv.Optim.NRAEnvRewriteContext.html#NRAEnvRewriteContext">NRAEnvRewriteContext</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 
 </div>
