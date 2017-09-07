@@ -28,7 +28,7 @@
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.LambdaNRA.LambdaNRARuntime.html">LambdaNRARuntime</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.CAMPRule.CAMPRuleRuntime.html">CAMPRuleRuntime</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.TechRule.TechRuleRuntime.html">TechRuleRuntime</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.DesignRule.DesignRuleRuntime.html">DesignRuleRuntime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.DesignerRule.DesignerRuleRuntime.html">DesignerRuleRuntime</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRA.NRARuntime.html">NRARuntime</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRAEnv.NRAEnvRuntime.html">NRAEnvRuntime</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRC.NNRCRuntime.html">NNRCRuntime</a></span>.<br/>
@@ -49,7 +49,7 @@
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.LambdaNRAtoNRAEnv.html">LambdaNRAtoNRAEnv</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.CAMPRuletoCAMP.html">CAMPRuletoCAMP</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.TechRuletoCAMPRule.html">TechRuletoCAMPRule</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.DesignRuletoCAMPRule.html">DesignRuletoCAMPRule</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.DesignerRuletoCAMPRule.html">DesignerRuletoCAMPRule</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.CAMPtoNRA.html">CAMPtoNRA</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.CAMPtocNRAEnv.html">CAMPtocNRAEnv</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.CAMPtoNRAEnv.html">CAMPtoNRAEnv</a></span>.<br/>
@@ -155,7 +155,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.TechRuletoCAMPRule.html#tech_rule_to_camp_rule_top">TechRuletoCAMPRule.tech_rule_to_camp_rule_top</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#q">q</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="designer_rule_to_camp_rule">designer_rule_to_camp_rule</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#designer_rule">designer_rule</a></span>) : <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#camp_rule">camp_rule</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.DesignRuletoCAMPRule.html#designer_rule_to_camp_rule_top">DesignRuletoCAMPRule.designer_rule_to_camp_rule_top</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#q">q</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.DesignerRuletoCAMPRule.html#designer_rule_to_camp_rule_top">DesignerRuletoCAMPRule.designer_rule_to_camp_rule_top</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#q">q</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="camp_to_nra">camp_to_nra</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#camp">camp</a></span>) : <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#nra">nra</a></span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#camp_to_nra_top">CAMPtoNRA.camp_to_nra_top</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#q">q</a></span>.<br/>
@@ -2207,25 +2207,24 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span>; <span class="tactic">rewrite</span> <span class="id">H3</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
+<br/>
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="driver_of_path_completeness">driver_of_path_completeness</a></span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">dv</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">config</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#no_dv_error">no_dv_error</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#dv">dv</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#is_driver_config">is_driver_config</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#config">config</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#dv">dv</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">target_lang</span> <span class="id">path</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#driver_of_path">driver_of_path</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#config">config</a></span> (<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#path">path</a></span> ++ <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#target_lang">target_lang</a></span> :: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) = <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#dv">dv</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">path</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#driver_of_path">driver_of_path</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#config">config</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#path">path</a></span> = <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#dv">dv</a></span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof3192')">Proof.</div>
 <div class="proofscript" id="proof3192">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">dv</span> <span class="id">config</span> <span class="id">H_no_dv_error</span> <span class="id">H_dv_config</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#driver_of_path">driver_of_path</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> (<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#target_language_of_driver">target_language_of_driver</a></span> <span class="id">dv</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#is_postfix_driver">is_postfix_driver</a></span> (<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#driver_of_language">driver_of_language</a></span> (<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#target_language_of_driver">target_language_of_driver</a></span> <span class="id">dv</span>)) <span class="id">dv</span>) <span class="kwd">as</span> <span class="id">Hpost</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="tactic">apply</span> (<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#target_language_of_driver_is_postfix">target_language_of_driver_is_postfix</a></span> <span class="id">dv</span> <span class="id">H_no_dv_error</span>) | ].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#driver_of_rev_path_completeness">driver_of_rev_path_completeness</a></span> <span class="id">dv</span> ((<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#driver_of_language">driver_of_language</a></span> (<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#target_language_of_driver">target_language_of_driver</a></span> <span class="id">dv</span>))) <span class="id">config</span> <span class="id">H_dv_config</span> <span class="id">Hpost</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">H_exists</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">H_exists</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">List.rev</a></span> <span class="id">x</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev_unit">List.rev_unit</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">List.rev</a></span> ((<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#target_language_of_driver">target_language_of_driver</a></span> <span class="id">dv</span>) :: <span class="id">x</span>)).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev_involutive">List.rev_involutive</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
