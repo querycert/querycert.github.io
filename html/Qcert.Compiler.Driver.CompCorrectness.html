@@ -1660,19 +1660,26 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">contradiction</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<div class="doc">XXX This is an idea for what the main correctness theorem
-    could be.
-            Assuming:
-            - the driver <span class="bracket"><span class="id">dv</span></span> is correct (i.e., only follows verified
-            compilation paths):
-            For every query <span class="bracket"><span class="id">q</span></span> that matches the expected input of
-            driver <span class="bracket"><span class="id">dv</span></span>:
-            For every produced compilation steps I.e., <span class="bracket"><span class="id">q</span>'</span> in the
-            list returned by <span class="bracket"><span class="id">compile</span> <span class="id">dv</span> <span class="id">q</span></span>, we have:
-            - <span class="bracket"><span class="id">q</span>'</span> preserves the evaluation semantics for <span class="bracket"><span class="id">q</span></span>
-              I.e., for all input data, evaluation of <span class="bracket"><span class="id">q</span></span> and <span class="bracket"><span class="id">q</span>'</span> over
-              that input data returns the same output data
-     </div>
+<div class="doc">This is an initial version of correctness theorem for the
+compiler driver as a whole. </div>
+<br/>
+<div class="doc">Assuming the driver <span class="bracket"><span class="id">dv</span></span> is correct (i.e., only follows
+verified compilation paths), then:
+<ul>
+<li>
+ For every query <span class="bracket"><span class="id">q</span></span> that matches
+the expected input of driver <span class="bracket"><span class="id">dv</span></span>
+</li>
+<li>
+ for every produced compilation
+steps I.e., <span class="bracket"><span class="id">q</span>'</span> in the list returned by <span class="bracket"><span class="id">compile</span> <span class="id">dv</span> <span class="id">q</span></span>, we have:
+</li>
+<li>
+ <span class="bracket"><span class="id">q</span>'</span> preserves the evaluation semantics for <span class="bracket"><span class="id">q</span></span>
+</li>
+</ul>
+I.e., for all input data, evaluation of <span class="bracket"><span class="id">q</span></span> and <span class="bracket"><span class="id">q</span>'</span> over that
+input data returns the same output data. </div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="compile_with_correct_driver_preserves_eval">compile_with_correct_driver_preserves_eval</a></span> (<span class="id">dv</span>:<span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#driver">driver</a></span>) (<span class="id">q</span>:<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#query">query</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Driver.CompCorrectness.html#driver_correct">driver_correct</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompCorrectness.html#dv">dv</a></span> -&gt;<br/>
