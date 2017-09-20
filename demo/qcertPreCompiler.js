@@ -14,8 +14,18 @@
  * limitations under the License.
  */
 // List server hosts in the order they should be attempted.  It is a good idea (but not required) to put localhost first so that
-// new functionality can be tested without updating remote server hosts.
-var serverHosts = ["localhost", "35.164.159.76"];
+// new functionality can be tested without updating remote server hosts.   The list can contain two distinct string formats.  
+// (1) A string that does not contain forward slashes is assumed to be a host name or
+// address and a long-running server is assumed to be at that host on port 9879.
+// (2) A string containing forward slashes is assumed to be a URL; the URL is used to invoke a whisk web action providing the server
+// functionality.
+// NOTE: the usually-available long-running server at 35.164.159.76 is currently listed AHEAD of the whisk action.  To test the whisk
+// action, change the order.  The long-running server will probably be switched off once we have confidence in the whisk action.
+var serverHosts = [
+    "localhost",
+    "35.164.159.76",
+    "https://openwhisk.ng.bluemix.net/api/v1/web/JoshAuerbachThoughts_test/default/qcertJavaService.json",
+];
 function preProcess(text, verb, callback) {
     var next = function () {
         callback("ERROR: no server found to process " + verb + " request");
@@ -27,14 +37,23 @@ function preProcess(text, verb, callback) {
 function makeHandler(text, verb, host, success, failure) {
     return function () {
         console.log("Handler invoked for host " + host);
-        var url = "http://" + host + ":9879?verb=" + verb;
+        var whisk = false;
+        var url;
+        if (host.indexOf('/') > 0) {
+            whisk = true;
+            url = host;
+            text = whiskify(verb, text);
+        }
+        else
+            url = "http://" + host + ":9879?verb=" + verb;
         var request = new XMLHttpRequest();
         request.open("POST", url, true);
-        request.setRequestHeader("Content-Type", "text/plain");
+        request.setRequestHeader("Content-Type", whisk ? "application/json" : "text/plain");
         request.onloadend = function () {
             if (request.status == 200) {
                 console.log("Success with verb " + verb + " at host " + host);
-                success(request.responseText);
+                var response = whisk ? dewhiskify(request.responseText) : request.responseText;
+                success(response);
             }
             else {
                 console.log("Failure with verb " + verb + " at host " + host);
@@ -48,6 +67,13 @@ function makeHandler(text, verb, host, success, failure) {
         catch (e) {
         }
     };
+}
+function whiskify(verb, text) {
+    return JSON.stringify({ verb: verb, arg: text });
+}
+function dewhiskify(response) {
+    var obj = JSON.parse(response);
+    return obj.response;
 }
 function combineInputAndSchema(input, schema) {
     var parsed = JSON.parse(schema);
