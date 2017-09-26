@@ -38,14 +38,14 @@
       Distributed Nested Relational Calculus </div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="dnnrc_base_eq">dnnrc_base_eq</a></span> (<span class="id">e1</span> <span class="id">e2</span>:@<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base">dnnrc_base</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#DNNRCBaseEq.A">A</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#DNNRCBaseEq.plug_type">plug_type</a></span>) : <span class="kwd">Prop</span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">h</span>:<span class="id"><a href="Qcert.Common.Data.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>) (<span class="id">dcenv</span> <span class="id">denv</span>:<span class="id"><a href="Qcert.Common.Data.DData.html#dbindings">dbindings</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">h</span>:<span class="id"><a href="Qcert.Common.Brands.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>) (<span class="id">dcenv</span> <span class="id">denv</span>:<span class="id"><a href="Qcert.Common.Data.DData.html#dbindings">dbindings</a></span>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.Common.Data.DDataNorm.html#ddata_normalized">ddata_normalized</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#h">h</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dcenv">dcenv</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.Common.Data.DDataNorm.html#ddata_normalized">ddata_normalized</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#h">h</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#denv">denv</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base_eval">dnnrc_base_eval</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#h">h</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dcenv">dcenv</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#denv">denv</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#e1">e1</a></span> = <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base_eval">dnnrc_base_eval</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#h">h</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dcenv">dcenv</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#denv">denv</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#e2">e2</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dnnrc_base_equiv">dnnrc_base_equiv</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2665')">Proof.</div>
-<div class="proofscript" id="proof2665">
+<div class="toggleproof" onclick="toggleDisplay('proof2646')">Proof.</div>
+<div class="proofscript" id="proof2646">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Reflexive">Reflexive</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">reflexivity</span>.<br/>
@@ -58,31 +58,31 @@
 <br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dgetconstant_proper">dgetconstant_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCGetConstant">DNNRCGetConstant</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2666')">Proof.</div>
-<div class="proofscript" id="proof2666">
+<div class="toggleproof" onclick="toggleDisplay('proof2647')">Proof.</div>
+<div class="proofscript" id="proof2647">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">subst</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dvar_proper">dvar_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCVar">DNNRCVar</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2667')">Proof.</div>
-<div class="proofscript" id="proof2667">
+<div class="toggleproof" onclick="toggleDisplay('proof2648')">Proof.</div>
+<div class="proofscript" id="proof2648">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">subst</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dconst_proper">dconst_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCConst">DNNRCConst</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2668')">Proof.</div>
-<div class="proofscript" id="proof2668">
+<div class="toggleproof" onclick="toggleDisplay('proof2649')">Proof.</div>
+<div class="proofscript" id="proof2649">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">subst</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dbinary_op_proper">dbinary_op_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Common.Operators.OperatorsEq.html#binary_op_eq">binary_op_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCBinop">DNNRCBinop</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2669')">Proof.</div>
-<div class="proofscript" id="proof2669">
+<div class="toggleproof" onclick="toggleDisplay('proof2650')">Proof.</div>
+<div class="proofscript" id="proof2650">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>. <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H1</span> <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
@@ -97,8 +97,8 @@
 <br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dunary_op_proper">dunary_op_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Common.Operators.OperatorsEq.html#unary_op_eq">unary_op_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCUnop">DNNRCUnop</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2670')">Proof.</div>
-<div class="proofscript" id="proof2670">
+<div class="toggleproof" onclick="toggleDisplay('proof2651')">Proof.</div>
+<div class="proofscript" id="proof2651">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>. <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H1</span> <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
@@ -110,8 +110,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dlet_proper">dlet_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCLet">DNNRCLet</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2671')">Proof.</div>
-<div class="proofscript" id="proof2671">
+<div class="toggleproof" onclick="toggleDisplay('proof2652')">Proof.</div>
+<div class="proofscript" id="proof2652">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span>; <span class="tactic">rewrite</span> <span class="id">H1</span> <span class="tactic">by</span> <span class="tactic">trivial</span>; <span class="tactic">clear</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base_eval">dnnrc_base_eval</a></span> <span class="id">h</span> <span class="id">dcenv</span> <span class="id">denv</span> <span class="id">y1</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
@@ -125,18 +125,18 @@
 &nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">data_normalized_dcoll_in</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dfor_proper">dfor_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCFor">DNNRCFor</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2672')">Proof.</div>
-<div class="proofscript" id="proof2672">
+<div class="toggleproof" onclick="toggleDisplay('proof2653')">Proof.</div>
+<div class="proofscript" id="proof2653">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>. <span class="tactic">rewrite</span> <span class="id">H1</span> <span class="tactic">by</span> <span class="tactic">trivial</span>; <span class="tactic">clear</span> <span class="id">H1</span>. <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base_eval">dnnrc_base_eval</a></span> <span class="id">h</span> <span class="id">dcenv</span> <span class="id">denv</span> <span class="id">y1</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ <span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.RRelation.html#rmap_ext">rmap_ext</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map_ext">lift_map_ext</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H2</span>; <span class="tactic">simpl</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; [|<span class="tactic">assumption</span>].<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Common.Data.DDataNorm.html#ddata_normalized">ddata_normalized</a></span> <span class="id">h</span> (<span class="id"><a href="Qcert.Common.Data.DData.html#Dlocal">Dlocal</a></span> (<span class="id"><a href="Qcert.Common.Data.RData.html#dcoll">dcoll</a></span> <span class="id">l</span>))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Common.Data.DDataNorm.html#ddata_normalized">ddata_normalized</a></span> <span class="id">h</span> (<span class="id"><a href="Qcert.Common.Data.DData.html#Dlocal">Dlocal</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#dcoll">dcoll</a></span> <span class="id">l</span>))).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eapply</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base_eval_normalized">dnnrc_base_eval_normalized</a></span> <span class="id">_</span> <span class="id">dcenv</span> <span class="id">denv</span>); <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H1</span>; <span class="tactic">subst</span>; <span class="tactic">clear</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>.<br/>
@@ -144,7 +144,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H5</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">auto</span>. }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ <span class="tactic">f_equal</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.RRelation.html#rmap_ext">rmap_ext</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map_ext">lift_map_ext</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H2</span>; <span class="tactic">simpl</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; [|<span class="tactic">assumption</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Common.Data.DDataNorm.html#ddata_normalized">ddata_normalized</a></span> <span class="id">h</span> (<span class="id"><a href="Qcert.Common.Data.DData.html#Ddistr">Ddistr</a></span> <span class="id">l</span>)).<br/>
@@ -157,8 +157,8 @@
 <br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dif_proper">dif_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCIf">DNNRCIf</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2673')">Proof.</div>
-<div class="proofscript" id="proof2673">
+<div class="toggleproof" onclick="toggleDisplay('proof2654')">Proof.</div>
+<div class="proofscript" id="proof2654">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>. <span class="tactic">subst</span>. <span class="tactic">rewrite</span> <span class="id">H0</span> <span class="tactic">by</span> <span class="tactic">trivial</span>; <span class="tactic">clear</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base_eval">dnnrc_base_eval</a></span> <span class="id">h</span> <span class="id">dcenv</span> <span class="id">denv</span> <span class="id">y0</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
@@ -168,8 +168,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="deither_proper">deither_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCEither">DNNRCEither</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2674')">Proof.</div>
-<div class="proofscript" id="proof2674">
+<div class="toggleproof" onclick="toggleDisplay('proof2655')">Proof.</div>
+<div class="proofscript" id="proof2655">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>. <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span> <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
@@ -180,7 +180,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Lift.html#olift">olift</a></span>, <span class="id"><a href="Qcert.Common.Data.DData.html#checkLocal">checkLocal</a></span> <span class="kwd">in</span> <span class="id">eqq1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base_eval">dnnrc_base_eval</a></span> <span class="id">h</span> <span class="id">dcenv</span> <span class="id">denv</span> <span class="id">y0</span>); <span class="tactic">intros</span>; <span class="tactic">rewrite</span> <span class="id">H1</span> <span class="kwd">in</span> <span class="id">eqq1</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d0</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>; <span class="tactic">inversion</span> <span class="id">eqq1</span>; <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Common.Data.DDataNorm.html#ddata_normalized">ddata_normalized</a></span> <span class="id">h</span> (<span class="id"><a href="Qcert.Common.Data.DData.html#Dlocal">Dlocal</a></span> (<span class="id"><a href="Qcert.Common.Data.RData.html#dleft">dleft</a></span> <span class="id">d</span>))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Common.Data.DDataNorm.html#ddata_normalized">ddata_normalized</a></span> <span class="id">h</span> (<span class="id"><a href="Qcert.Common.Data.DData.html#Dlocal">Dlocal</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#dleft">dleft</a></span> <span class="id">d</span>))).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base_eval_normalized">dnnrc_base_eval_normalized</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">h</span> <span class="id">dcenv</span> <span class="id">_</span> <span class="id">denv</span> <span class="id">y0</span>); <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H3</span>; <span class="tactic">subst</span>; <span class="tactic">clear</span> <span class="id">H3</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H8</span>; <span class="tactic">subst</span>; <span class="tactic">clear</span> <span class="id">H8</span>.<br/>
@@ -192,7 +192,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Lift.html#olift">olift</a></span>, <span class="id"><a href="Qcert.Common.Data.DData.html#checkLocal">checkLocal</a></span> <span class="kwd">in</span> <span class="id">eqq1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base_eval">dnnrc_base_eval</a></span> <span class="id">h</span> <span class="id">dcenv</span> <span class="id">denv</span> <span class="id">y0</span>); <span class="tactic">intros</span>; <span class="tactic">rewrite</span> <span class="id">H1</span> <span class="kwd">in</span> <span class="id">eqq1</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d0</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>; <span class="tactic">inversion</span> <span class="id">eqq1</span>; <span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Common.Data.DDataNorm.html#ddata_normalized">ddata_normalized</a></span> <span class="id">h</span> (<span class="id"><a href="Qcert.Common.Data.DData.html#Dlocal">Dlocal</a></span> (<span class="id"><a href="Qcert.Common.Data.RData.html#dright">dright</a></span> <span class="id">d</span>))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Common.Data.DDataNorm.html#ddata_normalized">ddata_normalized</a></span> <span class="id">h</span> (<span class="id"><a href="Qcert.Common.Data.DData.html#Dlocal">Dlocal</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#dright">dright</a></span> <span class="id">d</span>))).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base_eval_normalized">dnnrc_base_eval_normalized</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">h</span> <span class="id">dcenv</span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#DNNRCBaseEq.plug">plug</a></span> <span class="id">denv</span> <span class="id">y0</span>); <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H3</span>; <span class="tactic">subst</span>; <span class="tactic">clear</span> <span class="id">H3</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H8</span>; <span class="tactic">subst</span>; <span class="tactic">clear</span> <span class="id">H8</span>.<br/>
@@ -201,16 +201,16 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dgroupby_proper">dgroupby_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt;<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCGroupBy">DNNRCGroupBy</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2675')">Proof.</div>
-<div class="proofscript" id="proof2675">
+<div class="toggleproof" onclick="toggleDisplay('proof2656')">Proof.</div>
+<div class="proofscript" id="proof2656">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dcollect_proper">dcollect_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCCollect">DNNRCCollect</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2676')">Proof.</div>
-<div class="proofscript" id="proof2676">
+<div class="toggleproof" onclick="toggleDisplay('proof2657')">Proof.</div>
+<div class="proofscript" id="proof2657">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>. <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span> <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
@@ -218,8 +218,8 @@
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ddispatch_proper">ddispatch_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCDispatch">DNNRCDispatch</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2677')">Proof.</div>
-<div class="proofscript" id="proof2677">
+<div class="toggleproof" onclick="toggleDisplay('proof2658')">Proof.</div>
+<div class="proofscript" id="proof2658">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>. <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span> <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
@@ -227,8 +227,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dalg_proper">dalg_proper</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall2">Forall2</a></span> (<span class="kwd">fun</span> <span class="id">n1</span> <span class="id">n2</span>  =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#n1">n1</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#n2">n2</a></span> /\ <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#n1">n1</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#n2">n2</a></span>)) ==&gt; <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>) <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCAlg">DNNRCAlg</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2678')">Proof.</div>
-<div class="proofscript" id="proof2678">
+<div class="toggleproof" onclick="toggleDisplay('proof2659')">Proof.</div>
+<div class="proofscript" id="proof2659">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBaseEq.html#dnnrc_base_eq">dnnrc_base_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">cut</span> ((<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span><br/>

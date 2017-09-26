@@ -32,41 +32,41 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span>  <span class="id"><a name="PTCast">PTCast</a></span> τ<span class="id">c</span> Γ <span class="id">br</span> <span class="id">bs</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[τ<span class="id">c</span>&amp;Γ] |= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#pcast">pcast</a></span> <span class="id"><a href="Qcert.CAMP.Typing.TCAMPSugar.html#br">br</a></span> ; (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Brand">Brand</a></span> <span class="id"><a href="Qcert.CAMP.Typing.TCAMPSugar.html#bs">bs</a></span>) ~&gt; (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Brand">Brand</a></span> <span class="id"><a href="Qcert.CAMP.Typing.TCAMPSugar.html#br">br</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2723')">Proof.</div>
-<div class="proofscript" id="proof2723">
+<div class="toggleproof" onclick="toggleDisplay('proof2704')">Proof.</div>
+<div class="proofscript" id="proof2704">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="PTSingleton">PTSingleton</a></span> τ<span class="id">c</span> Γ τ :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[τ<span class="id">c</span>&amp;Γ] |= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#psingleton">psingleton</a></span> ; (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ) ~&gt; τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2724')">Proof.</div>
-<div class="proofscript" id="proof2724">
+<div class="toggleproof" onclick="toggleDisplay('proof2705')">Proof.</div>
+<div class="proofscript" id="proof2705">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="PTmapall">PTmapall</a></span> τ<span class="id">c</span> {Γ : <span class="id"><a href="Qcert.Common.EnvTyping.TBindings.html#tbindings">tbindings</a></span>} {τ₁ τ₂ : <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#rtype">rtype</a></span>} {<span class="id">p</span> : <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#camp">camp</a></span>} :<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="PTmapall">PTmapall</a></span> τ<span class="id">c</span> {Γ : <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#tbindings">tbindings</a></span>} {τ₁ τ₂ : <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#rtype">rtype</a></span>} {<span class="id">p</span> : <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#camp">camp</a></span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#NoDup">NoDup</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> Γ) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;([τ<span class="id">c</span>&amp;Γ] |= <span class="id"><a href="Qcert.CAMP.Typing.TCAMPSugar.html#p">p</a></span>; τ₁ ~&gt; τ₂) -&gt; [τ<span class="id">c</span>&amp;Γ] |= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#mapall">mapall</a></span> <span class="id"><a href="Qcert.CAMP.Typing.TCAMPSugar.html#p">p</a></span>; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ₁ ~&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ₂.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2725')">Proof.</div>
-<div class="proofscript" id="proof2725">
+<div class="toggleproof" onclick="toggleDisplay('proof2706')">Proof.</div>
+<div class="proofscript" id="proof2706">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#mapall">mapall</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">repeat</span> <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Common.Data.RRelation.html#merge_bindings_nil_r">merge_bindings_nil_r</a></span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.Bindings.html#merge_bindings_nil_r">merge_bindings_nil_r</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">simpl</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.CAMP.Typing.TCAMP.html#camp_type_tenv_rec">camp_type_tenv_rec</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Grab</span> <span class="id">Existential</span> <span class="kwd">Variables</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="PTmapall_inv">PTmapall_inv</a></span> τ<span class="id">c</span> {Γ : <span class="id"><a href="Qcert.Common.EnvTyping.TBindings.html#tbindings">tbindings</a></span>} {τ₁ τ₂ : <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#rtype">rtype</a></span>} {<span class="id">p</span> : <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#camp">camp</a></span>} :<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="PTmapall_inv">PTmapall_inv</a></span> τ<span class="id">c</span> {Γ : <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#tbindings">tbindings</a></span>} {τ₁ τ₂ : <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#rtype">rtype</a></span>} {<span class="id">p</span> : <span class="id"><a href="Qcert.CAMP.Lang.CAMP.html#camp">camp</a></span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id"><a href="Qcert.Utils.Bindings.html#ODT_lt_dec">ODT_lt_dec</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> Γ) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[τ<span class="id">c</span>&amp;Γ] |= <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#mapall">mapall</a></span> <span class="id"><a href="Qcert.CAMP.Typing.TCAMPSugar.html#p">p</a></span>; τ₁ ~&gt; τ₂ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> τ₁' τ₂',<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;τ₁ = <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ₁' /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;τ₂ = <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ₂' /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;([τ<span class="id">c</span>&amp;Γ] |= <span class="id"><a href="Qcert.CAMP.Typing.TCAMPSugar.html#p">p</a></span>; τ₁' ~&gt; τ₂').<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2726')">Proof.</div>
-<div class="proofscript" id="proof2726">
+<div class="toggleproof" onclick="toggleDisplay('proof2707')">Proof.</div>
+<div class="proofscript" id="proof2707">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.CAMP.Lang.CAMPSugar.html#mapall">mapall</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H0</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H3</span>; <span class="tactic">subst</span>.<br/>
@@ -74,7 +74,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">symmetry</span> <span class="kwd">in</span> <span class="id">H4</span>; <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map_eq_nil">map_eq_nil</a></span> <span class="kwd">in</span> <span class="id">H4</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">rtype_equalizer</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Common.Data.RRelation.html#merge_bindings_nil_r">merge_bindings_nil_r</a></span> <span class="kwd">in</span> <span class="id">H5</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.Bindings.html#merge_bindings_nil_r">merge_bindings_nil_r</a></span> <span class="kwd">in</span> <span class="id">H5</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H5</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.Bindings.html#sort_sorted_is_id">sort_sorted_is_id</a></span> <span class="kwd">in</span> <span class="id">H6</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
