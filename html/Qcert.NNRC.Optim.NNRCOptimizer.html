@@ -32,8 +32,8 @@
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html">NNRCRewriteUtil</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewrite.html">NNRCRewrite</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRC.Optim.TNNRCRewrite.html">TNNRCRewrite</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.Utils.OptimizerLogger.html">OptimizerLogger</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html">OptimizerStep</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">OptimizerLogger</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">OptimizerStep</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nnrc_scope</span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string</span>.<br/>
@@ -112,7 +112,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="rewriter_simpl_rew_no_free_var">rewriter_simpl_rew_no_free_var</a></span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">op</span> : <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) (<span class="id">x</span> : <span class="id"><a href="Qcert.Common.Utils.Var.html#var">var</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">op</span> : <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) (<span class="id">x</span> : <span class="id">var</span>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#x">x</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCShadow.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#head_rew">head_rew</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#op">op</a></span>)) -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#x">x</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCShadow.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#op">op</a></span>).<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof2568')">Proof.</div>
 <div class="proofscript" id="proof2568">
@@ -200,14 +200,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tunshadow_preserves_step">tunshadow_preserves_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">unshadow</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Renames</span> <span class="id">variables</span> <span class="id">to</span> <span class="id">avoid</span> <span class="id">shadowing</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tunshadow_preserves_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunshadow_preserves_fun">tunshadow_preserves_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tunshadow_preserves_step_correct">tunshadow_preserves_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunshadow_preserves_step">tunshadow_preserves_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunshadow_preserves_fun_correctness">tunshadow_preserves_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunshadow_preserves_step">tunshadow_preserves_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunshadow_preserves_fun_correctness">tunshadow_preserves_fun_correctness</a></span>.<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_nil_fun">tfor_nil_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}(<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
@@ -225,14 +225,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_nil_step">tfor_nil_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="kwd">for</span>/<span class="id">nil</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Remove</span> <span class="id">loop</span> <span class="id">comprehensions</span> <span class="id">over</span> <span class="id">empty</span> <span class="id">bags</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tfor_nil_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_nil_fun">tfor_nil_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_nil_step_correct">tfor_nil_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_nil_step">tfor_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_nil_fun_correctness">tfor_nil_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_nil_step">tfor_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_nil_fun_correctness">tfor_nil_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_singleton_to_let_fun">tfor_singleton_to_let_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -250,14 +250,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_singleton_to_let_step">tfor_singleton_to_let_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="kwd">for</span>/<span class="id">singleton</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Lower</span> <span class="id">a</span> <span class="id">loop</span> <span class="id">comprehension</span> <span class="id">over</span> <span class="id">a</span> <span class="id">singleton</span> <span class="id">into</span> <span class="id">a</span> <span class="id">singleton</span> <span class="id">of</span> <span class="id">a</span> <span class="kwd">let</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tfor_singleton_to_let_step</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_singleton_to_let_fun">tfor_singleton_to_let_fun</a></span> .<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_singleton_to_let_step_correct">tfor_singleton_to_let_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_singleton_to_let_step">tfor_singleton_to_let_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_singleton_to_let_fun_correctness">tfor_singleton_to_let_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_singleton_to_let_step">tfor_singleton_to_let_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_singleton_to_let_fun_correctness">tfor_singleton_to_let_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tflatten_singleton_fun">tflatten_singleton_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -274,14 +274,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tflatten_singleton_step">tflatten_singleton_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">flatten</span>/<span class="id">singleton</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Simplify</span> <span class="id">a</span> <span class="id">flatten</span> <span class="id">of</span> <span class="id">a</span> <span class="id">singleton</span> <span class="id">bag</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tflatten_singleton_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_singleton_fun">tflatten_singleton_fun</a></span> .<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tflatten_singleton_step_correct">tflatten_singleton_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_singleton_step">tflatten_singleton_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_singleton_fun_correctness">tflatten_singleton_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_singleton_step">tflatten_singleton_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_singleton_fun_correctness">tflatten_singleton_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tflatten_nil_fun">tflatten_nil_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -298,14 +298,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tflatten_nil_step">tflatten_nil_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">flatten</span>/<span class="id">nil</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Simplify</span> <span class="id">flatten</span> <span class="id">of</span> <span class="id">an</span> <span class="id">empty</span> <span class="id">bag</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tflatten_nil_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_nil_fun">tflatten_nil_fun</a></span> .<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tflatten_nil_step_correct">tflatten_nil_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_nil_step">tflatten_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_nil_fun_correctness">tflatten_nil_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_nil_step">tflatten_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_nil_fun_correctness">tflatten_nil_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tsigma_to_if_fun">tsigma_to_if_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}(<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -330,14 +330,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tsigma_to_if_step">tsigma_to_if_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">sigma</span>/<span class="kwd">if</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"???" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tsigma_to_if_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tsigma_to_if_fun">tsigma_to_if_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tsigma_to_if_step_correct">tsigma_to_if_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tsigma_to_if_step">tsigma_to_if_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tsigma_to_if_fun_correctness">tsigma_to_if_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tsigma_to_if_step">tsigma_to_if_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tsigma_to_if_fun_correctness">tsigma_to_if_fun_correctness</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tmap_sigma_fusion_samevar_fun">tmap_sigma_fusion_samevar_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}(<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
@@ -370,14 +370,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tmap_sigma_fusion_samevar_step">tmap_sigma_fusion_samevar_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">sigma</span>/<span class="id">same</span> <span class="id">var</span> <span class="id">fusion</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"???" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tmap_sigma_fusion_samevar_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmap_sigma_fusion_samevar_fun">tmap_sigma_fusion_samevar_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tmap_sigma_fusion_samevar_step_correct">tmap_sigma_fusion_samevar_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmap_sigma_fusion_samevar_step">tmap_sigma_fusion_samevar_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmap_sigma_fusion_samevar_fun_correctness">tmap_sigma_fusion_samevar_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmap_sigma_fusion_samevar_step">tmap_sigma_fusion_samevar_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmap_sigma_fusion_samevar_fun_correctness">tmap_sigma_fusion_samevar_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tdot_of_rec_fun">tdot_of_rec_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}(<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -398,14 +398,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tdot_of_rec_step">tdot_of_rec_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">dot</span>/<span class="id">rec</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Simplify</span> <span class="id">lookup</span> <span class="id">of</span> <span class="id">a</span> <span class="id">new</span> <span class="id">record</span> <span class="id">constructor</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tdot_of_rec_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_rec_fun">tdot_of_rec_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tdot_of_rec_step_correct">tdot_of_rec_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_rec_step">tdot_of_rec_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_rec_fun_correctness">tdot_of_rec_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_rec_step">tdot_of_rec_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_rec_fun_correctness">tdot_of_rec_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tmerge_concat_to_concat_fun">tmerge_concat_to_concat_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}(<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -432,14 +432,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tmerge_concat_to_concat_step">tmerge_concat_to_concat_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">merge</span>-<span class="id">concat</span>-&gt;<span class="id">merge</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Simplify</span> <span class="id">a</span> <span class="id">merge</span>-<span class="id">concat</span> <span class="id">of</span> <span class="id">two</span> <span class="id">singleton</span> <span class="id">records</span> <span class="kwd">with</span> <span class="id">different</span> <span class="id">fields</span> <span class="kwd">using</span> <span class="id">concat</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tmerge_concat_to_concat_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmerge_concat_to_concat_fun">tmerge_concat_to_concat_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tmerge_concat_to_concat_step_correct">tmerge_concat_to_concat_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmerge_concat_to_concat_step">tmerge_concat_to_concat_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmerge_concat_to_concat_fun_correctness">tmerge_concat_to_concat_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmerge_concat_to_concat_step">tmerge_concat_to_concat_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmerge_concat_to_concat_fun_correctness">tmerge_concat_to_concat_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tdot_of_concat_rec_fun">tdot_of_concat_rec_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}(<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -469,14 +469,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tdot_of_concat_rec_step">tdot_of_concat_rec_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">dot</span>/<span class="id">concat</span>/<span class="id">rec</span> 2" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Simplifies</span> <span class="id">lookup</span> <span class="id">of</span> <span class="id">a</span> <span class="id">concatenation</span> <span class="kwd">with</span> <span class="id">a</span> <span class="id">record</span> <span class="id">constructor</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tdot_of_concat_rec_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_concat_rec_fun">tdot_of_concat_rec_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tdot_of_concat_rec_step_correct">tdot_of_concat_rec_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_concat_rec_step">tdot_of_concat_rec_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_concat_rec_fun_correctness">tdot_of_concat_rec_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_concat_rec_step">tdot_of_concat_rec_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_concat_rec_fun_correctness">tdot_of_concat_rec_fun_correctness</a></span>.<br/>
 <br/>
 <div class="doc">Inlining </div>
 <br/>
@@ -502,14 +502,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="should_inline_few_occurences">should_inline_few_occurences</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">x</span>:<span class="id"><a href="Qcert.Common.Utils.Var.html#var">var</a></span>) (<span class="id">to</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="should_inline_few_occurences">should_inline_few_occurences</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">x</span>:<span class="id">var</span>) (<span class="id">to</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_count">use_count</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#x">x</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#to">to</a></span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#UsedOnce">UsedOnce</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="should_inline">should_inline</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">x</span>:<span class="id"><a href="Qcert.Common.Utils.Var.html#var">var</a></span>) (<span class="id">from</span> <span class="id">to</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="should_inline">should_inline</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">x</span>:<span class="id">var</span>) (<span class="id">from</span> <span class="id">to</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#should_inline_small">should_inline_small</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#from">from</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#should_inline_few_occurences">should_inline_few_occurences</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#x">x</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#to">to</a></span>.<br/>
 &nbsp;&nbsp;<br/>
@@ -531,14 +531,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tinline_let_step">tinline_let_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="kwd">let</span> <span class="id">inline</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="kwd">Inline</span> <span class="kwd">let</span> <span class="id">statements</span> <span class="id">heuristically</span> <span class="id">deemed</span> <span class="id">suitable</span> <span class="kwd">for</span> <span class="id">inlining</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tinline_let_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tinline_let_fun">tinline_let_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tinline_let_step_correct">tinline_let_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tinline_let_step">tinline_let_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tinline_let_fun_correctness">tinline_let_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tinline_let_step">tinline_let_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tinline_let_fun_correctness">tinline_let_fun_correctness</a></span>.<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_over_if_nil_fun">tfor_over_if_nil_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}(<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
@@ -559,14 +559,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_over_if_nil_step">tfor_over_if_nil_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="kwd">for</span>/<span class="kwd">if</span>/<span class="kwd">else</span> <span class="id">nil</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Push</span> <span class="id">loop</span> <span class="id">comprehension</span> <span class="id">over</span> <span class="id">an</span> <span class="kwd">if</span> <span class="id">statement</span> <span class="id">through</span> <span class="id">the</span> <span class="kwd">if</span> <span class="id">statement</span> <span class="id">when</span> <span class="id">the</span> <span class="kwd">else</span> <span class="id">clause</span> <span class="id">just</span> <span class="id">constructs</span> <span class="id">an</span> <span class="id">empty</span> <span class="id">bag</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tfor_over_if_nil_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_if_nil_fun">tfor_over_if_nil_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_over_if_nil_step_correct">tfor_over_if_nil_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_if_nil_step">tfor_over_if_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_if_nil_fun_correctness">tfor_over_if_nil_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_if_nil_step">tfor_over_if_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_if_nil_fun_correctness">tfor_over_if_nil_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_over_either_nil_fun">tfor_over_either_nil_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
@@ -592,14 +592,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_over_either_nil_step">tfor_over_either_nil_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="kwd">for</span>/<span class="id">either</span>/<span class="id">right</span> <span class="id">nil</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Push</span> <span class="id">loop</span> <span class="id">comprehension</span> <span class="id">over</span> <span class="id">an</span> <span class="id">either</span> <span class="id">statement</span> <span class="id">through</span> <span class="id">the</span> <span class="id">either</span> <span class="id">statement</span> <span class="id">when</span> <span class="id">the</span> <span class="id">right</span> <span class="id">clause</span> <span class="id">just</span> <span class="id">constructs</span> <span class="id">an</span> <span class="id">empty</span> <span class="id">bag</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tfor_over_either_nil_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_either_nil_fun">tfor_over_either_nil_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tfor_over_either_nil_step_correct">tfor_over_either_nil_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_either_nil_step">tfor_over_either_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_either_nil_fun_correctness">tfor_over_either_nil_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_either_nil_step">tfor_over_either_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_either_nil_fun_correctness">tfor_over_either_nil_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tunop_over_either_const_fun">tunop_over_either_const_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}(<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -617,14 +617,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tunop_over_either_const_step">tunop_over_either_const_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">unary</span>/<span class="id">either</span>/<span class="id">right</span> <span class="id">const</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Push</span> <span class="id">unary</span> <span class="id">operators</span> <span class="id">through</span> <span class="id">either</span> <span class="id">when</span> <span class="id">the</span> <span class="id">right</span> <span class="id">branch</span> <span class="id">is</span> <span class="id">a</span> <span class="id">constant</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tunop_over_either_const_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_either_const_fun">tunop_over_either_const_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tunop_over_either_const_step_correct">tunop_over_either_const_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_either_const_step">tunop_over_either_const_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_either_const_fun_correctness">tunop_over_either_const_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_either_const_step">tunop_over_either_const_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_either_const_fun_correctness">tunop_over_either_const_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tunop_over_if_const_fun">tunop_over_if_const_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}(<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -642,14 +642,14 @@
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tunop_over_if_const_step">tunop_over_if_const_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">unary</span>/<span class="kwd">if</span>/<span class="kwd">else</span> <span class="id">const</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Push</span> <span class="id">unary</span> <span class="id">operators</span> <span class="id">through</span> <span class="kwd">if</span> <span class="id">when</span> <span class="id">the</span> <span class="kwd">else</span> <span class="id">branch</span> <span class="id">is</span> <span class="id">a</span> <span class="id">constant</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tunop_over_if_const_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_if_const_fun">tunop_over_if_const_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tunop_over_if_const_step_correct">tunop_over_if_const_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_if_const_step">tunop_over_if_const_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_if_const_fun_correctness">tunop_over_if_const_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_if_const_step">tunop_over_if_const_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_if_const_fun_correctness">tunop_over_if_const_fun_correctness</a></span>.<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_nil_fun">tproject_nil_fun</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
@@ -670,14 +670,14 @@
 &nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Rewrite</span> @<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_nil_fun_correctness">tproject_nil_fun_correctness</a></span> : <span class="id">toptim_correct</span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_nil_step">tproject_nil_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">project</span>/<span class="id">nil</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Simplify</span> <span class="id">record</span> <span class="id">projection</span> <span class="id">over</span> <span class="id">empty</span> <span class="id">bags</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tproject_nil_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_nil_fun">tproject_nil_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_nil_step_correct">tproject_nil_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_nil_step">tproject_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_nil_fun_correctness">tproject_nil_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_nil_step">tproject_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_nil_fun_correctness">tproject_nil_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_const_fun">tproject_over_const_fun</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -698,14 +698,14 @@
 &nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Rewrite</span> @<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_const_fun_correctness">tproject_over_const_fun_correctness</a></span> : <span class="id">toptim_correct</span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_const_step">tproject_over_const_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">project</span>/<span class="id">const</span> <span class="id">rec</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Simplify</span> <span class="id">record</span> <span class="id">projection</span> <span class="id">over</span> <span class="id">constant</span> <span class="id">records</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tproject_over_const_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_const_fun">tproject_over_const_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_const_step_correct">tproject_over_const_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_const_step">tproject_over_const_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_const_fun_correctness">tproject_over_const_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_const_step">tproject_over_const_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_const_fun_correctness">tproject_over_const_fun_correctness</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_rec_fun">tproject_over_rec_fun</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -729,14 +729,14 @@
 &nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Rewrite</span> @<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_rec_fun_correctness">tproject_over_rec_fun_correctness</a></span> : <span class="id">toptim_correct</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_rec_step">tproject_over_rec_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">project</span>/<span class="id">rec</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Simplify</span> <span class="id">record</span> <span class="id">projection</span> <span class="id">over</span> <span class="id">a</span> <span class="id">record</span> <span class="id">constructor</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tproject_over_rec_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_rec_fun">tproject_over_rec_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_rec_step_correct">tproject_over_rec_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_rec_step">tproject_over_rec_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_rec_fun_correctness">tproject_over_rec_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_rec_step">tproject_over_rec_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_rec_fun_correctness">tproject_over_rec_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_concat_r_fun">tproject_over_concat_r_fun</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -763,14 +763,14 @@
 &nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Rewrite</span> @<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_r_fun_correctness">tproject_over_concat_r_fun_correctness</a></span> : <span class="id">toptim_correct</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_concat_r_step">tproject_over_concat_r_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">project</span>/<span class="id">concat</span>/<span class="id">right</span> <span class="id">rec</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Simplify</span> <span class="id">record</span> <span class="id">projection</span> <span class="id">over</span> <span class="id">concatenation</span> <span class="kwd">with</span> <span class="id">a</span> <span class="id">record</span> <span class="id">constructor</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tproject_over_concat_r_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_r_fun">tproject_over_concat_r_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_concat_r_step_correct">tproject_over_concat_r_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_r_step">tproject_over_concat_r_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_r_fun_correctness">tproject_over_concat_r_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_r_step">tproject_over_concat_r_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_r_fun_correctness">tproject_over_concat_r_fun_correctness</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_concat_l_fun">tproject_over_concat_l_fun</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -795,14 +795,14 @@
 &nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Rewrite</span> @<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_l_fun_correctness">tproject_over_concat_l_fun_correctness</a></span> : <span class="id">toptim_correct</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_concat_l_step">tproject_over_concat_l_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">project</span>/<span class="id">concat</span>/<span class="id">left</span> <span class="id">rec</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Simplify</span> <span class="id">record</span> <span class="id">projection</span> <span class="id">over</span> <span class="id">concatenation</span> <span class="kwd">with</span> <span class="id">a</span> <span class="id">record</span> <span class="id">constructor</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tproject_over_concat_l_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_l_fun">tproject_over_concat_l_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_concat_l_step_correct">tproject_over_concat_l_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_l_step">tproject_over_concat_l_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_l_fun_correctness">tproject_over_concat_l_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_l_step">tproject_over_concat_l_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_l_fun_correctness">tproject_over_concat_l_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_project_fun">tproject_over_project_fun</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -823,14 +823,14 @@
 &nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Rewrite</span> @<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_project_fun_correctness">tproject_over_project_fun_correctness</a></span> : <span class="id">toptim_correct</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_project_step">tproject_over_project_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">project</span>/<span class="id">project</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Fuse</span> <span class="id">nested</span> <span class="id">record</span> <span class="id">projections</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tproject_over_project_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_project_fun">tproject_over_project_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_project_step_correct">tproject_over_project_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_project_step">tproject_over_project_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_project_fun_correctness">tproject_over_project_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_project_step">tproject_over_project_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_project_fun_correctness">tproject_over_project_fun_correctness</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_either_fun">tproject_over_either_fun</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -851,14 +851,14 @@
 &nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Rewrite</span> @<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_either_fun_correctness">tproject_over_either_fun_correctness</a></span> : <span class="id">toptim_correct</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_either_step">tproject_over_either_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">project</span>/<span class="id">either</span>/" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Push</span> <span class="id">record</span> <span class="id">projection</span> <span class="id">through</span> <span class="id">either</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tproject_over_either_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_either_fun">tproject_over_either_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tproject_over_either_step_correct">tproject_over_either_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_either_step">tproject_over_either_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_either_fun_correctness">tproject_over_either_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_either_step">tproject_over_either_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_either_fun_correctness">tproject_over_either_fun_correctness</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tcount_over_flat_for_either_if_nil_fun">tcount_over_flat_for_either_if_nil_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -881,14 +881,14 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tcount_over_flat_for_either_if_nil_step">tcount_over_flat_for_either_if_nil_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">count</span>/<span class="id">flatten</span>/<span class="kwd">for</span>/<span class="id">either</span>/<span class="id">right</span> <span class="kwd">if</span>/<span class="kwd">else</span> <span class="id">nil</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Remove</span> <span class="id">work</span> <span class="id">that</span> <span class="id">is</span> <span class="id">not</span> <span class="id">needed</span> <span class="id">when</span> <span class="id">only</span> <span class="id">the</span> <span class="id">bag</span> <span class="id">count</span> <span class="id">is</span> <span class="id">needed</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tcount_over_flat_for_either_if_nil_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_if_nil_fun">tcount_over_flat_for_either_if_nil_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tcount_over_flat_for_either_if_nil_step_correct">tcount_over_flat_for_either_if_nil_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_if_nil_step">tcount_over_flat_for_either_if_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_if_nil_fun_correctness">tcount_over_flat_for_either_if_nil_fun_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_if_nil_step">tcount_over_flat_for_either_if_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_if_nil_fun_correctness">tcount_over_flat_for_either_if_nil_fun_correctness</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tcount_over_flat_for_either_either_nil_fun">tcount_over_flat_for_either_either_nil_fun</a></span>  {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}(<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#e">e</a></span> <span class="kwd">with</span><br/>
@@ -912,16 +912,16 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tcount_over_flat_for_either_either_nil_step">tcount_over_flat_for_either_either_nil_step</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStep">mkOptimizerStep</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStep</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">count</span>/<span class="id">flatten</span>/<span class="kwd">for</span>/<span class="id">either</span>/<span class="id">right</span> <span class="id">either</span>/<span class="id">right</span> <span class="id">nil</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">Remove</span> <span class="id">work</span> <span class="id">that</span> <span class="id">is</span> <span class="id">not</span> <span class="id">needed</span> <span class="id">when</span> <span class="id">only</span> <span class="id">the</span> <span class="id">bag</span> <span class="id">count</span> <span class="id">is</span> <span class="id">needed</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<span class="id">tcount_over_flat_for_either_either_nil_fun</span>" <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_either_nil_fun">tcount_over_flat_for_either_either_nil_fun</a></span> .<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tcount_over_flat_for_either_either_nil_step_correct">tcount_over_flat_for_either_either_nil_step_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#mkOptimizerStepModel">mkOptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_either_nil_step">tcount_over_flat_for_either_either_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_either_nil_fun_correctness">tcount_over_flat_for_either_either_nil_fun_correctness</a></span>.  <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">mkOptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_either_nil_step">tcount_over_flat_for_either_either_nil_step</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_either_nil_fun_correctness">tcount_over_flat_for_either_either_nil_fun_correctness</a></span>.  <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tnnrc_optim_list">tnnrc_optim_list</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (@<span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#OptimizerStep">OptimizerStep</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tnnrc_optim_list">tnnrc_optim_list</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (@<span class="id">OptimizerStep</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= [<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_nil_step">tfor_nil_step</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_singleton_to_let_step">tfor_singleton_to_let_step</a></span><br/>
@@ -948,7 +948,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_either_nil_step">tcount_over_flat_for_either_either_nil_step</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;].<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tnnrc_optim_model_list">tnnrc_optim_model_list</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>} : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#OptimizerStepModel">OptimizerStepModel</a></span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRCEq.html#tnnrc_rewrites_to">tnnrc_rewrites_to</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tnnrc_optim_model_list">tnnrc_optim_model_list</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>} : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id">OptimizerStepModel</span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRCEq.html#tnnrc_rewrites_to">tnnrc_rewrites_to</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= [<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_nil_step_correct">tfor_nil_step_correct</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_singleton_to_let_step_correct">tfor_singleton_to_let_step_correct</a></span><br/>
@@ -976,41 +976,41 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;].<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="tnnrc_optim_model_list_complete">tnnrc_optim_model_list_complete</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_model_list_complete">optim_model_list_complete</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list">tnnrc_optim_list</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_model_list">tnnrc_optim_model_list</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id">optim_model_list_complete</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list">tnnrc_optim_list</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_model_list">tnnrc_optim_model_list</a></span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof2597')">Proof.</div>
 <div class="proofscript" id="proof2597">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">optim_correct_list_complete_prover</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tnnrc_optim_list_correct">tnnrc_optim_list_correct</a></span> {<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_list_correct">optim_list_correct</a></span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRCEq.html#tnnrc_rewrites_to">tnnrc_rewrites_to</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list">tnnrc_optim_list</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_list_correct_from_model">optim_list_correct_from_model</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_model_list_complete">tnnrc_optim_model_list_complete</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id">optim_list_correct</span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRCEq.html#tnnrc_rewrites_to">tnnrc_rewrites_to</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list">tnnrc_optim_list</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">optim_list_correct_from_model</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_model_list_complete">tnnrc_optim_model_list_complete</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="tnnrc_optim_list_distinct">tnnrc_optim_list_distinct</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_list_distinct">optim_list_distinct</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list">tnnrc_optim_list</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">optim_list_distinct</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list">tnnrc_optim_list</a></span>.<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof2598')">Proof.</div>
 <div class="proofscript" id="proof2598">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_list_distinct_prover">optim_list_distinct_prover</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">optim_list_distinct_prover</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">vm_compute</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="run_nnrc_optims">run_nnrc_optims</a></span> <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">logger</span>:<span class="id"><a href="Qcert.Common.Utils.OptimizerLogger.html#optimizer_logger">optimizer_logger</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">opc</span>:<span class="id"><a href="Qcert.Common.Utils.OptimizerLogger.html#optim_phases_config">optim_phases_config</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">logger</span>:<span class="id">optimizer_logger</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">opc</span>:<span class="id">optim_phases_config</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span> -&gt; <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Utils.OptimizerLogger.html#run_phases">run_phases</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_map_deep">tnnrc_map_deep</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCSize.html#nnrc_size">NNRCSize.nnrc_size</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list">tnnrc_optim_list</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#opc">opc</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">run_phases</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_map_deep">tnnrc_map_deep</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCSize.html#nnrc_size">NNRCSize.nnrc_size</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list">tnnrc_optim_list</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#opc">opc</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="run_nnrc_optims_correctness">run_nnrc_optims_correctness</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>} {<span class="id">logger</span>:<span class="id"><a href="Qcert.Common.Utils.OptimizerLogger.html#optimizer_logger">optimizer_logger</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">opc</span>:<span class="id"><a href="Qcert.Common.Utils.OptimizerLogger.html#optim_phases_config">optim_phases_config</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>} {<span class="id">logger</span>:<span class="id">optimizer_logger</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">opc</span>:<span class="id">optim_phases_config</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">p</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCEq.html#tnnrc_rewrites_to">tnnrc_rewrites_to</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#p">p</a></span> (<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#run_nnrc_optims">run_nnrc_optims</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#opc">opc</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#p">p</a></span>).<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof2599')">Proof.</div>
 <div class="proofscript" id="proof2599">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#run_nnrc_optims">run_nnrc_optims</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Utils.OptimizerLogger.html#run_phases_correctness">run_phases_correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">run_phases_correctness</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_map_deep_correctness">tnnrc_map_deep_correctness</a></span>; <span class="tactic">auto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list_correct">tnnrc_optim_list_correct</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -1019,32 +1019,32 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nnrc_default_optim_list">nnrc_default_optim_list</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= [<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tinline_let_step">tinline_let_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_either_nil_step">tcount_over_flat_for_either_either_nil_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_if_nil_step">tcount_over_flat_for_either_if_nil_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmerge_concat_to_concat_step">tmerge_concat_to_concat_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_concat_rec_step">tdot_of_concat_rec_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_rec_step">tdot_of_rec_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_singleton_step">tflatten_singleton_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_nil_step">tflatten_nil_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_singleton_to_let_step">tfor_singleton_to_let_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_either_const_step">tunop_over_either_const_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_if_const_step">tunop_over_if_const_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_either_nil_step">tfor_over_either_nil_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_if_nil_step">tfor_over_if_nil_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_nil_step">tfor_nil_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmap_sigma_fusion_samevar_step">tmap_sigma_fusion_samevar_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_nil_step">tproject_nil_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_const_step">tproject_over_const_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_rec_step">tproject_over_rec_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_r_step">tproject_over_concat_r_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_l_step">tproject_over_concat_l_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_project_step">tproject_over_project_step</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_either_step">tproject_over_either_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tinline_let_step">tinline_let_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_either_nil_step">tcount_over_flat_for_either_either_nil_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tcount_over_flat_for_either_if_nil_step">tcount_over_flat_for_either_if_nil_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmerge_concat_to_concat_step">tmerge_concat_to_concat_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_concat_rec_step">tdot_of_concat_rec_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tdot_of_rec_step">tdot_of_rec_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_singleton_step">tflatten_singleton_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tflatten_nil_step">tflatten_nil_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_singleton_to_let_step">tfor_singleton_to_let_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_either_const_step">tunop_over_either_const_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tunop_over_if_const_step">tunop_over_if_const_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_either_nil_step">tfor_over_either_nil_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_over_if_nil_step">tfor_over_if_nil_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tfor_nil_step">tfor_nil_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tmap_sigma_fusion_samevar_step">tmap_sigma_fusion_samevar_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_nil_step">tproject_nil_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_const_step">tproject_over_const_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_rec_step">tproject_over_rec_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_r_step">tproject_over_concat_r_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_concat_l_step">tproject_over_concat_l_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_project_step">tproject_over_project_step</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">optim_step_name</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tproject_over_either_step">tproject_over_either_step</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Remark</span> <span class="id"><a name="nnrc_default_optim_list_all_valid">nnrc_default_optim_list_all_valid</a></span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Common.Utils.OptimizerStep.html#valid_optims">valid_optims</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list">tnnrc_optim_list</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#nnrc_default_optim_list">nnrc_default_optim_list</a></span> = (<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#nnrc_default_optim_list">nnrc_default_optim_list</a></span>,<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id">valid_optims</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#tnnrc_optim_list">tnnrc_optim_list</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#nnrc_default_optim_list">nnrc_default_optim_list</a></span> = (<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#nnrc_default_optim_list">nnrc_default_optim_list</a></span>,<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof2600')">Proof.</div>
 <div class="proofscript" id="proof2600">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">vm_compute</span>; <span class="tactic">trivial</span>.<br/>
@@ -1056,11 +1056,11 @@
 &nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#NNRCOptimizer.default">default</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="run_nnrc_optims_default">run_nnrc_optims_default</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} {<span class="id">logger</span>:<span class="id"><a href="Qcert.Common.Utils.OptimizerLogger.html#optimizer_logger">optimizer_logger</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>} {<span class="id">logger</span>:<span class="id">optimizer_logger</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#run_nnrc_optims">run_nnrc_optims</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#default_nnrc_optim_phases">default_nnrc_optim_phases</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="run_nnrc_optims_default_correct">run_nnrc_optims_default_correct</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>} {<span class="id">logger</span>:<span class="id"><a href="Qcert.Common.Utils.OptimizerLogger.html#optimizer_logger">optimizer_logger</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>} <span class="id">p</span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">model</span>:<span class="id"><a href="Qcert.Common.CommonSystem.html#basic_model">basic_model</a></span>} {<span class="id">logger</span>:<span class="id">optimizer_logger</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>} <span class="id">p</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCEq.html#tnnrc_rewrites_to">tnnrc_rewrites_to</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#p">p</a></span> (<span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#run_nnrc_optims_default">run_nnrc_optims_default</a></span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCOptimizer.html#p">p</a></span>).<br/>
 <div class="toggleproof" onclick="toggleDisplay('proof2601')">Proof.</div>
 <div class="proofscript" id="proof2601">

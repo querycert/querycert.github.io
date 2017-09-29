@@ -1,14 +1,9 @@
 // some types
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 // constants
 // these must remain 100 for the puzzle piece path stuff to work out
 var piecewidth = 100;
@@ -98,7 +93,7 @@ function compileButton() {
     var handler = function (resultPack) {
         theTextArea.value = resultPack.result;
     };
-    qcertPreCompile({
+    qcertWhiskDispatch({
         source: path[0],
         target: path[path.length - 1],
         path: middlePath,
@@ -451,7 +446,7 @@ var errorPiece;
 // 	frontingObject.backingObject = <BackingObject>(backingObject);
 // 	frontingObject.associate();
 // }
-var GriddablePuzzlePiece = /** @class */ (function () {
+var GriddablePuzzlePiece = (function () {
     function GriddablePuzzlePiece() {
     }
     GriddablePuzzlePiece.prototype.getGridPoint = function () {
@@ -481,7 +476,7 @@ var GriddablePuzzlePiece = /** @class */ (function () {
     };
     return GriddablePuzzlePiece;
 }());
-var Grid = /** @class */ (function () {
+var Grid = (function () {
     function Grid() {
     }
     Grid.remove = function (location) {
@@ -562,7 +557,7 @@ var Grid = /** @class */ (function () {
     };
     return Grid;
 }());
-var BasicPuzzlePiece = /** @class */ (function (_super) {
+var BasicPuzzlePiece = (function (_super) {
     __extends(BasicPuzzlePiece, _super);
     function BasicPuzzlePiece(canvas, previouslangid, previouslabel, args) {
         var _this = _super.call(this) || this;
@@ -632,7 +627,7 @@ var BasicPuzzlePiece = /** @class */ (function (_super) {
     ;
     return BasicPuzzlePiece;
 }(GriddablePuzzlePiece));
-var InteractivePuzzlePiece = /** @class */ (function (_super) {
+var InteractivePuzzlePiece = (function (_super) {
     __extends(InteractivePuzzlePiece, _super);
     function InteractivePuzzlePiece(canvas, previouslangid, previouslabel, args) {
         var _this = _super.call(this, canvas, previouslangid, previouslabel, args) || this;
@@ -964,7 +959,6 @@ var InteractivePuzzlePiece = /** @class */ (function (_super) {
                 // p.backingObject.top = p.backingObject.top + pieceheight/2;
                 // p.backingObject.setCoords();
                 transients.push(p);
-                //this.backingObject.canvas.add(p.backingObject);
             }
         }
         piece2.previouslangid = transients[transients.length - 1].langid;
@@ -973,7 +967,7 @@ var InteractivePuzzlePiece = /** @class */ (function (_super) {
     };
     return InteractivePuzzlePiece;
 }(BasicPuzzlePiece));
-var SourcePuzzlePiece = /** @class */ (function (_super) {
+var SourcePuzzlePiece = (function (_super) {
     __extends(SourcePuzzlePiece, _super);
     function SourcePuzzlePiece(canvas, options) {
         var _this = _super.call(this, canvas, null, null, { options: options }) || this;
@@ -1063,7 +1057,7 @@ var SourcePuzzlePiece = /** @class */ (function (_super) {
     };
     return SourcePuzzlePiece;
 }(BasicPuzzlePiece));
-var TransientPuzzlePiece = /** @class */ (function (_super) {
+var TransientPuzzlePiece = (function (_super) {
     __extends(TransientPuzzlePiece, _super);
     function TransientPuzzlePiece(canvas, previouslangid, previouslabel, args) {
         var _this = _super.call(this, canvas, previouslangid, previouslabel, args) || this;
@@ -1151,7 +1145,7 @@ var TransientPuzzlePiece = /** @class */ (function (_super) {
 // Of course, that piece will be marked as "generated"
 // which means that 
 // the sources that are passed in are owned (and manipulated directly) by the resulting composite object
-var CompositePuzzlePiece = /** @class */ (function (_super) {
+var CompositePuzzlePiece = (function (_super) {
     __extends(CompositePuzzlePiece, _super);
     function CompositePuzzlePiece(canvas, sources) {
         var _this = _super.call(this) || this;
@@ -1308,11 +1302,9 @@ var CompositePuzzlePiece = /** @class */ (function (_super) {
         }
         if (this.lastSelectedPart >= 0) {
             var lastpartpiece = this.parts[this.lastSelectedPart];
-            //lastpart.makeUnselected();
         }
         if (newSelectedPart >= 0) {
             var newpart = this.sources[newSelectedPart];
-            //newpart.makeSelected();
         }
         this.lastSelectedPart = newSelectedPart;
         this.canvas.renderAll();
@@ -1345,7 +1337,7 @@ var defaultTabRectOpts = {
     cornerSize: 2,
     strokeLineCap: 'round'
 };
-var ICanvasTab = /** @class */ (function () {
+var ICanvasTab = (function () {
     function ICanvasTab(canvas) {
         this.canvas = canvas;
     }
@@ -1360,14 +1352,14 @@ var ICanvasTab = /** @class */ (function () {
     };
     return ICanvasTab;
 }());
-var ICanvasDynamicTab = /** @class */ (function (_super) {
+var ICanvasDynamicTab = (function (_super) {
     __extends(ICanvasDynamicTab, _super);
     function ICanvasDynamicTab(canvas) {
         return _super.call(this, canvas) || this;
     }
     return ICanvasDynamicTab;
 }(ICanvasTab));
-var TabManager = /** @class */ (function (_super) {
+var TabManager = (function (_super) {
     __extends(TabManager, _super);
     function TabManager(canvas, options, tabs) {
         var _this = _super.call(this, canvas) || this;
@@ -1518,7 +1510,7 @@ var TabManager = /** @class */ (function (_super) {
     };
     return TabManager;
 }(ICanvasTab));
-var BuilderTab = /** @class */ (function (_super) {
+var BuilderTab = (function (_super) {
     __extends(BuilderTab, _super);
     function BuilderTab(canvas) {
         var _this = _super.call(this, canvas) || this;
@@ -1676,7 +1668,7 @@ var BuilderTab = /** @class */ (function (_super) {
     };
     return BuilderTab;
 }(ICanvasTab));
-var CompileTab = /** @class */ (function (_super) {
+var CompileTab = (function (_super) {
     __extends(CompileTab, _super);
     function CompileTab(canvas) {
         var _this = _super.call(this, canvas) || this;
@@ -1749,7 +1741,7 @@ var CompileTab = /** @class */ (function (_super) {
     };
     return CompileTab;
 }(ICanvasTab));
-var ExecTab = /** @class */ (function (_super) {
+var ExecTab = (function (_super) {
     __extends(ExecTab, _super);
     function ExecTab(canvas) {
         var _this = _super.call(this, canvas) || this;
@@ -1914,11 +1906,9 @@ function makeTransitionURL(previouslangid, previouslabel, langid, label) {
     var previouslabel = fixLabel(previouslabel);
     if (previouslangid == langid) {
         return makeLemmaURL(label + ".Optim." + label + "Optimizer", "run_" + langid + "_optims");
-        //return makeLemmaURL(label+"Optimizer","run_"+langid + "_optims");
     }
     else {
         return makeLemmaURL("Translation." + previouslabel + "to" + label, previouslangid + "_to_" + langid + "_top");
-        //return makeLemmaURL(previouslabel+"to"+label,previouslangid + "_to_" + langid + "_top");
     }
 }
 function makeOptimElement(modulebase, o) {
@@ -1976,7 +1966,7 @@ function getCountWithUpdate(listnode) {
         }
     return count;
 }
-var OptimPhaseTab = /** @class */ (function (_super) {
+var OptimPhaseTab = (function (_super) {
     __extends(OptimPhaseTab, _super);
     function OptimPhaseTab(canvas, div, modulebase, optims, phase, options) {
         var _this = _super.call(this, canvas) || this;
@@ -2078,7 +2068,7 @@ function optimPhaseMake(canvas, div, module_base, optims, options) {
         return OptimPhaseTab.make(canvas, div, module_base, optims, phase, options);
     };
 }
-var OptimizationManager = /** @class */ (function (_super) {
+var OptimizationManager = (function (_super) {
     __extends(OptimizationManager, _super);
     function OptimizationManager(canvas, options, language, module_base, optims, cfg_phases) {
         var _this = _super.call(this, canvas) || this;
@@ -2258,12 +2248,7 @@ function completeCSVs(readFiles) {
         return;
     }
     var delimiter = document.getElementById("delimiter").value;
-    var schema = JSON.parse(schemaText);
-    var toSend = JSON.stringify({ schema: schema, delimiter: delimiter, data: readFiles });
-    var process = function (result) {
-        getExecInputArea().value = result;
-    };
-    preProcess(toSend, "csv2JSON", process);
+    getExecInputArea().value = JSON.stringify({ delimiter: delimiter, data: readFiles });
 }
 function handleOptimFile(files) {
     if (files.length > 0) {
@@ -2316,37 +2301,11 @@ function handleFile(output, isSchema, files) {
         else {
             reader.onload = function (event) {
                 var contents = event.target.result;
-                if (isSchema && isSQLSchema(contents))
-                    convertSQLSchema(contents, outputElem_1);
-                else
-                    outputElem_1.value = contents;
+                outputElem_1.value = contents;
             };
             reader.readAsText(file);
         }
     }
-}
-// Determine if a String contains a SQL schema.  Not intended to be foolproof but just to discriminate the two supported schema
-// notations (SQL and JSON) when the input is at least mostly valid.
-function isSQLSchema(schemaText) {
-    /* A SQL schema should have the word "create" in it but SQL is case insensitive  */
-    var create = schemaText.search(/create/i);
-    if (create < 0)
-        return false;
-    var brace = schemaText.indexOf('{');
-    if (brace >= 0 && brace < create)
-        /* Word create is coincidentally appearing inside what is probably a JSON schema */
-        return false;
-    /* Looking more like SQL.  Drop any blanks that follow 'create' */
-    var balance = schemaText.substring(create + 6).trim();
-    /* The next word must be 'table' (case insensitive) */
-    var table = balance.search(/table/i);
-    return table == 0;
-}
-function convertSQLSchema(toConvert, outputElem) {
-    var process = function (result) {
-        outputElem.value = result;
-    };
-    var result = preProcess(toConvert, "sqlSchema2JSON", process);
 }
 function handleFileDrop(output, event) {
     event.stopPropagation();
