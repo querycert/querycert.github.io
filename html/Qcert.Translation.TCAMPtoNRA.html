@@ -40,8 +40,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ATnra_match">ATnra_match</a></span> {τ<span class="id">c</span> <span class="id">n</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#n">n</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRASugar.html#nra_match">nra_match</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#n">n</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span> ⊣ τ<span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3010')">Proof.</div>
-<div class="proofscript" id="proof3010">
+<div class="toggleproof" onclick="toggleDisplay('proof3014')">Proof.</div>
+<div class="proofscript" id="proof3014">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -49,8 +49,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ATnra_match_inv">ATnra_match_inv</a></span> {τ<span class="id">c</span> <span class="id">n</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRASugar.html#nra_match">nra_match</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#n">n</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> τ<span class="id">out</span>', τ<span class="id">out</span> = <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span>' /\ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#n">n</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span>' ⊣ τ<span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3011')">Proof.</div>
-<div class="proofscript" id="proof3011">
+<div class="toggleproof" onclick="toggleDisplay('proof3015')">Proof.</div>
+<div class="proofscript" id="proof3015">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 1; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H2</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
@@ -59,8 +59,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ATnra_match_invcoll">ATnra_match_invcoll</a></span> {τ<span class="id">c</span> <span class="id">n</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRASugar.html#nra_match">nra_match</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#n">n</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span> ⊣ τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#n">n</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3012')">Proof.</div>
-<div class="proofscript" id="proof3012">
+<div class="toggleproof" onclick="toggleDisplay('proof3016')">Proof.</div>
+<div class="proofscript" id="proof3016">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#ATnra_match_inv">ATnra_match_inv</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">destruct</span> <span class="id">H</span> <span class="kwd">as</span> [?[??]].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>; <span class="id">rtype_equalizer</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>. <span class="tactic">trivial</span>.<br/>
@@ -73,8 +73,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span>  ▷ τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#k">k</a></span> τ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#pf">pf</a></span> ⊣ τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.OperatorsTyping.TUtil.html#tdot">tdot</a></span> τ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#s">s</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> τ<span class="id">out</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAUnop">NRAUnop</a></span> (<span class="id"><a href="Qcert.Common.Operators.UnaryOperators.html#OpDot">OpDot</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#s">s</a></span>) <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3013')">Proof.</div>
-<div class="proofscript" id="proof3013">
+<div class="toggleproof" onclick="toggleDisplay('proof3017')">Proof.</div>
+<div class="proofscript" id="proof3017">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -84,8 +84,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> τ <span class="id">pf</span> <span class="id">k</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span>  ▷ τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#k">k</a></span> τ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#pf">pf</a></span> ⊣ τ<span class="id">c</span> /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.OperatorsTyping.TUtil.html#tdot">tdot</a></span> τ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#s">s</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> τ<span class="id">out</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3014')">Proof.</div>
-<div class="proofscript" id="proof3014">
+<div class="toggleproof" onclick="toggleDisplay('proof3018')">Proof.</div>
+<div class="proofscript" id="proof3018">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 1; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H2</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
@@ -93,8 +93,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ATnra_data">ATnra_data</a></span> τ<span class="id">c</span> τ τ<span class="kwd">in</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRASugar.html#nra_data">nra_data</a></span> ▷ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#nra_context_type">nra_context_type</a></span> τ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="kwd">in</span> ⊣ τ<span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3015')">Proof.</div>
-<div class="proofscript" id="proof3015">
+<div class="toggleproof" onclick="toggleDisplay('proof3019')">Proof.</div>
+<div class="proofscript" id="proof3019">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#ATdot">ATdot</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
@@ -110,8 +110,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;τ<span class="id">rem</span> = (<span class="id"><a href="Qcert.Common.Operators.RecOperators.html#rremove">rremove</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_concat_sort">rec_concat_sort</a></span> τ₁ ((<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#s2">s2</a></span>,τ<span class="id">s</span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)) <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#s1">s1</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRAExt.html#unnest_two">unnest_two</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#s1">s1</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#s2">s2</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#op">op</a></span> ▷ <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Closed">Closed</a></span> τ<span class="id">rem</span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#pf2">pf2</a></span>) ⊣ τ<span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3016')">Proof.</div>
-<div class="proofscript" id="proof3016">
+<div class="toggleproof" onclick="toggleDisplay('proof3020')">Proof.</div>
+<div class="proofscript" id="proof3020">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Grab</span> <span class="id">Existential</span> <span class="kwd">Variables</span>.<br/>
@@ -121,8 +121,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="Coll_proj1">Coll_proj1</a></span> τ :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ) = <span class="id">Coll</span>₀ (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> τ).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3017')">Proof.</div>
-<div class="proofscript" id="proof3017">
+<div class="toggleproof" onclick="toggleDisplay('proof3021')">Proof.</div>
+<div class="proofscript" id="proof3021">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
@@ -132,8 +132,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#op">op</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Closed">Closed</a></span> τ₁ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#pf1">pf1</a></span>)) ⊣ τ<span class="id">c</span> /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.OperatorsTyping.TUtil.html#tdot">tdot</a></span> τ₁ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#s1">s1</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">s</span>) /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;τ<span class="id">out</span> = <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Closed">Closed</a></span> (<span class="id"><a href="Qcert.Common.Operators.RecOperators.html#rremove">rremove</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_concat_sort">rec_concat_sort</a></span> τ₁ ((<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#s2">s2</a></span>,τ<span class="id">s</span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)) <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#s1">s1</a></span>) <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#pf2">pf2</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3018')">Proof.</div>
-<div class="proofscript" id="proof3018">
+<div class="toggleproof" onclick="toggleDisplay('proof3022')">Proof.</div>
+<div class="proofscript" id="proof3022">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Ltac</span> <span class="id">ics</span> <span class="id">H</span> := <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">clear</span> <span class="id">H</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">ics</span> <span class="id">H</span>. <span class="id">rtype_equalizer</span>. <span class="tactic">subst</span>.<br/>
@@ -155,17 +155,21 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id">nra_of_camp_type_preserve</span>' τ<span class="id">c</span> Γ <span class="id">pf</span> <span class="id">p</span> τ<span class="kwd">in</span> τ<span class="id">out</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.CAMP.Typing.TCAMP.html#camp_type">camp_type</a></span> τ<span class="id">c</span> Γ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> τ<span class="kwd">in</span> τ<span class="id">out</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#nra_of_camp">nra_of_camp</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> ▷ (<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#nra_context_type">nra_context_type</a></span> (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Closed">Closed</a></span> Γ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#pf">pf</a></span>) τ<span class="kwd">in</span>) &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span> ⊣ τ<span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3019')">Proof.</div>
-<div class="proofscript" id="proof3019">
+<div class="toggleproof" onclick="toggleDisplay('proof3023')">Proof.</div>
+<div class="proofscript" id="proof3023">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">data_type_drec_nil</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> τ<span class="id">c</span> Γ <span class="id">pf</span> τ<span class="kwd">in</span> τ<span class="id">out</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">p</span>; <span class="tactic">simpl</span>; <span class="tactic">inversion</span> 1; <span class="tactic">subst</span>.<br/>
-&nbsp;PTconst&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>.<br/>
-&nbsp;PTunop&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>. <br/>
-&nbsp;PTbinop&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTconst&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTunop&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>. <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTbinop&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">eapply</span> (@<span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRABinop">type_NRABinop</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#TCAMPtoNRA.m">m</a></span> τ<span class="id">c</span> (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Closed">Closed</a></span> (("<span class="id">a1</span>", τ₂₁)::("<span class="id">a2</span>", τ₂₂)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span> <span class="id">_</span>))); <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
-&nbsp;PTmap&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTmap&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#ATunnest_two">ATunnest_two</a></span>.<br/>
@@ -177,10 +181,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">reflexivity</span>.<br/>
-&nbsp;PTassert&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
-&nbsp;PTorElse&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>.<br/>
-&nbsp;PTit&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>.<br/>
-&nbsp;PTletIt&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTassert&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTorElse&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTit&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTletIt&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#ATunnest_two">ATunnest_two</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
@@ -191,10 +199,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">reflexivity</span>.<br/>
-&nbsp;PTgetconstant&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> (<span class="id">econstructor</span>; <span class="tactic">eauto</span>).<br/>
-&nbsp;PTenv&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_ext">is_list_sorted_ext</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">pf</span> <span class="id">pf0</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTgetconstant&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> (<span class="id">econstructor</span>; <span class="tactic">eauto</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTenv&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_ext">is_list_sorted_ext</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">pf</span> <span class="id">pf0</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> (<span class="id">econstructor</span>; <span class="tactic">eauto</span>).<br/>
-&nbsp;PTletEnv&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTletEnv&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">assert</span> (Γ<span class="id">eq</span>:Γ'' = <span class="id"><a href="Qcert.Utils.Bindings.html#rec_concat_sort">rec_concat_sort</a></span> Γ Γ')<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">by</span> (<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Bindings.html#merge_bindings">merge_bindings</a></span> <span class="kwd">in</span> *; <br/>
@@ -223,8 +234,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>. <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">reflexivity</span>.<br/>
-&nbsp;PTEither&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> (<span class="id">econstructor</span>; <span class="tactic">eauto</span>).<br/>
-&nbsp;PTEitherConcat&nbsp;*)</span>&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> (<span class="id">econstructor</span>; <span class="tactic">eauto</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTEither&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> (<span class="id">econstructor</span>; <span class="tactic">eauto</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;PTEitherConcat&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> (<span class="id">econstructor</span>; <span class="tactic">eauto</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Grab</span> <span class="id">Existential</span> <span class="kwd">Variables</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>. <span class="tactic">eauto</span>. <span class="tactic">eauto</span>. <span class="tactic">eauto</span>. <span class="tactic">eauto</span>. <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>. <span class="tactic">eauto</span>. <span class="tactic">eauto</span>. <span class="tactic">eauto</span>. <span class="tactic">eauto</span>. <br/>
@@ -234,8 +247,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nra_of_camp_type_preserve">nra_of_camp_type_preserve</a></span> τ<span class="id">c</span> Γ <span class="id">pf</span> <span class="id">p</span> τ<span class="kwd">in</span> τ<span class="id">out</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.CAMP.Typing.TCAMP.html#camp_type">camp_type</a></span> τ<span class="id">c</span> Γ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> τ<span class="kwd">in</span> τ<span class="id">out</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#nra_of_camp">nra_of_camp</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> ▷ (<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#nra_context_type">nra_context_type</a></span> (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Closed">Closed</a></span> Γ <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#pf">pf</a></span>) τ<span class="kwd">in</span>) &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span> ⊣ τ<span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3020')">Proof.</div>
-<div class="proofscript" id="proof3020">
+<div class="toggleproof" onclick="toggleDisplay('proof3024')">Proof.</div>
+<div class="proofscript" id="proof3024">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">nra_of_camp_type_preserve</span>'.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">trivial</span>.<br/>
@@ -247,8 +260,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#c">c</a></span> τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#nra_of_camp">nra_of_camp</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> ▷ (<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#nra_context_type">nra_context_type</a></span> (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Closed">Closed</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span>) τ<span class="kwd">in</span>) &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span> ⊣ τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#nra_of_camp_top">nra_of_camp_top</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span> ⊣ τ<span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3021')">Proof.</div>
-<div class="proofscript" id="proof3021">
+<div class="toggleproof" onclick="toggleDisplay('proof3025')">Proof.</div>
+<div class="proofscript" id="proof3025">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">normalize_normalizes</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">normalize_preserves_type</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -274,8 +287,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#c">c</a></span> τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.CAMP.Typing.TCAMP.html#camp_type">camp_type</a></span> τ<span class="id">c</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> τ<span class="kwd">in</span> τ<span class="id">out</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#nra_of_camp_top">nra_of_camp_top</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span> ⊣ τ<span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3022')">Proof.</div>
-<div class="proofscript" id="proof3022">
+<div class="toggleproof" onclick="toggleDisplay('proof3026')">Proof.</div>
+<div class="proofscript" id="proof3026">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#nra_of_camp_nra_of_camp_top">nra_of_camp_nra_of_camp_top</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#nra_of_camp_type_preserve">nra_of_camp_type_preserve</a></span>; <span class="tactic">eauto</span>.<br/>
@@ -287,8 +300,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ATaid_inv">ATaid_inv</a></span> {τ<span class="id">c</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAID">NRAID</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span> -&gt; τ<span class="kwd">in</span> = τ<span class="id">out</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3023')">Proof.</div>
-<div class="proofscript" id="proof3023">
+<div class="toggleproof" onclick="toggleDisplay('proof3027')">Proof.</div>
+<div class="proofscript" id="proof3027">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 1; <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
@@ -300,8 +313,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">dec</span>:<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#A">A</a></span>, {<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#x">x</a></span> = <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#y">y</a></span>} + {<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#x">x</a></span> &lt;&gt; <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#y">y</a></span>}) <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">x</span>:<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#A">A</a></span>} <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">p1</span>:<span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#x">x</a></span> = <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#x">x</a></span>) : <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p1">p1</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#x">x</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3024')">Proof.</div>
-<div class="proofscript" id="proof3024">
+<div class="toggleproof" onclick="toggleDisplay('proof3028')">Proof.</div>
+<div class="proofscript" id="proof3028">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">apply</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Eqdep_dec.html#UIP_dec">UIP_dec</a></span>); <span class="tactic">auto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
@@ -391,8 +404,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nra_of_camp_type_form_output_weak">nra_of_camp_type_form_output_weak</a></span> τ<span class="id">c</span> <span class="id">p</span> τ<span class="kwd">in</span> τ<span class="id">out</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#nra_of_camp">nra_of_camp</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> τ<span class="id">out</span>',τ<span class="id">out</span> = <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3025')">Proof.</div>
-<div class="proofscript" id="proof3025">
+<div class="toggleproof" onclick="toggleDisplay('proof3029')">Proof.</div>
+<div class="proofscript" id="proof3029">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> τ<span class="kwd">in</span> τ<span class="id">out</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">p</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>; <span class="tactic">try</span> <span class="id">inverter</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -400,8 +413,8 @@
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="nra_of_camp_type_form_output">nra_of_camp_type_form_output</a></span> τ<span class="id">c</span> <span class="id">p</span> τ<span class="kwd">in</span> τ<span class="id">out</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#nra_of_camp">nra_of_camp</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{τ<span class="id">out</span>' | τ<span class="id">out</span> = <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span>'}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3026')">Proof.</div>
-<div class="proofscript" id="proof3026">
+<div class="toggleproof" onclick="toggleDisplay('proof3030')">Proof.</div>
+<div class="proofscript" id="proof3030">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#nra_of_camp_type_form_output_weak">nra_of_camp_type_form_output_weak</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> τ<span class="id">out</span>.<br/>
@@ -414,8 +427,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nra_of_camp_top_type_form_output_weak">nra_of_camp_top_type_form_output_weak</a></span> τ<span class="id">c</span> <span class="id">p</span> τ<span class="kwd">in</span> τ<span class="id">out</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#nra_of_camp_top">nra_of_camp_top</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> τ<span class="id">out</span>', τ<span class="id">out</span> = <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3027')">Proof.</div>
-<div class="proofscript" id="proof3027">
+<div class="toggleproof" onclick="toggleDisplay('proof3031')">Proof.</div>
+<div class="proofscript" id="proof3031">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#nra_of_camp_top">nra_of_camp_top</a></span>; <span class="tactic">intros</span>; <span class="id">inverter</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -423,8 +436,8 @@
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="nra_of_camp_top_type_form_output">nra_of_camp_top_type_form_output</a></span> τ<span class="id">c</span> <span class="id">p</span> τ<span class="kwd">in</span> τ<span class="id">out</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.CAMPtoNRA.html#nra_of_camp_top">nra_of_camp_top</a></span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#p">p</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{τ<span class="id">out</span>' | τ<span class="id">out</span> = <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span>'}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3028')">Proof.</div>
-<div class="proofscript" id="proof3028">
+<div class="toggleproof" onclick="toggleDisplay('proof3032')">Proof.</div>
+<div class="proofscript" id="proof3032">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Translation.TCAMPtoNRA.html#nra_of_camp_top_type_form_output_weak">nra_of_camp_top_type_form_output_weak</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> τ<span class="id">out</span>.<br/>

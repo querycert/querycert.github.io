@@ -18,7 +18,7 @@
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html">CoqLibAdd</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Unset</span> <span class="id">Elimination</span> <span class="id">Schemes</span>.<br/>
 <br/>
@@ -107,6 +107,43 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">apply</span> (<span class="id">H</span> (<span class="id">x</span>,<span class="id">y</span>)). <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="JSON.toString">toString</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.Ascii.html">Ascii</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.StringAdd.html">StringAdd</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Digits.html">Digits</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="js_quote_char">js_quote_char</a></span> (<span class="id">a</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.Ascii.html#ascii">ascii</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.JSON.html#a">a</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| """"%<span class="id">char</span> =&gt; "\"""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id"><a href="Qcert.Utils.JSON.html#a">a</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#EmptyString">EmptyString</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="js_quote_string">js_quote_string</a></span> (<span class="id">s</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Utils.StringAdd.html#flat_map_string">flat_map_string</a></span> <span class="id"><a href="Qcert.Utils.JSON.html#js_quote_char">js_quote_char</a></span> <span class="id"><a href="Qcert.Utils.JSON.html#s">s</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="stringToJS">stringToJS</a></span> (<span class="id">quotel</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) (<span class="id">s</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= "" ++ <span class="id"><a href="Qcert.Utils.JSON.html#quotel">quotel</a></span> ++ "" ++ <span class="id"><a href="Qcert.Utils.JSON.html#js_quote_string">js_quote_string</a></span> <span class="id"><a href="Qcert.Utils.JSON.html#s">s</a></span> ++ "" ++ <span class="id"><a href="Qcert.Utils.JSON.html#quotel">quotel</a></span> ++ "".<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="jsonToJS">jsonToJS</a></span> (<span class="id">quotel</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) (<span class="id">j</span> : <span class="id"><a href="Qcert.Utils.JSON.html#json">json</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.JSON.html#j">j</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Utils.JSON.html#jnil">jnil</a></span> =&gt; "<span class="id">null</span>" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Utils.JSON.html#jnumber">jnumber</a></span> <span class="id">n</span> =&gt; <span class="id"><a href="Qcert.Utils.Digits.html#Z_to_string10">Z_to_string10</a></span> <span class="id">n</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Utils.JSON.html#jbool">jbool</a></span> <span class="id">b</span> =&gt; <span class="kwd">if</span> <span class="id">b</span> <span class="kwd">then</span> "<span class="id">true</span>" <span class="kwd">else</span> "<span class="id">false</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Utils.JSON.html#jstring">jstring</a></span> <span class="id">s</span> =&gt; <span class="id"><a href="Qcert.Utils.JSON.html#stringToJS">stringToJS</a></span> <span class="id"><a href="Qcert.Utils.JSON.html#quotel">quotel</a></span> <span class="id">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Utils.JSON.html#jarray">jarray</a></span> <span class="id">ls</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">ss</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> (<span class="id"><a href="Qcert.Utils.JSON.html#jsonToJS">jsonToJS</a></span> <span class="id"><a href="Qcert.Utils.JSON.html#quotel">quotel</a></span>) <span class="id">ls</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"[" ++ (<span class="id"><a href="Qcert.Utils.StringAdd.html#joinStrings">joinStrings</a></span> ", " <span class="id"><a href="Qcert.Utils.JSON.html#ss">ss</a></span>) ++ "]"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Utils.JSON.html#jobject">jobject</a></span> <span class="id">ls</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">ss</span> := (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> (<span class="kwd">fun</span> <span class="id">kv</span> =&gt; <span class="kwd">let</span> '(<span class="id">k</span>,<span class="id">v</span>) := <span class="id"><a href="Qcert.Utils.JSON.html#kv">kv</a></span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"" ++ <span class="id"><a href="Qcert.Utils.JSON.html#quotel">quotel</a></span> ++ "" ++ <span class="id">k</span> ++ "" ++ <span class="id"><a href="Qcert.Utils.JSON.html#quotel">quotel</a></span> ++ ": " ++ (<span class="id"><a href="Qcert.Utils.JSON.html#jsonToJS">jsonToJS</a></span> <span class="id"><a href="Qcert.Utils.JSON.html#quotel">quotel</a></span> <span class="id">v</span>)) <span class="id">ls</span>) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{" ++ (<span class="id"><a href="Qcert.Utils.StringAdd.html#joinStrings">joinStrings</a></span> ", " <span class="id"><a href="Qcert.Utils.JSON.html#ss">ss</a></span>) ++ "}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Utils.JSON.html#JSON.toString">toString</a></span>.<br/>
+&nbsp;&nbsp;<br/>
 <span class="kwd">End</span> <span class="id"><a href="Qcert.Utils.JSON.html#JSON">JSON</a></span>.<br/>
 <br/>
 

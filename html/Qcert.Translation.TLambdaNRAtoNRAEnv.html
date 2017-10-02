@@ -33,8 +33,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{τ<span class="id">cenv</span>} {Γ:<span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#tbindings">tbindings</a></span>} {τ₀ τ} (<span class="id">e</span>:<span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#lambda_nra">lambda_nra</a></span>) <span class="id">pf</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.LambdaNRA.Typing.TLambdaNRA.html#lambda_nra_type">lambda_nra_type</a></span> τ<span class="id">cenv</span> <span class="id"><a href="Qcert.Translation.TLambdaNRAtoNRAEnv.html#e">e</a></span> Γ τ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span> τ<span class="id">cenv</span> (<span class="id"><a href="Qcert.Translation.LambdaNRAtoNRAEnv.html#lambda_nra_to_nraenv">lambda_nra_to_nraenv</a></span> <span class="id"><a href="Qcert.Translation.TLambdaNRAtoNRAEnv.html#e">e</a></span>) (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Closed">Closed</a></span> Γ <span class="id"><a href="Qcert.Translation.TLambdaNRAtoNRAEnv.html#pf">pf</a></span>) τ₀ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3035')">Proof.</div>
-<div class="proofscript" id="proof3035">
+<div class="toggleproof" onclick="toggleDisplay('proof3039')">Proof.</div>
+<div class="proofscript" id="proof3039">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> Γ <span class="id">pf</span> τ₀ τ.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> Γ <span class="id">pf</span> τ₀ τ <span class="id">lnt</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">invcs</span> <span class="id">lnt</span><br/>
@@ -43,30 +43,30 @@
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>. <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv">nraenv_core_of_nraenv</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>. <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> <span class="id">IHe1</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> <span class="id">IHe2</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv">nraenv_core_of_nraenv</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> <span class="id">IHe</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv">nraenv_core_of_nraenv</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; [ | <span class="tactic">apply</span> <span class="id">IHe2</span>; <span class="id">eassumption</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">econstructor</span>; [ | <span class="tactic">eauto</span> | <span class="tactic">eauto</span> ]; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> <span class="id"><a href="Qcert.LambdaNRA.Typing.TLambdaNRA.html#TLLambda_inv">TLLambda_inv</a></span> <span class="kwd">in</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id">IHe1</span>; <span class="tactic">eauto</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv">nraenv_core_of_nraenv</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; [ | <span class="tactic">apply</span> <span class="id">IHe2</span>; <span class="id">eassumption</span> | <span class="tactic">reflexivity</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">econstructor</span>; [ | <span class="tactic">eauto</span> | <span class="tactic">eauto</span> ]; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> <span class="id"><a href="Qcert.LambdaNRA.Typing.TLambdaNRA.html#TLLambda_inv">TLLambda_inv</a></span> <span class="kwd">in</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id">IHe1</span>; <span class="tactic">eauto</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv">nraenv_core_of_nraenv</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> <span class="id">IHe1</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">apply</span> <span class="id">IHe2</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv">nraenv_core_of_nraenv</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; [ | <span class="tactic">apply</span> <span class="id">IHe2</span>; <span class="id">eassumption</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">econstructor</span>; [ | <span class="tactic">eauto</span> | <span class="tactic">eauto</span> ]; <span class="tactic">eauto</span>.<br/>
@@ -84,14 +84,14 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="tlambda_nra_ignores_input_type">tlambda_nra_ignores_input_type</a></span> {τ<span class="id">cenv</span>} {Γ<span class="id">rec</span>} {τ₁ τ₂ τ} (<span class="id">e</span>:<span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#lambda_nra">lambda_nra</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span> τ<span class="id">cenv</span> (<span class="id"><a href="Qcert.Translation.LambdaNRAtoNRAEnv.html#lambda_nra_to_nraenv">lambda_nra_to_nraenv</a></span> <span class="id"><a href="Qcert.Translation.TLambdaNRAtoNRAEnv.html#e">e</a></span>) Γ<span class="id">rec</span> τ₁ τ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span> τ<span class="id">cenv</span> (<span class="id"><a href="Qcert.Translation.LambdaNRAtoNRAEnv.html#lambda_nra_to_nraenv">lambda_nra_to_nraenv</a></span> <span class="id"><a href="Qcert.Translation.TLambdaNRAtoNRAEnv.html#e">e</a></span>) Γ<span class="id">rec</span> τ₂ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3036')">Proof.</div>
-<div class="proofscript" id="proof3036">
+<div class="toggleproof" onclick="toggleDisplay('proof3040')">Proof.</div>
+<div class="proofscript" id="proof3040">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> Γ<span class="id">rec</span> τ₁ τ₂ τ.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> Γ<span class="id">rec</span> τ₁ τ₂ τ  <span class="id">lnt</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">invcs</span> <span class="id">lnt</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">autorewrite</span> <span class="kwd">with</span> <span class="id">lambda_nra</span> <span class="id">lambda_nra_to_nraenv</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">simpl</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv">nraenv_core_of_nraenv</a></span> <span class="kwd">in</span> *; <span class="tactic">eauto</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="kwd">in</span> *; <span class="tactic">eauto</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">eapply</span> <span class="id">IHe</span>; <span class="tactic">eauto</span> | <span class="tactic">eapply</span> <span class="id">IHe1</span>; <span class="tactic">eauto</span> | <span class="tactic">eapply</span> <span class="id">IHe2</span>; <span class="tactic">eauto</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">invcs</span> <span class="id">H5</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -100,14 +100,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{τ<span class="id">cenv</span>} {Γ:<span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#tbindings">tbindings</a></span>} {τ₀ τ} (<span class="id">e</span>:<span class="id"><a href="Qcert.LambdaNRA.Lang.LambdaNRA.html#lambda_nra">lambda_nra</a></span>) <span class="id">pf</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span> τ<span class="id">cenv</span> (<span class="id"><a href="Qcert.Translation.LambdaNRAtoNRAEnv.html#lambda_nra_to_nraenv">lambda_nra_to_nraenv</a></span> <span class="id"><a href="Qcert.Translation.TLambdaNRAtoNRAEnv.html#e">e</a></span>) (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Closed">Closed</a></span> Γ <span class="id"><a href="Qcert.Translation.TLambdaNRAtoNRAEnv.html#pf">pf</a></span>) τ₀ τ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.LambdaNRA.Typing.TLambdaNRA.html#lambda_nra_type">lambda_nra_type</a></span> τ<span class="id">cenv</span> <span class="id"><a href="Qcert.Translation.TLambdaNRAtoNRAEnv.html#e">e</a></span> Γ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3037')">Proof.</div>
-<div class="proofscript" id="proof3037">
+<div class="toggleproof" onclick="toggleDisplay('proof3041')">Proof.</div>
+<div class="proofscript" id="proof3041">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> Γ τ₀ τ <span class="id">pf</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> Γ τ₀ τ <span class="id">pf</span> <span class="id">lnt</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">invcs</span> <span class="id">lnt</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">autorewrite</span> <span class="kwd">with</span> <span class="id">lambda_nra</span> <span class="id">lambda_nra_to_nraenv</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">simpl</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_of_nraenv">nraenv_core_of_nraenv</a></span> <span class="kwd">in</span> *; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">econstructor</span>; <span class="id">fold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="kwd">in</span> *; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">invcs</span> <span class="id">H5</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H1</span>; <span class="id">rtype_equalizer</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">trivial</span>.<br/>
