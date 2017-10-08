@@ -15,49 +15,6 @@ const compileAndDeployButton = () => {
     'exactpath': getParameter("exactpath", "FillPath") === "ExactPath",
     'emitall': getParameter("emitall", "EmitTarget") === "EmitAll",
     'eval': false,
-    'schema': {
-      "hierarchy": [],
-      "brandTypes": [],
-      "typeDefs": [],
-      "globals":
-      {
-        "employees":
-        {
-          "dist": "distr",
-          "type": {
-            "$coll": {
-              "eid": "Nat",
-              "name": "String",
-              "age": "Nat",
-              "company": "Nat"
-            }
-          }
-        },
-        "students":
-        {
-          "dist": "distr",
-          "type": {
-            "$coll": {
-              "sid": "Nat",
-              "name": "String",
-              "age": "Nat",
-              "univ": "Nat"
-            }
-          }
-        },
-        "organizations":
-        {
-          "dist": "distr",
-          "type": {
-            "$coll": {
-              "oid": "Nat",
-              "name": "String",
-              "departments": { "$coll": "String" }
-            }
-          }
-        }
-      }
-    },
     'input': getParameter("input", "{}"),
     'ascii': getParameter("charset", "Greek") === "Ascii",
     'javaimports': getParameter("java_imports", ""),
@@ -73,23 +30,64 @@ const compileAndDeployButton = () => {
       input.whisk.namespace + '/' + input.pkgname + '/result.json'
     const undeployUrl = 'https://openwhisk.ng.bluemix.net/api/v1/web/' +
       input.whisk.namespace + '/' + input.pkgname + '/undeploy.json'
+    const readResultFunc =
+      makeHandler('{}', resultUrl,
+        (res) => {
+          document.getElementById("resultValue").innerHTML = JSON.stringify(res.result)
+        },
+        () => {
+          document.getElementById("resultValue").innerHTML = 'error'
+        })
+    const readResultInterval = setInterval(readResultFunc, 1000)
+    undeployButton = () => {
+      clearInterval(readResultInterval)
+      const undeploy = makeHandler('{}', undeployUrl,
+        (res) => {
+          console.log('undeployed')
+          document.getElementById("result").innerHTML = ''
+        },
+        () => {
+          console.log('undeployed failed')
+          undeployButton = () => {
+            console.log('already undeploy!')
+          }
+        })
+      undeploy()
+    }
     const resultText =
-      '<h3>Result</h3> \n' +
-      'url: <a href="' + resultUrl + '">' + resultUrl + '</a >' + '<br/> \n' +
-      'undeploy: <a href="' + undeployUrl + '">' + undeployUrl + '</a> \n' +
-      'result: <div id=resultValue></div>'
+      '<h3>Result</h3>\n' +
+      '<div class="form-group">\n' +
+      '  <label class="control-label col-sm-2" for="result-url">result:</label>\n' +
+      '  <div class="col-sm-10">\n' +
+      '    <pre><a href="' + resultUrl + '">' + resultUrl + '</a></pre>' + '\n' +
+      '  </div>\n' +
+      '</div>\n' +
+      '<div class="form-group">\n' +
+      '  <label class="control-label col-sm-2" for="undeploy-url">undeploy:</label>\n' +
+      '  <div class="col-sm-10">\n' +
+      '    <pre><a href="' + undeployUrl + '">' + undeployUrl + '</a></pre>\n' +
+      '  </div>\n' +
+      '</div>\n' +
+      '<div class="form-group">\n' +
+      '  <label class="control-label col-sm-2" for="result-value">result:</label>\n' +
+      '  <pre id=resultValue></pre>' +
+      '</div>\n' +
+      '<div class="form-group text-right">\n' +
+      '  <button type="button" onclick="undeployButton()" class="btn btn-primary">undeploy</button>\n' +
+      '</div>\n'
     document.getElementById("result").innerHTML = resultText
 
   }
-
-
-  const failure = () => {
-    document.getElementById("result").innerHTML = "compilation or deployment failed";
+  const failure = (msg) => {
+    document.getElementById("result").innerHTML = msg;
   }
   const call = makeHandler(input, url, success, failure)
   call()
 }
 
+let undeployButton = () => {
+  console.log('undeploy not yet defined!')
+}
 
 const makeHandler = (input, url, success, failure) => {
   return function () {
@@ -98,21 +96,22 @@ const makeHandler = (input, url, success, failure) => {
     request.open("POST", url, true);
     request.setRequestHeader("Content-Type", "application/json");
     request.onloadend = function () {
-      if (request.status == 200) {
-        console.log("Success at url " + url);
-        const response = JSON.parse(request.responseText);
-        success(response);
-      }
-      else {
-        console.log("Failure at url " + url);
-        failure();
-      }
+	if (request.status == 200) {
+            console.log("Success at url " + url);
+	    const response = JSON.parse(request.response);
+	    if (response.hasOwnProperty('message')) { failure(response.message); }
+	    else { success(response); }
+	}
+	else {
+            console.log("Failure at url " + url);
+            failure("compilation or deployment failed");
+	}
     };
-    try {
-      console.log("Posting request on url " + url);
-      request.send(JSON.stringify(input));
-    } catch (e) {
-    }
+      try {
+	  console.log("Posting request on url " + url);
+	  request.send(JSON.stringify(input));
+      } catch (e) {
+      }
   };
 }
 
