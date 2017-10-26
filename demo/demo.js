@@ -1,9 +1,14 @@
 // some types
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 // constants
 // these must remain 100 for the puzzle piece path stuff to work out
 var piecewidth = 100;
@@ -446,7 +451,7 @@ var errorPiece;
 // 	frontingObject.backingObject = <BackingObject>(backingObject);
 // 	frontingObject.associate();
 // }
-var GriddablePuzzlePiece = (function () {
+var GriddablePuzzlePiece = /** @class */ (function () {
     function GriddablePuzzlePiece() {
     }
     GriddablePuzzlePiece.prototype.getGridPoint = function () {
@@ -476,7 +481,7 @@ var GriddablePuzzlePiece = (function () {
     };
     return GriddablePuzzlePiece;
 }());
-var Grid = (function () {
+var Grid = /** @class */ (function () {
     function Grid() {
     }
     Grid.remove = function (location) {
@@ -557,7 +562,7 @@ var Grid = (function () {
     };
     return Grid;
 }());
-var BasicPuzzlePiece = (function (_super) {
+var BasicPuzzlePiece = /** @class */ (function (_super) {
     __extends(BasicPuzzlePiece, _super);
     function BasicPuzzlePiece(canvas, previouslangid, previouslabel, args) {
         var _this = _super.call(this) || this;
@@ -627,7 +632,7 @@ var BasicPuzzlePiece = (function (_super) {
     ;
     return BasicPuzzlePiece;
 }(GriddablePuzzlePiece));
-var InteractivePuzzlePiece = (function (_super) {
+var InteractivePuzzlePiece = /** @class */ (function (_super) {
     __extends(InteractivePuzzlePiece, _super);
     function InteractivePuzzlePiece(canvas, previouslangid, previouslabel, args) {
         var _this = _super.call(this, canvas, previouslangid, previouslabel, args) || this;
@@ -959,6 +964,7 @@ var InteractivePuzzlePiece = (function (_super) {
                 // p.backingObject.top = p.backingObject.top + pieceheight/2;
                 // p.backingObject.setCoords();
                 transients.push(p);
+                //this.backingObject.canvas.add(p.backingObject);
             }
         }
         piece2.previouslangid = transients[transients.length - 1].langid;
@@ -967,7 +973,7 @@ var InteractivePuzzlePiece = (function (_super) {
     };
     return InteractivePuzzlePiece;
 }(BasicPuzzlePiece));
-var SourcePuzzlePiece = (function (_super) {
+var SourcePuzzlePiece = /** @class */ (function (_super) {
     __extends(SourcePuzzlePiece, _super);
     function SourcePuzzlePiece(canvas, options) {
         var _this = _super.call(this, canvas, null, null, { options: options }) || this;
@@ -1057,7 +1063,7 @@ var SourcePuzzlePiece = (function (_super) {
     };
     return SourcePuzzlePiece;
 }(BasicPuzzlePiece));
-var TransientPuzzlePiece = (function (_super) {
+var TransientPuzzlePiece = /** @class */ (function (_super) {
     __extends(TransientPuzzlePiece, _super);
     function TransientPuzzlePiece(canvas, previouslangid, previouslabel, args) {
         var _this = _super.call(this, canvas, previouslangid, previouslabel, args) || this;
@@ -1145,7 +1151,7 @@ var TransientPuzzlePiece = (function (_super) {
 // Of course, that piece will be marked as "generated"
 // which means that 
 // the sources that are passed in are owned (and manipulated directly) by the resulting composite object
-var CompositePuzzlePiece = (function (_super) {
+var CompositePuzzlePiece = /** @class */ (function (_super) {
     __extends(CompositePuzzlePiece, _super);
     function CompositePuzzlePiece(canvas, sources) {
         var _this = _super.call(this) || this;
@@ -1302,9 +1308,11 @@ var CompositePuzzlePiece = (function (_super) {
         }
         if (this.lastSelectedPart >= 0) {
             var lastpartpiece = this.parts[this.lastSelectedPart];
+            //lastpart.makeUnselected();
         }
         if (newSelectedPart >= 0) {
             var newpart = this.sources[newSelectedPart];
+            //newpart.makeSelected();
         }
         this.lastSelectedPart = newSelectedPart;
         this.canvas.renderAll();
@@ -1337,7 +1345,7 @@ var defaultTabRectOpts = {
     cornerSize: 2,
     strokeLineCap: 'round'
 };
-var ICanvasTab = (function () {
+var ICanvasTab = /** @class */ (function () {
     function ICanvasTab(canvas) {
         this.canvas = canvas;
     }
@@ -1352,14 +1360,14 @@ var ICanvasTab = (function () {
     };
     return ICanvasTab;
 }());
-var ICanvasDynamicTab = (function (_super) {
+var ICanvasDynamicTab = /** @class */ (function (_super) {
     __extends(ICanvasDynamicTab, _super);
     function ICanvasDynamicTab(canvas) {
         return _super.call(this, canvas) || this;
     }
     return ICanvasDynamicTab;
 }(ICanvasTab));
-var TabManager = (function (_super) {
+var TabManager = /** @class */ (function (_super) {
     __extends(TabManager, _super);
     function TabManager(canvas, options, tabs) {
         var _this = _super.call(this, canvas) || this;
@@ -1510,7 +1518,7 @@ var TabManager = (function (_super) {
     };
     return TabManager;
 }(ICanvasTab));
-var BuilderTab = (function (_super) {
+var BuilderTab = /** @class */ (function (_super) {
     __extends(BuilderTab, _super);
     function BuilderTab(canvas) {
         var _this = _super.call(this, canvas) || this;
@@ -1668,7 +1676,7 @@ var BuilderTab = (function (_super) {
     };
     return BuilderTab;
 }(ICanvasTab));
-var CompileTab = (function (_super) {
+var CompileTab = /** @class */ (function (_super) {
     __extends(CompileTab, _super);
     function CompileTab(canvas) {
         var _this = _super.call(this, canvas) || this;
@@ -1741,7 +1749,7 @@ var CompileTab = (function (_super) {
     };
     return CompileTab;
 }(ICanvasTab));
-var ExecTab = (function (_super) {
+var ExecTab = /** @class */ (function (_super) {
     __extends(ExecTab, _super);
     function ExecTab(canvas) {
         var _this = _super.call(this, canvas) || this;
@@ -1906,9 +1914,11 @@ function makeTransitionURL(previouslangid, previouslabel, langid, label) {
     var previouslabel = fixLabel(previouslabel);
     if (previouslangid == langid) {
         return makeLemmaURL(label + ".Optim." + label + "Optimizer", "run_" + langid + "_optims");
+        //return makeLemmaURL(label+"Optimizer","run_"+langid + "_optims");
     }
     else {
         return makeLemmaURL("Translation." + previouslabel + "to" + label, previouslangid + "_to_" + langid + "_top");
+        //return makeLemmaURL(previouslabel+"to"+label,previouslangid + "_to_" + langid + "_top");
     }
 }
 function makeOptimElement(modulebase, o) {
@@ -1966,7 +1976,7 @@ function getCountWithUpdate(listnode) {
         }
     return count;
 }
-var OptimPhaseTab = (function (_super) {
+var OptimPhaseTab = /** @class */ (function (_super) {
     __extends(OptimPhaseTab, _super);
     function OptimPhaseTab(canvas, div, modulebase, optims, phase, options) {
         var _this = _super.call(this, canvas) || this;
@@ -2068,7 +2078,7 @@ function optimPhaseMake(canvas, div, module_base, optims, options) {
         return OptimPhaseTab.make(canvas, div, module_base, optims, phase, options);
     };
 }
-var OptimizationManager = (function (_super) {
+var OptimizationManager = /** @class */ (function (_super) {
     __extends(OptimizationManager, _super);
     function OptimizationManager(canvas, options, language, module_base, optims, cfg_phases) {
         var _this = _super.call(this, canvas) || this;
