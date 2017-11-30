@@ -24,7 +24,7 @@ var serverHosts = [
 function whiskDispatch(input, callback) {
     var next = function () {
         console.log("No server found to process request, calling qcertJS.js directly");
-        callback(qcertCompile(input));
+        callback(Qcert.compile(input));
     };
     for (var i = serverHosts.length - 1; i >= 0; i--)
         next = makeHandler(input, serverHosts[i], callback, next);

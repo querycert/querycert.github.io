@@ -38,7 +38,7 @@ var tabManager;
 // The main canvas (for late (re)-construction of tabs to be replaced in the top-level tab manager
 var mainCanvas;
 // Functions
-// A placeholder to fetch ancillary information not currently in QcertLanguageDescription
+// A placeholder to fetch ancillary information not currently in Qcert.LanguageDescription
 // TODO integrate this
 function getSourceLanguageExtraInfo(source) {
     switch (source) {
@@ -201,7 +201,7 @@ function setupQcertEval(path, srcInput, schemaInput, dataInput, optimconf) {
 }
 // Executes when defaults button is pushed on the optim config tab
 function defaultConfig() {
-    setConfig(qcertOptimDefaults().optims);
+    setConfig(Qcert.optimDefaults().optims);
     setConfigStatus("Default configuration was loaded.", false);
 }
 // Executes when clear button is pushed on the optim config tab
@@ -227,7 +227,7 @@ function getClearConfig() {
         array.forEach(function (elem) { return clearOptimsInPhaseList(elem.phases); });
         return array;
     }
-    return clearOptimsInTopList(qcertOptimDefaults().optims);
+    return clearOptimsInTopList(Qcert.optimDefaults().optims);
 }
 function setConfigStatus(text, usedFileChooser) {
     var msgarea = document.getElementById('config-message');
@@ -942,7 +942,7 @@ var InteractivePuzzlePiece = /** @class */ (function (_super) {
     };
     // I need to figure out this whole interactive v transient thing better
     InteractivePuzzlePiece.getPathTransients = function (piece1, piece2) {
-        var curPath = qcertLanguagesPath({
+        var curPath = Qcert.languagesPath({
             source: piece1.langid,
             target: piece2.langid
         }).path;
@@ -1574,7 +1574,7 @@ var BuilderTab = /** @class */ (function (_super) {
                 delete runGroup.tooltipObj;
             }
         });
-        var srcLangDescripts = getSrcLangDescripts(qcertLanguages());
+        var srcLangDescripts = getSrcLangDescripts(Qcert.languages());
         var maxCols = 0;
         // create the list of languages that can be dragged onto the canvas
         var srcrow = 0;
@@ -1845,7 +1845,7 @@ function getPipelineLangs() {
         }
     });
 }
-// function expandLangsPath(path:QcertLanguage[]):{id:QcertLanguage,explicit:boolean}[] {
+// function expandLangsPath(path:Qcert.Language[]):{id:Qcert.Language,explicit:boolean}[] {
 // 	let expanded = [];
 // 	const pathLen = path.length;
 // 	if(path == null || pathLen == 0) {
@@ -1855,7 +1855,7 @@ function getPipelineLangs() {
 // 	expanded.push({id:prev, explicit:true});
 // 	for(let i = 1; i < pathLen; i++) {
 // 		const cur = path[i];
-// 		const curPath = qcertLanguagesPath({
+// 		const curPath = Qcert.LanguagesPath({
 // 			source: prev,
 // 			target:cur
 // 		}).path;
@@ -2187,11 +2187,11 @@ function findFirstWithField(l, field, lang) {
 // are encapsulated
 var globalOptimTabs;
 function OptimizationsTabMake(canvas) {
-    return OptimizationsTabMakeFromConfig(canvas, qcertOptimDefaults().optims);
+    return OptimizationsTabMakeFromConfig(canvas, Qcert.optimDefaults().optims);
 }
 function OptimizationsTabMakeFromConfig(canvas, defaults) {
     var yoffset = 60;
-    var optims = qcertOptimList().optims;
+    var optims = Qcert.optimList().optims;
     console.log("Setting optimization config");
     console.log(optims);
     var opts = { rectOptions: { fill: '#548235' }, tabOrigin: { top: yoffset } };

@@ -58,6 +58,12 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="language_eqdec">language_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language">language</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> := <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language_eq_dec">language_eq_dec</a></span>.<br/>
 <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="no_L_error">no_L_error</a></span> (<span class="id">lang</span>: <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language">language</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#lang">lang</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#L_error">L_error</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="language_of_name_case_sensitive">language_of_name_case_sensitive</a></span> <span class="id">name</span> : <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language">language</a></span>:=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#name">name</a></span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| "<span class="id">camp_rule</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#L_camp_rule">L_camp_rule</a></span><br/>
@@ -113,6 +119,15 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#L_error">L_error</a></span> <span class="id">_</span> =&gt; "<span class="id">error</span>"%<span class="id">string</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="language_of_name_of_language">language_of_name_of_language</a></span> <span class="id">lang</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#no_L_error">no_L_error</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#lang">lang</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language_of_name_case_sensitive">language_of_name_case_sensitive</a></span> (<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#name_of_language">name_of_language</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#lang">lang</a></span>) = <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#lang">lang</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3170')">Proof.</div>
+<div class="proofscript" id="proof3170">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">lang</span>; <span class="id">vm_compute</span>; <span class="tactic">tauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="lang_desc">lang_desc</a></span> : <span class="kwd">Set</span> := (<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language">language</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>).<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="language_kind">language_kind</a></span> : <span class="kwd">Set</span> :=<br/>
@@ -122,8 +137,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="BackEnd">BackEnd</a></span> : <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language_kind">language_kind</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="language_kind_eq_dec">language_kind_eq_dec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language_kind">language_kind</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3170')">Proof.</div>
-<div class="proofscript" id="proof3170">
+<div class="toggleproof" onclick="toggleDisplay('proof3171')">Proof.</div>
+<div class="proofscript" id="proof3171">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">red</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">try</span> <span class="id">solve</span>[<span class="id">right</span>; <span class="tactic">inversion</span> 1]; <span class="id">left</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
@@ -165,6 +180,21 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="language_descriptions_with_ids">language_descriptions_with_ids</a></span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#add_id_to_language_description">add_id_to_language_description</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language_descriptions">language_descriptions</a></span>.<br/>
 <br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="languages_descriptions_complete">languages_descriptions_complete</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">lang</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#no_L_error">no_L_error</a></span> <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#lang">lang</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">kind</span> <span class="id">s1</span> <span class="id">s2</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#lang">lang</a></span>, <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#kind">kind</a></span>, <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#s1">s1</a></span>, <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#s2">s2</a></span>) <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language_descriptions">language_descriptions</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3172')">Proof.</div>
+<div class="proofscript" id="proof3172">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">lang</span>; <span class="id">vm_compute</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">do</span> 3 <span class="id">eexists</span>; <span class="tactic">tauto</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Unshelve</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">tauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">tauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">tauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="check_kind">check_kind</a></span> (<span class="id">the_kind</span>:<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language_kind">language_kind</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ld</span>:<span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language">language</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#language_kind">language_kind</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)<br/>
