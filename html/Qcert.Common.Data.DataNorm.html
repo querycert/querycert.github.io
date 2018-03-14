@@ -30,14 +30,14 @@
 &nbsp;&nbsp;<span class="kwd">Context</span> (<span class="id">h</span>:<span class="id"><a href="Qcert.Common.Brands.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>).<br/>
 &nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="normalize_data">normalize_data</a></span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span>) : <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> <span class="id">rl</span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x">x</a></span>, <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x">x</a></span>))) <span class="id">rl</span>))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#dcoll">dcoll</a></span> <span class="id">l</span> =&gt; <span class="id"><a href="Qcert.Common.Data.Data.html#dcoll">dcoll</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">l</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#dleft">dleft</a></span> <span class="id">l</span> =&gt; <span class="id"><a href="Qcert.Common.Data.Data.html#dleft">dleft</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">l</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#dright">dright</a></span> <span class="id">l</span>  =&gt; <span class="id"><a href="Qcert.Common.Data.Data.html#dright">dright</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">l</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#dbrand">dbrand</a></span> <span class="id">b</span> <span class="id">d</span> =&gt; <span class="id"><a href="Qcert.Common.Data.Data.html#dbrand">dbrand</a></span> (<span class="id"><a href="Qcert.Common.Brands.BrandRelation.html#canon_brands">canon_brands</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#DataNorm.h">h</a></span> <span class="id">b</span>) (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#dforeign">dforeign</a></span> <span class="id">fd</span> =&gt; <span class="id"><a href="Qcert.Common.Data.Data.html#dforeign">dforeign</a></span> (<span class="id"><a href="Qcert.Common.Data.ForeignData.html#foreign_data_normalize">foreign_data_normalize</a></span> <span class="id">fd</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> <span class="id">rl</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x">x</a></span>, <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x">x</a></span>))) <span class="id">rl</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#dcoll">dcoll</a></span> <span class="id">l</span> =&gt; <span class="id"><a href="Qcert.Common.Data.Data.html#dcoll">dcoll</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">l</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#dleft">dleft</a></span> <span class="id">l</span> =&gt; <span class="id"><a href="Qcert.Common.Data.Data.html#dleft">dleft</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">l</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#dright">dright</a></span> <span class="id">l</span>  =&gt; <span class="id"><a href="Qcert.Common.Data.Data.html#dright">dright</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">l</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#dbrand">dbrand</a></span> <span class="id">b</span> <span class="id">d</span> =&gt; <span class="id"><a href="Qcert.Common.Data.Data.html#dbrand">dbrand</a></span> (<span class="id"><a href="Qcert.Common.Brands.BrandRelation.html#canon_brands">canon_brands</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#DataNorm.h">h</a></span> <span class="id">b</span>) (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.Data.html#dforeign">dforeign</a></span> <span class="id">fd</span> =&gt; <span class="id"><a href="Qcert.Common.Data.Data.html#dforeign">dforeign</a></span> (<span class="id"><a href="Qcert.Common.Data.ForeignData.html#foreign_data_normalize">foreign_data_normalize</a></span> <span class="id">fd</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="data_normalized">data_normalized</a></span> : <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> -&gt; <span class="kwd">Prop</span> :=<br/>
@@ -71,8 +71,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="normalize_normalizes">normalize_normalizes</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span>), <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1174')">Proof.</div>
-<div class="proofscript" id="proof1174">
+<div class="toggleproof" onclick="toggleDisplay('proof1220')">Proof.</div>
+<div class="proofscript" id="proof1220">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">d</span> <span class="kwd">using</span> <span class="id"><a href="Qcert.Common.Data.Data.html#dataInd2">dataInd2</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#dnunit">dnunit</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#dnnat">dnnat</a></span>.<br/>
@@ -99,7 +99,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">H</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">a</span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">a</span>)).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">left</span>; <span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="kwd">forall</span> (<span class="id">x</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) (<span class="id">y</span> : <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#x">x</a></span>, <span class="id"><a href="Qcert.Common.Data.DataNorm.html#y">y</a></span>) <span class="id">r</span> -&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#y">y</a></span>)); <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#x">x</a></span>, <span class="id"><a href="Qcert.Common.Data.DataNorm.html#y">y</a></span>) <span class="id">r</span> -&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#y">y</a></span>)); <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">H</span> <span class="id">x0</span> <span class="id">y</span>); <span class="id">right</span>; <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">IHr</span> <span class="id">H0</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>
@@ -115,8 +115,8 @@
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="normalize_normalized_eq">normalize_normalized_eq</a></span> {<span class="id">d</span>}:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span> = <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1175')">Proof.</div>
-<div class="proofscript" id="proof1175">
+<div class="toggleproof" onclick="toggleDisplay('proof1221')">Proof.</div>
+<div class="proofscript" id="proof1221">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">d</span> <span class="kwd">using</span> <span class="id"><a href="Qcert.Common.Data.Data.html#dataInd2">dataInd2</a></span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span>. <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (@<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#map_eq">map_eq</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#id">id</a></span>).<br/>
@@ -130,8 +130,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map_id">map_id</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.Bindings.html#rec_sorted_id">rec_sorted_id</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">revert</span> <span class="id">H2</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#Forall_impl_in">Forall_impl_in</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#id">id</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#id">id</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> 1; <span class="tactic">subst</span>. <span class="tactic">rewrite</span> (<span class="id">IHd</span> <span class="id">H1</span>); <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> 1; <span class="tactic">subst</span>. <span class="tactic">rewrite</span> (<span class="id">IHd</span> <span class="id">H1</span>); <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> 1; <span class="tactic">subst</span>.<br/>
@@ -144,12 +144,12 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="map_normalize_normalized_eq">map_normalize_normalized_eq</a></span> <span class="id">c</span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x">x</a></span>)) <span class="id"><a href="Qcert.Common.Data.DataNorm.html#c">c</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">x0</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> =&gt; (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x0">x0</a></span>, <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x0">x0</a></span>)))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#c">c</a></span>) = <span class="id"><a href="Qcert.Common.Data.DataNorm.html#c">c</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1176')">Proof.</div>
-<div class="proofscript" id="proof1176">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x">x</a></span>)) <span class="id"><a href="Qcert.Common.Data.DataNorm.html#c">c</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">x0</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> =&gt; (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x0">x0</a></span>, <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x0">x0</a></span>)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#c">c</a></span>) = <span class="id"><a href="Qcert.Common.Data.DataNorm.html#c">c</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1222')">Proof.</div>
+<div class="proofscript" id="proof1222">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">inversion</span> 1; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_normalized_eq">normalize_normalized_eq</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -159,24 +159,24 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="normalize_idem">normalize_idem</a></span> <span class="id">d</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>) = <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1177')">Proof.</div>
-<div class="proofscript" id="proof1177">
+<div class="toggleproof" onclick="toggleDisplay('proof1223')">Proof.</div>
+<div class="proofscript" id="proof1223">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_normalized_eq">normalize_normalized_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_normalizes">normalize_normalizes</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="normalize_data_eq_normalized">normalize_data_eq_normalized</a></span> {<span class="id">d</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span> = <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span> -&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1178')">Proof.</div>
-<div class="proofscript" id="proof1178">
+<div class="toggleproof" onclick="toggleDisplay('proof1224')">Proof.</div>
+<div class="proofscript" id="proof1224">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_normalizes">normalize_normalizes</a></span> <span class="id">d</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="normalized_data_dec">normalized_data_dec</a></span> <span class="id">d</span> : {<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>} + {~ <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1179')">Proof.</div>
-<div class="proofscript" id="proof1179">
+<div class="toggleproof" onclick="toggleDisplay('proof1225')">Proof.</div>
+<div class="proofscript" id="proof1225">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span> == <span class="id">d</span>); <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html#equiv">equiv</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#complement">complement</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">left</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data_eq_normalized">normalize_data_eq_normalized</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">right</span>. <span class="tactic">intro</span> <span class="id">dn</span>; <span class="tactic">elim</span> <span class="id">c</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_normalized_eq">normalize_normalized_eq</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -185,8 +185,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="data_normalized_dcoll">data_normalized_dcoll</a></span> <span class="id">a</span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#a">a</a></span> /\ <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l">l</a></span>)) &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#dcoll">dcoll</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#a">a</a></span> :: <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l">l</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1180')">Proof.</div>
-<div class="proofscript" id="proof1180">
+<div class="toggleproof" onclick="toggleDisplay('proof1226')">Proof.</div>
+<div class="proofscript" id="proof1226">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> 1 <span class="kwd">as</span> [<span class="id">d1</span> <span class="id">d2</span>]. <span class="tactic">inversion</span> <span class="id">d2</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
@@ -199,8 +199,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l1">l1</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l2">l2</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> (<span class="id"><a href="Qcert.Common.Data.DataNorm.html#l1">l1</a></span> ++ <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l2">l2</a></span>))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1181')">Proof.</div>
-<div class="proofscript" id="proof1181">
+<div class="toggleproof" onclick="toggleDisplay('proof1227')">Proof.</div>
+<div class="proofscript" id="proof1227">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 1; <span class="tactic">inversion</span> 1; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">eauto</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Bindings.html#Forall_sorted">Forall_sorted</a></span>.<br/>
@@ -211,8 +211,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l1">l1</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l2">l2</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_concat_sort">rec_concat_sort</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l1">l1</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l2">l2</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1182')">Proof.</div>
-<div class="proofscript" id="proof1182">
+<div class="toggleproof" onclick="toggleDisplay('proof1228')">Proof.</div>
+<div class="proofscript" id="proof1228">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized_rec_sort_app">data_normalized_rec_sort_app</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
@@ -220,24 +220,24 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l">l</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l">l</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#x">x</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1183')">Proof.</div>
-<div class="proofscript" id="proof1183">
+<div class="toggleproof" onclick="toggleDisplay('proof1229')">Proof.</div>
+<div class="proofscript" id="proof1229">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 2; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dnrec_nil">dnrec_nil</a></span> : <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1184')">Proof.</div>
-<div class="proofscript" id="proof1184">
+<div class="toggleproof" onclick="toggleDisplay('proof1230')">Proof.</div>
+<div class="proofscript" id="proof1230">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dnrec_sort_content">dnrec_sort_content</a></span> <span class="id">c</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>)) <span class="id"><a href="Qcert.Common.Data.DataNorm.html#c">c</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>)) (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#c">c</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1185')">Proof.</div>
-<div class="proofscript" id="proof1185">
+<div class="toggleproof" onclick="toggleDisplay('proof1231')">Proof.</div>
+<div class="proofscript" id="proof1231">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">F</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Bindings.html#Forall_sorted">Forall_sorted</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -245,10 +245,19 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dnrec_sort">dnrec_sort</a></span> <span class="id">c</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#d">d</a></span>)) <span class="id"><a href="Qcert.Common.Data.DataNorm.html#c">c</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#c">c</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1186')">Proof.</div>
-<div class="proofscript" id="proof1186">
+<div class="toggleproof" onclick="toggleDisplay('proof1232')">Proof.</div>
+<div class="proofscript" id="proof1232">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">F</span>; <span class="id">econstructor</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Bindings.html#Forall_sorted">Forall_sorted</a></span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="data_normalized_dcoll_Forall">data_normalized_dcoll_Forall</a></span> <span class="id">l</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l">l</a></span>) &lt;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#l">l</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1233')">Proof.</div>
+<div class="proofscript" id="proof1233">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">invcs</span> <span class="id">H</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">constructor</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 <span class="kwd">End</span> <span class="id"><a href="Qcert.Common.Data.DataNorm.html#DataNorm">DataNorm</a></span>.<br/>

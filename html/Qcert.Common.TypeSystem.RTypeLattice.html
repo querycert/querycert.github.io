@@ -24,7 +24,6 @@
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html">RType</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.TypeSystem.RSubtypeProp.html">RSubtypeProp</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.TypeSystem.RTypeMeetJoin.html">RTypeMeetJoin</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.TypeSystem.RTypeMeetJoin.html">RTypeMeetJoin</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.TypeSystem.RConsistentSubtype.html">RConsistentSubtype</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.Brands.BrandRelation.html">BrandRelation</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Lattice.html">Lattice</a></span>.<br/>
@@ -51,7 +50,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lattice.html#OLattice">OLattice</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RSubtype.html#subtype">subtype</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= { <span class="id"><a href="Qcert.Utils.Lattice.html#consistent_meet">consistent_meet</a></span> := <span class="id"><a href="Qcert.Common.TypeSystem.RConsistentSubtype.html#consistent_rtype_meet">consistent_rtype_meet</a></span> }.<br/>
 <br/>
-&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="rtype_blattice">rtype_blattice</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lattice.html#BLattice">BLattice</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= { <span class="id"><a href="Qcert.Utils.Lattice.html#top">top</a></span> := <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Top">Top</a></span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lattice.html#bottom">bottom</a></span> := <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Bottom">Bottom</a></span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lattice.html#join_bottom_r">join_bottom_r</a></span> := <span class="id"><a href="Qcert.Common.TypeSystem.RTypeMeetJoin.html#rtype_join_Bottom_r">rtype_join_Bottom_r</a></span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lattice.html#meet_top_r">meet_top_r</a></span> := <span class="id"><a href="Qcert.Common.TypeSystem.RTypeMeetJoin.html#rtype_meet_Top_r">rtype_meet_Top_r</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
 &nbsp;&nbsp;<br/>
 <span class="kwd">End</span> <span class="id"><a href="Qcert.Common.TypeSystem.RTypeLattice.html#RTypeLattice">RTypeLattice</a></span>.<br/>
 <br/>

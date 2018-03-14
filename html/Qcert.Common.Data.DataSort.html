@@ -36,15 +36,15 @@
 &nbsp;&nbsp;.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="sort_desc_eq_dec">sort_desc_eq_dec</a></span> : <span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortDesc">SortDesc</a></span>, {<span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span>=<span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>}+{<span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span>&lt;&gt;<span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1192')">Proof.</div>
-<div class="proofscript" id="proof1192">
+<div class="toggleproof" onclick="toggleDisplay('proof1239')">Proof.</div>
+<div class="proofscript" id="proof1239">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
 &nbsp;&nbsp;Defined.</div>
 &nbsp;&nbsp;<br/>
 <div class="doc">Equality is decidable for sdata </div>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="sdata_eq_dec">sdata_eq_dec</a></span> : <span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.Common.Data.DataSort.html#sdata">sdata</a></span>, {<span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span>=<span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>}+{<span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span>&lt;&gt;<span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1193')">Proof.</div>
-<div class="proofscript" id="proof1193">
+<div class="toggleproof" onclick="toggleDisplay('proof1240')">Proof.</div>
+<div class="proofscript" id="proof1240">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">try</span> <span class="id">solve</span>[<span class="id">right</span>; <span class="tactic">inversion</span> 1].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith_dec.html#Z_eq_dec">Z_eq_dec</a></span> <span class="id">z</span> <span class="id">z0</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">left</span>; <span class="tactic">f_equal</span>; <span class="tactic">trivial</span>.<br/>
@@ -80,8 +80,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="SortableDataOrder.compare_spec">compare_spec</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Common.Data.DataSort.html#sdata">sdata</a></span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#CompareSpec">CompareSpec</a></span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.eq">eq</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>) (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.lt">lt</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>) (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.lt">lt</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span>) (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare">compare</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1194')">Proof.</div>
-<div class="proofscript" id="proof1194">
+<div class="toggleproof" onclick="toggleDisplay('proof1241')">Proof.</div>
+<div class="proofscript" id="proof1241">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.eq">eq</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.lt">lt</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare">compare</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">generalize</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.BinInt.html#Z.compare_spec">Z.compare_spec</a></span> <span class="id">z</span> <span class="id">z0</span>); <span class="tactic">intros</span>.<br/>
@@ -96,24 +96,24 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="SortableDataOrder.trichotemy">trichotemy</a></span> <span class="id">a</span> <span class="id">b</span> : {<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.lt">lt</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span>} + {<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.eq">eq</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span>} + {<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.lt">lt</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1195')">Proof.</div>
-<div class="proofscript" id="proof1195">
+<div class="toggleproof" onclick="toggleDisplay('proof1242')">Proof.</div>
+<div class="proofscript" id="proof1242">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">intros</span> <span class="id">nc</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare">compare</a></span> <span class="id">a</span> <span class="id">b</span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<span class="id">left</span>; <span class="id">right</span>|<span class="id">left</span>;<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">inversion</span> <span class="id">nc</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Defined.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="SortableDataOrder.compare_refl_eq">compare_refl_eq</a></span> <span class="id">a</span>: <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare">compare</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Eq">Eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1196')">Proof.</div>
-<div class="proofscript" id="proof1196">
+<div class="toggleproof" onclick="toggleDisplay('proof1243')">Proof.</div>
+<div class="proofscript" id="proof1243">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.Zcompare.html#Zcompare_refl">Zcompare_refl</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.compare_refl_eq">StringOrder.compare_refl_eq</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="SortableDataOrder.compare_eq_iff">compare_eq_iff</a></span> <span class="id">a</span> <span class="id">b</span>: <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare">compare</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Eq">Eq</a></span> &lt;-&gt; <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> = <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1197')">Proof.</div>
-<div class="proofscript" id="proof1197">
+<div class="toggleproof" onclick="toggleDisplay('proof1244')">Proof.</div>
+<div class="proofscript" id="proof1244">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; [| <span class="tactic">intros</span>; <span class="tactic">subst</span>; <span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare_refl_eq">compare_refl_eq</a></span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">b</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">eauto</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>; <span class="tactic">intros</span>.<br/>
@@ -122,8 +122,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Instance</span> <span class="id"><a name="SortableDataOrder.lt_strorder">lt_strorder</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#StrictOrder">StrictOrder</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.lt">lt</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1198')">Proof.</div>
-<div class="proofscript" id="proof1198">
+<div class="toggleproof" onclick="toggleDisplay('proof1245')">Proof.</div>
+<div class="proofscript" id="proof1245">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">repeat</span> <span class="tactic">red</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.lt">lt</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare">compare</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">x</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> ((<span class="id">z</span> ?= <span class="id">z</span>)%<span class="id">Z</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Eq">Eq</a></span>).<br/>
@@ -140,8 +140,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="SortableDataOrder.lt_compat">lt_compat</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#iff">iff</a></span>) <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.lt">lt</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1199')">Proof.</div>
-<div class="proofscript" id="proof1199">
+<div class="toggleproof" onclick="toggleDisplay('proof1246')">Proof.</div>
+<div class="proofscript" id="proof1246">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.eq">eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">subst</span>; <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
@@ -151,18 +151,18 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Eq">Eq</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#right">right</a></span> <span class="id">_</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Gt">Gt</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#right">right</a></span> <span class="id">_</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1200')">Next Obligation.</div>
-<div class="proofscript" id="proof1200">
+<div class="toggleproof" onclick="toggleDisplay('proof1247')">Next Obligation.</div>
+<div class="proofscript" id="proof1247">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof1201')">Next Obligation.</div>
-<div class="proofscript" id="proof1201">
+<div class="toggleproof" onclick="toggleDisplay('proof1248')">Next Obligation.</div>
+<div class="proofscript" id="proof1248">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span>. <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#irreflexivity">irreflexivity</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof1202')">Next Obligation.</div>
-<div class="proofscript" id="proof1202">
+<div class="toggleproof" onclick="toggleDisplay('proof1249')">Next Obligation.</div>
+<div class="proofscript" id="proof1249">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">l2</span>. <span class="tactic">apply</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#asymmetry">asymmetry</a></span> <span class="id">H0</span> <span class="id">l2</span>).<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -175,8 +175,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="SortableDataOrder.le_lteq">le_lteq</a></span> : <span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.t">t</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.le">le</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span> &lt;-&gt; <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.lt">lt</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span> \/ <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.eq">eq</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1203')">Proof.</div>
-<div class="proofscript" id="proof1203">
+<div class="toggleproof" onclick="toggleDisplay('proof1250')">Proof.</div>
+<div class="proofscript" id="proof1250">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare_spec">compare_spec</a></span> <span class="id">x</span> <span class="id">y</span>); <span class="tactic">inversion</span> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.le">le</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.lt">lt</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.eq">eq</a></span> <span class="kwd">in</span> *;<br/>
@@ -189,20 +189,20 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Eq">Eq</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#left">left</a></span> <span class="id">_</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Gt">Gt</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#right">right</a></span> <span class="id">_</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1204')">Next Obligation.</div>
-<div class="proofscript" id="proof1204">
+<div class="toggleproof" onclick="toggleDisplay('proof1251')">Next Obligation.</div>
+<div class="proofscript" id="proof1251">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.le_lteq">le_lteq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof1205')">Next Obligation.</div>
-<div class="proofscript" id="proof1205">
+<div class="toggleproof" onclick="toggleDisplay('proof1252')">Next Obligation.</div>
+<div class="proofscript" id="proof1252">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.le_lteq">le_lteq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof1206')">Next Obligation.</div>
-<div class="proofscript" id="proof1206">
+<div class="toggleproof" onclick="toggleDisplay('proof1253')">Next Obligation.</div>
+<div class="proofscript" id="proof1253">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">l2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.le_lteq">le_lteq</a></span> <span class="kwd">in</span> <span class="id">l2</span>.<br/>
@@ -216,8 +216,8 @@
 <span class="kwd">Section</span> <span class="id"><a name="LexicographicData">LexicographicData</a></span>.<br/>
 <div class="doc">Equality is decidable for lists of sortable data </div>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="list_sdata_eq_dec">list_sdata_eq_dec</a></span> : <span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#sdata">sdata</a></span>, {<span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span>=<span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>}+{<span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span>&lt;&gt;<span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1207')">Proof.</div>
-<div class="proofscript" id="proof1207">
+<div class="toggleproof" onclick="toggleDisplay('proof1254')">Proof.</div>
+<div class="proofscript" id="proof1254">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">try</span> <span class="id">solve</span>[<span class="id">right</span>; <span class="tactic">inversion</span> 1].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">left</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#sdata_eq_dec">sdata_eq_dec</a></span> <span class="id">a</span> <span class="id">s</span>).<br/>
@@ -256,8 +256,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="LexicographicDataOrder.compare_spec">compare_spec</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.t">t</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#CompareSpec">CompareSpec</a></span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.eq">eq</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>) (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.lt">lt</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>) (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.lt">lt</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span>) (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare">compare</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1208')">Proof.</div>
-<div class="proofscript" id="proof1208">
+<div class="toggleproof" onclick="toggleDisplay('proof1255')">Proof.</div>
+<div class="proofscript" id="proof1255">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.eq">eq</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.lt">lt</a></span>. <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">IHx</span> <span class="id">y</span>).<br/>
@@ -272,23 +272,23 @@
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="LexicographicDataOrder.trichotemy">trichotemy</a></span> <span class="id">a</span> <span class="id">b</span> : {<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.lt">lt</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span>} + {<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.eq">eq</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span>} + {<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.lt">lt</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1209')">Proof.</div>
-<div class="proofscript" id="proof1209">
+<div class="toggleproof" onclick="toggleDisplay('proof1256')">Proof.</div>
+<div class="proofscript" id="proof1256">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">intros</span> <span class="id">nc</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare">compare</a></span> <span class="id">a</span> <span class="id">b</span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<span class="id">left</span>; <span class="id">right</span>|<span class="id">left</span>;<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">inversion</span> <span class="id">nc</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Defined.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="LexicographicDataOrder.compare_refl_eq">compare_refl_eq</a></span> <span class="id">a</span>: <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare">compare</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Eq">Eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1210')">Proof.</div>
-<div class="proofscript" id="proof1210">
+<div class="toggleproof" onclick="toggleDisplay('proof1257')">Proof.</div>
+<div class="proofscript" id="proof1257">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">a</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortableDataOrder.compare_refl_eq">SortableDataOrder.compare_refl_eq</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="LexicographicDataOrder.compare_eq_iff">compare_eq_iff</a></span> <span class="id">a</span> <span class="id">b</span>: <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare">compare</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Eq">Eq</a></span> &lt;-&gt; <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> = <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1211')">Proof.</div>
-<div class="proofscript" id="proof1211">
+<div class="toggleproof" onclick="toggleDisplay('proof1258')">Proof.</div>
+<div class="proofscript" id="proof1258">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; [| <span class="tactic">intros</span>; <span class="tactic">subst</span>; <span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare_refl_eq">compare_refl_eq</a></span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">b</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">a</span>; <span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">eauto</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
@@ -298,8 +298,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Instance</span> <span class="id"><a name="LexicographicDataOrder.lt_strorder">lt_strorder</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#StrictOrder">StrictOrder</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.lt">lt</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1212')">Proof.</div>
-<div class="proofscript" id="proof1212">
+<div class="toggleproof" onclick="toggleDisplay('proof1259')">Proof.</div>
+<div class="proofscript" id="proof1259">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">repeat</span> <span class="tactic">red</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.lt">lt</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span> <span class="id">a</span> <span class="id">H</span>; <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare_refl_eq">compare_refl_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>. <span class="tactic">discriminate</span>. <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">induction</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">destruct</span> <span class="id">z</span>; <span class="tactic">simpl</span>; <span class="tactic">eauto</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
@@ -318,8 +318,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="LexicographicDataOrder.lt_compat">lt_compat</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#iff">iff</a></span>) <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.lt">lt</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1213')">Proof.</div>
-<div class="proofscript" id="proof1213">
+<div class="toggleproof" onclick="toggleDisplay('proof1260')">Proof.</div>
+<div class="proofscript" id="proof1260">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.eq">eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">subst</span>; <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
@@ -329,18 +329,18 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Eq">Eq</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#right">right</a></span> <span class="id">_</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Gt">Gt</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#right">right</a></span> <span class="id">_</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1214')">Next Obligation.</div>
-<div class="proofscript" id="proof1214">
+<div class="toggleproof" onclick="toggleDisplay('proof1261')">Next Obligation.</div>
+<div class="proofscript" id="proof1261">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof1215')">Next Obligation.</div>
-<div class="proofscript" id="proof1215">
+<div class="toggleproof" onclick="toggleDisplay('proof1262')">Next Obligation.</div>
+<div class="proofscript" id="proof1262">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span>.  <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#irreflexivity">irreflexivity</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof1216')">Next Obligation.</div>
-<div class="proofscript" id="proof1216">
+<div class="toggleproof" onclick="toggleDisplay('proof1263')">Next Obligation.</div>
+<div class="proofscript" id="proof1263">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">l2</span>. <span class="tactic">apply</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#asymmetry">asymmetry</a></span> <span class="id">H0</span> <span class="id">l2</span>).<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -353,8 +353,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="LexicographicDataOrder.le_lteq">le_lteq</a></span> : <span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.t">t</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.le">le</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span> &lt;-&gt; <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.lt">lt</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span> \/ <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.eq">eq</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#x">x</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#y">y</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1217')">Proof.</div>
-<div class="proofscript" id="proof1217">
+<div class="toggleproof" onclick="toggleDisplay('proof1264')">Proof.</div>
+<div class="proofscript" id="proof1264">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare_spec">compare_spec</a></span> <span class="id">x</span> <span class="id">y</span>); <span class="tactic">inversion</span> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.le">le</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.lt">lt</a></span>, <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.eq">eq</a></span> <span class="kwd">in</span> *;<br/>
@@ -367,20 +367,20 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Eq">Eq</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#left">left</a></span> <span class="id">_</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Gt">Gt</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#right">right</a></span> <span class="id">_</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1218')">Next Obligation.</div>
-<div class="proofscript" id="proof1218">
+<div class="toggleproof" onclick="toggleDisplay('proof1265')">Next Obligation.</div>
+<div class="proofscript" id="proof1265">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.le_lteq">le_lteq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof1219')">Next Obligation.</div>
-<div class="proofscript" id="proof1219">
+<div class="toggleproof" onclick="toggleDisplay('proof1266')">Next Obligation.</div>
+<div class="proofscript" id="proof1266">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.le_lteq">le_lteq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof1220')">Next Obligation.</div>
-<div class="proofscript" id="proof1220">
+<div class="toggleproof" onclick="toggleDisplay('proof1267')">Next Obligation.</div>
+<div class="proofscript" id="proof1267">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.compare_spec">compare_spec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">rewrite</span> &lt;- <span class="id">Heq_anonymous</span>; <span class="tactic">inversion</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">l2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#LexicographicDataOrder.le_lteq">le_lteq</a></span> <span class="kwd">in</span> <span class="id">l2</span>.<br/>
@@ -399,8 +399,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataSort.html#lt_strorder">LexicographicDataOrder.lt_strorder</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataSort.html#lt_dec">LexicographicDataOrder.lt_dec</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataSort.html#compare">LexicographicDataOrder.compare</a></span> <span class="id">_</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1221')">Next Obligation.</div>
-<div class="proofscript" id="proof1221">
+<div class="toggleproof" onclick="toggleDisplay('proof1268')">Next Obligation.</div>
+<div class="proofscript" id="proof1268">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#compare_spec">LexicographicDataOrder.compare_spec</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -430,8 +430,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dict_field_le_dec">dict_field_le_dec</a></span> {<span class="id">A</span>} (<span class="id">a</span> <span class="id">b</span>:(<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#sdata">sdata</a></span>)*<span class="id"><a href="Qcert.Common.Data.DataSort.html#A">A</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.Common.Data.DataSort.html#dict_field_le">dict_field_le</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span>} + {~<span class="id"><a href="Qcert.Common.Data.DataSort.html#dict_field_le">dict_field_le</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#a">a</a></span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#b">b</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1222')">Proof.</div>
-<div class="proofscript" id="proof1222">
+<div class="toggleproof" onclick="toggleDisplay('proof1269')">Proof.</div>
+<div class="proofscript" id="proof1269">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#dict_field_le">dict_field_le</a></span>; <span class="tactic">simpl</span>.<br/>
@@ -456,7 +456,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
 <br/>
 <span class="kwd">End</span> <span class="id"><a href="Qcert.Common.Data.DataSort.html#DataSort">DataSort</a></span>.<br/>
-<br/>
 <br/>
 
 </div>
