@@ -1,0 +1,295 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.NNRCimpish.Lang.NNRCimpish</title>
+<meta name="description" content="Documentation of Coq module Qcert.NNRCimpish.Lang.NNRCimpish" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.NNRCimpish.Lang.NNRCimpish</h1>
+<div class="coq">
+<br/>
+<div class="doc">NNRCimpish is a variant of the named nested relational calculus
+     (NNRC) that is meant to be more imperative in feel.  It is used
+     as an intermediate language between NNRC and more imperative /
+     statement oriented backends </div>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NNRCimpish">NNRCimpish</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Max.html">Max</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Peano_dec.html">Peano_dec</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Decidable.html">Decidable</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.CommonRuntime.html">CommonRuntime</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="kwd">Syntax</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="nnrc_impish_expr">nnrc_impish_expr</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishGetConstant">NNRCimpishGetConstant</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span>                                   <span class="docright">(* global variable lookup (<span class="bracket">$$<span class="id">v</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishVar">NNRCimpishVar</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span>                                           <span class="docright">(* local variable lookup (<span class="bracket">$<span class="id">v</span></span>) *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishConst">NNRCimpishConst</a></span> : <span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span>                                        <span class="docright">(* constant data (<span class="bracket"><span class="id">d</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishBinop">NNRCimpishBinop</a></span> : <span class="id"><a href="Qcert.Common.Operators.BinaryOperators.html#binary_op">binary_op</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> <span class="docright">(* binary operator (<span class="bracket"><span class="id">e</span>₁ ⊠ <span class="id">e</span>₂</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishUnop">NNRCimpishUnop</a></span> : <span class="id"><a href="Qcert.Common.Operators.UnaryOperators.html#unary_op">unary_op</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span>                    <span class="docright">(* unary operator (<span class="bracket">⊞ <span class="id">e</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishGroupBy">NNRCimpishGroupBy</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span>    <span class="docright">(* group by expression (<span class="bracket"><span class="id">e</span> <span class="id">groupby</span> <span class="id">g</span> <span class="id">fields</span></span>) -- only in full NNRC  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="nnrc_impish_stmt">nnrc_impish_stmt</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishSeq">NNRCimpishSeq</a></span> : <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span>                    <span class="docright">(* sequence (<span class="bracket"><span class="id">s</span>₁; <span class="id">s</span>₂</span>])  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishLet">NNRCimpishLet</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> <span class="docright">(* variable declaration (<span class="bracket"><span class="id">var</span> $<span class="id">v</span> := <span class="id">e</span>₁; <span class="id">s</span>₂</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishLetMut">NNRCimpishLetMut</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> <span class="docright">(* variable declaration (<span class="bracket"><span class="id">var</span> $<span class="id">v</span>; <span class="id">s</span>₁; <span class="id">s</span>₂</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishLetMutColl">NNRCimpishLetMutColl</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span>    <span class="docright">(* mutable collection declaration (<span class="bracket"><span class="id">var</span> $<span class="id">v</span> := {}; <span class="id">s1</span> ; <span class="id">s2</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishAssign">NNRCimpishAssign</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span>                           <span class="docright">(* variable assignent (<span class="bracket">$<span class="id">v</span> := <span class="id">e</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishPush">NNRCimpishPush</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span>                             <span class="docright">(* push item in mutable collection (<span class="bracket"><span class="id">push</span> <span class="id">e</span> <span class="kwd">in</span> $<span class="id">v</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishFor">NNRCimpishFor</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span>             <span class="docright">(* for loop (<span class="bracket"><span class="kwd">for</span> ($<span class="id">v</span> <span class="kwd">in</span> <span class="id">e</span>₁) { <span class="id">s</span>₂ }</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishIf">NNRCimpishIf</a></span> : <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span>    <span class="docright">(* conditional (<span class="bracket"><span class="kwd">if</span> <span class="id">e</span>₁ { <span class="id">s</span>₂ } <span class="kwd">else</span> { <span class="id">s</span>₃ }</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRCimpishEither">NNRCimpishEither</a></span> : <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span>                                                   <span class="docright">(* case expression (<span class="bracket"><span class="id">either</span> <span class="id">e</span> <span class="tactic">case</span> <span class="id">left</span> $<span class="id">v</span>₁ { <span class="id">s</span>₁ } <span class="tactic">case</span> <span class="id">right</span> $<span class="id">v</span>₂ { <span class="id">s</span>₂ }</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+<br/>
+<div class="doc"><span class="bracket"><span class="id">nnrc_impish</span></span> is composed of the statement evaluating the query
+        and the variable containing the result of the evaluation </div>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nnrc_impish">nnrc_impish</a></span> : <span class="kwd">Set</span> := (<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> * <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="kwd">Syntax</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="NNRCimpish.dec">dec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_impish_expr_eqdec">nnrc_impish_expr_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2827')">Proof.</div>
+<div class="proofscript" id="proof2827">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span>,  {<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#x">x</a></span> = <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#y">y</a></span>} + {<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#x">x</a></span> &lt;&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#y">y</a></span>}).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Operators.BinaryOperators.html#binary_op_eqdec">binary_op_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.Operators.UnaryOperators.html#unary_op_eqdec">unary_op_eqdec</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.DataModel.Data.html#data_eqdec">data_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">decide</span> <span class="id">equality</span>; <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_impish_stmt_eqdec">nnrc_impish_stmt_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2828')">Proof.</div>
+<div class="proofscript" id="proof2828">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span>,  {<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#x">x</a></span> = <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#y">y</a></span>} + {<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#x">x</a></span> &lt;&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#y">y</a></span>}).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr_eqdec">nnrc_impish_expr_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_impish_eqdec">nnrc_impish_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish">nnrc_impish</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2829')">Proof.</div>
+<div class="proofscript" id="proof2829">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> [<span class="id">s1</span> <span class="id">r1</span>] [<span class="id">s2</span> <span class="id">r2</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">r1</span> == <span class="id">r2</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id">s1</span> == <span class="id">s2</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">left</span>; <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">right</span>; <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpish.dec">dec</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="NNRCimpish.Core">Core</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e">e</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishGetConstant">NNRCimpishGetConstant</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishVar">NNRCimpishVar</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishConst">NNRCimpishConst</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishBinop">NNRCimpishBinop</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e2</span> =&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id">e1</span> /\ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishUnop">NNRCimpishUnop</a></span> <span class="id">_</span> <span class="id">e1</span> =&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id">e1</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishGroupBy">NNRCimpishGroupBy</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#s">s</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishSeq">NNRCimpishSeq</a></span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s1</span> /\ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishLet">NNRCimpishLet</a></span> <span class="id">_</span> <span class="id">e</span> <span class="id">s1</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id">e</span> /\ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s1</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishLetMut">NNRCimpishLetMut</a></span> <span class="id">_</span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s1</span> /\ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishLetMutColl">NNRCimpishLetMutColl</a></span> <span class="id">_</span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s1</span> /\ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishAssign">NNRCimpishAssign</a></span> <span class="id">_</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishPush">NNRCimpishPush</a></span> <span class="id">_</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishFor">NNRCimpishFor</a></span> <span class="id">_</span> <span class="id">e</span> <span class="id">s1</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id">e</span> /\ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s1</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishIf">NNRCimpishIf</a></span> <span class="id">e</span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id">e</span> /\ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s1</span> /\ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpishEither">NNRCimpishEither</a></span> <span class="id">e</span> <span class="id">_</span> <span class="id">s1</span> <span class="id">_</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id">e</span> /\ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s1</span> /\ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> .<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nnrc_impishIsCore">nnrc_impishIsCore</a></span> (<span class="id">sr</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish">nnrc_impish</a></span>) := <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#sr">sr</a></span>).<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nnrc_impish_core">nnrc_impish_core</a></span> : <span class="kwd">Set</span> := {<span class="id">sr</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish">nnrc_impish</a></span> | <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impishIsCore">nnrc_impishIsCore</a></span> <span class="id">sr</span>}.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nnrc_impish_core_to_nnrc_impish">nnrc_impish_core_to_nnrc_impish</a></span> (<span class="id">sr</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_core">nnrc_impish_core</a></span>) : <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish">nnrc_impish</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#sr">sr</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="NNRCimpish.Core.ext">ext</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_impish_exprIsCore_ext">nnrc_impish_exprIsCore_ext</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span>) (<span class="id">pf1</span> <span class="id">pf2</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e">e</a></span>) : <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#pf1">pf1</a></span> = <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#pf2">pf2</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2830')">Proof.</div>
+<div class="proofscript" id="proof2830">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> (<span class="tactic">destruct</span> <span class="id">pf1</span>; <span class="tactic">destruct</span> <span class="id">pf2</span>; <span class="tactic">trivial</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="tactic">f_equal</span>; <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_impish_stmtIsCore_ext">nnrc_impish_stmtIsCore_ext</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span>) (<span class="id">pf1</span> <span class="id">pf2</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#s">s</a></span>) : <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#pf1">pf1</a></span> = <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#pf2">pf2</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2831')">Proof.</div>
+<div class="proofscript" id="proof2831">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">s</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> (<span class="tactic">destruct</span> <span class="id">pf1</span>; <span class="tactic">destruct</span> <span class="id">pf2</span>; <span class="tactic">trivial</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> (<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">destruct</span> <span class="id">a0</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="tactic">f_equal</span>; <span class="tactic">eauto</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore_ext">nnrc_impish_exprIsCore_ext</a></span>; <span class="tactic">eauto</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">try</span> <span class="tactic">f_equal</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_impishIsCore_ext">nnrc_impishIsCore_ext</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish">nnrc_impish</a></span>) (<span class="id">pf1</span> <span class="id">pf2</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impishIsCore">nnrc_impishIsCore</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e">e</a></span>) : <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#pf1">pf1</a></span> = <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#pf2">pf2</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2832')">Proof.</div>
+<div class="proofscript" id="proof2832">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore_ext">nnrc_impish_stmtIsCore_ext</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_impish_core_ext">nnrc_impish_core_ext</a></span> <span class="id">e</span> (<span class="id">pf1</span> <span class="id">pf2</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impishIsCore">nnrc_impishIsCore</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e">e</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#exist">exist</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e">e</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#pf1">pf1</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#exist">exist</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e">e</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#pf2">pf2</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2833')">Proof.</div>
+<div class="proofscript" id="proof2833">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>; <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impishIsCore_ext">nnrc_impishIsCore_ext</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_impish_core_fequal">nnrc_impish_core_fequal</a></span> (<span class="id">e1</span> <span class="id">e2</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_core">nnrc_impish_core</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e1">e1</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e2">e2</a></span> -&gt; <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e1">e1</a></span> = <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e2">e2</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2834')">Proof.</div>
+<div class="proofscript" id="proof2834">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">e1</span>; <span class="tactic">destruct</span> <span class="id">e2</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">eqq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_core_ext">nnrc_impish_core_ext</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpish.Core.ext">ext</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="NNRCimpish.Core.dec">dec</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_impish_exprIsCore_dec">nnrc_impish_exprIsCore_dec</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_expr">nnrc_impish_expr</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e">e</a></span>} + {~ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore">nnrc_impish_exprIsCore</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#e">e</a></span>}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2835')">Proof.</div>
+<div class="proofscript" id="proof2835">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">eauto</span> 3.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">IHe1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">IHe2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_impish_stmtIsCore_dec">nnrc_impish_stmtIsCore_dec</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmt">nnrc_impish_stmt</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#s">s</a></span>} + {~ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore">nnrc_impish_stmtIsCore</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#s">s</a></span>}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2836')">Proof.</div>
+<div class="proofscript" id="proof2836">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">s</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">IHs1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore_dec">nnrc_impish_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">IHs1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">IHs1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> (<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore_dec">nnrc_impish_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> (<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore_dec">nnrc_impish_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore_dec">nnrc_impish_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore_dec">nnrc_impish_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">destruct</span> <span class="id">IHs2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_exprIsCore_dec">nnrc_impish_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">destruct</span> <span class="id">IHs2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_impishIsCore_dec">nnrc_impishIsCore_dec</a></span> (<span class="id">sr</span>:<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish">nnrc_impish</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impishIsCore">nnrc_impishIsCore</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#sr">sr</a></span>} + {~ <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impishIsCore">nnrc_impishIsCore</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#sr">sr</a></span>}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2837')">Proof.</div>
+<div class="proofscript" id="proof2837">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_stmtIsCore_dec">nnrc_impish_stmtIsCore_dec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_impish_core_eqdec">nnrc_impish_core_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_core">nnrc_impish_core</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2838')">Proof.</div>
+<div class="proofscript" id="proof2838">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">x</span> <span class="id">y</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span> <span class="kwd">as</span> [<span class="id">x</span> <span class="id">xpf</span>]; <span class="tactic">destruct</span> <span class="id">y</span> <span class="kwd">as</span> [<span class="id">y</span> <span class="id">ypf</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">x</span> == <span class="id">y</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">left</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#nnrc_impish_core_fequal">nnrc_impish_core_fequal</a></span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">right</span>. <span class="tactic">inversion</span> 1; <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpish.Core.dec">dec</a></span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpish.Core">Core</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NNRCimpish.Env">Env</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Common.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="pd_bindings">pd_bindings</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="mc_bindings">mc_bindings</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="md_bindings">md_bindings</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span>).<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpish.Env">Env</a></span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRCimpish.Lang.NNRCimpish.html#NNRCimpish">NNRCimpish</a></span>.<br/>
+<br/>
+<span class="kwd">Tactic</span> <span class="kwd">Notation</span> "<span class="id">nnrc_impish_expr_cases</span>" <span class="id">tactic</span>(<span class="id">first</span>) <span class="id">ident</span>(<span class="id">c</span>) :=<br/>
+&nbsp;&nbsp;<span class="id">first</span>;<br/>
+&nbsp;&nbsp;[ <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishGetConstant</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishVar</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishConst</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishBinop</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishUnop</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishGroupBy</span>"%<span class="id">string</span>].<br/>
+<br/>
+<span class="kwd">Tactic</span> <span class="kwd">Notation</span> "<span class="id">nnrc_impish_stmt_cases</span>" <span class="id">tactic</span>(<span class="id">first</span>) <span class="id">ident</span>(<span class="id">c</span>) :=<br/>
+&nbsp;&nbsp;<span class="id">first</span>;<br/>
+&nbsp;&nbsp;[ <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishSeq</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishLet</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishLetMut</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishLetMutColl</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishAssign</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishPush</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishFor</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishIf</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRCimpishEither</span>"%<span class="id">string</span>].<br/>
+<br/>
+<span class="kwd">Delimit</span> <span class="kwd">Scope</span> <span class="id">nnrc_impish</span> <span class="kwd">with</span> <span class="id">nnrc_impish_scope</span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

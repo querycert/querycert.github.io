@@ -63,7 +63,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="CcNRAEnvGetConstant">CcNRAEnvGetConstant</a></span> <span class="id">s</span> : <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt">nraenv_core_ctxt</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvPlug">CcNRAEnvPlug</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnv.html#cNRAEnvGetConstant">cNRAEnvGetConstant</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#s">s</a></span>).<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="CcNRAEnvConst">CcNRAEnvConst</a></span> : <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> -&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt">nraenv_core_ctxt</a></span><br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="CcNRAEnvConst">CcNRAEnvConst</a></span> : <span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span> -&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt">nraenv_core_ctxt</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">fun</span> <span class="id">d</span> =&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvPlug">CcNRAEnvPlug</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnv.html#cNRAEnvConst">cNRAEnvConst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#d">d</a></span>).<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="aec_holes">aec_holes</a></span> (<span class="id">c</span>:<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt">nraenv_core_ctxt</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span> :=<br/>
@@ -152,8 +152,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1873')">Proof.</div>
-<div class="proofscript" id="proof1873">
+<div class="toggleproof" onclick="toggleDisplay('proof1939')">Proof.</div>
+<div class="proofscript" id="proof1939">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id">c1</span>); <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id">c2</span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="kwd">in</span> *; <span class="id">fold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="kwd">in</span> *;<br/>
@@ -171,8 +171,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_nholes">aec_simplify_nholes</a></span> <span class="id">c</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt; {<span class="id">a</span> | <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvPlug">CcNRAEnvPlug</a></span> <span class="id">a</span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1874')">Proof.</div>
-<div class="proofscript" id="proof1874">
+<div class="toggleproof" onclick="toggleDisplay('proof1940')">Proof.</div>
+<div class="proofscript" id="proof1940">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span>; <span class="tactic">simpl</span>; [<span class="tactic">discriminate</span> | <span class="tactic">eauto</span> 2 | ..];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">intros</span> <span class="id">s0</span>; <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_eq_nil">app_eq_nil</a></span> <span class="kwd">in</span> <span class="id">s0</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">s0</span> <span class="kwd">as</span> [<span class="id">s10</span> <span class="id">s20</span>];<br/>
@@ -185,8 +185,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_nraenv_core_of_ctxt_nholes">aec_nraenv_core_of_ctxt_nholes</a></span> <span class="id">c</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt; {<span class="id">a</span> | <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_nraenv_core_of_ctxt">aec_nraenv_core_of_ctxt</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">a</span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1875')">Proof.</div>
-<div class="proofscript" id="proof1875">
+<div class="toggleproof" onclick="toggleDisplay('proof1941')">Proof.</div>
+<div class="proofscript" id="proof1941">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">ac0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_nholes">aec_simplify_nholes</a></span> <span class="id">_</span> <span class="id">ac0</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_nraenv_core_of_ctxt">aec_nraenv_core_of_ctxt</a></span>.<br/>
@@ -196,8 +196,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_idempotent">aec_simplify_idempotent</a></span> <span class="id">c</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1876')">Proof.</div>
-<div class="proofscript" id="proof1876">
+<div class="toggleproof" onclick="toggleDisplay('proof1942')">Proof.</div>
+<div class="proofscript" id="proof1942">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id">c</span>); <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">trivial</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>; <span class="tactic">try</span> <span class="tactic">congruence</span><br/>
@@ -249,16 +249,16 @@
 &nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_app">aec_substs_app</a></span> <span class="id">c</span> <span class="id">ps1</span> <span class="id">ps2</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps1">ps1</a></span> ++ <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps2">ps2</a></span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps1">ps1</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps2">ps2</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1877')">Proof.</div>
-<div class="proofscript" id="proof1877">
+<div class="toggleproof" onclick="toggleDisplay('proof1943')">Proof.</div>
+<div class="proofscript" id="proof1943">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left_app">fold_left_app</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_subst_holes_nin">aec_subst_holes_nin</a></span>  <span class="id">c</span> <span class="id">x</span> <span class="id">p</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) -&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#p">p</a></span> = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1878')">Proof.</div>
-<div class="proofscript" id="proof1878">
+<div class="toggleproof" onclick="toggleDisplay('proof1944')">Proof.</div>
+<div class="proofscript" id="proof1944">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>; <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<span class="id">match_destr</span>; <span class="tactic">intuition</span> | <span class="tactic">trivial</span> | .. ];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#in_app_iff">in_app_iff</a></span> <span class="kwd">in</span> *;<br/>
@@ -267,8 +267,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_subst_holes_remove">aec_subst_holes_remove</a></span> <span class="id">c</span> <span class="id">x</span> <span class="id">p</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#p">p</a></span>) = <span class="id"><a href="Qcert.Utils.ListAdd.html#remove_all">remove_all</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1879')">Proof.</div>
-<div class="proofscript" id="proof1879">
+<div class="toggleproof" onclick="toggleDisplay('proof1945')">Proof.</div>
+<div class="proofscript" id="proof1945">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">trivial</span>; <span class="tactic">try</span> <span class="id">solve</span>[ <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#remove_all_app">remove_all_app</a></span>; <span class="tactic">congruence</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;CcNRAEnvHole&nbsp;*)</span><br/>
@@ -277,8 +277,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substp_holes_remove">aec_substp_holes_remove</a></span> <span class="id">c</span> <span class="id">xp</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substp">aec_substp</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#xp">xp</a></span>) = <span class="id"><a href="Qcert.Utils.ListAdd.html#remove_all">remove_all</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#xp">xp</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1880')">Proof.</div>
-<div class="proofscript" id="proof1880">
+<div class="toggleproof" onclick="toggleDisplay('proof1946')">Proof.</div>
+<div class="proofscript" id="proof1946">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">xp</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst_holes_remove">aec_subst_holes_remove</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -286,8 +286,8 @@
 &nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_holes_remove">aec_substs_holes_remove</a></span> <span class="id">c</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">fold_left</a></span> (<span class="kwd">fun</span> <span class="id">h</span> <span class="id">xy</span> =&gt; <span class="id"><a href="Qcert.Utils.ListAdd.html#remove_all">remove_all</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#xy">xy</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#h">h</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1881')">Proof.</div>
-<div class="proofscript" id="proof1881">
+<div class="toggleproof" onclick="toggleDisplay('proof1947')">Proof.</div>
+<div class="proofscript" id="proof1947">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
@@ -297,16 +297,16 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_Plug">aec_substs_Plug</a></span> <span class="id">a</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvPlug">CcNRAEnvPlug</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#a">a</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvPlug">CcNRAEnvPlug</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#a">a</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1882')">Proof.</div>
-<div class="proofscript" id="proof1882">
+<div class="toggleproof" onclick="toggleDisplay('proof1948')">Proof.</div>
+<div class="proofscript" id="proof1948">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a0</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_Binop">aec_substs_Binop</a></span> <span class="id">b</span> <span class="id">c1</span> <span class="id">c2</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvBinop">CcNRAEnvBinop</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#b">b</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvBinop">CcNRAEnvBinop</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#b">b</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1883')">Proof.</div>
-<div class="proofscript" id="proof1883">
+<div class="toggleproof" onclick="toggleDisplay('proof1949')">Proof.</div>
+<div class="proofscript" id="proof1949">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -314,8 +314,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_Unop">aec_substs_Unop</a></span> <span class="id">u</span> <span class="id">c</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvUnop">CcNRAEnvUnop</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#u">u</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvUnop">CcNRAEnvUnop</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#u">u</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1884')">Proof.</div>
-<div class="proofscript" id="proof1884">
+<div class="toggleproof" onclick="toggleDisplay('proof1950')">Proof.</div>
+<div class="proofscript" id="proof1950">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -324,8 +324,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_Map">aec_substs_Map</a></span> <span class="id">c1</span> <span class="id">c2</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> ( <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMap">CcNRAEnvMap</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMap">CcNRAEnvMap</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1885')">Proof.</div>
-<div class="proofscript" id="proof1885">
+<div class="toggleproof" onclick="toggleDisplay('proof1951')">Proof.</div>
+<div class="proofscript" id="proof1951">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -334,8 +334,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_MapProduct">aec_substs_MapProduct</a></span> <span class="id">c1</span> <span class="id">c2</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> ( <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMapProduct">CcNRAEnvMapProduct</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMapProduct">CcNRAEnvMapProduct</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1886')">Proof.</div>
-<div class="proofscript" id="proof1886">
+<div class="toggleproof" onclick="toggleDisplay('proof1952')">Proof.</div>
+<div class="proofscript" id="proof1952">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -344,8 +344,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_Product">aec_substs_Product</a></span> <span class="id">c1</span> <span class="id">c2</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> ( <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvProduct">CcNRAEnvProduct</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvProduct">CcNRAEnvProduct</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1887')">Proof.</div>
-<div class="proofscript" id="proof1887">
+<div class="toggleproof" onclick="toggleDisplay('proof1953')">Proof.</div>
+<div class="proofscript" id="proof1953">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -354,8 +354,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_Select">aec_substs_Select</a></span> <span class="id">c1</span> <span class="id">c2</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> ( <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvSelect">CcNRAEnvSelect</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvSelect">CcNRAEnvSelect</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1888')">Proof.</div>
-<div class="proofscript" id="proof1888">
+<div class="toggleproof" onclick="toggleDisplay('proof1954')">Proof.</div>
+<div class="proofscript" id="proof1954">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -364,8 +364,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_Default">aec_substs_Default</a></span> <span class="id">c1</span> <span class="id">c2</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> ( <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvDefault">CcNRAEnvDefault</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvDefault">CcNRAEnvDefault</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1889')">Proof.</div>
-<div class="proofscript" id="proof1889">
+<div class="toggleproof" onclick="toggleDisplay('proof1955')">Proof.</div>
+<div class="proofscript" id="proof1955">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -374,8 +374,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_Either">aec_substs_Either</a></span> <span class="id">c1</span> <span class="id">c2</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> ( <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEither">CcNRAEnvEither</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEither">CcNRAEnvEither</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1890')">Proof.</div>
-<div class="proofscript" id="proof1890">
+<div class="toggleproof" onclick="toggleDisplay('proof1956')">Proof.</div>
+<div class="proofscript" id="proof1956">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -384,8 +384,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_EitherConcat">aec_substs_EitherConcat</a></span> <span class="id">c1</span> <span class="id">c2</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> ( <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEitherConcat">CcNRAEnvEitherConcat</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEitherConcat">CcNRAEnvEitherConcat</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1891')">Proof.</div>
-<div class="proofscript" id="proof1891">
+<div class="toggleproof" onclick="toggleDisplay('proof1957')">Proof.</div>
+<div class="proofscript" id="proof1957">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -394,8 +394,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_App">aec_substs_App</a></span> <span class="id">c1</span> <span class="id">c2</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> ( <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvApp">CcNRAEnvApp</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvApp">CcNRAEnvApp</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1892')">Proof.</div>
-<div class="proofscript" id="proof1892">
+<div class="toggleproof" onclick="toggleDisplay('proof1958')">Proof.</div>
+<div class="proofscript" id="proof1958">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -404,8 +404,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_AppEnv">aec_substs_AppEnv</a></span> <span class="id">c1</span> <span class="id">c2</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> ( <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvAppEnv">CcNRAEnvAppEnv</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvAppEnv">CcNRAEnvAppEnv</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1893')">Proof.</div>
-<div class="proofscript" id="proof1893">
+<div class="toggleproof" onclick="toggleDisplay('proof1959')">Proof.</div>
+<div class="proofscript" id="proof1959">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span> <span class="id">c2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -414,8 +414,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_MapEnv">aec_substs_MapEnv</a></span> <span class="id">c1</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> ( <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMapEnv">CcNRAEnvMapEnv</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMapEnv">CcNRAEnvMapEnv</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1894')">Proof.</div>
-<div class="proofscript" id="proof1894">
+<div class="toggleproof" onclick="toggleDisplay('proof1960')">Proof.</div>
+<div class="proofscript" id="proof1960">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -439,8 +439,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_binary_op">aec_simplify_holes_binary_op</a></span> <span class="id">b</span> <span class="id">c1</span> <span class="id">c2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvBinop">CcNRAEnvBinop</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#b">b</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvBinop">CcNRAEnvBinop</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#b">b</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvBinop">CcNRAEnvBinop</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#b">b</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1895')">Proof.</div>
-<div class="proofscript" id="proof1895">
+<div class="toggleproof" onclick="toggleDisplay('proof1961')">Proof.</div>
+<div class="proofscript" id="proof1961">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -454,8 +454,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_unary_op">aec_simplify_holes_unary_op</a></span> <span class="id">u</span> <span class="id">c</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvUnop">CcNRAEnvUnop</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#u">u</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> ) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvUnop">CcNRAEnvUnop</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#u">u</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvUnop">CcNRAEnvUnop</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#u">u</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1896')">Proof.</div>
-<div class="proofscript" id="proof1896">
+<div class="toggleproof" onclick="toggleDisplay('proof1962')">Proof.</div>
+<div class="proofscript" id="proof1962">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -468,8 +468,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_map">aec_simplify_holes_map</a></span> <span class="id">c1</span> <span class="id">c2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMap">CcNRAEnvMap</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMap">CcNRAEnvMap</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMap">CcNRAEnvMap</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1897')">Proof.</div>
-<div class="proofscript" id="proof1897">
+<div class="toggleproof" onclick="toggleDisplay('proof1963')">Proof.</div>
+<div class="proofscript" id="proof1963">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -483,8 +483,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_mapconcat">aec_simplify_holes_mapconcat</a></span> <span class="id">c1</span> <span class="id">c2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMapProduct">CcNRAEnvMapProduct</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMapProduct">CcNRAEnvMapProduct</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMapProduct">CcNRAEnvMapProduct</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1898')">Proof.</div>
-<div class="proofscript" id="proof1898">
+<div class="toggleproof" onclick="toggleDisplay('proof1964')">Proof.</div>
+<div class="proofscript" id="proof1964">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -498,8 +498,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_product">aec_simplify_holes_product</a></span> <span class="id">c1</span> <span class="id">c2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvProduct">CcNRAEnvProduct</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvProduct">CcNRAEnvProduct</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvProduct">CcNRAEnvProduct</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1899')">Proof.</div>
-<div class="proofscript" id="proof1899">
+<div class="toggleproof" onclick="toggleDisplay('proof1965')">Proof.</div>
+<div class="proofscript" id="proof1965">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -513,8 +513,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_select">aec_simplify_holes_select</a></span> <span class="id">c1</span> <span class="id">c2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvSelect">CcNRAEnvSelect</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvSelect">CcNRAEnvSelect</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvSelect">CcNRAEnvSelect</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1900')">Proof.</div>
-<div class="proofscript" id="proof1900">
+<div class="toggleproof" onclick="toggleDisplay('proof1966')">Proof.</div>
+<div class="proofscript" id="proof1966">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -528,8 +528,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_default">aec_simplify_holes_default</a></span> <span class="id">c1</span> <span class="id">c2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvDefault">CcNRAEnvDefault</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvDefault">CcNRAEnvDefault</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvDefault">CcNRAEnvDefault</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1901')">Proof.</div>
-<div class="proofscript" id="proof1901">
+<div class="toggleproof" onclick="toggleDisplay('proof1967')">Proof.</div>
+<div class="proofscript" id="proof1967">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -543,8 +543,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_either">aec_simplify_holes_either</a></span> <span class="id">c1</span> <span class="id">c2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEither">CcNRAEnvEither</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEither">CcNRAEnvEither</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEither">CcNRAEnvEither</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1902')">Proof.</div>
-<div class="proofscript" id="proof1902">
+<div class="toggleproof" onclick="toggleDisplay('proof1968')">Proof.</div>
+<div class="proofscript" id="proof1968">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -558,8 +558,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_eitherconcat">aec_simplify_holes_eitherconcat</a></span> <span class="id">c1</span> <span class="id">c2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEitherConcat">CcNRAEnvEitherConcat</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEitherConcat">CcNRAEnvEitherConcat</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEitherConcat">CcNRAEnvEitherConcat</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1903')">Proof.</div>
-<div class="proofscript" id="proof1903">
+<div class="toggleproof" onclick="toggleDisplay('proof1969')">Proof.</div>
+<div class="proofscript" id="proof1969">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -573,8 +573,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_app">aec_simplify_holes_app</a></span> <span class="id">c1</span> <span class="id">c2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvApp">CcNRAEnvApp</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvApp">CcNRAEnvApp</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvApp">CcNRAEnvApp</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1904')">Proof.</div>
-<div class="proofscript" id="proof1904">
+<div class="toggleproof" onclick="toggleDisplay('proof1970')">Proof.</div>
+<div class="proofscript" id="proof1970">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -588,8 +588,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_appenv">aec_simplify_holes_appenv</a></span> <span class="id">c1</span> <span class="id">c2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvAppEnv">CcNRAEnvAppEnv</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvAppEnv">CcNRAEnvAppEnv</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvAppEnv">CcNRAEnvAppEnv</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1905')">Proof.</div>
-<div class="proofscript" id="proof1905">
+<div class="toggleproof" onclick="toggleDisplay('proof1971')">Proof.</div>
+<div class="proofscript" id="proof1971">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -603,8 +603,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_holes_mapenv">aec_simplify_holes_mapenv</a></span> <span class="id">c1</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMapEnv">CcNRAEnvMapEnv</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMapEnv">CcNRAEnvMapEnv</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>) = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvMapEnv">CcNRAEnvMapEnv</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1906')">Proof.</div>
-<div class="proofscript" id="proof1906">
+<div class="toggleproof" onclick="toggleDisplay('proof1972')">Proof.</div>
+<div class="proofscript" id="proof1972">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span> <span class="id">c1</span>); <span class="tactic">intros</span> <span class="id">pres1</span>;<br/>
@@ -616,8 +616,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_subst_nholes">aec_subst_nholes</a></span> <span class="id">c</span> <span class="id">x</span> <span class="id">p</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#p">p</a></span> = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1907')">Proof.</div>
-<div class="proofscript" id="proof1907">
+<div class="toggleproof" onclick="toggleDisplay('proof1973')">Proof.</div>
+<div class="proofscript" id="proof1973">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst_holes_nin">aec_subst_holes_nin</a></span>. <span class="tactic">rewrite</span> <span class="id">H</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;Qed.</div>
@@ -625,8 +625,8 @@
 &nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_subst_simplify_nholes">aec_subst_simplify_nholes</a></span> <span class="id">c</span> <span class="id">x</span> <span class="id">p</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#p">p</a></span> = <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1908')">Proof.</div>
-<div class="proofscript" id="proof1908">
+<div class="toggleproof" onclick="toggleDisplay('proof1974')">Proof.</div>
+<div class="proofscript" id="proof1974">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst_nholes">aec_subst_nholes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id">c</span>)); <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_holes_preserved">aec_simplify_holes_preserved</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -635,8 +635,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_subst_simplify1">aec_simplify_subst_simplify1</a></span> <span class="id">c</span> <span class="id">x</span> <span class="id">p</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#p">p</a></span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#p">p</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1909')">Proof.</div>
-<div class="proofscript" id="proof1909">
+<div class="toggleproof" onclick="toggleDisplay('proof1975')">Proof.</div>
+<div class="proofscript" id="proof1975">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Ltac</span> <span class="id">destr_solv</span> <span class="id">IHc1</span> <span class="id">IHc2</span> <span class="id">const</span> <span class="id">lemma</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.ListAdd.html#is_nil_dec">is_nil_dec</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id">const</span>)) <span class="kwd">as</span> [<span class="id">h</span>|<span class="id">h</span>];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(<span class="tactic">rewrite</span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst_nholes">aec_subst_nholes</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">h</span>);<br/>
@@ -683,8 +683,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_substs_simplify1">aec_simplify_substs_simplify1</a></span> <span class="id">c</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1910')">Proof.</div>
-<div class="proofscript" id="proof1910">
+<div class="toggleproof" onclick="toggleDisplay('proof1976')">Proof.</div>
+<div class="proofscript" id="proof1976">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify_idempotent">aec_simplify_idempotent</a></span>.<br/>
@@ -719,8 +719,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="aec_simplify_proper">aec_simplify_proper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span> ==&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1911')">Proof.</div>
-<div class="proofscript" id="proof1911">
+<div class="toggleproof" onclick="toggleDisplay('proof1977')">Proof.</div>
+<div class="proofscript" id="proof1977">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -731,8 +731,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_simplify_proper_inv">aec_simplify_proper_inv</a></span> <span class="id">x</span> <span class="id">y</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span>) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_simplify">aec_simplify</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y">y</a></span>) -&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y">y</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1912')">Proof.</div>
-<div class="proofscript" id="proof1912">
+<div class="toggleproof" onclick="toggleDisplay('proof1978')">Proof.</div>
+<div class="proofscript" id="proof1978">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -743,8 +743,8 @@
 <br/>
 &nbsp;<span class="kwd">Instance</span> <span class="id"><a name="aec_subst_proper_part1">aec_subst_proper_part1</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1913')">Proof.</div>
-<div class="proofscript" id="proof1913">
+<div class="toggleproof" onclick="toggleDisplay('proof1979')">Proof.</div>
+<div class="proofscript" id="proof1979">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H</span> ((<span class="id">y0</span>,<span class="id">y1</span>)::<span class="id">ps</span>)).<br/>
@@ -753,8 +753,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="aec_substs_proper_part1">aec_substs_proper_part1</a></span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1914')">Proof.</div>
-<div class="proofscript" id="proof1914">
+<div class="toggleproof" onclick="toggleDisplay('proof1980')">Proof.</div>
+<div class="proofscript" id="proof1980">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> &lt;- <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs_app">aec_substs_app</a></span>.<br/>
@@ -776,8 +776,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x1">x1</a></span> &lt;&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x2">x2</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x1">x1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y1">y1</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x2">x2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y2">y2</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x2">x2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y2">y2</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x1">x1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y1">y1</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1915')">Proof.</div>
-<div class="proofscript" id="proof1915">
+<div class="toggleproof" onclick="toggleDisplay('proof1981')">Proof.</div>
+<div class="proofscript" id="proof1981">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span>; <span class="tactic">simpl</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="tactic">repeat</span> (<span class="id">match_destr</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>) | <span class="tactic">trivial</span> | .. ];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>; <span class="tactic">congruence</span>.<br/>
@@ -786,8 +786,8 @@
 &nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_subst_swap_eq">aec_subst_swap_eq</a></span> <span class="id">c</span> <span class="id">x1</span> <span class="id">y1</span> <span class="id">y2</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x1">x1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y1">y1</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x1">x1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y2">y2</a></span> =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x1">x1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y1">y1</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1916')">Proof.</div>
-<div class="proofscript" id="proof1916">
+<div class="toggleproof" onclick="toggleDisplay('proof1982')">Proof.</div>
+<div class="proofscript" id="proof1982">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span>; <span class="tactic">simpl</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="tactic">repeat</span> (<span class="id">match_destr</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>) | <span class="tactic">trivial</span> | .. ];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>; <span class="tactic">congruence</span>.<br/>
@@ -798,8 +798,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y">y</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_subst">aec_subst</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#y">y</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1917')">Proof.</div>
-<div class="proofscript" id="proof1917">
+<div class="toggleproof" onclick="toggleDisplay('proof1983')">Proof.</div>
+<div class="proofscript" id="proof1983">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="id">IHps</span>; <span class="tactic">trivial</span>.<br/>
@@ -815,8 +815,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation">Permutation</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps1">ps1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps2">ps2</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps1">ps1</a></span>)  =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps2">ps2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1918')">Proof.</div>
-<div class="proofscript" id="proof1918">
+<div class="toggleproof" onclick="toggleDisplay('proof1984')">Proof.</div>
+<div class="proofscript" id="proof1984">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">nd</span> <span class="id">perm</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c</span>. <span class="id">revert</span> <span class="id">ps1</span> <span class="id">ps2</span> <span class="id">perm</span> <span class="id">nd</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_ind_bis">Permutation_ind_bis</a></span><br/>
@@ -839,8 +839,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nraenv_core_ctxt_equiv_strict_equiv1">nraenv_core_ctxt_equiv_strict_equiv1</a></span> (<span class="id">c1</span> <span class="id">c2</span> : <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt">nraenv_core_ctxt</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict1">nraenv_core_ctxt_equiv_strict1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> &lt;-&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict">nraenv_core_ctxt_equiv_strict</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1919')">Proof.</div>
-<div class="proofscript" id="proof1919">
+<div class="toggleproof" onclick="toggleDisplay('proof1985')">Proof.</div>
+<div class="proofscript" id="proof1985">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict">nraenv_core_ctxt_equiv_strict</a></span>, <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict1">nraenv_core_ctxt_equiv_strict1</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id">H</span>; <span class="tactic">trivial</span>.<br/>
@@ -868,8 +868,8 @@
 &nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="aec_substs_in_nholes">aec_substs_in_nholes</a></span> <span class="id">c</span> <span class="id">x</span> <span class="id">ps</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1920')">Proof.</div>
-<div class="proofscript" id="proof1920">
+<div class="toggleproof" onclick="toggleDisplay('proof1986')">Proof.</div>
+<div class="proofscript" id="proof1986">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs_holes_remove">aec_substs_holes_remove</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">inn</span>.<br/>
@@ -880,8 +880,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#bdistinct_domain">bdistinct_domain</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;= <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1921')">Proof.</div>
-<div class="proofscript" id="proof1921">
+<div class="toggleproof" onclick="toggleDisplay('proof1987')">Proof.</div>
+<div class="proofscript" id="proof1987">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span> <span class="kwd">using</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev_ind">rev_ind</a></span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev_app_distr">rev_app_distr</a></span>.<br/>
@@ -918,8 +918,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nraenv_core_ctxt_equiv_strict1_equiv2">nraenv_core_ctxt_equiv_strict1_equiv2</a></span> (<span class="id">c1</span> <span class="id">c2</span> : <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt">nraenv_core_ctxt</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict2">nraenv_core_ctxt_equiv_strict2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> &lt;-&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict1">nraenv_core_ctxt_equiv_strict1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1922')">Proof.</div>
-<div class="proofscript" id="proof1922">
+<div class="toggleproof" onclick="toggleDisplay('proof1988')">Proof.</div>
+<div class="proofscript" id="proof1988">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict1">nraenv_core_ctxt_equiv_strict1</a></span>, <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict2">nraenv_core_ctxt_equiv_strict2</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">apply</span> <span class="id">H</span>; <span class="tactic">trivial</span>.<br/>
@@ -947,8 +947,8 @@
 &nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="cut_down_to_substs">cut_down_to_substs</a></span> <span class="id">c</span> <span class="id">ps</span> <span class="tactic">cut</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span>) <span class="tactic">cut</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>) = (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span> (<span class="id"><a href="Qcert.Utils.ListAdd.html#cut_down_to">cut_down_to</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span> <span class="tactic">cut</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1923')">Proof.</div>
-<div class="proofscript" id="proof1923">
+<div class="toggleproof" onclick="toggleDisplay('proof1989')">Proof.</div>
+<div class="proofscript" id="proof1989">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">ps</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_case</span>.<br/>
@@ -969,8 +969,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nraenv_core_ctxt_equiv_strict2_equiv3">nraenv_core_ctxt_equiv_strict2_equiv3</a></span> (<span class="id">c1</span> <span class="id">c2</span> : <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt">nraenv_core_ctxt</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict3">nraenv_core_ctxt_equiv_strict3</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> &lt;-&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict2">nraenv_core_ctxt_equiv_strict2</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1924')">Proof.</div>
-<div class="proofscript" id="proof1924">
+<div class="toggleproof" onclick="toggleDisplay('proof1990')">Proof.</div>
+<div class="proofscript" id="proof1990">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict2">nraenv_core_ctxt_equiv_strict2</a></span>, <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict3">nraenv_core_ctxt_equiv_strict3</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">apply</span> <span class="id">H</span>; <span class="tactic">trivial</span>. <span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> <span class="kwd">in</span> *.<br/>
@@ -991,8 +991,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nraenv_core_ctxt_equiv_strict3_equiv">nraenv_core_ctxt_equiv_strict3_equiv</a></span> (<span class="id">c1</span> <span class="id">c2</span> : <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt">nraenv_core_ctxt</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> &lt;-&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict3">nraenv_core_ctxt_equiv_strict3</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1925')">Proof.</div>
-<div class="proofscript" id="proof1925">
+<div class="toggleproof" onclick="toggleDisplay('proof1991')">Proof.</div>
+<div class="proofscript" id="proof1991">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict3">nraenv_core_ctxt_equiv_strict3</a></span>, <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span> <span class="id">H</span>.<br/>
@@ -1018,8 +1018,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="nraenv_core_ctxt_equiv_strict_equiv">nraenv_core_ctxt_equiv_strict_equiv</a></span> (<span class="id">c1</span> <span class="id">c2</span> : <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt">nraenv_core_ctxt</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span> &lt;-&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict">nraenv_core_ctxt_equiv_strict</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c1">c1</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c2">c2</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1926')">Proof.</div>
-<div class="proofscript" id="proof1926">
+<div class="toggleproof" onclick="toggleDisplay('proof1992')">Proof.</div>
+<div class="proofscript" id="proof1992">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict3_equiv">nraenv_core_ctxt_equiv_strict3_equiv</a></span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict2_equiv3">nraenv_core_ctxt_equiv_strict2_equiv3</a></span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict1_equiv2">nraenv_core_ctxt_equiv_strict1_equiv2</a></span>,<br/>
@@ -1032,8 +1032,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs">aec_substs</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#c">c</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> (<span class="kwd">fun</span> <span class="id">xy</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span> * <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#B">B</a></span> =&gt; (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#xy">xy</a></span>, (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#f">f</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#xy">xy</a></span>)))) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#ps">ps</a></span>)) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1927')">Proof.</div>
-<div class="proofscript" id="proof1927">
+<div class="toggleproof" onclick="toggleDisplay('proof1993')">Proof.</div>
+<div class="proofscript" id="proof1993">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_substs_holes_remove">aec_substs_holes_remove</a></span>, <span class="id"><a href="Qcert.Utils.ListAdd.html#fold_left_map">fold_left_map</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
@@ -1059,24 +1059,24 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_core_ctxt_equiv_refl">nraenv_core_ctxt_equiv_refl</a></span> {<span class="id">refl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Reflexive">Reflexive</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span>}: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Reflexive">Reflexive</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1928')">Proof.</div>
-<div class="proofscript" id="proof1928">
+<div class="toggleproof" onclick="toggleDisplay('proof1994')">Proof.</div>
+<div class="proofscript" id="proof1994">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">match_destr</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_core_ctxt_equiv_sym">nraenv_core_ctxt_equiv_sym</a></span> {<span class="id">sym</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Symmetric">Symmetric</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span>}: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Symmetric">Symmetric</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1929')">Proof.</div>
-<div class="proofscript" id="proof1929">
+<div class="toggleproof" onclick="toggleDisplay('proof1995')">Proof.</div>
+<div class="proofscript" id="proof1995">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">specialize</span> (<span class="id">H</span> <span class="id">ps</span>). <span class="id">match_destr</span>; <span class="id">match_destr</span>. <span class="tactic">symmetry</span>. <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_core_ctxt_equiv_trans">nraenv_core_ctxt_equiv_trans</a></span> {<span class="id">trans</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span>}: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1930')">Proof.</div>
-<div class="proofscript" id="proof1930">
+<div class="toggleproof" onclick="toggleDisplay('proof1996')">Proof.</div>
+<div class="proofscript" id="proof1996">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">specialize</span> (<span class="id">H</span> (<span class="id">ps</span> ++ (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#x">x</a></span>, <span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnv.html#cNRAEnvID">cNRAEnvID</a></span>)) (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#aec_holes">aec_holes</a></span> <span class="id">y</span>)))).<br/>
@@ -1121,8 +1121,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_core_ctxt_equiv_equivalence">nraenv_core_ctxt_equiv_equivalence</a></span> {<span class="id">equiv</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span>}: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1931')">Proof.</div>
-<div class="proofscript" id="proof1931">
+<div class="toggleproof" onclick="toggleDisplay('proof1997')">Proof.</div>
+<div class="proofscript" id="proof1997">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">symmetry</span>; <span class="tactic">trivial</span>.<br/>
@@ -1130,40 +1130,40 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_core_ctxt_equiv_preorder">nraenv_core_ctxt_equiv_preorder</a></span> {<span class="id">pre</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PreOrder">PreOrder</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span>} : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PreOrder">PreOrder</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1932')">Proof.</div>
-<div class="proofscript" id="proof1932">
+<div class="toggleproof" onclick="toggleDisplay('proof1998')">Proof.</div>
+<div class="proofscript" id="proof1998">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">etransitivity</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_core_ctxt_equiv_strict_refl">nraenv_core_ctxt_equiv_strict_refl</a></span> {<span class="id">refl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Reflexive">Reflexive</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span>}: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Reflexive">Reflexive</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict">nraenv_core_ctxt_equiv_strict</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1933')">Proof.</div>
-<div class="proofscript" id="proof1933">
+<div class="toggleproof" onclick="toggleDisplay('proof1999')">Proof.</div>
+<div class="proofscript" id="proof1999">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> &lt;- <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict_equiv">nraenv_core_ctxt_equiv_strict_equiv</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_core_ctxt_equiv_strict_sym">nraenv_core_ctxt_equiv_strict_sym</a></span> {<span class="id">sym</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Symmetric">Symmetric</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span>}: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Symmetric">Symmetric</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict">nraenv_core_ctxt_equiv_strict</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1934')">Proof.</div>
-<div class="proofscript" id="proof1934">
+<div class="toggleproof" onclick="toggleDisplay('proof2000')">Proof.</div>
+<div class="proofscript" id="proof2000">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> &lt;- <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict_equiv">nraenv_core_ctxt_equiv_strict_equiv</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">symmetry</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_core_ctxt_equiv_strict_trans">nraenv_core_ctxt_equiv_strict_trans</a></span> {<span class="id">trans</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span>}: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict">nraenv_core_ctxt_equiv_strict</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1935')">Proof.</div>
-<div class="proofscript" id="proof1935">
+<div class="toggleproof" onclick="toggleDisplay('proof2001')">Proof.</div>
+<div class="proofscript" id="proof2001">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> &lt;- <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict_equiv">nraenv_core_ctxt_equiv_strict_equiv</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">etransitivity</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_core_ctxt_equiv_strict_equivalence">nraenv_core_ctxt_equiv_strict_equivalence</a></span> {<span class="id">equiv</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span>}: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict">nraenv_core_ctxt_equiv_strict</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1936')">Proof.</div>
-<div class="proofscript" id="proof1936">
+<div class="toggleproof" onclick="toggleDisplay('proof2002')">Proof.</div>
+<div class="proofscript" id="proof2002">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">symmetry</span>; <span class="tactic">trivial</span>.<br/>
@@ -1171,8 +1171,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_core_ctxt_equiv_strict_preorder">nraenv_core_ctxt_equiv_strict_preorder</a></span> {<span class="id">pre</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PreOrder">PreOrder</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span>} : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PreOrder">PreOrder</a></span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict">nraenv_core_ctxt_equiv_strict</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1937')">Proof.</div>
-<div class="proofscript" id="proof1937">
+<div class="toggleproof" onclick="toggleDisplay('proof2003')">Proof.</div>
+<div class="proofscript" id="proof2003">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">etransitivity</span>; <span class="tactic">eauto</span>.<br/>
@@ -1180,8 +1180,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="CcNRAEnvPlug_proper">CcNRAEnvPlug_proper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span> ==&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvPlug">CcNRAEnvPlug</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1938')">Proof.</div>
-<div class="proofscript" id="proof1938">
+<div class="toggleproof" onclick="toggleDisplay('proof2004')">Proof.</div>
+<div class="proofscript" id="proof2004">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv">nraenv_core_ctxt_equiv</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="id">autorewrite</span> <span class="kwd">with</span> <span class="id">aec_substs</span>.<br/>
@@ -1190,8 +1190,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="CcNRAEnvPlug_proper_strict">CcNRAEnvPlug_proper_strict</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#cNRAEnvContext.equivs.base_equiv">base_equiv</a></span> ==&gt; <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict">nraenv_core_ctxt_equiv_strict</a></span>) <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvPlug">CcNRAEnvPlug</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1939')">Proof.</div>
-<div class="proofscript" id="proof1939">
+<div class="toggleproof" onclick="toggleDisplay('proof2005')">Proof.</div>
+<div class="proofscript" id="proof2005">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#nraenv_core_ctxt_equiv_strict">nraenv_core_ctxt_equiv_strict</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="id">autorewrite</span> <span class="kwd">with</span> <span class="id">aec_substs</span>.<br/>
@@ -1208,10 +1208,10 @@
 <span class="kwd">Notation</span> "'<span class="id">ID</span>'" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvID">CcNRAEnvID</a></span>)  (<span class="tactic">at</span> <span class="id">level</span> 50) : <span class="id">nraenv_core_ctxt_scope</span>.<br/>
 <span class="kwd">Notation</span> "'<span class="id">ENV</span>'" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvEnv">CcNRAEnvEnv</a></span>)  (<span class="tactic">at</span> <span class="id">level</span> 50) : <span class="id">nraenv_core_ctxt_scope</span>.<br/>
 <br/>
-<span class="kwd">Notation</span> "‵‵ <span class="id">c</span>" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvConst">CcNRAEnvConst</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#dconst">dconst</a></span> <span class="id">c</span>))  (<span class="tactic">at</span> <span class="id">level</span> 0) : <span class="id">nraenv_core_ctxt_scope</span>.                           <br/>
+<span class="kwd">Notation</span> "‵‵ <span class="id">c</span>" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvConst">CcNRAEnvConst</a></span> (<span class="id"><a href="Qcert.Common.DataModel.Data.html#dconst">dconst</a></span> <span class="id">c</span>))  (<span class="tactic">at</span> <span class="id">level</span> 0) : <span class="id">nraenv_core_ctxt_scope</span>.                           <br/>
 <span class="kwd">Notation</span> "‵ <span class="id">c</span>" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvConst">CcNRAEnvConst</a></span> <span class="id">c</span>)  (<span class="tactic">at</span> <span class="id">level</span> 0) : <span class="id">nraenv_core_ctxt_scope</span>.                                     <br/>
-<span class="kwd">Notation</span> "‵{||}" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvConst">CcNRAEnvConst</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>))  (<span class="tactic">at</span> <span class="id">level</span> 0) : <span class="id">nraenv_core_ctxt_scope</span>.                         <br/>
-<span class="kwd">Notation</span> "‵[||]" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvConst">CcNRAEnvConst</a></span> (<span class="id"><a href="Qcert.Common.Data.Data.html#drec">drec</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)) (<span class="tactic">at</span> <span class="id">level</span> 50) : <span class="id">nraenv_core_ctxt_scope</span>.                          <br/>
+<span class="kwd">Notation</span> "‵{||}" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvConst">CcNRAEnvConst</a></span> (<span class="id"><a href="Qcert.Common.DataModel.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>))  (<span class="tactic">at</span> <span class="id">level</span> 0) : <span class="id">nraenv_core_ctxt_scope</span>.                         <br/>
+<span class="kwd">Notation</span> "‵[||]" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvConst">CcNRAEnvConst</a></span> (<span class="id"><a href="Qcert.Common.DataModel.Data.html#drec">drec</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)) (<span class="tactic">at</span> <span class="id">level</span> 50) : <span class="id">nraenv_core_ctxt_scope</span>.                          <br/>
 <br/>
 <span class="kwd">Notation</span> "<span class="id">r1</span> ∧ <span class="id">r2</span>" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvBinop">CcNRAEnvBinop</a></span> <span class="id"><a href="Qcert.Common.Operators.BinaryOperators.html#OpAnd">OpAnd</a></span> <span class="id">r1</span> <span class="id">r2</span>) (<span class="id">right</span> <span class="id">associativity</span>, <span class="tactic">at</span> <span class="id">level</span> 65): <span class="id">nraenv_core_ctxt_scope</span>.    <br/>
 <span class="kwd">Notation</span> "<span class="id">r1</span> ∨ <span class="id">r2</span>" := (<span class="id"><a href="Qcert.cNRAEnv.Context.cNRAEnvContext.html#CcNRAEnvBinop">CcNRAEnvBinop</a></span> <span class="id"><a href="Qcert.Common.Operators.BinaryOperators.html#OpOr">OpOr</a></span> <span class="id">r1</span> <span class="id">r2</span>) (<span class="id">right</span> <span class="id">associativity</span>, <span class="tactic">at</span> <span class="id">level</span> 70): <span class="id">nraenv_core_ctxt_scope</span>.     <br/>

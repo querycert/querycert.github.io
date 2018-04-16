@@ -35,15 +35,15 @@
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nra_eq">nra_eq</a></span> (<span class="id">op1</span> <span class="id">op2</span>:<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra">nra</a></span>) : <span class="kwd">Prop</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">h</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span>(<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">c</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">c</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">dn_c</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">d</span> =&gt; <span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#h">h</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#d">d</a></span>)) <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#c">c</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">x</span>:<span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">x</span>:<span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">dn_x</span>:<span class="id"><a href="Qcert.Common.Data.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#h">h</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#x">x</a></span>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#h">h</a></span> ⊢ <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#op1">op1</a></span> @ₐ <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#x">x</a></span> ⊣ <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#c">c</a></span> = <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#h">h</a></span> ⊢ <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#op2">op2</a></span> @ₐ <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#x">x</a></span> ⊣ <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#c">c</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nra_equiv">nra_equiv</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1569')">Proof.</div>
-<div class="proofscript" id="proof1569">
+<div class="toggleproof" onclick="toggleDisplay('proof1635')">Proof.</div>
+<div class="proofscript" id="proof1635">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Reflexive">Reflexive</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">reflexivity</span>.<br/>
@@ -57,30 +57,30 @@
 <br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRAGetConstant">proper_NRAGetConstant</a></span> <span class="id">s</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) (<span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAGetConstant">NRAGetConstant</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#s">s</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1570')">Proof.</div>
-<div class="proofscript" id="proof1570">
+<div class="toggleproof" onclick="toggleDisplay('proof1636')">Proof.</div>
+<div class="proofscript" id="proof1636">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRAID">proper_NRAID</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAID">NRAID</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1571')">Proof.</div>
-<div class="proofscript" id="proof1571">
+<div class="toggleproof" onclick="toggleDisplay('proof1637')">Proof.</div>
+<div class="proofscript" id="proof1637">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRAConst">proper_NRAConst</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAConst">NRAConst</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1572')">Proof.</div>
-<div class="proofscript" id="proof1572">
+<div class="toggleproof" onclick="toggleDisplay('proof1638')">Proof.</div>
+<div class="proofscript" id="proof1638">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">rewrite</span> <span class="id">H</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRABinop">proper_NRABinop</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.Common.Operators.OperatorsEq.html#binary_op_eq">binary_op_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRABinop">NRABinop</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1573')">Proof.</div>
-<div class="proofscript" id="proof1573">
+<div class="toggleproof" onclick="toggleDisplay('proof1639')">Proof.</div>
+<div class="proofscript" id="proof1639">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span>, <span class="id">H1</span> <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
@@ -90,8 +90,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRAUnop">proper_NRAUnop</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.Common.Operators.OperatorsEq.html#unary_op_eq">unary_op_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAUnop">NRAUnop</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1574')">Proof.</div>
-<div class="proofscript" id="proof1574">
+<div class="toggleproof" onclick="toggleDisplay('proof1640')">Proof.</div>
+<div class="proofscript" id="proof1640">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H0</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
@@ -102,8 +102,8 @@
 &nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">data_normalized_dcoll_in</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRAMap">proper_NRAMap</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAMap">NRAMap</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1575')">Proof.</div>
-<div class="proofscript" id="proof1575">
+<div class="toggleproof" onclick="toggleDisplay('proof1641')">Proof.</div>
+<div class="proofscript" id="proof1641">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> <span class="kwd">in</span> *; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H0</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
@@ -116,8 +116,8 @@
 <br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRAMapProduct">proper_NRAMapProduct</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAMapProduct">NRAMapProduct</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1576')">Proof.</div>
-<div class="proofscript" id="proof1576">
+<div class="toggleproof" onclick="toggleDisplay('proof1642')">Proof.</div>
+<div class="proofscript" id="proof1642">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> <span class="kwd">in</span> *; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H0</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>); <span class="id">case_eq</span> (<span class="id">h</span> ⊢ <span class="id">y0</span> @ₐ <span class="id">x1</span> ⊣ <span class="id">c</span>); <span class="tactic">intros</span>; <span class="tactic">trivial</span>.<br/>
@@ -129,8 +129,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRAProduct">proper_NRAProduct</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAProduct">NRAProduct</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1577')">Proof.</div>
-<div class="proofscript" id="proof1577">
+<div class="toggleproof" onclick="toggleDisplay('proof1643')">Proof.</div>
+<div class="proofscript" id="proof1643">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> <span class="kwd">in</span> *; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H0</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>; <span class="tactic">rewrite</span> (<span class="id">H</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
@@ -138,8 +138,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRASelect">proper_NRASelect</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRASelect">NRASelect</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1578')">Proof.</div>
-<div class="proofscript" id="proof1578">
+<div class="toggleproof" onclick="toggleDisplay('proof1644')">Proof.</div>
+<div class="proofscript" id="proof1644">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H0</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
@@ -154,31 +154,31 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRADefault">proper_NRADefault</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRADefault">NRADefault</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1579')">Proof.</div>
-<div class="proofscript" id="proof1579">
+<div class="toggleproof" onclick="toggleDisplay('proof1645')">Proof.</div>
+<div class="proofscript" id="proof1645">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H0</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>; <span class="tactic">rewrite</span> (<span class="id">H</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">h</span> ⊢ <span class="id">y0</span> @ₐ <span class="id">x1</span> ⊣ <span class="id">c</span>); <span class="tactic">intros</span>; <span class="id">case_eq</span> (<span class="id">h</span> ⊢ <span class="id">y</span> @ₐ <span class="id">x1</span> ⊣ <span class="id">c</span>); <span class="tactic">intros</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRAEither">proper_NRAEither</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAEither">NRAEither</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1580')">Proof.</div>
-<div class="proofscript" id="proof1580">
+<div class="toggleproof" onclick="toggleDisplay('proof1646')">Proof.</div>
+<div class="proofscript" id="proof1646">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x1</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">inversion</span> <span class="id">dn_x</span>; <span class="tactic">subst</span>; <span class="tactic">auto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRAEitherConcat">proper_NRAEitherConcat</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAEitherConcat">NRAEitherConcat</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1581')">Proof.</div>
-<div class="proofscript" id="proof1581">
+<div class="toggleproof" onclick="toggleDisplay('proof1647')">Proof.</div>
+<div class="proofscript" id="proof1647">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H0</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>; <span class="tactic">rewrite</span> (<span class="id">H</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">h</span> ⊢ <span class="id">y0</span> @ₐ <span class="id">x1</span> ⊣ <span class="id">c</span>); <span class="id">case_eq</span> (<span class="id">h</span> ⊢ <span class="id">y</span> @ₐ <span class="id">x1</span> ⊣ <span class="id">c</span>); <span class="tactic">intros</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="proper_NRAApp">proper_NRAApp</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>) <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRAApp">NRAApp</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1582')">Proof.</div>
-<div class="proofscript" id="proof1582">
+<div class="toggleproof" onclick="toggleDisplay('proof1648')">Proof.</div>
+<div class="proofscript" id="proof1648">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRAEq.html#nra_eq">nra_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H0</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">x1</span>) <span class="tactic">by</span> <span class="tactic">trivial</span>. <span class="id">case_eq</span> (<span class="id">h</span> ⊢ <span class="id">y0</span> @ₐ <span class="id">x1</span> ⊣ <span class="id">c</span>); <span class="tactic">intros</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">H</span> <span class="id">h</span> <span class="id">c</span> <span class="id">dn_c</span> <span class="id">d</span>); <span class="tactic">eauto</span>.<br/>

@@ -15,11 +15,13 @@
 <div class="coq">
 <br/>
 <span class="kwd">Section</span> <span class="id"><a name="TNRATest">TNRATest</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span> <span class="id"><a href="Qcert.Common.CommonSystem.html">CommonSystem</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.CommonSystem.html">CommonSystem</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRA.NRASystem.html">NRASystem</a></span>.<br/>
-&nbsp;&nbsp;<br/>
+<br/>
 &nbsp;&nbsp;<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Tests.NRATest.html">NRATest</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string_scope</span>.<br/>
@@ -41,8 +43,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> (("<span class="id">name</span>",<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#String">String</a></span>) :: ("<span class="id">age</span>",<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Nat">Nat</a></span>) :: ("<span class="id">zip</span>",<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Nat">Nat</a></span>) :: ("<span class="id">company</span>",<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#String">String</a></span>) :: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="person_rec_schema_pf">person_rec_schema_pf</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id"><a href="Qcert.Utils.Bindings.html#ODT_lt_dec">ODT_lt_dec</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#person_rec_schema">person_rec_schema</a></span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3442')">Proof.</div>
-<div class="proofscript" id="proof3442">
+<div class="toggleproof" onclick="toggleDisplay('proof3631')">Proof.</div>
+<div class="proofscript" id="proof3631">
  <span class="tactic">reflexivity</span>. Qed.</div>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="person_schema">person_schema</a></span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Closed">Closed</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#person_rec_schema">person_rec_schema</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#person_rec_schema_pf">person_rec_schema_pf</a></span>.<br/>
@@ -52,8 +54,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="mkperson_typed">mkperson_typed</a></span> <span class="id">name</span> <span class="id">age</span> <span class="id">zip</span> <span class="id">company</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> (<span class="id"><a href="Qcert.Tests.NRATest.html#mkperson">mkperson</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#name">name</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#age">age</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#zip">zip</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#company">company</a></span>)) ▹ <span class="id"><a href="Qcert.Tests.TNRATest.html#person_schema">person_schema</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3443')">Proof.</div>
-<div class="proofscript" id="proof3443">
+<div class="toggleproof" onclick="toggleDisplay('proof3632')">Proof.</div>
+<div class="proofscript" id="proof3632">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.DataTyping.TData.html#dtrec_full">dtrec_full</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall2_cons">Forall2_cons</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; [<span class="tactic">reflexivity</span>|<span class="id">constructor</span>].<br/>
@@ -68,8 +70,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="mkpersons_typed">mkpersons_typed</a></span> <span class="id">l</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> (<span class="id"><a href="Qcert.Tests.NRATest.html#mkpersons">mkpersons</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#l">l</a></span>) ▹ <span class="id"><a href="Qcert.Tests.TNRATest.html#persons_schema">persons_schema</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3444')">Proof.</div>
-<div class="proofscript" id="proof3444">
+<div class="toggleproof" onclick="toggleDisplay('proof3633')">Proof.</div>
+<div class="proofscript" id="proof3633">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.DataTyping.TData.html#dtcoll">dtcoll</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
@@ -82,15 +84,15 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="persons_typed">persons_typed</a></span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Common.Data.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Common.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id"><a href="Qcert.Tests.NRATest.html#persons">persons</a></span> ▹ <span class="id"><a href="Qcert.Tests.TNRATest.html#persons_schema">persons_schema</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3445')">Proof.</div>
-<div class="proofscript" id="proof3445">
+<div class="toggleproof" onclick="toggleDisplay('proof3634')">Proof.</div>
+<div class="proofscript" id="proof3634">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Tests.TNRATest.html#mkpersons_typed">mkpersons_typed</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="qpersons_typed">qpersons_typed</a></span> {τ<span class="kwd">in</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Tests.NRATest.html#qpersons">qpersons</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Tests.TNRATest.html#persons_schema">persons_schema</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3446')">Proof.</div>
-<div class="proofscript" id="proof3446">
+<div class="toggleproof" onclick="toggleDisplay('proof3635')">Proof.</div>
+<div class="proofscript" id="proof3635">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Tests.NRATest.html#qpersons">qpersons</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> @<span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRAConst">type_NRAConst</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Tests.TNRATest.html#persons_typed">persons_typed</a></span>.<br/>
@@ -103,23 +105,23 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nothing_typed">nothing_typed</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Tests.NRATest.html#nothing">nothing</a></span> ▹ <span class="id"><a href="Qcert.Tests.TNRATest.html#nothing_schema">nothing_schema</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3447')">Proof.</div>
-<div class="proofscript" id="proof3447">
+<div class="toggleproof" onclick="toggleDisplay('proof3636')">Proof.</div>
+<div class="proofscript" id="proof3636">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.DataTyping.TData.html#dtunit">dtunit</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="q0_wt">q0_wt</a></span> {τ<span class="kwd">in</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Tests.NRATest.html#q0">q0</a></span> ▷ (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="kwd">in</span>) &gt;=&gt; <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Nat">Nat</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3448')">Proof.</div>
-<div class="proofscript" id="proof3448">
+<div class="toggleproof" onclick="toggleDisplay('proof3637')">Proof.</div>
+<div class="proofscript" id="proof3637">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Tests.NRATest.html#q0">q0</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRAUnop">type_NRAUnop</a></span> <span class="id">_</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="kwd">in</span>) (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="kwd">in</span>) <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Nat">Nat</a></span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Common.OperatorsTyping.TUnaryOperators.html#type_OpCount">type_OpCount</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRAID">type_NRAID</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="q0t">q0t</a></span> {τ<span class="kwd">in</span>} (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span>) (<span class="id">bpf</span>: <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (<span class="id">pf</span>: <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ▹ (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="kwd">in</span>)) : <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="q0t">q0t</a></span> {τ<span class="kwd">in</span>} (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span>) (<span class="id">bpf</span>: <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (<span class="id">pf</span>: <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ▹ (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="kwd">in</span>)) : <span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Tests.NRATest.html#q0">q0</a></span> @▷ <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="id"><a href="Qcert.Tests.TNRATest.html#bpf">bpf</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Tests.TNRATest.html#pf">pf</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#q0_wt">q0_wt</a></span>.<br/>
 <br/>
@@ -128,23 +130,23 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="q1_wt">q1_wt</a></span> {τ<span class="kwd">in</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Tests.NRATest.html#q1">q1</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Tests.TNRATest.html#persons_schema">persons_schema</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3449')">Proof.</div>
-<div class="proofscript" id="proof3449">
+<div class="toggleproof" onclick="toggleDisplay('proof3638')">Proof.</div>
+<div class="proofscript" id="proof3638">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Tests.NRATest.html#q1">q1</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRAMap">type_NRAMap</a></span> <span class="id">_</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> τ<span class="kwd">in</span> <span class="id"><a href="Qcert.Tests.TNRATest.html#person_schema">person_schema</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#person_schema">person_schema</a></span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> @<span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRAID">type_NRAID</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Tests.TNRATest.html#qpersons_typed">qpersons_typed</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="q1t">q1t</a></span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span>) (<span class="id">bpf</span>: <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) : <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="q1t">q1t</a></span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span>) (<span class="id">bpf</span>: <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) : <span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Tests.NRATest.html#q1">q1</a></span> @▷ <span class="id"><a href="Qcert.Tests.NRATest.html#nothing">nothing</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="id"><a href="Qcert.Tests.TNRATest.html#bpf">bpf</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#nothing_typed">nothing_typed</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#q1_wt">q1_wt</a></span>.<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="q2_wt">q2_wt</a></span> {τ<span class="kwd">in</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Tests.NRATest.html#q2">q2</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; (<span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Coll">Coll</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Nat">Nat</a></span>) ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3450')">Proof.</div>
-<div class="proofscript" id="proof3450">
+<div class="toggleproof" onclick="toggleDisplay('proof3639')">Proof.</div>
+<div class="proofscript" id="proof3639">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Tests.NRATest.html#q2">q2</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRAMap">type_NRAMap</a></span> <span class="id">_</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> τ<span class="kwd">in</span> <span class="id"><a href="Qcert.Tests.TNRATest.html#person_schema">person_schema</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Nat">Nat</a></span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> (@<span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRAUnop">type_NRAUnop</a></span> <span class="id"><a href="Qcert.Compiler.Model.TrivialModel.html#trivial_basic_model">trivial_basic_model</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#person_schema">person_schema</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#person_schema">person_schema</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Nat">Nat</a></span>).<br/>
@@ -154,7 +156,7 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="q2t">q2t</a></span> {τ<span class="kwd">in</span>} (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span>) (<span class="id">bpf</span>: <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (<span class="id">pf</span>: <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ▹ τ<span class="kwd">in</span>) : <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="q2t">q2t</a></span> {τ<span class="kwd">in</span>} (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span>) (<span class="id">bpf</span>: <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (<span class="id">pf</span>: <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ▹ τ<span class="kwd">in</span>) : <span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Tests.NRATest.html#q2">q2</a></span> @▷ <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="id"><a href="Qcert.Tests.TNRATest.html#bpf">bpf</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#pf">pf</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#q2_wt">q2_wt</a></span>.<br/>
 <br/>
 <br/>
@@ -162,8 +164,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="q3_wt">q3_wt</a></span> {τ<span class="kwd">in</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Tests.NRATest.html#q3">q3</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Tests.TNRATest.html#persons_schema">persons_schema</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3451')">Proof.</div>
-<div class="proofscript" id="proof3451">
+<div class="toggleproof" onclick="toggleDisplay('proof3640')">Proof.</div>
+<div class="proofscript" id="proof3640">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Tests.NRATest.html#q3">q3</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> @<span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRASelect">type_NRASelect</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRAConst">type_NRAConst</a></span>.<br/>
@@ -171,7 +173,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Tests.TNRATest.html#qpersons_typed">qpersons_typed</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="q3t">q3t</a></span> {τ<span class="kwd">in</span>} (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span>) (<span class="id">bpf</span>: <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (<span class="id">pf</span>: <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ▹ τ<span class="kwd">in</span>) : <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="q3t">q3t</a></span> {τ<span class="kwd">in</span>} (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span>) (<span class="id">bpf</span>: <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (<span class="id">pf</span>: <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ▹ τ<span class="kwd">in</span>) : <span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Tests.NRATest.html#q3">q3</a></span> @▷ <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="id"><a href="Qcert.Tests.TNRATest.html#bpf">bpf</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#pf">pf</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#q3_wt">q3_wt</a></span>.<br/>
 <br/>
 <br/>
@@ -179,8 +181,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="q4_wt">q4_wt</a></span> {τ<span class="kwd">in</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Tests.NRATest.html#q4">q4</a></span> ▷ τ<span class="kwd">in</span> &gt;=&gt; <span class="id"><a href="Qcert.Tests.TNRATest.html#persons_schema">persons_schema</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3452')">Proof.</div>
-<div class="proofscript" id="proof3452">
+<div class="toggleproof" onclick="toggleDisplay('proof3641')">Proof.</div>
+<div class="proofscript" id="proof3641">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Tests.NRATest.html#q4">q4</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> @<span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRASelect">type_NRASelect</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> (@<span class="id"><a href="Qcert.NRA.Typing.TNRA.html#type_NRABinop">type_NRABinop</a></span> <span class="id"><a href="Qcert.Compiler.Model.TrivialModel.html#trivial_basic_model">trivial_basic_model</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#person_schema">person_schema</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Nat">Nat</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Nat">Nat</a></span> <span class="id"><a href="Qcert.Common.TypeSystem.RType.html#Bool">Bool</a></span>).<br/>
@@ -193,7 +195,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Tests.TNRATest.html#qpersons_typed">qpersons_typed</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="q4t">q4t</a></span> {τ<span class="kwd">in</span>} (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span>) (<span class="id">bpf</span>: <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (<span class="id">pf</span>: <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ▹ τ<span class="kwd">in</span>) : <span class="id"><a href="Qcert.Common.Data.Data.html#data">data</a></span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="q4t">q4t</a></span> {τ<span class="kwd">in</span>} (<span class="id">d</span>:<span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span>) (<span class="id">bpf</span>: <span class="id"><a href="Qcert.Common.DataTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (<span class="id">pf</span>: <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ▹ τ<span class="kwd">in</span>) : <span class="id"><a href="Qcert.Common.DataModel.Data.html#data">data</a></span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Tests.NRATest.html#q4">q4</a></span> @▷ <span class="id"><a href="Qcert.Tests.TNRATest.html#d">d</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="id"><a href="Qcert.Tests.TNRATest.html#bpf">bpf</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#pf">pf</a></span> <span class="id"><a href="Qcert.Tests.TNRATest.html#q4_wt">q4_wt</a></span>.<br/>
 <br/>
 <br/>

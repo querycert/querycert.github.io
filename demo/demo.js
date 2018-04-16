@@ -1,4 +1,5 @@
-// some types
+/// <reference path="./node_modules/qcert/libs/qcertJS.d.ts" />
+/// <reference path="./lib/fabric.d.ts" />
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -440,7 +441,10 @@ var sourcePieces = {};
 // This is the matrix of pieces that are in the grid
 var placedPieces = [];
 var errorPiece;
-// function assignBackingObject(frontingObject:FrontingObject, backingObject:fabric.IObject) {
+function setBackingObject(f, obj) {
+    f.backingObject = obj;
+}
+// function assignBackingObject(frontingObject:FrontingObject, backingObject:fabric.Object) {
 // 	// disassociate the backingObject from any previous owner
 // 	if(isBackingObject(backingObject)) {
 // 		const oldObject = backingObject.frontingObject;
@@ -598,7 +602,7 @@ var BasicPuzzlePiece = /** @class */ (function (_super) {
                 hasControls: false,
                 hasBorders: false
             });
-            _this.backingObject = group;
+            setBackingObject(_this, group);
             _this.puzzleOffset = puzzleOffsetPoint;
         }
         else {
@@ -704,11 +708,11 @@ var InteractivePuzzlePiece = /** @class */ (function (_super) {
             // // finalize any left objects in their new positions
             // // remove any transient path objects
             // if('pathObjects' in this) {
-            // 	for(let i =0; i < this.pathObjects.length; i++) {
-            // 		const obj = this.pathObjects[i];
+            // 	for(let i =0; i < this.PathObjects.length; i++) {
+            // 		const obj = this.PathObjects[i];
             // 		this.backingObject.canvas.remove(obj.backingObject);
             // 	}
-            // 	delete this.pathObjects;			
+            // 	delete this.PathObjects;			
             // }
         };
         _this.moving = function () {
@@ -733,11 +737,11 @@ var InteractivePuzzlePiece = /** @class */ (function (_super) {
             }
             // // destroy any associated objects
             // if('pathObjects' in this) {
-            // 	for(let i =0; i < this.pathObjects.length; i++) {
-            // 		const obj = this.pathObjects[i];
+            // 	for(let i =0; i < this.PathObjects.length; i++) {
+            // 		const obj = this.PathObjects[i];
             // 		this.backingObject.canvas.remove(obj.backingObject);
             // 	}
-            // 	delete this.pathObjects;			
+            // 	delete this.PathObjects;			
             // }
             // update, since it may have moved when we removed/added transients 
             leftentry = _this.getGridPoint().x;
@@ -1202,7 +1206,7 @@ var CompositePuzzlePiece = /** @class */ (function (_super) {
             fulls.push(ofull);
         }
         _this.fullGroup = new fabric.Group(fulls);
-        _this.backingObject = new fabric.Group(parts);
+        setBackingObject(_this, new fabric.Group(parts));
         _this.parts = parts;
         _this.lastSelectedPart = -1;
         return _this;
@@ -1345,28 +1349,28 @@ var defaultTabRectOpts = {
     cornerSize: 2,
     strokeLineCap: 'round'
 };
-var ICanvasTab = /** @class */ (function () {
-    function ICanvasTab(canvas) {
+var CanvasTab = /** @class */ (function () {
+    function CanvasTab(canvas) {
         this.canvas = canvas;
     }
-    ICanvasTab.prototype.getRectOptions = function () {
+    CanvasTab.prototype.getRectOptions = function () {
         return defaultTabRectOpts;
     };
-    ICanvasTab.prototype.getTextOptions = function () {
+    CanvasTab.prototype.getTextOptions = function () {
         return defaultTabTextOpts;
     };
-    ICanvasTab.prototype.hide = function () {
+    CanvasTab.prototype.hide = function () {
         this.canvas.clear();
     };
-    return ICanvasTab;
+    return CanvasTab;
 }());
-var ICanvasDynamicTab = /** @class */ (function (_super) {
-    __extends(ICanvasDynamicTab, _super);
-    function ICanvasDynamicTab(canvas) {
+var CanvasDynamicTab = /** @class */ (function (_super) {
+    __extends(CanvasDynamicTab, _super);
+    function CanvasDynamicTab(canvas) {
         return _super.call(this, canvas) || this;
     }
-    return ICanvasDynamicTab;
-}(ICanvasTab));
+    return CanvasDynamicTab;
+}(CanvasTab));
 var TabManager = /** @class */ (function (_super) {
     __extends(TabManager, _super);
     function TabManager(canvas, options, tabs) {
@@ -1517,7 +1521,7 @@ var TabManager = /** @class */ (function (_super) {
         }
     };
     return TabManager;
-}(ICanvasTab));
+}(CanvasTab));
 var BuilderTab = /** @class */ (function (_super) {
     __extends(BuilderTab, _super);
     function BuilderTab(canvas) {
@@ -1675,7 +1679,7 @@ var BuilderTab = /** @class */ (function (_super) {
         canvas.renderAll();
     };
     return BuilderTab;
-}(ICanvasTab));
+}(CanvasTab));
 var CompileTab = /** @class */ (function (_super) {
     __extends(CompileTab, _super);
     function CompileTab(canvas) {
@@ -1748,7 +1752,7 @@ var CompileTab = /** @class */ (function (_super) {
         this.inputTabElement.style.display = "none";
     };
     return CompileTab;
-}(ICanvasTab));
+}(CanvasTab));
 var ExecTab = /** @class */ (function (_super) {
     __extends(ExecTab, _super);
     function ExecTab(canvas) {
@@ -1818,7 +1822,7 @@ var ExecTab = /** @class */ (function (_super) {
         this.inputTabElement.style.display = "none";
     };
     return ExecTab;
-}(ICanvasTab));
+}(CanvasTab));
 function getPipelinePieces() {
     var prow = placedPieces[pipelineRow];
     var path = [];
@@ -1858,7 +1862,7 @@ function getPipelineLangs() {
 // 		const curPath = Qcert.LanguagesPath({
 // 			source: prev,
 // 			target:cur
-// 		}).path;
+// 		}).Path;
 // 		const curPathLen = curPath.length;
 // 		if(curPath == null 
 // 		|| curPathLen == 0
@@ -2072,7 +2076,7 @@ var OptimPhaseTab = /** @class */ (function (_super) {
         //this.canvas.remove(this.rect);
     };
     return OptimPhaseTab;
-}(ICanvasDynamicTab));
+}(CanvasDynamicTab));
 function optimPhaseMake(canvas, div, module_base, optims, options) {
     return function (phase) {
         return OptimPhaseTab.make(canvas, div, module_base, optims, phase, options);
@@ -2172,7 +2176,7 @@ var OptimizationManager = /** @class */ (function (_super) {
         document.getElementById('optim-config-buttons').style.display = "none";
     };
     return OptimizationManager;
-}(ICanvasTab));
+}(CanvasTab));
 function findFirstWithField(l, field, lang) {
     var f = l.filter(function (x) { return x[field] == lang; });
     if (f.length == 0) {

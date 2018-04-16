@@ -1,0 +1,107 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Extraction.ExtrOcamlFloatNatIntZInt</title>
+<meta name="description" content="Documentation of Coq module Qcert.Extraction.ExtrOcamlFloatNatIntZInt" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Extraction.ExtrOcamlFloatNatIntZInt</h1>
+<div class="coq">
+<br/>
+<div class="doc">This module contains extraction code for definitions and
+operations on floating point numbers. </div>
+<br/>
+<div class="doc">This module assumes Nat is extracted to int and Z is extracted to
+int </div>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">JsAst.JsNumber</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Float.html">Float</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.extraction.Extraction.html">Extraction</a></span>.<br/>
+<br/>
+<div class="doc">BUG !!! B755_zero false = +0 ; B755_zero true = -0 </div>
+<div class="doc">BUG !!! SAME FOR INFINITY </div>
+<span class="id">Extract</span> <span class="kwd">Inductive</span> <span class="id">Fappli_IEEE.binary_float</span> =&gt; <span class="id">float</span> [<br/>
+&nbsp;&nbsp;"(<span class="kwd">fun</span> <span class="id">s</span> -&gt; <span class="kwd">if</span> <span class="id">s</span> <span class="kwd">then</span> (-0.) <span class="kwd">else</span> (0.))"<br/>
+&nbsp;&nbsp;"(<span class="kwd">fun</span> <span class="id">s</span> -&gt; <span class="kwd">if</span> <span class="id">s</span> <span class="kwd">then</span> <span class="id">neg_infinity</span> <span class="kwd">else</span> <span class="id">infinity</span>)"<br/>
+&nbsp;&nbsp;"<span class="id">nan</span>"<br/>
+&nbsp;&nbsp;"(<span class="kwd">fun</span> (<span class="id">s</span>, <span class="id">m</span>, <span class="id">e</span>) -&gt; <span class="kwd">if</span> <span class="id">s</span> <span class="kwd">then</span> -. (<span class="id">ldexp</span> (<span class="id">float_of_int</span> <span class="id">m</span>) <span class="id">e</span>) <span class="kwd">else</span> (<span class="id">ldexp</span> (<span class="id">float_of_int</span> <span class="id">m</span>) <span class="id">e</span>)"<br/>
+].<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">nan</span> =&gt; "<span class="id">nan</span>".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">zero</span> =&gt; "0.".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">neg_zero</span> =&gt; "(-0.)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">one</span> =&gt; "1.".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">infinity</span> =&gt; "<span class="id">infinity</span>".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">neg_infinity</span> =&gt; "<span class="id">neg_infinity</span>".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">max_value</span> =&gt; "<span class="id">max_float</span>".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">min_value</span> =&gt; "(<span class="id">Int64.float_of_bits</span> <span class="id">Int64.one</span>)". <br/>
+<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_floor</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">floor</span> <span class="id">x</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_absolute</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">abs_float</span> <span class="id">x</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_neg</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; ~-. <span class="id">x</span>)".<br/>
+<br/>
+<div class="doc">Defines additional operations on FLOATs </div>
+<div class="doc">Unary operations </div>
+<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_sqrt</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">sqrt</span> <span class="id">x</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_exp</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">exp</span> <span class="id">x</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_log</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">log</span> <span class="id">x</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_log10</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">log10</span> <span class="id">x</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_ceil</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">ceil</span> <span class="id">x</span>)".<br/>
+<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_eq</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> = <span class="id">y</span>)".<br/>
+<br/>
+<span class="id">Conjecture</span> <span class="id"><a name="float_eq_correct">float_eq_correct</a></span> :<br/>
+&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">f1</span> <span class="id">f2</span>, (<span class="id"><a href="Qcert.Utils.Float.html#float_eq">float_eq</a></span> <span class="id"><a href="Qcert.Extraction.ExtrOcamlFloatNatIntZInt.html#f1">f1</a></span> <span class="id"><a href="Qcert.Extraction.ExtrOcamlFloatNatIntZInt.html#f2">f2</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> &lt;-&gt; <span class="id"><a href="Qcert.Extraction.ExtrOcamlFloatNatIntZInt.html#f1">f1</a></span> = <span class="id"><a href="Qcert.Extraction.ExtrOcamlFloatNatIntZInt.html#f2">f2</a></span>).<br/>
+<span class="kwd">Lemma</span> <span class="id"><a name="float_eq_dec">float_eq_dec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Utils.Float.html#float">float</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3628')">Proof.</div>
+<div class="proofscript" id="proof3628">
+&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span>.<br/>
+&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">x</span> <span class="id">y</span>.<br/>
+&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.Utils.Float.html#float_eq">float_eq</a></span> <span class="id">x</span> <span class="id">y</span>); <span class="tactic">intros</span> <span class="id">eqq</span>.<br/>
+&nbsp;&nbsp;+ <span class="id">left</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Extraction.ExtrOcamlFloatNatIntZInt.html#float_eq_correct">float_eq_correct</a></span> <span class="kwd">in</span> <span class="id">eqq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intros</span> <span class="id">eqq2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span> <span class="kwd">in</span> <span class="id">eqq2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Extraction.ExtrOcamlFloatNatIntZInt.html#float_eq_correct">float_eq_correct</a></span> <span class="kwd">in</span> <span class="id">eqq2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">congruence</span>.<br/>
+Defined.</div>
+&nbsp;&nbsp;<br/>
+<span class="id">Extract</span> <span class="id">Constant</span> <span class="id">float_eq_dec</span> =&gt; "(<span class="kwd">fun</span> <span class="id">n1</span> <span class="id">n2</span> -&gt; 0 = <span class="id">compare</span> <span class="id">n1</span> <span class="id">n2</span>)".<br/>
+<br/>
+<div class="doc">Binary operations </div>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_add</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> +. <span class="id">y</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_sub</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> -. <span class="id">y</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_mult</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> *. <span class="id">y</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_div</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> /. <span class="id">y</span>)".<br/>
+<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_pow</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> ** <span class="id">y</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_min</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">min</span> <span class="id">x</span> <span class="id">y</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_max</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">max</span> <span class="id">x</span> <span class="id">y</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_ne</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> &lt;&gt; <span class="id">y</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_lt</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> &lt; <span class="id">y</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_le</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> &lt;= <span class="id">y</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_gt</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> &gt; <span class="id">y</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_ge</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> <span class="id">y</span> -&gt; <span class="id">x</span> &gt;= <span class="id">y</span>)".<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_of_int</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">float_of_int</span> <span class="id">x</span>)".<br/>
+<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">float_truncate</span>=&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">truncate</span> <span class="id">x</span>)".<br/>
+<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">from_string</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">float_of_string</span> (<span class="id">Util.string_of_char_list</span> <span class="id">x</span>))".<br/>
+<span class="id">Extract</span> <span class="id">Inlined</span> <span class="id">Constant</span> <span class="id">to_string</span> =&gt; "(<span class="kwd">fun</span> <span class="id">x</span> -&gt; <span class="id">Util.char_list_of_string</span> (<span class="id">Util.qcert_string_of_float</span> <span class="id">x</span>))".<br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

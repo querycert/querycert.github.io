@@ -1018,6 +1018,20 @@
 <span class="kwd">Ltac</span> <span class="id">match_case_in</span> <span class="id">H</span><br/>
 &nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">type</span> <span class="id">of</span> <span class="id">H</span> <span class="kwd">with</span> <span class="id">context</span> [<span class="kwd">match</span> ?<span class="id">x</span> <span class="kwd">with</span> <span class="id">_</span> =&gt; <span class="id">_</span> <span class="kwd">end</span>] =&gt; <span class="id">case_eq</span> <span class="id">x</span> <span class="kwd">end</span>; <span class="tactic">trivial</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 <br/>
+<span class="kwd">Ltac</span> <span class="id">match_option</span><br/>
+&nbsp;&nbsp;:= <span class="kwd">let</span> <span class="id">eqq</span> := <span class="tactic">fresh</span> "<span class="id">eqq</span>" <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">goal</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[|- <span class="id">context</span> [<span class="kwd">match</span> ?<span class="id">x</span> <span class="kwd">with</span> | <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">_</span> =&gt; <span class="id">_</span> | <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id">_</span> <span class="kwd">end</span>]] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> <span class="id">x</span> <span class="kwd">end</span>; [ <span class="tactic">intros</span> ? <span class="id">eqq</span> | <span class="tactic">intros</span> <span class="id">eqq</span>]; <span class="tactic">try</span> <span class="tactic">rewrite</span> <span class="id">eqq</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">trivial</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
+<br/>
+<span class="kwd">Ltac</span> <span class="id">match_option_in</span> <span class="id">H</span><br/>
+&nbsp;&nbsp;:= <span class="kwd">let</span> <span class="id">eqq</span> := <span class="tactic">fresh</span> "<span class="id">eqq</span>" <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">type</span> <span class="id">of</span> <span class="id">H</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">context</span> [<span class="kwd">match</span> ?<span class="id">x</span> <span class="kwd">with</span> | <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">_</span> =&gt; <span class="id">_</span> | <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id">_</span> <span class="kwd">end</span>] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> <span class="id">x</span> <span class="kwd">end</span>; [ <span class="tactic">intros</span> ? <span class="id">eqq</span> | <span class="tactic">intros</span> <span class="id">eqq</span>]; <span class="tactic">rewrite</span> <span class="id">eqq</span> <span class="kwd">in</span> <span class="id">H</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">trivial</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
+<br/>
 <br/>
 <span class="kwd">Ltac</span> <span class="id">cut_to</span> <span class="id">H</span> :=<br/>
 &nbsp;&nbsp;<span class="kwd">match</span> <span class="id">type</span> <span class="id">of</span> <span class="id">H</span> <span class="kwd">with</span><br/>
