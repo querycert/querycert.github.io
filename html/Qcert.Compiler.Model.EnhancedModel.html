@@ -20,6 +20,7 @@
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.CommonSystem.html">CommonSystem</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.ForeignToJava.html">ForeignToJava</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.ForeignToJavaScript.html">ForeignToJavaScript</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.ForeignToJavaScriptAst.html">ForeignToJavaScriptAst</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.ForeignToScala.html">ForeignToScala</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.DataModel.ForeignDataToJSON.html">ForeignDataToJSON</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.TypeSystem.ForeignTypeToJSON.html">ForeignTypeToJSON</a></span>.<br/>
@@ -509,12 +510,39 @@ Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.SqlDateModelPart.html#sql_date_to_javascript_binary_op">sql_date_to_javascript_binary_op</a></span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#indent">indent</a></span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#eol">eol</a></span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#quotel">quotel</a></span> <span class="id">op</span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#d1">d1</a></span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#d2">d2</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
+<span class="kwd">Definition</span> <span class="id"><a name="enhanced_to_ajavascript_unary_op">enhanced_to_ajavascript_unary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">fu</span>:<span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_unary_op">enhanced_unary_op</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">e</span>:<span class="id">JsSyntax.expr</span>) : <span class="id">JsSyntax.expr</span><br/>
+&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#fu">fu</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_unary_time_op">enhanced_unary_time_op</a></span> <span class="id">op</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.DateTimeModelPart.html#time_to_ajavascript_unary_op">time_to_ajavascript_unary_op</a></span> <span class="id">op</span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#e">e</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_unary_sql_date_op">enhanced_unary_sql_date_op</a></span> <span class="id">op</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.SqlDateModelPart.html#sql_date_to_ajavascript_unary_op">sql_date_to_ajavascript_unary_op</a></span> <span class="id">op</span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#e">e</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id"><a name="enhanced_to_ajavascript_binary_op">enhanced_to_ajavascript_binary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">fb</span>:<span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_binary_op">enhanced_binary_op</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">e1</span> <span class="id">e2</span>:<span class="id">JsSyntax.expr</span>) : <span class="id">JsSyntax.expr</span><br/>
+&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#fb">fb</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_binary_time_op">enhanced_binary_time_op</a></span> <span class="id">op</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.DateTimeModelPart.html#time_to_ajavascript_binary_op">time_to_ajavascript_binary_op</a></span> <span class="id">op</span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#e1">e1</a></span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#e2">e2</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_binary_sql_date_op">enhanced_binary_sql_date_op</a></span> <span class="id">op</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.SqlDateModelPart.html#sql_date_to_ajavascript_binary_op">sql_date_to_ajavascript_binary_op</a></span> <span class="id">op</span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#e1">e1</a></span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#e2">e2</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
 <span class="kwd">Instance</span> <span class="id"><a name="enhanced_foreign_to_javascript">enhanced_foreign_to_javascript</a></span> :<br/>
 &nbsp;&nbsp;@<span class="id"><a href="Qcert.Translation.ForeignToJavaScript.html#foreign_to_javascript">foreign_to_javascript</a></span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_runtime">enhanced_foreign_runtime</a></span><br/>
 &nbsp;&nbsp;:= <span class="id"><a href="Qcert.Translation.ForeignToJavaScript.html#mk_foreign_to_javascript">mk_foreign_to_javascript</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_runtime">enhanced_foreign_runtime</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_to_javascript_unary_op">enhanced_to_javascript_unary_op</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_to_javascript_binary_op">enhanced_to_javascript_binary_op</a></span>.<br/>
+<br/>
+<span class="kwd">Instance</span> <span class="id"><a name="enhanced_foreign_to_ajavascript">enhanced_foreign_to_ajavascript</a></span> :<br/>
+&nbsp;&nbsp;@<span class="id"><a href="Qcert.Translation.ForeignToJavaScriptAst.html#foreign_to_ajavascript">foreign_to_ajavascript</a></span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_runtime">enhanced_foreign_runtime</a></span><br/>
+&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Translation.ForeignToJavaScriptAst.html#mk_foreign_to_ajavascript">mk_foreign_to_ajavascript</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_runtime">enhanced_foreign_runtime</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_to_ajavascript_unary_op">enhanced_to_ajavascript_unary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_to_ajavascript_binary_op">enhanced_to_ajavascript_binary_op</a></span>.<br/>
 <br/>
 <span class="kwd">Definition</span> <span class="id"><a name="enhanced_to_scala_unary_op">enhanced_to_scala_unary_op</a></span> (<span class="id">op</span>: <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_unary_op">enhanced_unary_op</a></span>) (<span class="id">d</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> :=<br/>
 &nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#op">op</a></span> <span class="kwd">with</span><br/>
@@ -1360,6 +1388,8 @@ Defined.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_to_java">enhanced_foreign_to_java</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="EnhancedRuntime.compiler_foreign_to_javascript">compiler_foreign_to_javascript</a></span> : <span class="id"><a href="Qcert.Translation.ForeignToJavaScript.html#foreign_to_javascript">foreign_to_javascript</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_to_javascript">enhanced_foreign_to_javascript</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="EnhancedRuntime.compiler_foreign_to_ajavascript">compiler_foreign_to_ajavascript</a></span> : <span class="id"><a href="Qcert.Translation.ForeignToJavaScriptAst.html#foreign_to_ajavascript">foreign_to_ajavascript</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_to_ajavascript">enhanced_foreign_to_ajavascript</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="EnhancedRuntime.compiler_foreign_to_scala">compiler_foreign_to_scala</a></span> : <span class="id"><a href="Qcert.Translation.ForeignToScala.html#foreign_to_scala">foreign_to_scala</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_to_scala">enhanced_foreign_to_scala</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="EnhancedRuntime.compiler_foreign_to_JSON">compiler_foreign_to_JSON</a></span> : <span class="id"><a href="Qcert.Common.DataModel.ForeignDataToJSON.html#foreign_to_JSON">foreign_to_JSON</a></span><br/>
@@ -2060,6 +2090,8 @@ Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_to_java">enhanced_foreign_to_java</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="EnhancedModel.compiler_model_foreign_to_javascript">compiler_model_foreign_to_javascript</a></span> : <span class="id"><a href="Qcert.Translation.ForeignToJavaScript.html#foreign_to_javascript">foreign_to_javascript</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_to_javascript">enhanced_foreign_to_javascript</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="EnhancedModel.compiler_model_foreign_to_ajavascript">compiler_model_foreign_to_ajavascript</a></span> : <span class="id"><a href="Qcert.Translation.ForeignToJavaScriptAst.html#foreign_to_ajavascript">foreign_to_ajavascript</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_to_ajavascript">enhanced_foreign_to_ajavascript</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="EnhancedModel.compiler_model_foreign_to_scala">compiler_model_foreign_to_scala</a></span> : <span class="id"><a href="Qcert.Translation.ForeignToScala.html#foreign_to_scala">foreign_to_scala</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Compiler.Model.EnhancedModel.html#enhanced_foreign_to_scala">enhanced_foreign_to_scala</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="EnhancedModel.compiler_model_foreign_to_JSON">compiler_model_foreign_to_JSON</a></span> : <span class="id"><a href="Qcert.Common.DataModel.ForeignDataToJSON.html#foreign_to_JSON">foreign_to_JSON</a></span><br/>
