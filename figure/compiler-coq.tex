@@ -63,9 +63,39 @@
        below=2em of nnrc]
       (cnnrc) {cNNRC};
 
+% NNRS
+ \node[lang, coqp, hyperlink node=\coqurl{NNRS.Lang}{NNRS}{nnrs},
+       right=of nnrc]
+      (nnrs) {NNRS};
+ \node[lang, coqp, hyperlink node=\coqurl{cNNRS.Lang}{cNNRS}{nnrs_core},
+       below=2em of nnrs]
+      (cnnrs) {cNNRS};
+
+% NNRSimp
+ \node[lang, coqp, hyperlink node=\coqurl{NNRSimp.Lang}{NNRSimp}{nnrs_imp},
+       right=of nnrs]
+      (nnrsimp) {NNRSimp};
+
+% Imp(Qcert)
+ \node[lang, coqp, hyperlink node=\coqurl{Imp.Lang}{ImpQcert}{imp_qcert},
+       right=of nnrsimp]
+      (impqcert) {Imp(Qcert)};
+
+% Imp(JSON)
+ \node[lang, coqc, hyperlink node=\coqurl{Imp.Lang}{ImpJson}{imp_json},
+       right=of impqcert]
+      (impjson) {Imp(JSON)};
+
+% JSAst
+ \node[lang, coqc, hyperlink node=\coqurl{JavaScriptAst.Lang}{JavaScriptAst}{ajavascript},
+       right=of impjson]
+      (jsast) {JSast};
+
+
+
  % NNRCMR/CldMR
  \node[lang, coqc, hyperlink node=\coqurl{NNRCMR.Lang}{NNRCMR}{nnrcmr},
-       right=of nnrc]
+       below=2em of cnnrs]
       (nnrcmr) {NNRCMR};
  \node[lang, coqc, hyperlink node=\coqurl{CldMR.Lang}{CldMR}{cldmr},
        right=of nnrcmr]
@@ -76,12 +106,12 @@
  \node[lang, target, hyperlink node=\coqurl{Cloudant.Lang}{Cloudant}{cloudant},
        right=of cldmr]
       (cloudant) {Cloudant};
- \node[lang, target, hyperlink node=\coqurl{Java.Lang}{Java}{java},
-       above=0.25em of cloudant]
-      (java) {Java};
  \node[lang, target, hyperlink node=\coqurl{JavaScript.Lang}{JavaScript}{js},
-       above=0.25em of java]
+       right=of jsast]
       (js) {JavaScript};
+ \node[lang, target, hyperlink node=\coqurl{Java.Lang}{Java}{java},
+       above=0.25em of js]
+      (java) {Java};
  \node[lang, target,
        hyperlink node=\coqurl{SparkRDD.Lang}{SparkRDD}{spark_rdd},
        below=0.25em of cloudant]
@@ -155,12 +185,12 @@
    \transref{3}{\coqurl{Translation}{NNRCMRtoNNRC}{nnrc_of_nnrcmr_top}};
  \path[trans, tcoqp, dotted] (nnrc) -- (dnnrc)
    \transref{6}{\coqurl{Translation}{NNRCtoDNNRC}{nnrc_to_dnnrc_top}};
+ % \path[trans, tcoqc] (nnrc)
+ %   .. controls ([yshift=2em] nnrs.north) ..
+ %   (js.west)
+ %   \transref{30}{\coqurl{Translation}{NNRCtoJavaScript}{nnrc_to_js_top}};
  \path[trans, tcoqc] (nnrc)
-   .. controls ([yshift=3em] nnrcmr.north) ..
-   (js.west)
-   \transref{30}{\coqurl{Translation}{NNRCtoJavaScript}{nnrc_to_js_top}};
- \path[trans, tcoqc] (nnrc)
-   .. controls ([yshift=2em] nnrcmr.north) ..
+   .. controls ([yshift=2em] nnrs.north) ..
    (java.west)
    \transref{30}{\coqurl{Translation}{NNRCtoJava}{nnrc_to_java_top}};
 
@@ -173,6 +203,35 @@
    .. controls ([yshift=-7em] nra.south) and +(0, -1.5) ..
    (camp.south)
    \transref{30}{\coqurl{Translation}{cNNRCtoCAMP}{nnrc_core_to_camp_top}};
+
+ \path[trans, tcoqp] (nnrc.east) -- (nnrs.west)
+   \transref{3}{\coqurl{Translation}{NNRCtoNNRS}{nnrc_to_nnrs_top}};
+ \path[trans, tcoqp] (cnnrc.east) -- (cnnrs.west)
+   \transref{3}{\coqurl{Translation}{NNRCtoNNRS}{nnrc_core_to_nnrs_core_top}};
+
+ % *NNRS
+ \path[trans, tcoqp] (nnrs.east) -- (nnrsimp.west)
+   \transref{3}{\coqurl{Translation}{NNRStoNNRSimp}{nnrs_to_nnrs_imp_top}};
+
+ \path[trans, tcoqp] ([xshift=-0.25em] cnnrs.north) -- ([xshift=-0.25em] nnrs.south)
+   \transref{3}{\coqurl{NNRS}{Lang.NNRS}{nnrs_core_to_nnrs}};
+
+ % NNRSimp
+ \tikzoptimdotted[ccoqp]{nnrsimp}{\coqurl{NNRSimp.Optim}{NNRSimpOptimizer}{run_nnrs_imp_optims}}
+
+ \path[trans, tcoqp] (nnrsimp.east) -- (impqcert.west)
+   \transref{3}{\coqurl{Translation}{NNRSimptoImpQcert}{nnrs_imp_to_imp_qcert_top}};
+
+ % Imp*
+ \path[trans, tcoqc] (impqcert.east) -- (impjson.west)
+   \transref{3}{\coqurl{Translation}{ImpQcerttoImpJson}{imp_qcert_to_imp_json}};
+
+ \path[trans, tcoqc] (impjson.east) -- (jsast.west)
+   \transref{3}{\coqurl{Translation}{ImpJsontoJavaScriptAst}{imp_json_to_js_ast}};
+
+ % JSAst
+ \path[trans, tcoqc] (jsast.east) -- (js.west)
+   \transref{3}{\coqurl{Translation}{JavaScriptAsttoJavaScript}{js_ast_to_js_top}};
 
 
  % NNRCMR
@@ -203,5 +262,5 @@
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../icfp17"
+%%% TeX-master: "figure"
 %%% End:
