@@ -1,0 +1,106 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Imp.Lang.ImpSize</title>
+<meta name="description" content="Documentation of Coq module Qcert.Imp.Lang.ImpSize" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Imp.Lang.ImpSize</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.omega.Omega.html">Omega</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Decidable.html">Decidable</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.Imp.html">Imp</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ImpSize">ImpSize</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">Data</span>: <span class="kwd">Type</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">Op</span>: <span class="kwd">Type</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">Runtime</span>: <span class="kwd">Type</span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_expr">imp_expr</a></span> := @<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_expr">Imp.imp_expr</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Data">Data</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Op">Op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Runtime">Runtime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_stmt">imp_stmt</a></span> := @<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_stmt">Imp.imp_stmt</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Data">Data</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Op">Op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Runtime">Runtime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_function">imp_function</a></span> := @<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_function">Imp.imp_function</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Data">Data</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Op">Op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Runtime">Runtime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp">imp</a></span> := @<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp">Imp.imp</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Data">Data</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Op">Op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize.Runtime">Runtime</a></span>.<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="imp_expr_size">imp_expr_size</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr">imp_expr</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#e">e</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprError">ImpExprError</a></span> <span class="id">v</span> =&gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprVar">ImpExprVar</a></span> <span class="id">v</span> =&gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprConst">ImpExprConst</a></span> <span class="id">v</span> =&gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprOp">ImpExprOp</a></span> <span class="id">op</span> <span class="id">l</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">e</span> =&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#acc">acc</a></span> + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr_size">imp_expr_size</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#e">e</a></span> ) <span class="id">l</span> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprRuntimeCall">ImpExprRuntimeCall</a></span> <span class="id">f</span> <span class="id">args</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">e</span> =&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#acc">acc</a></span> + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr_size">imp_expr_size</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#e">e</a></span>) <span class="id">args</span> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="imp_stmt_size">imp_stmt_size</a></span> (<span class="id">stmt</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_stmt">imp_stmt</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#stmt">stmt</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtBlock">ImpStmtBlock</a></span> <span class="id">decls</span> <span class="id">stmts</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">acc</span> (<span class="id">decl</span>: <span class="id"><a href="Qcert.Imp.Lang.Imp.html#var">var</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr">imp_expr</a></span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> (<span class="id">x</span>, <span class="id">eopt</span>) := <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#decl">decl</a></span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#acc">acc</a></span> + <span class="kwd">match</span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#eopt">eopt</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span> =&gt; 1 + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr_size">imp_expr_size</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decls</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">s</span> =&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#acc">acc</a></span> + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_stmt_size">imp_stmt_size</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#s">s</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">stmts</span> 0))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtAssign">ImpStmtAssign</a></span> <span class="id">x</span> <span class="id">e</span> =&gt; 1 + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr_size">imp_expr_size</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtFor">ImpStmtFor</a></span> <span class="id">i</span> <span class="id">e</span> <span class="id">s</span> =&gt; 1 + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr_size">imp_expr_size</a></span> <span class="id">e</span> + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_stmt_size">imp_stmt_size</a></span> <span class="id">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtForRange">ImpStmtForRange</a></span> <span class="id">i</span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">s</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr_size">imp_expr_size</a></span> <span class="id">e1</span>  + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr_size">imp_expr_size</a></span> <span class="id">e2</span>  + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_stmt_size">imp_stmt_size</a></span> <span class="id">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtIf">ImpStmtIf</a></span> <span class="id">e</span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr_size">imp_expr_size</a></span> <span class="id">e</span> + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_stmt_size">imp_stmt_size</a></span> <span class="id">s1</span> + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_stmt_size">imp_stmt_size</a></span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_function_size">imp_function_size</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_function">imp_function</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#q">q</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpFun">ImpFun</a></span> <span class="id">args</span> <span class="id">s</span> <span class="id">ret</span> =&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_stmt_size">imp_stmt_size</a></span> <span class="id">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="imp_size">imp_size</a></span> (<span class="id">q</span>: <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp">imp</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#q">q</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpLib">ImpLib</a></span> <span class="id">l</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">acc</span> (<span class="id">decl</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_function">imp_function</a></span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> (<span class="id">fname</span>, <span class="id">fdef</span>) := <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#decl">decl</a></span> <span class="kwd">in</span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#acc">acc</a></span> + <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_function_size">imp_function_size</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#fdef">fdef</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">l</span> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="imp_expr_size_nzero">imp_expr_size_nzero</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr">imp_expr</a></span>) : <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_expr_size">imp_expr_size</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#e">e</a></span> &lt;&gt; 0.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3571')">Proof.</div>
+<div class="proofscript" id="proof3571">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">omega</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="imp_stmt_size_nzero">imp_stmt_size_nzero</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_stmt">imp_stmt</a></span>) : <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_stmt_size">imp_stmt_size</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#s">s</a></span> &lt;&gt; 0.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3572')">Proof.</div>
+<div class="proofscript" id="proof3572">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">destruct</span> <span class="id">o</span>; <span class="tactic">try</span> <span class="tactic">omega</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="imp_function_size_nzero">imp_function_size_nzero</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_function">imp_function</a></span>) : <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_function_size">imp_function_size</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#q">q</a></span> &lt;&gt; 0.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3573')">Proof.</div>
+<div class="proofscript" id="proof3573">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">q</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#imp_stmt_size_nzero">imp_stmt_size_nzero</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpSize.html#ImpSize">ImpSize</a></span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

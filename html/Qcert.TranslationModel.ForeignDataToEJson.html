@@ -1,0 +1,49 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.TranslationModel.ForeignDataToEJson</title>
+<meta name="description" content="Documentation of Coq module Qcert.TranslationModel.ForeignDataToEJson" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.TranslationModel.ForeignDataToEJson</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.ForeignRuntime.html">ForeignRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html">ForeignEJson</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html">ForeignEJsonRuntime</a></span>.<br/>
+<br/>
+<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string_scope</span>.<br/>
+<br/>
+<span class="kwd">Class</span> <span class="id"><a name="foreign_to_ejson">foreign_to_ejson</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
+&nbsp;&nbsp;: <span class="kwd">Type</span><br/>
+&nbsp;&nbsp;:= <span class="id"><a name="mk_foreign_to_ejson">mk_foreign_to_ejson</a></span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="foreign_to_ejson_ejson">foreign_to_ejson_ejson</a></span> :&gt; <span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_ejson_runtime">foreign_to_ejson_runtime</a></span> :&gt; <span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime">foreign_ejson_runtime</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_ejson_to_data">foreign_to_ejson_to_data</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">j</span>:<span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson_model">foreign_ejson_model</a></span>) : <span class="id"><a href="Qcert.Data.Model.ForeignData.html#foreign_data_model">foreign_data_model</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_ejson_from_data">foreign_to_ejson_from_data</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">fd</span>:<span class="id"><a href="Qcert.Data.Model.ForeignData.html#foreign_data_model">foreign_data_model</a></span>) : <span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson_model">foreign_ejson_model</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_ejson_to_data_to_ejson">foreign_to_ejson_to_data_to_ejson</a></span> (<span class="id">fd</span>:<span class="id"><a href="Qcert.Data.Model.ForeignData.html#foreign_data_model">foreign_data_model</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.TranslationModel.ForeignDataToEJson.html#foreign_to_ejson_to_data">foreign_to_ejson_to_data</a></span> (<span class="id"><a href="Qcert.TranslationModel.ForeignDataToEJson.html#foreign_to_ejson_from_data">foreign_to_ejson_from_data</a></span> <span class="id"><a href="Qcert.TranslationModel.ForeignDataToEJson.html#fd">fd</a></span>) = <span class="id"><a href="Qcert.TranslationModel.ForeignDataToEJson.html#fd">fd</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_ejson_runtime_of_unary_op">foreign_to_ejson_runtime_of_unary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#unary_op">unary_op</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime_operators">foreign_ejson_runtime_operators</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_ejson_runtime_of_binary_op">foreign_to_ejson_runtime_of_binary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op">binary_op</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime_operators">foreign_ejson_runtime_operators</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

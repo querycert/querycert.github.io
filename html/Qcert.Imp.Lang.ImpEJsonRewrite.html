@@ -1,0 +1,94 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Imp.Lang.ImpEJsonRewrite</title>
+<meta name="description" content="Documentation of Coq module Qcert.Imp.Lang.ImpEJsonRewrite" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Imp.Lang.ImpEJsonRewrite</h1>
+<div class="coq">
+<br/>
+<div class="doc">NNRSimp is a variant of the named nested relational calculus
+     (NNRC) that is meant to be more imperative in feel.  It is used
+     as an intermediate language between NNRC and more imperative /
+     statement oriented backends </div>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">JsAst.JsNumber</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.EJson.EJsonRuntime.html">EJsonRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.Imp.html">Imp</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html">ImpEJson</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html">ImpEJsonEval</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ImpEJsonRewrite">ImpEJsonRewrite</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Import</span> <span class="id">ListNotations</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejson</span>:<span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejruntime</span>:<span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime">foreign_ejson_runtime</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="ImpEJsonRewrite.ForRewrite">ForRewrite</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="imp_ejson_stmt_for_rewrite">imp_ejson_stmt_for_rewrite</a></span> (<span class="id">avoid</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) (<span class="id">stmt</span>: <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_stmt">imp_ejson_stmt</a></span>): <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_stmt">imp_ejson_stmt</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#stmt">stmt</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtBlock">ImpStmtBlock</a></span> <span class="id">lv</span> <span class="id">ls</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtBlock">ImpStmtBlock</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">lv</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> (<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#imp_ejson_stmt_for_rewrite">imp_ejson_stmt_for_rewrite</a></span> ((<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">lv</span>) ++ <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span>)) <span class="id">ls</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtAssign">ImpStmtAssign</a></span> <span class="id">v</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtAssign">ImpStmtAssign</a></span> <span class="id">v</span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtFor">ImpStmtFor</a></span> <span class="id">v</span> <span class="id">e</span> <span class="id">s</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">avoid</span> := <span class="id">v</span> :: <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">src_id</span> := <span class="id"><a href="Qcert.Utils.Fresh.html#fresh_var">fresh_var</a></span> "<span class="id">src</span>" <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">avoid</span> := <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#src_id">src_id</a></span> :: <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">i_id</span> := <span class="id"><a href="Qcert.Utils.Fresh.html#fresh_var">fresh_var</a></span> "<span class="id">i</span>" <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">avoid</span> := <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#i_id">i_id</a></span> :: <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">src</span> := <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprVar">ImpExprVar</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#src_id">src_id</a></span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">i</span> := <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprVar">ImpExprVar</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#i_id">i_id</a></span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtBlock">ImpStmtBlock</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ (<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#src_id">src_id</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span>) ]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtForRange">ImpStmtForRange</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#i_id">i_id</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprConst">ImpExprConst</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> 0))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprRuntimeCall">ImpExprRuntimeCall</a></span> <span class="id"><a href="Qcert.EJson.Operators.EJsonRuntimeOperators.html#EJsonRuntimeNatMinus">EJsonRuntimeNatMinus</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprOp">ImpExprOp</a></span> <span class="id"><a href="Qcert.EJson.Operators.EJsonOperators.html#EJsonOpArrayLength">EJsonOpArrayLength</a></span> [ <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#src">src</a></span> ] ; <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprConst">ImpExprConst</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> 1) ])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtBlock">ImpStmtBlock</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ (<span class="id">v</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprOp">ImpExprOp</a></span> <span class="id"><a href="Qcert.EJson.Operators.EJsonOperators.html#EJsonOpArrayAccess">EJsonOpArrayAccess</a></span> [ <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#src">src</a></span>; <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#i">i</a></span> ])) ]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#imp_ejson_stmt_for_rewrite">imp_ejson_stmt_for_rewrite</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span> <span class="id">s</span> ]) ]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtForRange">ImpStmtForRange</a></span> <span class="id">v</span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">s</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtForRange">ImpStmtForRange</a></span> <span class="id">v</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">e1</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#imp_ejson_stmt_for_rewrite">imp_ejson_stmt_for_rewrite</a></span> (<span class="id">v</span> :: <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span>) <span class="id">s</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtIf">ImpStmtIf</a></span> <span class="id">e</span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtIf">ImpStmtIf</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#imp_ejson_stmt_for_rewrite">imp_ejson_stmt_for_rewrite</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span> <span class="id">s1</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#imp_ejson_stmt_for_rewrite">imp_ejson_stmt_for_rewrite</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span> <span class="id">s2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#ImpEJsonRewrite.ForRewrite">ForRewrite</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="ImpEJsonRewrite.CorrectnessForRewrite">CorrectnessForRewrite</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="imp_ejson_stmt_for_rewrite_correct">imp_ejson_stmt_for_rewrite_correct</a></span> <span class="id">h</span> (σ : <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#pd_jbindings">pd_jbindings</a></span>) (<span class="id">stmt</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_stmt">imp_ejson_stmt</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">avoid</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_stmt_eval">imp_ejson_stmt_eval</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#h">h</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#stmt">stmt</a></span> σ =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_stmt_eval">imp_ejson_stmt_eval</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#h">h</a></span> (<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#imp_ejson_stmt_for_rewrite">imp_ejson_stmt_for_rewrite</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#avoid">avoid</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#stmt">stmt</a></span>)  σ.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3576')">Proof.</div>
+<div class="proofscript" id="proof3576">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">admit</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Admitted.</div>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#ImpEJsonRewrite.CorrectnessForRewrite">CorrectnessForRewrite</a></span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonRewrite.html#ImpEJsonRewrite">ImpEJsonRewrite</a></span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

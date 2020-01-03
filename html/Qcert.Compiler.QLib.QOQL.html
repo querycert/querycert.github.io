@@ -16,6 +16,7 @@
 <br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Model.CompilerRuntime.html">CompilerRuntime</a></span>.<br/>
 <span class="kwd">Require</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="id"><a href="Qcert.Utils.SortingDesc.html">SortingDesc</a></span>.<br/>
 <span class="kwd">Require</span> <span class="id"><a href="Qcert.Compiler.QLib.QData.html">QData</a></span>.<br/>
 <span class="kwd">Require</span> <span class="id"><a href="Qcert.Compiler.QLib.QOperators.html">QOperators</a></span>.<br/>
 <span class="kwd">Require</span> <span class="id"><a href="Qcert.OQL.Lang.OQL.html">OQL</a></span>.<br/>
@@ -70,7 +71,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.OQL.Lang.OQL.html#OWhere">OQL.OWhere</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QOQL.onoorder">onoorder</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.order_by_expr">order_by_expr</a></span> <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.OQL.Lang.OQL.html#ONoOrder">OQL.ONoOrder</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QOQL.oorder_by">oorder_by</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortDesc">DataSort.SortDesc</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.order_by_expr">order_by_expr</a></span> <br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QOQL.oorder_by">oorder_by</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Utils.SortingDesc.html#SortDesc">SortingDesc.SortDesc</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.order_by_expr">order_by_expr</a></span> <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.OQL.Lang.OQL.html#OOrderBy">OQL.OOrderBy</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QOQL.odot">odot</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.expr">expr</a></span> <br/>
@@ -79,6 +80,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.OQL.Lang.OQLSugar.html#OArrow">OQLSugar.OArrow</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QOQL.ostruct">ostruct</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> * <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.expr">expr</a></span>) -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.expr">expr</a></span> <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.OQL.Lang.OQLSugar.html#OStruct">OQLSugar.OStruct</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QOQL.onew">onew</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">String.string</a></span> * <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.expr">expr</a></span>) -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.expr">expr</a></span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.OQL.Lang.OQLSugar.html#ONew">OQLSugar.ONew</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="QOQL.tableify">tableify</a></span> : <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.expr">expr</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.QLib.QOQL.html#QOQL.expr">expr</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.OQL.Lang.OQLSugar.html#tableify">OQLSugar.tableify</a></span>.<br/>

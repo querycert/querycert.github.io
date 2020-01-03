@@ -1,0 +1,91 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.NNRS.Lang.NNRSSize</title>
+<meta name="description" content="Documentation of Coq module Qcert.NNRS.Lang.NNRSSize" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.NNRS.Lang.NNRSSize</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.omega.Omega.html">Omega</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Decidable.html">Decidable</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html">NNRS</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NNRSSize">NNRSSize</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrs_expr_size">nnrs_expr_size</a></span> (<span class="id">n</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#n">n</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSGetConstant">NNRSGetConstant</a></span> <span class="id">v</span> =&gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSVar">NNRSVar</a></span> <span class="id">v</span> =&gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSConst">NNRSConst</a></span> <span class="id">d</span> =&gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSBinop">NNRSBinop</a></span> <span class="id">op</span> <span class="id">n</span>₁ <span class="id">n</span>₂ =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id">n</span>₁ + <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id">n</span>₂)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSUnop">NNRSUnop</a></span> <span class="id">op</span> <span class="id">n</span>₁ =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id">n</span>₁)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSGroupBy">NNRSGroupBy</a></span> <span class="id">g</span> <span class="id">sl</span> <span class="id">e</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id">e</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrs_stmt_size">nnrs_stmt_size</a></span> (<span class="id">n</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmt">nnrs_stmt</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#n">n</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSSeq">NNRSSeq</a></span> <span class="id">s</span>₁ <span class="id">s</span>₂ =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">s</span>₁ + <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">s</span>₂)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSLet">NNRSLet</a></span> <span class="id">v</span> <span class="id">e</span> <span class="id">s</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id">e</span> + <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">s</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSLetMut">NNRSLetMut</a></span> <span class="id">v</span> <span class="id">eo</span> <span class="id">s</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">s</span> + <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">s</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSLetMutColl">NNRSLetMutColl</a></span> <span class="id">_</span> <span class="id">s</span>₁ <span class="id">s</span>₂ =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">s</span>₁ + <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">s</span>₂)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSAssign">NNRSAssign</a></span> <span class="id">_</span> <span class="id">e</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id">e</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSPush">NNRSPush</a></span> <span class="id">_</span> <span class="id">e</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id">e</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSFor">NNRSFor</a></span> <span class="id">v</span> <span class="id">n</span>₁ <span class="id">n</span>₂ =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id">n</span>₁ + <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">n</span>₂)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSIf">NNRSIf</a></span> <span class="id">n</span>₁ <span class="id">n</span>₂ <span class="id">n</span>₃ =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id">n</span>₁ + <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">n</span>₂ + <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">n</span>₃)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSEither">NNRSEither</a></span> <span class="id">nd</span> <span class="id">vl</span> <span class="id">nl</span> <span class="id">vr</span> <span class="id">nr</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id">nd</span> + <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">nl</span> + <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id">nr</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nnrs_size">nnrs_size</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs">nnrs</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> (<span class="id">n</span>, <span class="id">v</span>) := <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#q">q</a></span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#n">n</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_expr_size_nzero">nnrs_expr_size_nzero</a></span> (<span class="id">n</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span>) : <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_expr_size">nnrs_expr_size</a></span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#n">n</a></span> &lt;&gt; 0.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3112')">Proof.</div>
+<div class="proofscript" id="proof3112">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">n</span>; <span class="tactic">simpl</span>; <span class="tactic">omega</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_stmt_size_nzero">nnrs_stmt_size_nzero</a></span> (<span class="id">n</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmt">nnrs_stmt</a></span>) : <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size">nnrs_stmt_size</a></span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#n">n</a></span> &lt;&gt; 0.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3113')">Proof.</div>
+<div class="proofscript" id="proof3113">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">n</span>; <span class="tactic">simpl</span>; <span class="tactic">omega</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="nnrs_size_nzero">nnrs_size_nzero</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs">nnrs</a></span>) : <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_size">nnrs_size</a></span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#q">q</a></span> &lt;&gt; 0.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3114')">Proof.</div>
+<div class="proofscript" id="proof3114">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">q</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_stmt_size_nzero">nnrs_stmt_size_nzero</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="NNRSSize.Core">Core</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Program</span> <span class="kwd">Definition</span> <span class="id"><a name="nnrs_core_size">nnrs_core_size</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_core">nnrs_core</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_size">nnrs_size</a></span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#q">q</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_core_size_nzero">nnrs_core_size_nzero</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_core">nnrs_core</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_core_size">nnrs_core_size</a></span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#q">q</a></span> &lt;&gt; 0.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3115')">Proof.</div>
+<div class="proofscript" id="proof3115">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#nnrs_size_nzero">nnrs_size_nzero</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#NNRSSize.Core">Core</a></span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRSSize.html#NNRSSize">NNRSSize</a></span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

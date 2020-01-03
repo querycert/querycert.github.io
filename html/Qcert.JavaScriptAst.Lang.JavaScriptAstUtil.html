@@ -15,7 +15,7 @@
 <div class="coq">
 <br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Common.CommonRuntime.html">CommonRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">JsAst.JsSyntax</span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html">JavaScriptAst</a></span>.<br/>
 <br/>
@@ -30,6 +30,12 @@
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="array_get">array_get</a></span> <span class="id">e1</span> <span class="id">e2</span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">expr_access</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#e1">e1</a></span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#e2">e2</a></span>.<br/>
 <br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="object_hasOwnProperty">object_hasOwnProperty</a></span> <span class="id">e1</span> <span class="id">e2</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">expr_call</span> (<span class="id">expr_member</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#e1">e1</a></span> "<span class="id">hasOwnProperty</span>") [ <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#e2">e2</a></span> ].<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="object_toString">object_toString</a></span> <span class="id">e1</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">expr_call</span> (<span class="id">expr_member</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#e1">e1</a></span> "<span class="id">toString</span>") [ ].<br/>
+<br/>
 <div class="doc">Runtime  functions </div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="brands_to_js_ast">brands_to_js_ast</a></span> <span class="id">sl</span> : <span class="id">expr</span> :=<br/>
@@ -38,28 +44,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">s</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id">expr_literal</span> (<span class="id">literal_string</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#s">s</a></span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#sl">sl</a></span>).<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="sortCriteria_to_js_ast">sortCriteria_to_js_ast</a></span> (<span class="id">sc</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortDesc">SortDesc</a></span>) :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> (<span class="id">lbl</span>, <span class="id">c</span>) := <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#sc">sc</a></span> <span class="kwd">in</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#c">c</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.DataSort.html#Ascending">Ascending</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">expr_object</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ (<span class="id">propname_identifier</span> "<span class="id">asc</span>", <span class="id">propbody_val</span> (<span class="id">expr_literal</span> (<span class="id">literal_string</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#lbl">lbl</a></span>))) ]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Common.Data.DataSort.html#Descending">Descending</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">expr_object</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ (<span class="id">propname_identifier</span> "<span class="id">desc</span>", <span class="id">propbody_val</span> (<span class="id">expr_literal</span> (<span class="id">literal_string</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#lbl">lbl</a></span>))) ]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="sortCriterias_to_js_ast">sortCriterias_to_js_ast</a></span> (<span class="id">scl</span>: <span class="id"><a href="Qcert.Common.Data.DataSort.html#SortCriterias">SortCriterias</a></span>) :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">expr_array</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">sc</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#sortCriteria_to_js_ast">sortCriteria_to_js_ast</a></span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#sc">sc</a></span>))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#scl">scl</a></span>).<br/>
-<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="call_runtime">call_runtime</a></span> (<span class="id">f</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) (<span class="id">args</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">expr</span>) : <span class="id">expr</span>:= <br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="call_js_function">call_js_function</a></span> (<span class="id">f</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) (<span class="id">args</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">expr</span>) : <span class="id">expr</span>:= <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">expr_call</span> (<span class="id">expr_identifier</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#f">f</a></span>) <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#args">args</a></span>.<br/>
 <br/>
-<span class="kwd">End</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#JavaScriptAstUtil">JavaScriptAstUtil</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="call_runtime">call_runtime</a></span> := <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#call_js_function">call_js_function</a></span>.<br/>
 <br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAstUtil.html#JavaScriptAstUtil">JavaScriptAstUtil</a></span>.<br/>
 
 </div>
 <div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
