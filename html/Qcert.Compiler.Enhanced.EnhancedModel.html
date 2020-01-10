@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Compiler.Enhanced.EnhancedModel</title>
+<meta name="description" content="Documentation of Coq module Qcert.Compiler.Enhanced.EnhancedModel" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Compiler.Enhanced.EnhancedModel</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html">RelationClasses</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html">Equivalence</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.ToString.html">String</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Utils</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">JSONSystem</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EJsonSystem</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">DataSystem</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignToJava</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignToJavaScriptAst</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignToScala</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignEJson</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignDataToEJson</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignToEJsonRuntime</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignEJsonToJSON</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignTypeToJSON</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignToSpark</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignEJsonRuntime</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignReduceOps</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">ForeignToReduceOps</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">NNRCMR</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">cNRAEnv</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.OptimizerLogger.html">NRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">cNNRC</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">NNRSimp</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">DNNRCBase</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">tDNNRC</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Dataframe</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">CompilerRuntime</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">CompilerModel</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">LoggerComponent</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">SqlDateComponent</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">UriComponent</span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedData</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedEJson</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedDataToEJson</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedEJsonToJSON</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedToJava</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedToJavascriptAst</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedReduceOps</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedToReduceOps</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedToSpark</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedType</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedToScala</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedDataTyping</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedTypeToJSON</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedRuntime</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedTyping</span>.<br/>
+<br/>
+<span class="kwd">Instance</span> <span class="id">enhanced_basic_model</span> {<span class="id">model</span>:<span class="id">brand_model</span>} :<br/>
+&nbsp;&nbsp;<span class="id">basic_model</span><br/>
+&nbsp;&nbsp;:= <span class="id">mk_basic_model</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.TypeSystem.TBrandModel.html#brand_model">enhanced_foreign_runtime</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">enhanced_foreign_type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">model</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">enhanced_foreign_typing</span>.<br/>
+<br/>
+<span class="kwd">Module</span> <span class="id">EnhancedForeignType</span> &lt;: <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedTyping.html#enhanced_foreign_typing">CompilerForeignType</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_foreign_type</span> : <span class="id">foreign_type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_type</span>.<br/>
+<span class="kwd">End</span> <span class="id">EnhancedForeignType</span>.<br/>
+<br/>
+<span class="kwd">Module</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_foreign_type">EnhancedModel</a></span>(<span class="id">bm</span>:<span class="id">CompilerBrandModel</span>(<span class="id">EnhancedForeignType</span>)) &lt;: <span class="id">CompilerModel</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_foreign_type</span> : <span class="id">foreign_type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_type</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a href="Qcert.TypeSystem.ForeignType.html#foreign_type">compiler_basic_model</a></span> : @<span class="id">basic_model</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id">enhanced_basic_model</span> <span class="id">bm.compiler_brand_model</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_runtime</span> : <span class="id">foreign_runtime</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="EnhancedModel.compiler_model_foreign_runtime">enhanced_foreign_runtime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_ejson</span> : <span class="id">foreign_ejson</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_ejson</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_to_ejson</span> : <span class="id">foreign_to_ejson</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_to_ejson</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_to_ejson_runtime</span> : <span class="id">foreign_to_ejson_runtime</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_to_ejson_runtime</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_to_json</span> : <span class="id">foreign_to_json</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="EnhancedModel.compiler_model_foreign_to_json">enhanced_foreign_to_json</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_to_java</span> : <span class="id">foreign_to_java</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="EnhancedModel.compiler_model_foreign_to_java">enhanced_foreign_to_java</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_ejson_to_ajavascript</span> : <span class="id">foreign_ejson_to_ajavascript</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_ejson_to_ajavascript</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_to_scala</span> : <span class="id">foreign_to_scala</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_to_scala</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_type_to_JSON</span> : <span class="id">foreign_type_to_JSON</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_type_to_JSON</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_reduce_op</span> : <span class="id">foreign_reduce_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_reduce_op</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_to_reduce_op</span> : <span class="id">foreign_to_reduce_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_to_reduce_op</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_to_spark</span> : <span class="id">foreign_to_spark</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_to_spark</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_nraenv_optimizer_logger</span> : <span class="id">optimizer_logger</span> <span class="id">string</span> <span class="id">nraenv</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">foreign_nraenv_optimizer_logger</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_nnrc_optimizer_logger</span> : <span class="id">optimizer_logger</span> <span class="id"><a name="EnhancedModel.compiler_model_nnrc_optimizer_logger">string</a></span> <span class="id">nnrc</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">foreign_nnrc_optimizer_logger</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc">compiler_model_nnrs_imp_expr_optimizer_logger</a></span> : <span class="id">optimizer_logger</span> <span class="id">string</span> <span class="id">nnrs_imp_expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">foreign_nnrs_imp_expr_optimizer_logger</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_nnrs_imp_stmt_optimizer_logger</span> : <span class="id">optimizer_logger</span> <span class="id">string</span> <span class="id">nnrs_imp_stmt</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">foreign_nnrs_imp_stmt_optimizer_logger</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_nnrs_imp_optimizer_logger</span> : <span class="id">optimizer_logger</span> <span class="id">string</span> <span class="id">nnrs_imp</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">foreign_nnrs_imp_optimizer_logger</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_dnnrc_optimizer_logger</span> {<span class="id">br</span>:<span class="id">brand_relation</span>}: <span class="id">optimizer_logger</span> <span class="id">string</span> (@<span class="id">dnnrc_base</span> <span class="id">_</span> (<span class="id">type_annotation</span> <span class="id"><a href="Qcert.Utils.OptimizerLogger.html#optimizer_logger">unit</a></span>) <span class="id">dataframe</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">foreign_dnnrc_optimizer_logger</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">compiler_model_foreign_data_typing</span> : <span class="id">foreign_data_typing</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_data_typing</span>.<br/>
+<span class="kwd">End</span> <span class="id">EnhancedModel</span>.<br/>
+<br/>
+<span class="kwd">Module</span> <span class="id">CompEnhanced</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id">Enhanced</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id">Model</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">basic_model</span> (<span class="id">bm</span>:<span class="id">brand_model</span>) : <span class="id">basic_model</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id">enhanced_basic_model</span> <span class="id">bm</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">foreign_type</span> : <span class="id">foreign_type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">enhanced_foreign_type</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">foreign_typing</span> (<span class="id">bm</span>:<span class="id">brand_model</span>) : <span class="id">foreign_typing</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id">enhanced_foreign_typing</span> <span class="id">bm</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id">Model</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedTyping.html#enhanced_foreign_typing">Data</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_part</span> := <span class="id">sql_date_component</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_day</span> : <span class="id">sql_date_part</span> := <span class="id">sql_date_DAY</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_month</span> : <span class="id">sql_date_part</span> := <span class="id">sql_date_MONTH</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_year</span> : <span class="id">sql_date_part</span> := <span class="id">sql_date_YEAR</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">dsql_date</span> (<span class="id">d</span>:<span class="id">SQL_DATE</span>) : <span class="id">data</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">dforeign</span> (<span class="id">enhancedsqldate</span> <span class="id">d</span>).<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">dsql_date_period</span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">d</a></span>:<span class="id">SQL_DATE_PERIOD</span>) : <span class="id">data</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">dforeign</span> (<span class="id">enhancedsqldateperiod</span> <span class="id">d</span>).<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id">Data</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id">Ops</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id">Unary</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_get_component</span> (<span class="id">component</span>:<span class="id">sql_date_component</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignUnary</span> (<span class="id">enhanced_unary_sql_date_op</span> (<span class="id">uop_sql_date_get_component</span> <span class="id">component</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_from_string</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignUnary</span> (<span class="id">enhanced_unary_sql_date_op</span> <span class="id">uop_sql_date_from_string</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_period_from_string</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignUnary</span> (<span class="id">enhanced_unary_sql_date_op</span> <span class="id">uop_sql_date_period_from_string</span>).<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">uri_encode</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignUnary</span> (<span class="id">enhanced_unary_uri_op</span> (<span class="id">uop_uri_encode</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">uri_decode</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignUnary</span> (<span class="id">enhanced_unary_uri_op</span> (<span class="id">uop_uri_decode</span>)).<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlGetDateComponent</span> := <span class="id">sql_date_get_component</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlDateFromString</span> := <span class="id">sql_date_from_string</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlDatePeriodFromString</span> := <span class="id">sql_date_period_from_string</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id">Unary</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id">Binary</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_plus</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignBinary</span> (<span class="id">enhanced_binary_sql_date_op</span> <span class="id">bop_sql_date_plus</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_minus</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignBinary</span> (<span class="id">enhanced_binary_sql_date_op</span> <span class="id">bop_sql_date_minus</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_ne</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignBinary</span> (<span class="id">enhanced_binary_sql_date_op</span> <span class="id">bop_sql_date_ne</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_lt</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignBinary</span> (<span class="id">enhanced_binary_sql_date_op</span> <span class="id">bop_sql_date_lt</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_le</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignBinary</span> (<span class="id">enhanced_binary_sql_date_op</span> <span class="id">bop_sql_date_le</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_gt</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignBinary</span> (<span class="id">enhanced_binary_sql_date_op</span> <span class="id">bop_sql_date_gt</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_ge</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignBinary</span> (<span class="id">enhanced_binary_sql_date_op</span> <span class="id">bop_sql_date_ge</span>).<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_period_between</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignBinary</span> (<span class="id">enhanced_binary_sql_date_op</span> (<span class="id">bop_sql_date_period_between</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">sql_date_set_component</span> (<span class="id">component</span>:<span class="id">sql_date_component</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">OpForeignBinary</span> (<span class="id">enhanced_binary_sql_date_op</span> (<span class="id">bop_sql_date_set_component</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_binary_sql_date_op">component</a></span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlDatePlus</span> := <span class="id">sql_date_plus</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlDateMinus</span> := <span class="id">sql_date_minus</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlDateNe</span> := <span class="id">sql_date_ne</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlDateLt</span> := <span class="id">sql_date_lt</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlDateLe</span> := <span class="id">sql_date_le</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlDateGt</span> := <span class="id">sql_date_gt</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlDateGe</span> := <span class="id">sql_date_ge</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">OpSqlDatePeriodBetween</span> := <span class="id">sql_date_period_between</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id">Binary</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id">Ops</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id">Enhanced</span>.<br/>
+<span class="kwd">End</span> <span class="id">CompEnhanced</span>.  <br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

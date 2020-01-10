@@ -46,8 +46,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="nnrcStmt">nnrcStmt</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrcKind_eqdec">nnrcKind_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcKind">nnrcKind</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2866')">Proof.</div>
-<div class="proofscript" id="proof2866">
+<div class="toggleproof" onclick="toggleDisplay('proof2881')">Proof.</div>
+<div class="proofscript" id="proof2881">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcKind">nnrcKind</a></span>, {<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#y">y</a></span>} + {<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> &lt;&gt; <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#y">y</a></span>}).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
@@ -126,48 +126,48 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratifiedLevel_lift">stratifiedLevel_lift</a></span> <span class="id">k</span> <span class="id">e</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> -&gt; <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcStmt">nnrcStmt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2867')">Proof.</div>
-<div class="proofscript" id="proof2867">
+<div class="toggleproof" onclick="toggleDisplay('proof2882')">Proof.</div>
+<div class="proofscript" id="proof2882">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">k</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">destruct</span> <span class="id">k</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratifiedLevel_stratified">stratifiedLevel_stratified</a></span> <span class="id">k</span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> -&gt; <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified">stratified</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2868')">Proof.</div>
-<div class="proofscript" id="proof2868">
+<div class="toggleproof" onclick="toggleDisplay('proof2883')">Proof.</div>
+<div class="proofscript" id="proof2883">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified">stratified</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_lift">stratifiedLevel_lift</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratifiedLevel_spec_lifts">stratifiedLevel_spec_lifts</a></span> <span class="id">k</span> <span class="id">e</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> -&gt; <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcStmt">nnrcStmt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2869')">Proof.</div>
-<div class="proofscript" id="proof2869">
+<div class="toggleproof" onclick="toggleDisplay('proof2884')">Proof.</div>
+<div class="proofscript" id="proof2884">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">k</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratifiedLevel_spec_lifte">stratifiedLevel_spec_lifte</a></span> <span class="id">k</span> <span class="id">e</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcExpr">nnrcExpr</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> -&gt; <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2870')">Proof.</div>
-<div class="proofscript" id="proof2870">
+<div class="toggleproof" onclick="toggleDisplay('proof2885')">Proof.</div>
+<div class="proofscript" id="proof2885">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">k</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratifiedLevel_spec_stratified">stratifiedLevel_spec_stratified</a></span> <span class="id">k</span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> -&gt; <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified_spec">stratified_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2871')">Proof.</div>
-<div class="proofscript" id="proof2871">
+<div class="toggleproof" onclick="toggleDisplay('proof2886')">Proof.</div>
+<div class="proofscript" id="proof2886">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified">stratified</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec_lifts">stratifiedLevel_spec_lifts</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratifiedLevel_correct">stratifiedLevel_correct</a></span> <span class="id">k</span> <span class="id">e</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> &lt;-&gt; <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2872')">Proof.</div>
-<div class="proofscript" id="proof2872">
+<div class="toggleproof" onclick="toggleDisplay('proof2887')">Proof.</div>
+<div class="proofscript" id="proof2887">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">stratifiedLevel_spec_lifts</span> <span class="id">stratifiedLevel_spec_lifte</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="id">revert</span> <span class="id">k</span>.<br/>
@@ -178,16 +178,16 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="stratified_correct">stratified_correct</a></span> <span class="id">e</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified">stratified</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> &lt;-&gt; <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified_spec">stratified_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2873')">Proof.</div>
-<div class="proofscript" id="proof2873">
+<div class="toggleproof" onclick="toggleDisplay('proof2888')">Proof.</div>
+<div class="proofscript" id="proof2888">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_correct">stratifiedLevel_correct</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="Stratify.Stratified.dec">dec</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratifiedLevel_dec">stratifiedLevel_dec</a></span> <span class="id">k</span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>):<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>} + {~ <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2874')">Proof.</div>
-<div class="proofscript" id="proof2874">
+<div class="toggleproof" onclick="toggleDisplay('proof2889')">Proof.</div>
+<div class="proofscript" id="proof2889">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">k</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> <span class="id">k</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">tauto</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#sumbool_and">sumbool_and</a></span>; <span class="tactic">try</span> <span class="tactic">auto</span> 2; <span class="tactic">try</span> <span class="tactic">tauto</span><br/>
@@ -198,23 +198,23 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratifiedLevel_spec_dec">stratifiedLevel_spec_dec</a></span> <span class="id">k</span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>):<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>} + {~ <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec">stratifiedLevel_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#k">k</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2875')">Proof.</div>
-<div class="proofscript" id="proof2875">
+<div class="toggleproof" onclick="toggleDisplay('proof2890')">Proof.</div>
+<div class="proofscript" id="proof2890">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_dec">stratifiedLevel_dec</a></span> <span class="id">k</span> <span class="id">e</span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">rewrite</span> &lt;- <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_correct">stratifiedLevel_correct</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratified_dec">stratified_dec</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified">stratified</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>} + {~ <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified">stratified</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2876')">Proof.</div>
-<div class="proofscript" id="proof2876">
+<div class="toggleproof" onclick="toggleDisplay('proof2891')">Proof.</div>
+<div class="proofscript" id="proof2891">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_dec">stratifiedLevel_dec</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratified_spec_dec">stratified_spec_dec</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified_spec">stratified_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>} + {~ <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified_spec">stratified_spec</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2877')">Proof.</div>
-<div class="proofscript" id="proof2877">
+<div class="toggleproof" onclick="toggleDisplay('proof2892')">Proof.</div>
+<div class="proofscript" id="proof2892">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel_spec_dec">stratifiedLevel_spec_dec</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
 <br/>
@@ -232,8 +232,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="mk_expr_from_vars_eq">mk_expr_from_vars_eq</a></span> <span class="id">e</span> <span class="id">sdefs</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_right">fold_right</a></span> (<span class="kwd">fun</span> <span class="id">sdef</span> <span class="id">accum</span> =&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdef">sdef</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdef">sdef</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#accum">accum</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span> = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2878')">Proof.</div>
-<div class="proofscript" id="proof2878">
+<div class="toggleproof" onclick="toggleDisplay('proof2893')">Proof.</div>
+<div class="proofscript" id="proof2893">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -327,8 +327,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="Forall_app_iff">Forall_app_iff</a></span> {<span class="id">A</span>} (<span class="id">P</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#A">A</a></span>-&gt;<span class="kwd">Prop</span>) <span class="id">l1</span> <span class="id">l2</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#P">P</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#l1">l1</a></span> ++ <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#l2">l2</a></span>) &lt;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#P">P</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#l1">l1</a></span> /\ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#P">P</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#l2">l2</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2879')">Proof.</div>
-<div class="proofscript" id="proof2879">
+<div class="toggleproof" onclick="toggleDisplay('proof2894')">Proof.</div>
+<div class="proofscript" id="proof2894">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#Forall_app_inv">Forall_app_inv</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#Forall_app">Forall_app</a></span>; <span class="tactic">tauto</span>.<br/>
@@ -362,8 +362,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcStmt">nnrcStmt</a></span>) (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span> /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcStmt">nnrcStmt</a></span>) (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2880')">Proof.</div>
-<div class="proofscript" id="proof2880">
+<div class="toggleproof" onclick="toggleDisplay('proof2895')">Proof.</div>
+<div class="proofscript" id="proof2895">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified">stratified</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux">stratify1_aux</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_level</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>; <span class="id">invcs</span> <span class="id">eqq</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.Assoc.html#codomain_app">codomain_app</a></span>; <span class="tactic">simpl</span>.<br/>
@@ -374,8 +374,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcStmt">nnrcStmt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcStmt">nnrcStmt</a></span>) (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcStmt">nnrcStmt</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2881')">Proof.</div>
-<div class="proofscript" id="proof2881">
+<div class="toggleproof" onclick="toggleDisplay('proof2896')">Proof.</div>
+<div class="proofscript" id="proof2896">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">e</span>; <span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">intros</span> <span class="id">e</span> <span class="id">ste</span> <span class="id">stf</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">stf</span>.<br/>
@@ -386,8 +386,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span> /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcStmt">nnrcStmt</a></span>) (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2882')">Proof.</div>
-<div class="proofscript" id="proof2882">
+<div class="toggleproof" onclick="toggleDisplay('proof2897')">Proof.</div>
+<div class="proofscript" id="proof2897">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">Forall_nil</span> <span class="id">Forall_app</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">required_level</span> <span class="id">bound_vars</span> <span class="id">n</span> <span class="id">sdefs</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> <span class="id">required_level</span> <span class="id">bound_vars</span> <span class="id">n</span> <span class="id">sdefs</span> <span class="id">eqq</span><br/>
@@ -445,8 +445,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratify_stratified">stratify_stratified</a></span> (<span class="id">e</span>: <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) : <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified">stratified</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2883')">Proof.</div>
-<div class="proofscript" id="proof2883">
+<div class="toggleproof" onclick="toggleDisplay('proof2898')">Proof.</div>
+<div class="proofscript" id="proof2898">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id">e</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcStmt">nnrcStmt</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">e</span>)); <span class="tactic">intros</span> ? ? <span class="id">eqq1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux_stratified">stratify_aux_stratified</a></span> <span class="id">eqq1</span>).<br/>
@@ -454,8 +454,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="stratify_stratified_spec">stratify_stratified_spec</a></span> (<span class="id">e</span>: <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) : <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified_spec">stratified_spec</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2884')">Proof.</div>
-<div class="proofscript" id="proof2884">
+<div class="toggleproof" onclick="toggleDisplay('proof2899')">Proof.</div>
+<div class="proofscript" id="proof2899">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified_correct">stratified_correct</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_stratified">stratify_stratified</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
@@ -466,8 +466,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="mk_expr_from_vars_nil">mk_expr_from_vars_nil</a></span> <span class="id">e</span> : <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2885')">Proof.</div>
-<div class="proofscript" id="proof2885">
+<div class="toggleproof" onclick="toggleDisplay('proof2900')">Proof.</div>
+<div class="proofscript" id="proof2900">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -477,8 +477,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">bound_vars</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratifiedLevel">stratifiedLevel</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> -&gt; <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2886')">Proof.</div>
-<div class="proofscript" id="proof2886">
+<div class="toggleproof" onclick="toggleDisplay('proof2901')">Proof.</div>
+<div class="proofscript" id="proof2901">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">required_level</span> <span class="id">bound_vars</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> <span class="id">required_level</span> <span class="id">bound_vars</span> <span class="id">stratify_levelc</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">IHe1</span>, <span class="id">IHe2</span> <span class="tactic">by</span> <span class="tactic">tauto</span>.<br/>
@@ -504,8 +504,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratify_stratify_id">stratify_stratify_id</a></span> (<span class="id">e</span>: <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified">stratified</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> -&gt;              <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2887')">Proof.</div>
-<div class="proofscript" id="proof2887">
+<div class="toggleproof" onclick="toggleDisplay('proof2902')">Proof.</div>
+<div class="proofscript" id="proof2902">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">stratifye</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux_stratify_id">stratify_aux_stratify_id</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">stratifye</span>).<br/>
@@ -515,8 +515,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="stratify_idem">stratify_idem</a></span> (<span class="id">e</span>: <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2888')">Proof.</div>
-<div class="proofscript" id="proof2888">
+<div class="toggleproof" onclick="toggleDisplay('proof2903')">Proof.</div>
+<div class="proofscript" id="proof2903">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_stratify_id">stratify_stratify_id</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_stratified">stratify_stratified</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
@@ -528,8 +528,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratify1_aux_nbound_vars">stratify1_aux_nbound_vars</a></span> {<span class="id">e</span> <span class="id">required_kind</span> <span class="id">bound_vars</span> <span class="id">n</span> <span class="id">l</span> <span class="id">sdefs</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux">stratify1_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_kind">required_kind</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>,<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#l">l</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">x</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#l">l</a></span>) -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2889')">Proof.</div>
-<div class="proofscript" id="proof2889">
+<div class="toggleproof" onclick="toggleDisplay('proof2904')">Proof.</div>
+<div class="proofscript" id="proof2904">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_kind</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span> <span class="id">eqq</span> ? <span class="id">inn</span>; <span class="id">invcs</span> <span class="id">eqq</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.Assoc.html#domain_app">domain_app</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#in_app_iff">in_app_iff</a></span> <span class="kwd">in</span> <span class="id">inn</span>.<br/>
@@ -544,8 +544,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratify_aux_nbound_vars">stratify_aux_nbound_vars</a></span> {<span class="id">e</span> <span class="id">required_kind</span> <span class="id">bound_vars</span> <span class="id">n</span> <span class="id">sdefs</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_kind">required_kind</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>,<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#disjoint">disjoint</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2890')">Proof.</div>
-<div class="proofscript" id="proof2890">
+<div class="toggleproof" onclick="toggleDisplay('proof2905')">Proof.</div>
+<div class="proofscript" id="proof2905">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">required_kind</span> <span class="id">bound_vars</span> <span class="id">sdefs</span> <span class="id">n</span>; <span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> <span class="id">required_kind</span> <span class="id">bound_vars</span> <span class="id">sdefs</span> <span class="id">n</span> <span class="id">eqq</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">eqq</span>; <span class="id">invcs</span> <span class="id">eqq</span>; <span class="tactic">simpl</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">try</span> <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#disjoint_nil_l">disjoint_nil_l</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">match_case_in</span> <span class="id">H0</span>; <span class="tactic">intros</span> ? ? <span class="id">eqq1</span><br/>
@@ -604,8 +604,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="growing_fv_ctxt_incl">growing_fv_ctxt_incl</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; (@<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2891')">Proof.</div>
-<div class="proofscript" id="proof2891">
+<div class="toggleproof" onclick="toggleDisplay('proof2906')">Proof.</div>
+<div class="proofscript" id="proof2906">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#flip">flip</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>. <span class="tactic">intros</span> ? <span class="id">sdefs</span> ? <span class="id">ctxt1</span> <span class="id">ctxt2</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">ctxt1</span> <span class="id">ctxt2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
@@ -618,8 +618,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="growing_fv_ctxt_equiv">growing_fv_ctxt_equiv</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; (@<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#iff">iff</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2892')">Proof.</div>
-<div class="proofscript" id="proof2892">
+<div class="toggleproof" onclick="toggleDisplay('proof2907')">Proof.</div>
+<div class="proofscript" id="proof2907">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#flip">flip</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>. <span class="tactic">intros</span> ? <span class="id">sdefs</span> ? <span class="id">ctxt1</span> <span class="id">ctxt2</span>; <span class="tactic">subst</span>; <span class="tactic">intros</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist_incls">equivlist_incls</a></span> <span class="kwd">in</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">eqq</span>.<br/>
@@ -629,8 +629,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="growing_fv_ctxt_app">growing_fv_ctxt_app</a></span> <span class="id">sdefs1</span> <span class="id">sdefs2</span> <span class="id">ctxt</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> ++ <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#ctxt">ctxt</a></span> &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#ctxt">ctxt</a></span> /\ <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#ctxt">ctxt</a></span> ++ <span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2893')">Proof.</div>
-<div class="proofscript" id="proof2893">
+<div class="toggleproof" onclick="toggleDisplay('proof2908')">Proof.</div>
+<div class="proofscript" id="proof2908">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">ctxt</span> <span class="id">sdefs2</span>; <span class="tactic">induction</span> <span class="id">sdefs1</span>; <span class="tactic">intros</span> <span class="id">ctxt</span> <span class="id">sdefs2</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_nil_r">app_nil_r</a></span>. <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>.<br/>
@@ -646,8 +646,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">e</span> <span class="id">x</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>))) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) /\ ~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>)) \/ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#ctxt">ctxt</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2894')">Proof.</div>
-<div class="proofscript" id="proof2894">
+<div class="toggleproof" onclick="toggleDisplay('proof2909')">Proof.</div>
+<div class="proofscript" id="proof2909">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">ctxt</span> ; <span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">intros</span> <span class="id">ctxt</span> <span class="id">gfc</span> <span class="id">e</span> <span class="id">x</span> <span class="id">inn</span>; [<span class="tactic">intuition</span> | ].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars_eq">mk_expr_from_vars_eq</a></span> <span class="kwd">in</span> <span class="id">inn</span>.<br/>
@@ -663,8 +663,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="mk_expr_from_vars_growing_fv_free_fw_codomain">mk_expr_from_vars_growing_fv_free_fw_codomain</a></span> {<span class="id">sdefs</span> <span class="id">e</span> <span class="id">x</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>))) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) \/ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#concat">concat</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>))))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2895')">Proof.</div>
-<div class="proofscript" id="proof2895">
+<div class="toggleproof" onclick="toggleDisplay('proof2910')">Proof.</div>
+<div class="proofscript" id="proof2910">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">e</span> <span class="id">x</span> ; <span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">intros</span> <span class="id">e</span> <span class="id">x</span> <span class="id">inn</span>; [<span class="tactic">intuition</span> | ].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars_eq">mk_expr_from_vars_eq</a></span> <span class="kwd">in</span> <span class="id">inn</span>.<br/>
@@ -678,8 +678,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="mk_expr_from_vars_growing_fv_free_bk">mk_expr_from_vars_growing_fv_free_bk</a></span> <span class="id">e</span> <span class="id">sdefs</span> <span class="id">x</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) \/ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#concat">concat</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>)))) /\ ~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>)) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2896')">Proof.</div>
-<div class="proofscript" id="proof2896">
+<div class="toggleproof" onclick="toggleDisplay('proof2911')">Proof.</div>
+<div class="proofscript" id="proof2911">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">e</span> <span class="id">x</span>; <span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">intros</span> <span class="id">e</span> <span class="id">x</span> <span class="id">inn</span>; [<span class="tactic">intuition</span> | ].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>.<br/>
@@ -697,8 +697,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratify1_aux_free_vars_incl">stratify1_aux_free_vars_incl</a></span> {<span class="id">e</span> <span class="id">required_level</span> <span class="id">bound_vars</span> <span class="id">n</span> <span class="id">sdefs1</span> <span class="id">sdefs2</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux">stratify1_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> ++ (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2897')">Proof.</div>
-<div class="proofscript" id="proof2897">
+<div class="toggleproof" onclick="toggleDisplay('proof2912')">Proof.</div>
+<div class="proofscript" id="proof2912">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_level</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>; <span class="id">invcs</span> <span class="id">eqq</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span> ? <span class="id">inn</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">inn</span>; <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
@@ -710,8 +710,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratify1_aux_sdefs_app">stratify1_aux_sdefs_app</a></span> {<span class="id">e</span> <span class="id">required_level</span> <span class="id">bound_vars</span> <span class="id">n</span> <span class="id">sdefs1</span> <span class="id">sdefs2</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux">stratify1_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="id">l</span> | <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span> = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span>++<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#l">l</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2898')">Proof.</div>
-<div class="proofscript" id="proof2898">
+<div class="toggleproof" onclick="toggleDisplay('proof2913')">Proof.</div>
+<div class="proofscript" id="proof2913">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_level</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>; <span class="id">invcs</span> <span class="id">eqq</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">exists</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
@@ -723,8 +723,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">ctxt</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#ctxt">ctxt</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#ctxt">ctxt</a></span>++<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2899')">Proof.</div>
-<div class="proofscript" id="proof2899">
+<div class="toggleproof" onclick="toggleDisplay('proof2914')">Proof.</div>
+<div class="proofscript" id="proof2914">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_level</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">HH</span> <span class="id">gfc</span>; <span class="id">invcs</span> <span class="id">HH</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt_app">growing_fv_ctxt_app</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
@@ -738,8 +738,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux">stratify1_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2900')">Proof.</div>
-<div class="proofscript" id="proof2900">
+<div class="toggleproof" onclick="toggleDisplay('proof2915')">Proof.</div>
+<div class="proofscript" id="proof2915">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">gfc</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux_gfc">stratify1_aux_gfc</a></span> <span class="id">gfc</span> <span class="id">_</span> <span class="id">eqq</span>); <span class="tactic">intros</span> <span class="id">HH</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt_incl">growing_fv_ctxt_incl</a></span>; <span class="tactic">eauto</span><br/>
@@ -751,8 +751,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">ctxt</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#ctxt">ctxt</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#ctxt">ctxt</a></span>++<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2901')">Proof.</div>
-<div class="proofscript" id="proof2901">
+<div class="toggleproof" onclick="toggleDisplay('proof2916')">Proof.</div>
+<div class="proofscript" id="proof2916">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_level</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">HH</span> <span class="id">gfc</span>; <span class="id">invcs</span> <span class="id">HH</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_inv_head">app_inv_head</a></span> <span class="kwd">in</span> <span class="id">H1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H1</span>; <span class="tactic">simpl</span>.<br/>
@@ -767,8 +767,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux">stratify1_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span>++<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2902')">Proof.</div>
-<div class="proofscript" id="proof2902">
+<div class="toggleproof" onclick="toggleDisplay('proof2917')">Proof.</div>
+<div class="proofscript" id="proof2917">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">eqq</span> <span class="id">gfc</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux_gfc_app">stratify1_aux_gfc_app</a></span> <span class="id">eqq</span> <span class="id">_</span> <span class="id">gfc</span>); <span class="tactic">intros</span> <span class="id">HH</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt_incl">growing_fv_ctxt_incl</a></span>; <span class="tactic">eauto</span><br/>
@@ -779,8 +779,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#a">a</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#concat">concat</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#l">l</a></span>))) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#a">a</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#l">l</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#a">a</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#l">l</a></span>))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2903')">Proof.</div>
-<div class="proofscript" id="proof2903">
+<div class="toggleproof" onclick="toggleDisplay('proof2918')">Proof.</div>
+<div class="proofscript" id="proof2918">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">a</span> <span class="id">n</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span>.<br/>
@@ -793,8 +793,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">sdefs1</span> <span class="id">sdefs2</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>*<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux">stratify1_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span>++<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span> ++ (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#concat">concat</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>)))) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> ++ (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2904')">Proof.</div>
-<div class="proofscript" id="proof2904">
+<div class="toggleproof" onclick="toggleDisplay('proof2919')">Proof.</div>
+<div class="proofscript" id="proof2919">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_level</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>; <span class="id">invcs</span> <span class="id">eqq</span>; <span class="tactic">simpl</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">list_simpler</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">split</span>; <span class="tactic">simpl</span>; <span class="id">list_simpler</span>; <span class="tactic">simpl</span>; <span class="tactic">eauto</span>; <span class="tactic">intuition</span>.<br/>
@@ -807,8 +807,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span> ++ (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#concat">concat</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>)))) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> ++ <span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2905')">Proof.</div>
-<div class="proofscript" id="proof2905">
+<div class="toggleproof" onclick="toggleDisplay('proof2920')">Proof.</div>
+<div class="proofscript" id="proof2920">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">required_level</span> <span class="id">bound_vars</span> <span class="id">sdefs</span> <span class="id">n</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> <span class="id">required_level</span> <span class="id">bound_vars</span> <span class="id">sdefs</span> <span class="id">n</span> <span class="id">eqq</span> <span class="id">inclb</span><br/>
@@ -1217,8 +1217,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>,<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span> ++ (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#concat">concat</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>)))) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> ++ <span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2906')">Proof.</div>
-<div class="proofscript" id="proof2906">
+<div class="toggleproof" onclick="toggleDisplay('proof2921')">Proof.</div>
+<div class="proofscript" id="proof2921">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux_free_vars_and_growing">stratify_aux_free_vars_and_growing</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
@@ -1227,16 +1227,16 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>,<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#growing_fv_ctxt">growing_fv_ctxt</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2907')">Proof.</div>
-<div class="proofscript" id="proof2907">
+<div class="toggleproof" onclick="toggleDisplay('proof2922')">Proof.</div>
+<div class="proofscript" id="proof2922">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux_free_vars_and_growing">stratify_aux_free_vars_and_growing</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="mk_expr_stratify_aux_free_vars">mk_expr_stratify_aux_free_vars</a></span> <span class="id">e</span> <span class="id">required_kind</span> <span class="id">bound_vars</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_kind">required_kind</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span>))) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2908')">Proof.</div>
-<div class="proofscript" id="proof2908">
+<div class="toggleproof" onclick="toggleDisplay('proof2923')">Proof.</div>
+<div class="proofscript" id="proof2923">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">inclb</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id">e</span> <span class="id">required_kind</span> <span class="id">bound_vars</span>); <span class="tactic">intros</span> <span class="id">n</span> <span class="id">sdefs</span> <span class="id">eqq1</span>.<br/>
@@ -1258,8 +1258,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratify_free_vars">stratify_free_vars</a></span> <span class="id">e</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>)) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2909')">Proof.</div>
-<div class="proofscript" id="proof2909">
+<div class="toggleproof" onclick="toggleDisplay('proof2924')">Proof.</div>
+<div class="proofscript" id="proof2924">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_stratify_aux_free_vars">mk_expr_stratify_aux_free_vars</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
@@ -1283,16 +1283,16 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="eval_nnrc_with_substs_eq">eval_nnrc_with_substs_eq</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> <span class="id">a</span> <span class="id">b</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#olift">olift</a></span> (<span class="kwd">fun</span> <span class="id">env</span>' =&gt; @<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id">env</span>' <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#a">a</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_substs">eval_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#b">b</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span>) = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_nnrc_with_substs">eval_nnrc_with_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#a">a</a></span>,<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#b">b</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2910')">Proof.</div>
-<div class="proofscript" id="proof2910">
+<div class="toggleproof" onclick="toggleDisplay('proof2925')">Proof.</div>
+<div class="proofscript" id="proof2925">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="eval_nnrc_with_substs_eq_core">eval_nnrc_with_substs_eq_core</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> <span class="id">a</span> <span class="id">b</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#olift">olift</a></span> (<span class="kwd">fun</span> <span class="id">env</span>' =&gt; @<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id">env</span>' (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#a">a</a></span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_substs">eval_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#b">b</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span>) = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_nnrc_with_substs">eval_nnrc_with_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#a">a</a></span>,<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#b">b</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2911')">Proof.</div>
-<div class="proofscript" id="proof2911">
+<div class="toggleproof" onclick="toggleDisplay('proof2926')">Proof.</div>
+<div class="proofscript" id="proof2926">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
@@ -1300,8 +1300,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nws">nws</a></span>) = <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_nnrc_with_substs">eval_nnrc_with_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nws">nws</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2912')">Proof.</div>
-<div class="proofscript" id="proof2912">
+<div class="toggleproof" onclick="toggleDisplay('proof2927')">Proof.</div>
+<div class="proofscript" id="proof2927">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_nnrc_with_substs">eval_nnrc_with_substs</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">nws</span> <span class="kwd">as</span> [<span class="id">n</span> <span class="id">sdefs</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">env</span> <span class="id">n</span>.<br/>
@@ -1314,8 +1314,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="eval_substs_app">eval_substs_app</a></span> <span class="id">h</span> <span class="id">cenv</span> (<span class="id">sdefs1</span> <span class="id">sdefs2</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>*<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)) (<span class="id">env</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#bindings">bindings</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_substs">eval_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span>++<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> = <span class="id"><a href="Qcert.Utils.Lift.html#olift">olift</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_substs">eval_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_substs">eval_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2913')">Proof.</div>
-<div class="proofscript" id="proof2913">
+<div class="toggleproof" onclick="toggleDisplay('proof2928')">Proof.</div>
+<div class="proofscript" id="proof2928">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">sdefs2</span> <span class="id">env</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs1</span>; <span class="tactic">intros</span> <span class="id">sdefs2</span> <span class="id">env</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>.<br/>
@@ -1325,8 +1325,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="eval_substs_applies">eval_substs_applies</a></span> {<span class="id">h</span> <span class="id">cenv</span> <span class="id">sdefs</span> <span class="id">env</span> <span class="id">res</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_substs">eval_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#res">res</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">x</span> | <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#res">res</a></span> = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span>++<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> &amp; <span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#x">x</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>)}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2914')">Proof.</div>
-<div class="proofscript" id="proof2914">
+<div class="toggleproof" onclick="toggleDisplay('proof2929')">Proof.</div>
+<div class="proofscript" id="proof2929">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">env</span> <span class="id">res</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">intros</span> <span class="id">env</span> <span class="id">res</span> <span class="id">eqq</span>; <span class="id">invcs</span> <span class="id">eqq</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">exists</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>; <span class="tactic">simpl</span>; <span class="tactic">eauto</span>.<br/>
@@ -1347,8 +1347,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2915')">Proof.</div>
-<div class="proofscript" id="proof2915">
+<div class="toggleproof" onclick="toggleDisplay('proof2930')">Proof.</div>
+<div class="proofscript" id="proof2930">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">env1</span> <span class="id">env2</span>; <span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">intros</span> <span class="id">env1</span> <span class="id">env2</span> <span class="id">leqq</span> <span class="id">inclu</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#incl_app_iff">incl_app_iff</a></span> <span class="kwd">in</span> <span class="id">inclu</span>.<br/>
@@ -1370,8 +1370,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2916')">Proof.</div>
-<div class="proofscript" id="proof2916">
+<div class="toggleproof" onclick="toggleDisplay('proof2931')">Proof.</div>
+<div class="proofscript" id="proof2931">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">env1</span> <span class="id">env2</span>; <span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">intros</span> <span class="id">env1</span> <span class="id">env2</span> <span class="id">leqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">eqqs</span>:@<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env1</span> <span class="id">n</span> = @<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env2</span> <span class="id">n</span>) <span class="tactic">by</span> (<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCShadow.html#nnrc_eval_equiv_env">nnrc_eval_equiv_env</a></span>; <span class="tactic">eauto</span>).<br/>
@@ -1392,8 +1392,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2917')">Proof.</div>
-<div class="proofscript" id="proof2917">
+<div class="toggleproof" onclick="toggleDisplay('proof2932')">Proof.</div>
+<div class="proofscript" id="proof2932">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">neq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">env</span>₁.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">intros</span> <span class="id">env</span>₁ ; <span class="tactic">simpl</span>.<br/>
@@ -1421,8 +1421,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2918')">Proof.</div>
-<div class="proofscript" id="proof2918">
+<div class="toggleproof" onclick="toggleDisplay('proof2933')">Proof.</div>
+<div class="proofscript" id="proof2933">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">nin1</span> <span class="id">nin2</span> <span class="id">env</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">exists</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>; <span class="tactic">simpl</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
@@ -1463,8 +1463,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2919')">Proof.</div>
-<div class="proofscript" id="proof2919">
+<div class="toggleproof" onclick="toggleDisplay('proof2934')">Proof.</div>
+<div class="proofscript" id="proof2934">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">env</span>'; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">disj1</span> <span class="id">disj2</span> <span class="id">env</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">match_case</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_substs_applies">eval_substs_applies</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
@@ -1493,8 +1493,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n1">n1</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n2">n2</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">sdefs</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n1">n1</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>)) (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n2">n2</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2920')">Proof.</div>
-<div class="proofscript" id="proof2920">
+<div class="toggleproof" onclick="toggleDisplay('proof2935')">Proof.</div>
+<div class="proofscript" id="proof2935">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">eqq</span> <span class="id">sdefs</span>; <span class="id">revert</span> <span class="id">n1</span> <span class="id">n2</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">intros</span> <span class="id">n1</span> <span class="id">n2</span> <span class="id">eqq</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
@@ -1512,8 +1512,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="stratify1_aux_correct">stratify1_aux_correct</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> <span class="id">e</span> <span class="id">bound_vars</span> <span class="id">required_kind</span> <span class="id">sdefs</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_nnrc_with_substs">eval_nnrc_with_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux">stratify1_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_kind">required_kind</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_nnrc_with_substs">eval_nnrc_with_substs</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>,<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2921')">Proof.</div>
-<div class="proofscript" id="proof2921">
+<div class="toggleproof" onclick="toggleDisplay('proof2936')">Proof.</div>
+<div class="proofscript" id="proof2936">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_kind</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_nnrc_with_substs">eval_nnrc_with_substs</a></span>; <span class="tactic">simpl</span>.<br/>
@@ -1530,8 +1530,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">env</span>').<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2922')">Proof.</div>
-<div class="proofscript" id="proof2922">
+<div class="toggleproof" onclick="toggleDisplay('proof2937')">Proof.</div>
+<div class="proofscript" id="proof2937">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">env</span> <span class="id">env</span>'.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">env</span> <span class="id">env</span>' <span class="id">eqq1</span> <span class="id">FDce</span> <span class="id">FDe</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">invcs</span> <span class="id">eqq1</span>; <span class="tactic">trivial</span>.<br/>
@@ -1549,8 +1549,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_kind">required_kind</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span>)) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2923')">Proof.</div>
-<div class="proofscript" id="proof2923">
+<div class="toggleproof" onclick="toggleDisplay('proof2938')">Proof.</div>
+<div class="proofscript" id="proof2938">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars_eval">mk_expr_from_vars_eval</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#eval_nnrc_with_substs">eval_nnrc_with_substs</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>.<br/>
@@ -1803,16 +1803,16 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratify_correct">stratify_correct</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> <span class="id">e</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#h">h</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#cenv">cenv</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#env">env</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2924')">Proof.</div>
-<div class="proofscript" id="proof2924">
+<div class="toggleproof" onclick="toggleDisplay('proof2939')">Proof.</div>
+<div class="proofscript" id="proof2939">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux_correct">stratify_aux_correct</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratify_correct_eq">stratify_correct_eq</a></span> <span class="id">e</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2925')">Proof.</div>
-<div class="proofscript" id="proof2925">
+<div class="toggleproof" onclick="toggleDisplay('proof2940')">Proof.</div>
+<div class="proofscript" id="proof2940">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> <span class="id">FDce</span> <span class="id">FDe</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux_correct">stratify_aux_correct</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
@@ -1828,8 +1828,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify1_aux">stratify1_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> /\ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs1">sdefs1</a></span>) &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span> /\ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs2">sdefs2</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2926')">Proof.</div>
-<div class="proofscript" id="proof2926">
+<div class="toggleproof" onclick="toggleDisplay('proof2941')">Proof.</div>
+<div class="proofscript" id="proof2941">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">eqq1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_level</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">invcs</span> <span class="id">eqq1</span>; <span class="id">list_simpler</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span>.<br/>
@@ -1839,8 +1839,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="mk_expr_from_vars_preserves_core">mk_expr_from_vars_preserves_core</a></span> <span class="id">nws</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nws">nws</a></span>) /\ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nws">nws</a></span>))) &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nws">nws</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2927')">Proof.</div>
-<div class="proofscript" id="proof2927">
+<div class="toggleproof" onclick="toggleDisplay('proof2942')">Proof.</div>
+<div class="proofscript" id="proof2942">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">nws</span> <span class="kwd">as</span> [<span class="id">e</span> <span class="id">sdefs</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">e</span>.<br/>
@@ -1861,8 +1861,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#required_level">required_level</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#bound_vars">bound_vars</a></span> = (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span>,<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#n">n</a></span> /\ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#codomain">codomain</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#sdefs">sdefs</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2928')">Proof.</div>
-<div class="proofscript" id="proof2928">
+<div class="toggleproof" onclick="toggleDisplay('proof2943')">Proof.</div>
+<div class="proofscript" id="proof2943">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">Forall_nil</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">required_level</span> <span class="id">bound_vars</span> <span class="id">n</span> <span class="id">sdefs</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> <span class="id">required_level</span> <span class="id">bound_vars</span> <span class="id">n</span> <span class="id">sdefs</span> <span class="id">eqq1</span><br/>
@@ -1924,8 +1924,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratify_preserves_core">stratify_preserves_core</a></span> <span class="id">e</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> &lt;-&gt;  <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2929')">Proof.</div>
-<div class="proofscript" id="proof2929">
+<div class="toggleproof" onclick="toggleDisplay('proof2944')">Proof.</div>
+<div class="proofscript" id="proof2944">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id">e</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcStmt">nnrcStmt</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">e</span>)); <span class="tactic">intros</span> ? ? <span class="id">eqq1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars_preserves_core">mk_expr_from_vars_preserves_core</a></span>.<br/>
@@ -1939,16 +1939,16 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#exist">exist</a></span> <span class="id">_</span> <span class="id">_</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#proj1">proj1</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_preserves_core">stratify_preserves_core</a></span> <span class="id">_</span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj2_sig">proj2_sig</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>)).<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratify_stratified_core">stratify_stratified_core</a></span> (<span class="id">e</span>: <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core">nnrc_core</a></span>) : <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified_core">stratified_core</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_core">stratify_core</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2930')">Proof.</div>
-<div class="proofscript" id="proof2930">
+<div class="toggleproof" onclick="toggleDisplay('proof2945')">Proof.</div>
+<div class="proofscript" id="proof2945">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_stratified">stratify_stratified</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratify_stratify_id_core">stratify_stratify_id_core</a></span> (<span class="id">e</span>: <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core">nnrc_core</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified_core">stratified_core</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> -&gt;              <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_core">stratify_core</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span> = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2931')">Proof.</div>
-<div class="proofscript" id="proof2931">
+<div class="toggleproof" onclick="toggleDisplay('proof2946')">Proof.</div>
+<div class="proofscript" id="proof2946">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratified_core">stratified_core</a></span>, <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_core">stratify_core</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_fequal">nnrc_core_fequal</a></span>.<br/>
@@ -1958,8 +1958,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="stratify_idem_core">stratify_idem_core</a></span> (<span class="id">e</span>: <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core">nnrc_core</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_core">stratify_core</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_core">stratify_core</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>) = <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_core">stratify_core</a></span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2932')">Proof.</div>
-<div class="proofscript" id="proof2932">
+<div class="toggleproof" onclick="toggleDisplay('proof2947')">Proof.</div>
+<div class="proofscript" id="proof2947">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_fequal">nnrc_core_fequal</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_idem">stratify_idem</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>

@@ -21,14 +21,14 @@
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataSystem.html">DataSystem</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.CAMP.CAMPRuntime.html">CAMPRuntime</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.CAMPRule.CAMPRuleRuntime.html">CAMPRuleRuntime</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Model.TrivialModel.html">TrivialModel</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Trivial.TrivialModel.html">TrivialModel</a></span>.<br/>
 <span class="kwd">Require</span> <span class="id"><a href="Qcert.Compiler.Model.CompilerRuntime.html">CompilerRuntime</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html">CompLang</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html">CompDriver</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Driver.CompLang.html">CompLang</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Driver.CompDriver.html">CompDriver</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Model.CompilerModel.html">CompilerModel</a></span>.<br/>
 <span class="kwd">Require</span> <span class="id"><a href="Qcert.CAMP.CAMPSystem.html">CAMPSystem</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.cNRAEnv.Typing.TcNRAEnv.html">TcNRAEnv</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.TCAMPtocNRAEnv.html">TCAMPtocNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Typing.TCAMPtocNRAEnv.html">TCAMPtocNRAEnv</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 <span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">Z_scope</span>.<br/>
 <span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string</span>.<br/>
@@ -38,7 +38,7 @@
 <span class="kwd">Instance</span> <span class="id"><a name="CPRModel_relation">CPRModel_relation</a></span> : <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation">brand_relation</a></span><br/>
 &nbsp;&nbsp;:= <span class="id"><a href="Qcert.Brands.BrandRelation.html#mkBrand_relation">mkBrand_relation</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#CPRModel">CPRModel</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span> <span class="id">_</span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span> <span class="id">_</span>).<br/>
 <br/>
-<span class="kwd">Module</span> <span class="id"><a name="TR">TR</a></span> := <span class="id"><a href="Qcert.Compiler.Model.TrivialModel.html#TrivialRuntime">TrivialRuntime</a></span>.<br/>
+<span class="kwd">Module</span> <span class="id"><a name="TR">TR</a></span> := <span class="id"><a href="Qcert.Compiler.Trivial.TrivialModel.html#TrivialRuntime">TrivialRuntime</a></span>.<br/>
 <br/>
 <span class="kwd">Section</span> <span class="id"><a name="CompilerUntypedTest">CompilerUntypedTest</a></span>.<br/>
 <br/>
@@ -86,12 +86,12 @@
 &nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="Example1_expected">Example1_expected</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["<span class="id">MainEntitys</span> <span class="kwd">with</span> <span class="id">doubleAttribute</span> 50: 2"].<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="camp5">camp5</a></span> : <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#camp">camp</a></span> := <span class="kwd">Eval</span> <span class="id">vm_compute</span> <span class="kwd">in</span> <span class="id">Example1</span>'.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="algopt5">algopt5</a></span> : <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#nraenv_core">nraenv_core</a></span> := <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#camp_to_nraenv_core">camp_to_nraenv_core</a></span> <span class="id">Example1</span>'.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="camp5">camp5</a></span> : <span class="id"><a href="Qcert.Driver.CompLang.html#camp">camp</a></span> := <span class="kwd">Eval</span> <span class="id">vm_compute</span> <span class="kwd">in</span> <span class="id">Example1</span>'.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="algopt5">algopt5</a></span> : <span class="id"><a href="Qcert.Driver.CompLang.html#nraenv_core">nraenv_core</a></span> := <span class="id"><a href="Qcert.Driver.CompDriver.html#camp_to_nraenv_core">camp_to_nraenv_core</a></span> <span class="id">Example1</span>'.<br/>
 &nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="rcamp5">rcamp5</a></span> : <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#camp_rule">camp_rule</a></span> := <span class="kwd">Eval</span> <span class="id">vm_compute</span> <span class="kwd">in</span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#Example1">Example1</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="ralgopt5">ralgopt5</a></span> : <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#nraenv">nraenv</a></span> := <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#camp_rule_to_nraenv_optim">camp_rule_to_nraenv_optim</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#Example1">Example1</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="rnnrc5">rnnrc5</a></span> : <span class="id"><a href="Qcert.Compiler.Driver.CompLang.html#nnrc">nnrc</a></span> := <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#camp_rule_to_nnrc_optim">camp_rule_to_nnrc_optim</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#Example1">Example1</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="rcamp5">rcamp5</a></span> : <span class="id"><a href="Qcert.Driver.CompLang.html#camp_rule">camp_rule</a></span> := <span class="kwd">Eval</span> <span class="id">vm_compute</span> <span class="kwd">in</span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#Example1">Example1</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="ralgopt5">ralgopt5</a></span> : <span class="id"><a href="Qcert.Driver.CompLang.html#nraenv">nraenv</a></span> := <span class="id"><a href="Qcert.Driver.CompDriver.html#camp_rule_to_nraenv_optim">camp_rule_to_nraenv_optim</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#Example1">Example1</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="rnnrc5">rnnrc5</a></span> : <span class="id"><a href="Qcert.Driver.CompLang.html#nnrc">nnrc</a></span> := <span class="id"><a href="Qcert.Driver.CompDriver.html#camp_rule_to_nnrc_optim">camp_rule_to_nnrc_optim</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#Example1">Example1</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="inp1">inp1</a></span> : (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>)) := (("<span class="id">WORLD</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#exampleWM">exampleWM</a></span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="inp2">inp2</a></span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> := <span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span>.<br/>
@@ -119,10 +119,10 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#CompilerBrandModelTest">CompilerBrandModelTest</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id"><a name="MyBrandModel">MyBrandModel</a></span> &lt;: <span class="id"><a href="Qcert.Compiler.Model.CompilerModel.html#CompilerBrandModel">CompilerBrandModel</a></span>(<span class="id"><a href="Qcert.Compiler.Model.TrivialModel.html#TrivialForeignType">TrivialForeignType</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id"><a name="MyBrandModel">MyBrandModel</a></span> &lt;: <span class="id"><a href="Qcert.Compiler.Model.CompilerModel.html#CompilerBrandModel">CompilerBrandModel</a></span>(<span class="id"><a href="Qcert.Compiler.Trivial.TrivialModel.html#TrivialForeignType">TrivialForeignType</a></span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="MyBrandModel.compiler_brand_model">compiler_brand_model</a></span> := <span class="id"><a href="Qcert.Tests.CompilerTest.html#CPModel">CPModel</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#MyBrandModel">MyBrandModel</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id"><a name="TM">TM</a></span> := <span class="id"><a href="Qcert.Compiler.Model.TrivialModel.html#TrivialModel">TrivialModel</a></span>(<span class="id"><a href="Qcert.Tests.CompilerTest.html#MyBrandModel">MyBrandModel</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Module</span> <span class="id"><a name="TM">TM</a></span> := <span class="id"><a href="Qcert.Compiler.Trivial.TrivialModel.html#TrivialModel">TrivialModel</a></span>(<span class="id"><a href="Qcert.Tests.CompilerTest.html#MyBrandModel">MyBrandModel</a></span>).<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="CompilerTypedTest">CompilerTypedTest</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Existing</span> <span class="kwd">Instance</span> <span class="id">CPModel</span>.<br/>
@@ -130,8 +130,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="makeMainEntity_typed">makeMainEntity_typed</a></span> <span class="id">db</span> <span class="id">id</span> <span class="id">i</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> (<span class="id"><a href="Qcert.Tests.CompilerTest.html#makeMainEntity">makeMainEntity</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#db">db</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#id">id</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#i">i</a></span>)) ▹ (<span class="id"><a href="Qcert.TypeSystem.RType.html#Brand">Brand</a></span> (<span class="id"><a href="Qcert.Utils.ListAdd.html#singleton">singleton</a></span> "<span class="id">MainEntity</span>")).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4434')">Proof.</div>
-<div class="proofscript" id="proof4434">
+<div class="toggleproof" onclick="toggleDisplay('proof4441')">Proof.</div>
+<div class="proofscript" id="proof4441">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id">dtbrand</span>' <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#CPModel">CPModel</a></span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>.<br/>
@@ -156,8 +156,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id">Example1</span>'<span class="id">_wt</span> τ :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.CAMP.Typing.TCAMP.html#camp_type">TCAMP.camp_type</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#tinp1">tinp1</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id">Example1</span>' τ <span class="id"><a href="Qcert.Tests.CompilerTest.html#tout1">tout1</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4435')">Proof.</div>
-<div class="proofscript" id="proof4435">
+<div class="toggleproof" onclick="toggleDisplay('proof4442')">Proof.</div>
+<div class="proofscript" id="proof4442">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
@@ -202,15 +202,15 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="alg5_wt">alg5_wt</a></span> τ :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Tests.CompilerTest.html#algopt5">algopt5</a></span> ▷ τ &gt;=&gt; <span class="id"><a href="Qcert.TypeSystem.RType.html#Coll">Coll</a></span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#tout1">tout1</a></span> ⊣ <span class="id"><a href="Qcert.Tests.CompilerTest.html#tinp1">tinp1</a></span>;(<span class="id"><a href="Qcert.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id"><a href="Qcert.TypeSystem.RType.html#Closed">Closed</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4436')">Proof.</div>
-<div class="proofscript" id="proof4436">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#algopt5">algopt5</a></span>, <span class="id"><a href="Qcert.Compiler.Driver.CompDriver.html#camp_to_nraenv_core">camp_to_nraenv_core</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Translation.CAMPtocNRAEnv.html#camp_to_nraenv_core_top">CAMPtocNRAEnv.camp_to_nraenv_core_top</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Translation.CAMPtocNRAEnv.html#nraenv_core_of_camp">CAMPtocNRAEnv.nraenv_core_of_camp</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4443')">Proof.</div>
+<div class="proofscript" id="proof4443">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Tests.CompilerTest.html#algopt5">algopt5</a></span>, <span class="id"><a href="Qcert.Driver.CompDriver.html#camp_to_nraenv_core">camp_to_nraenv_core</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Translation.Lang.CAMPtocNRAEnv.html#camp_to_nraenv_core_top">CAMPtocNRAEnv.camp_to_nraenv_core_top</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Translation.Lang.CAMPtocNRAEnv.html#nraenv_core_of_camp">CAMPtocNRAEnv.nraenv_core_of_camp</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;2: {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.Translation.TCAMPtocNRAEnv.html#nraenv_core_of_camp_type_preserve">nraenv_core_of_camp_type_preserve</a></span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.Translation.Typing.TCAMPtocNRAEnv.html#nraenv_core_of_camp_type_preserve">nraenv_core_of_camp_type_preserve</a></span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">Example1</span>'<span class="id">_wt</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>

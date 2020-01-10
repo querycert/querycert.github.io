@@ -1,0 +1,67 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Compiler.Enhanced.EnhancedToJava</title>
+<meta name="description" content="Documentation of Coq module Qcert.Compiler.Enhanced.EnhancedToJava" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Compiler.Enhanced.EnhancedToJava</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataSystem.html">DataSystem</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Java.JavaSystem.html">JavaSystem</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToJava.html">ForeignToJava</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html">SqlDateComponent</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html">UriComponent</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html">EnhancedData</a></span>.<br/>
+<br/>
+<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nstring_scope</span>.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id"><a name="enhanced_to_java_data">enhanced_to_java_data</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">quotel</span>:<span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>) (<span class="id">fd</span>:<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_data">enhanced_data</a></span>) : <span class="id"><a href="Qcert.Java.Lang.Java.html#java_json">java_json</a></span><br/>
+&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedToJava.html#fd">fd</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">tp</span> =&gt; <span class="id"><a href="Qcert.Java.Lang.Java.html#mk_java_json">mk_java_json</a></span> (^@<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> <span class="id">_</span> <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#sql_date_foreign_data">sql_date_foreign_data</a></span>.(@<span class="id"><a href="Qcert.Data.Model.ForeignData.html#foreign_data_tostring">foreign_data_tostring</a></span>) <span class="id">tp</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">enhancedsqldateperiod</span> <span class="id">tp</span> =&gt; <span class="id">mk_java_json</span> (^@<span class="id">toString</span> <span class="id">_</span> <span class="id">sql_date_period_foreign_data</span>.(@<span class="id">foreign_data_tostring</span> ) <span class="id">tp</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id">enhanced_to_java_unary_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">indent</span>:<span class="id">nat</span>) (<span class="id">eol</span>:<span class="id">nstring</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">quotel</span>:<span class="id">nstring</span>) (<span class="id">fu</span>:<span class="id">enhanced_unary_op</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d</span>:<span class="id">java_json</span>) : <span class="id">java_json</span><br/>
+&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">fu</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">enhanced_unary_sql_date_op</span> <span class="id">op</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">sql_date_to_java_unary_op</span> <span class="id">indent</span> <span class="id">eol</span> <span class="id">quotel</span> <span class="id">op</span> <span class="id">d</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">enhanced_unary_uri_op</span> <span class="id">op</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">uri_to_java_unary_op</span> <span class="id">indent</span> <span class="id">eol</span> <span class="id">quotel</span> <span class="id">op</span> <span class="id">d</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id">enhanced_to_java_binary_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">indent</span>:<span class="id">nat</span>) (<span class="id">eol</span>:<span class="id">nstring</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">quotel</span>:<span class="id">nstring</span>) (<span class="id">fb</span>:<span class="id">enhanced_binary_op</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d1</span> <span class="id">d2</span>:<span class="id">java_json</span>) : <span class="id">java_json</span><br/>
+&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">fb</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">enhanced_binary_sql_date_op</span> <span class="id">op</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">sql_date_to_java_binary_op</span> <span class="id">indent</span> <span class="id">eol</span> <span class="id">quotel</span> <span class="id">op</span> <span class="id">d1</span> <span class="id">d2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">Instance</span> <span class="id">enhanced_foreign_to_java</span> :<br/>
+&nbsp;&nbsp;@<span class="id">foreign_to_java</span> <span class="id">enhanced_foreign_runtime</span><br/>
+&nbsp;&nbsp;:= <span class="id">mk_foreign_to_java</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">enhanced_foreign_runtime</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">enhanced_to_java_data</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">enhanced_to_java_unary_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">enhanced_to_java_binary_op</span>.<br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

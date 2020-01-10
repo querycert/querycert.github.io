@@ -64,10 +64,14 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="unlocalize_constants_cons">unlocalize_constants_cons</a></span> <span class="id">v</span> <span class="id">d</span> (<span class="id">denv</span>:<span class="id"><a href="Qcert.Data.Model.DData.html#dbindings">dbindings</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DConstants.html#unlocalize_constants">unlocalize_constants</a></span> ((<span class="id"><a href="Qcert.Data.Model.DConstants.html#v">v</a></span>,<span class="id"><a href="Qcert.Data.Model.DData.html#Dlocal">Dlocal</a></span> <span class="id"><a href="Qcert.Data.Model.DConstants.html#d">d</a></span>) :: <span class="id"><a href="Qcert.Data.Model.DConstants.html#denv">denv</a></span>) = (<span class="id"><a href="Qcert.Data.Model.DConstants.html#v">v</a></span>,<span class="id"><a href="Qcert.Data.Model.DConstants.html#d">d</a></span>) :: <span class="id"><a href="Qcert.Data.Model.DConstants.html#unlocalize_constants">unlocalize_constants</a></span> <span class="id"><a href="Qcert.Data.Model.DConstants.html#denv">denv</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1552')">Proof.</div>
-<div class="proofscript" id="proof1552">
+<div class="toggleproof" onclick="toggleDisplay('proof1555')">Proof.</div>
+<div class="proofscript" id="proof1555">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="coll_bindings">coll_bindings</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>)).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="bindings_of_coll_bindings">bindings_of_coll_bindings</a></span> (<span class="id">cb</span>:<span class="id"><a href="Qcert.Data.Model.DConstants.html#coll_bindings">coll_bindings</a></span>) : <span class="id"><a href="Qcert.Data.Model.Data.html#bindings">bindings</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> (<span class="kwd">fun</span> <span class="id">xy</span> =&gt; (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.Data.Model.DConstants.html#xy">xy</a></span>, <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.Data.Model.DConstants.html#xy">xy</a></span>))) <span class="id"><a href="Qcert.Data.Model.DConstants.html#cb">cb</a></span>.<br/>
 <br/>
 <span class="kwd">End</span> <span class="id"><a href="Qcert.Data.Model.DConstants.html#DConstants">DConstants</a></span>.<br/>
 <br/>

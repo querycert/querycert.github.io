@@ -120,8 +120,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">f5</span> : <span class="kwd">forall</span> <span class="id">r</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>), (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#x">x</a></span>,<span class="id"><a href="Qcert.EJson.Model.EJson.html#y">y</a></span>) <span class="id"><a href="Qcert.EJson.Model.EJson.html#r">r</a></span> -&gt; <span class="id"><a href="Qcert.EJson.Model.EJson.html#P">P</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#y">y</a></span>) -&gt; <span class="id"><a href="Qcert.EJson.Model.EJson.html#P">P</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#r">r</a></span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">fforeign</span> : <span class="kwd">forall</span> <span class="id">fd</span>, <span class="id"><a href="Qcert.EJson.Model.EJson.html#P">P</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#fd">fd</a></span>)):<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">d</span>, <span class="id"><a href="Qcert.EJson.Model.EJson.html#P">P</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#d">d</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1461')">Proof.</div>
-<div class="proofscript" id="proof1461">
+<div class="toggleproof" onclick="toggleDisplay('proof1464')">Proof.</div>
+<div class="proofscript" id="proof1464">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson_ind">ejson_ind</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
@@ -133,8 +133,8 @@
 <br/>
 <div class="doc">Equality is decidable for json </div>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ejson_eq_dec">ejson_eq_dec</a></span> : <span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>, {<span class="id"><a href="Qcert.EJson.Model.EJson.html#x">x</a></span>=<span class="id"><a href="Qcert.EJson.Model.EJson.html#y">y</a></span>}+{<span class="id"><a href="Qcert.EJson.Model.EJson.html#x">x</a></span>&lt;&gt;<span class="id"><a href="Qcert.EJson.Model.EJson.html#y">y</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1462')">Proof.</div>
-<div class="proofscript" id="proof1462">
+<div class="toggleproof" onclick="toggleDisplay('proof1465')">Proof.</div>
+<div class="proofscript" id="proof1465">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">try</span> <span class="id">solve</span>[<span class="id">right</span>; <span class="tactic">inversion</span> 1].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">left</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.Float.html#float_eq_dec">float_eq_dec</a></span> <span class="id">n</span> <span class="id">f</span>).<br/>
@@ -204,8 +204,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="of_string_list_map_ejstring">of_string_list_map_ejstring</a></span> <span class="id">sl</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJson.html#of_string_list">of_string_list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejstring">ejstring</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#sl">sl</a></span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#sl">sl</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1463')">Proof.</div>
-<div class="proofscript" id="proof1463">
+<div class="toggleproof" onclick="toggleDisplay('proof1466')">Proof.</div>
+<div class="proofscript" id="proof1466">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sl</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#of_string_list">of_string_list</a></span> <span class="kwd">in</span> *; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">IHsl</span>; <span class="tactic">reflexivity</span>.<br/>
@@ -214,8 +214,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="ejson_brands">ejson_brands</a></span> (<span class="id">d</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) := <span class="id"><a href="Qcert.EJson.Model.EJson.html#of_string_list">of_string_list</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#d">d</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ejson_brands_map_ejstring">ejson_brands_map_ejstring</a></span> <span class="id">b</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson_brands">ejson_brands</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejstring">ejstring</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#b">b</a></span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#b">b</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1464')">Proof.</div>
-<div class="proofscript" id="proof1464">
+<div class="toggleproof" onclick="toggleDisplay('proof1467')">Proof.</div>
+<div class="proofscript" id="proof1467">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#of_string_list_map_ejstring">of_string_list_map_ejstring</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -277,7 +277,23 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="ejson_is_either">ejson_is_either</a></span> (<span class="id">j</span>:<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#j">j</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> ((<span class="id">s1</span>,<span class="id">j</span>')::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">if</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id">s1</span> "$<span class="id">left</span>") <span class="kwd">then</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">j</span>', <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">else</span> <span class="kwd">if</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id">s1</span> "$<span class="id">right</span>") <span class="kwd">then</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">j</span>')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">else</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> <span class="id">r</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
 &nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#EJson.Util">Util</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="EJson.Env">Env</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="jbindings">jbindings</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="pd_jbindings">pd_jbindings</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#EJson.Env">Env</a></span>.<br/>
+<br/>
 <span class="kwd">End</span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#EJson">EJson</a></span>.<br/>
 
 </div>

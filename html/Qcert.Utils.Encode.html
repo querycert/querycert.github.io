@@ -292,6 +292,70 @@
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Encode.html#key_encode_lt_inv">key_encode_lt_inv</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_not_left">match_not_left</a></span> {<span class="id">A</span>} <span class="id">s</span> (<span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.Utils.Encode.html#A">A</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> &lt;&gt; "$<span class="id">left</span>"%<span class="id">string</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">left</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#y">y</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1057')">Proof.</div>
+<div class="proofscript" id="proof1057">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> (<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b0</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b1</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b2</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b3</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b4</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b5</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b6</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>).<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_not_right">match_not_right</a></span> {<span class="id">A</span>} <span class="id">s</span> (<span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.Utils.Encode.html#A">A</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> &lt;&gt; "$<span class="id">right</span>"%<span class="id">string</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">right</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#y">y</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1058')">Proof.</div>
+<div class="proofscript" id="proof1058">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> (<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b0</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b1</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b2</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b3</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b4</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b5</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b6</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>).<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_neither_left_nor_right">match_neither_left_nor_right</a></span> {<span class="id">A</span>} <span class="id">s</span> (<span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.Utils.Encode.html#A">A</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> &lt;&gt; "$<span class="id">right</span>"%<span class="id">string</span> -&gt; <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> &lt;&gt; "$<span class="id">left</span>"%<span class="id">string</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">right</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#x">x</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">left</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#y">y</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1059')">Proof.</div>
+<div class="proofscript" id="proof1059">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> (<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b0</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b1</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b2</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b3</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b4</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b5</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b6</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>).<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
 <span class="kwd">End</span> <span class="id"><a href="Qcert.Utils.Encode.html#Encode">Encode</a></span>.<br/>
 <br/>
 

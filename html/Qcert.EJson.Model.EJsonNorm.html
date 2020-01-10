@@ -61,8 +61,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="ejson_normalize_normalizes">ejson_normalize_normalizes</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">d</span>:<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>), <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#normalize_ejson">normalize_ejson</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1465')">Proof.</div>
-<div class="proofscript" id="proof1465">
+<div class="toggleproof" onclick="toggleDisplay('proof1468')">Proof.</div>
+<div class="proofscript" id="proof1468">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">d</span> <span class="kwd">using</span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejsonInd2">ejsonInd2</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejnnull">ejnnull</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejnnumber">ejnnumber</a></span>.<br/>
@@ -103,8 +103,8 @@
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="ejson_normalize_normalized_eq">ejson_normalize_normalized_eq</a></span> {<span class="id">d</span>}:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#normalize_ejson">normalize_ejson</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span> = <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1466')">Proof.</div>
-<div class="proofscript" id="proof1466">
+<div class="toggleproof" onclick="toggleDisplay('proof1469')">Proof.</div>
+<div class="proofscript" id="proof1469">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">d</span> <span class="kwd">using</span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejsonInd2">ejsonInd2</a></span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (@<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#map_eq">map_eq</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#normalize_ejson">normalize_ejson</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#id">id</a></span>).<br/>
@@ -131,8 +131,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">x0</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt; (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#x0">x0</a></span>, <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#normalize_ejson">normalize_ejson</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#x0">x0</a></span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#c">c</a></span>) = <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#c">c</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1467')">Proof.</div>
-<div class="proofscript" id="proof1467">
+<div class="toggleproof" onclick="toggleDisplay('proof1470')">Proof.</div>
+<div class="proofscript" id="proof1470">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">inversion</span> 1; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalize_normalized_eq">ejson_normalize_normalized_eq</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -141,24 +141,24 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="ejson_normalize_idem">ejson_normalize_idem</a></span> <span class="id">d</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#normalize_ejson">normalize_ejson</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#normalize_ejson">normalize_ejson</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span>) = <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#normalize_ejson">normalize_ejson</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1468')">Proof.</div>
-<div class="proofscript" id="proof1468">
+<div class="toggleproof" onclick="toggleDisplay('proof1471')">Proof.</div>
+<div class="proofscript" id="proof1471">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalize_normalized_eq">ejson_normalize_normalized_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalize_normalizes">ejson_normalize_normalizes</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="normalize_ejson_eq_normalized">normalize_ejson_eq_normalized</a></span> {<span class="id">d</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#normalize_ejson">normalize_ejson</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span> = <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span> -&gt; <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1469')">Proof.</div>
-<div class="proofscript" id="proof1469">
+<div class="toggleproof" onclick="toggleDisplay('proof1472')">Proof.</div>
+<div class="proofscript" id="proof1472">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalize_normalizes">ejson_normalize_normalizes</a></span> <span class="id">d</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="normalized_ejson_dec">normalized_ejson_dec</a></span> <span class="id">d</span> : {<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span>} + {~ <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1470')">Proof.</div>
-<div class="proofscript" id="proof1470">
+<div class="toggleproof" onclick="toggleDisplay('proof1473')">Proof.</div>
+<div class="proofscript" id="proof1473">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#normalize_ejson">normalize_ejson</a></span> <span class="id">d</span> == <span class="id">d</span>); <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html#equiv">equiv</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#complement">complement</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">left</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#normalize_ejson_eq_normalized">normalize_ejson_eq_normalized</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">right</span>. <span class="tactic">intro</span> <span class="id">dn</span>; <span class="tactic">elim</span> <span class="id">c</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalize_normalized_eq">ejson_normalize_normalized_eq</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -167,8 +167,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ejson_normalized_jarray">ejson_normalized_jarray</a></span> <span class="id">a</span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#a">a</a></span> /\ <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejarray">ejarray</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l">l</a></span>)) &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejarray">ejarray</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#a">a</a></span> :: <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l">l</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1471')">Proof.</div>
-<div class="proofscript" id="proof1471">
+<div class="toggleproof" onclick="toggleDisplay('proof1474')">Proof.</div>
+<div class="proofscript" id="proof1474">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> 1 <span class="kwd">as</span> [<span class="id">d1</span> <span class="id">d2</span>]. <span class="tactic">inversion</span> <span class="id">d2</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
@@ -181,8 +181,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l1">l1</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l2">l2</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l1">l1</a></span> ++ <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l2">l2</a></span>))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1472')">Proof.</div>
-<div class="proofscript" id="proof1472">
+<div class="toggleproof" onclick="toggleDisplay('proof1475')">Proof.</div>
+<div class="proofscript" id="proof1475">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 1; <span class="tactic">inversion</span> 1; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">eauto</span> 1.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Bindings.html#Forall_sorted">Forall_sorted</a></span>.<br/>
@@ -193,8 +193,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l1">l1</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l2">l2</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_concat_sort">rec_concat_sort</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l1">l1</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l2">l2</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1473')">Proof.</div>
-<div class="proofscript" id="proof1473">
+<div class="toggleproof" onclick="toggleDisplay('proof1476')">Proof.</div>
+<div class="proofscript" id="proof1476">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized_rec_sort_app">ejson_normalized_rec_sort_app</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
@@ -202,24 +202,24 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#x">x</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l">l</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejarray">ejarray</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l">l</a></span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#x">x</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1474')">Proof.</div>
-<div class="proofscript" id="proof1474">
+<div class="toggleproof" onclick="toggleDisplay('proof1477')">Proof.</div>
+<div class="proofscript" id="proof1477">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 2; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ejnobject_nil">ejnobject_nil</a></span> : <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1475')">Proof.</div>
-<div class="proofscript" id="proof1475">
+<div class="toggleproof" onclick="toggleDisplay('proof1478')">Proof.</div>
+<div class="proofscript" id="proof1478">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ejnobject_sort_content">ejnobject_sort_content</a></span> <span class="id">c</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt; <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span>)) <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#c">c</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt; <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span>)) (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#c">c</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1476')">Proof.</div>
-<div class="proofscript" id="proof1476">
+<div class="toggleproof" onclick="toggleDisplay('proof1479')">Proof.</div>
+<div class="proofscript" id="proof1479">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">F</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Bindings.html#Forall_sorted">Forall_sorted</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -227,16 +227,16 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ejnobject_sort">ejnobject_sort</a></span> <span class="id">c</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt; <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#d">d</a></span>)) <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#c">c</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#c">c</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1477')">Proof.</div>
-<div class="proofscript" id="proof1477">
+<div class="toggleproof" onclick="toggleDisplay('proof1480')">Proof.</div>
+<div class="proofscript" id="proof1480">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">F</span>; <span class="id">econstructor</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Bindings.html#Forall_sorted">Forall_sorted</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ejson_normalized_jarray_Forall">ejson_normalized_jarray_Forall</a></span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejarray">ejarray</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l">l</a></span>) &lt;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#ejson_normalized">ejson_normalized</a></span> <span class="id"><a href="Qcert.EJson.Model.EJsonNorm.html#l">l</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1478')">Proof.</div>
-<div class="proofscript" id="proof1478">
+<div class="toggleproof" onclick="toggleDisplay('proof1481')">Proof.</div>
+<div class="proofscript" id="proof1481">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">invcs</span> <span class="id">H</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">constructor</span>; <span class="tactic">trivial</span>.<br/>

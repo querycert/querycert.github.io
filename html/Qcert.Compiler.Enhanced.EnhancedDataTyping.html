@@ -1,0 +1,90 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Compiler.Enhanced.EnhancedDataTyping</title>
+<meta name="description" content="Documentation of Coq module Qcert.Compiler.Enhanced.EnhancedDataTyping" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Compiler.Enhanced.EnhancedDataTyping</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html">RelationClasses</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html">Equivalence</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.ToString.html">ToString</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.JSON.JSONSystem.html">JSONSystem</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataSystem.html">DataSystem</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html">SqlDateComponent</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedData</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedType</span>.<br/>
+<br/>
+<span class="kwd">Inductive</span> <span class="id"><a name="enhanced_has_type">enhanced_has_type</a></span> : <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_data">enhanced_data</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_type">enhanced_type</a></span> -&gt; <span class="kwd">Prop</span> :=<br/>
+| <span class="id"><a name="enhanced_has_type_top">enhanced_has_type_top</a></span> <span class="id">fd</span> : <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedDataTyping.html#enhanced_has_type">enhanced_has_type</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedDataTyping.html#fd">fd</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhancedTop">enhancedTop</a></span><br/>
+| <span class="id"><a name="enhanced_has_type_sqldate">enhanced_has_type_sqldate</a></span> (<span class="id">tp</span>:<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE">SQL_DATE</a></span>) : <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedDataTyping.html#enhanced_has_type">enhanced_has_type</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedDataTyping.html#tp">tp</a></span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhancedSqlDate">enhancedSqlDate</a></span><br/>
+| <span class="id"><a name="enhanced_has_type_sqldateperiod">enhanced_has_type_sqldateperiod</a></span> (<span class="id">tp</span>:<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_PERIOD">SQL_DATE_PERIOD</a></span>) : <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedDataTyping.html#enhanced_has_type">enhanced_has_type</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldateperiod">enhancedsqldateperiod</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedDataTyping.html#tp">tp</a></span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhancedSqlDatePeriod">enhancedSqlDatePeriod</a></span><br/>
+.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id"><a name="enhanced_infer_type">enhanced_infer_type</a></span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_data">enhanced_data</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_type">enhanced_type</a></span><br/>
+&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedDataTyping.html#d">d</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhancedSqlDate">enhancedSqlDate</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldateperiod">enhancedsqldateperiod</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhancedSqlDatePeriod">enhancedSqlDatePeriod</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">Program</span> <span class="kwd">Instance</span> <span class="id"><a name="enhanced_foreign_data_typing">enhanced_foreign_data_typing</a></span> :<br/>
+&nbsp;&nbsp;@<span class="id"><a href="Qcert.Data.ModelTyping.ForeignDataTyping.html#foreign_data_typing">foreign_data_typing</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_foreign_data">enhanced_foreign_data</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_foreign_type">enhanced_foreign_type</a></span><br/>
+&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Data.ModelTyping.ForeignDataTyping.html#mk_foreign_data_typing">mk_foreign_data_typing</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_foreign_data">enhanced_foreign_data</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_foreign_type">enhanced_foreign_type</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedDataTyping.html#enhanced_has_type">enhanced_has_type</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedDataTyping.html#enhanced_infer_type">enhanced_infer_type</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span><br/>
+.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4397')">Next Obligation.</div>
+<div class="proofscript" id="proof4397">
+&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="id">constructor</span>.<br/>
+&nbsp;&nbsp;- <span class="id">constructor</span>.<br/>
+&nbsp;&nbsp;- <span class="id">constructor</span>.<br/>
+Defined.</div>
+<div class="toggleproof" onclick="toggleDisplay('proof4398')">Next Obligation.</div>
+<div class="proofscript" id="proof4398">
+&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H0</span>; <span class="tactic">subst</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;- <span class="id">constructor</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">trivial</span>.<br/>
+Defined.</div>
+<div class="toggleproof" onclick="toggleDisplay('proof4399')">Next Obligation.</div>
+<div class="proofscript" id="proof4399">
+&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">inversion</span> <span class="id">H0</span>; <span class="tactic">subst</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="id">constructor</span>; <span class="tactic">congruence</span>.<br/>
+Defined.</div>
+<div class="toggleproof" onclick="toggleDisplay('proof4400')">Next Obligation.</div>
+<div class="proofscript" id="proof4400">
+&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="id">eexists</span>; <span class="tactic">reflexivity</span>.<br/>
+Defined.</div>
+<div class="toggleproof" onclick="toggleDisplay('proof4401')">Next Obligation.</div>
+<div class="proofscript" id="proof4401">
+&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="id">invcs</span> <span class="id">H</span>; <span class="id">constructor</span>.<br/>
+Defined.</div>
+<div class="toggleproof" onclick="toggleDisplay('proof4402')">Next Obligation.</div>
+<div class="proofscript" id="proof4402">
+&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>, <span class="id">H0</span><br/>
+&nbsp;&nbsp;; <span class="id">invcs</span> <span class="id">H</span>; <span class="id">invcs</span> <span class="id">H0</span>; <span class="id">constructor</span>.<br/>
+Defined.</div>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

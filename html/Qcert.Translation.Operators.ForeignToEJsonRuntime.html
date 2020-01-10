@@ -1,0 +1,59 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Translation.Operators.ForeignToEJsonRuntime</title>
+<meta name="description" content="Documentation of Coq module Qcert.Translation.Operators.ForeignToEJsonRuntime" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Translation.Operators.ForeignToEJsonRuntime</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.EJson.EJsonRuntime.html">EJsonRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Model.ForeignDataToEJson.html">ForeignDataToEJson</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Model.DataToEJson.html">DataToEJson</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ForeignToEJsonRuntime">ForeignToEJsonRuntime</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Class</span> <span class="id"><a name="foreign_to_ejson_runtime">foreign_to_ejson_runtime</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fejson</span>:<span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fetojson</span>:<span class="id"><a href="Qcert.Translation.Model.ForeignDataToEJson.html#foreign_to_ejson">foreign_to_ejson</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">fejsonops</span>:<span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime">foreign_ejson_runtime</a></span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="kwd">Type</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="mk_foreign_to_ejson_runtime">mk_foreign_to_ejson_runtime</a></span> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a name="foreign_to_ejson_runtime_of_unary_op">foreign_to_ejson_runtime_of_unary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id"><a href="Qcert.Data.Operators.ForeignOperators.html#foreign_operators_unary">foreign_operators_unary</a></span>) : <span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime_op">foreign_ejson_runtime_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_ejson_runtime_of_unary_op_correct">foreign_to_ejson_runtime_of_unary_op_correct</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">uop</span>:<span class="id"><a href="Qcert.Data.Operators.ForeignOperators.html#foreign_operators_unary">foreign_operators_unary</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Translation.Model.DataToEJson.html#data_to_ejson">data_to_ejson</a></span> (<span class="id"><a href="Qcert.Data.Operators.ForeignOperators.html#foreign_operators_unary_interp">foreign_operators_unary_interp</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#br">br</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#uop">uop</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#d">d</a></span>) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime_op_interp">foreign_ejson_runtime_op_interp</a></span> (<span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#foreign_to_ejson_runtime_of_unary_op">foreign_to_ejson_runtime_of_unary_op</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#uop">uop</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Translation.Model.DataToEJson.html#data_to_ejson">data_to_ejson</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#d">d</a></span>::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_ejson_runtime_of_binary_op">foreign_to_ejson_runtime_of_binary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">bop</span>:<span class="id"><a href="Qcert.Data.Operators.ForeignOperators.html#foreign_operators_binary">foreign_operators_binary</a></span>) : <span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime_op">foreign_ejson_runtime_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a name="foreign_to_ejson_runtime_of_binary_op_correct">foreign_to_ejson_runtime_of_binary_op_correct</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">bop</span>:<span class="id"><a href="Qcert.Data.Operators.ForeignOperators.html#foreign_operators_binary">foreign_operators_binary</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">br</span>:<span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d1</span> <span class="id">d2</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Translation.Model.DataToEJson.html#data_to_ejson">data_to_ejson</a></span> (<span class="id"><a href="Qcert.Data.Operators.ForeignOperators.html#foreign_operators_binary_interp">foreign_operators_binary_interp</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#br">br</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#bop">bop</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#d1">d1</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#d2">d2</a></span>) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime_op_interp">foreign_ejson_runtime_op_interp</a></span> (<span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#foreign_to_ejson_runtime_of_binary_op">foreign_to_ejson_runtime_of_binary_op</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#bop">bop</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Translation.Model.DataToEJson.html#data_to_ejson">data_to_ejson</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#d1">d1</a></span>::<span class="id"><a href="Qcert.Translation.Model.DataToEJson.html#data_to_ejson">data_to_ejson</a></span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#d2">d2</a></span>::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#ForeignToEJsonRuntime">ForeignToEJsonRuntime</a></span>.<br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

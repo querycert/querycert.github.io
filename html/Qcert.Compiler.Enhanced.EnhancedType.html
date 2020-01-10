@@ -1,0 +1,165 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Compiler.Enhanced.EnhancedType</title>
+<meta name="description" content="Documentation of Coq module Qcert.Compiler.Enhanced.EnhancedType" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Compiler.Enhanced.EnhancedType</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html">RelationClasses</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html">Equivalence</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.ToString.html">String</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">Utils</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">DataSystem</span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedData</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">EnhancedToSpark</span>.<br/>
+<br/>
+<span class="kwd">Import</span> <span class="id">ListNotations</span>.<br/>
+<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">list_scope</span>.<br/>
+<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string_scope</span>.<br/>
+<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nstring_scope</span>.<br/>
+<br/>
+<div class="doc">Foreign typing, used to build the basic_model </div>
+<br/>
+<span class="kwd">Inductive</span> <span class="id">enhanced_type</span> : <span class="kwd">Set</span> :=<br/>
+| <span class="id">enhancedTop</span> : <span class="id">enhanced_type</span><br/>
+| <span class="id">enhancedBottom</span> : <span class="id">enhanced_type</span><br/>
+| <span class="id">enhancedSqlDate</span> : <span class="id">enhanced_type</span><br/>
+| <span class="id">enhancedSqlDatePeriod</span> : <span class="id"><a name="enhancedSqlDatePeriod">enhanced_type</a></span><br/>
+.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id">enhanced_type_to_string</span> (<span class="id">et</span>:<span class="id">enhanced_type</span>) : <span class="id">string</span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">et</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;| <span class="id">enhancedTop</span> =&gt; "<span class="id">ETop</span>"<br/>
+&nbsp;&nbsp;| <span class="id">enhancedBottom</span> =&gt; "<span class="id">EBottom</span>"<br/>
+&nbsp;&nbsp;| <span class="id">enhancedSqlDate</span> =&gt; "<span class="id">ESqlDate</span>"<br/>
+&nbsp;&nbsp;| <span class="id">enhancedSqlDatePeriod</span> =&gt; "<span class="id">ESqlDatePeriod</span>"<br/>
+&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id">string_to_enhanced_type</span> (<span class="id">s</span>:<span class="id">string</span>) : <span class="id">option</span> <span class="id">enhanced_type</span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;| "<span class="id">ETop</span>"%<span class="id">string</span> =&gt; <span class="id">Some</span> <span class="id">enhancedTop</span><br/>
+&nbsp;&nbsp;| "<span class="id">EBottom</span>"%<span class="id">string</span> =&gt; <span class="id">Some</span> <span class="id">enhancedBottom</span><br/>
+&nbsp;&nbsp;| "<span class="id">ESqlDate</span>"%<span class="id">string</span> =&gt; <span class="id">Some</span> <span class="id">enhancedSqlDate</span><br/>
+&nbsp;&nbsp;| "<span class="id">ESqlDatePeriod</span>"%<span class="id">string</span> =&gt; <span class="id">Some</span> <span class="id">enhancedSqlDatePeriod</span><br/>
+&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id">None</span><br/>
+&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">enhanced_type_join</a></span> (<span class="id">t1</span> <span class="id">t2</span>:<span class="id">enhanced_type</span>)<br/>
+&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">t1</span>, <span class="id">t2</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">enhancedBottom</span>, <span class="id">_</span> =&gt; <span class="id">t2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">enhancedBottom</span> =&gt; <span class="id">t1</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">enhancedSqlDate</span>, <span class="id">enhancedSqlDate</span> =&gt; <span class="id">enhancedSqlDate</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">enhancedSqlDatePeriod</span>, <span class="id">enhancedSqlDatePeriod</span> =&gt; <span class="id">enhancedSqlDatePeriod</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id">enhancedTop</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id">enhanced_type_meet</span> (<span class="id">t1</span> <span class="id">t2</span>:<span class="id">enhanced_type</span>)<br/>
+&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">t1</span>, <span class="id">t2</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">enhancedTop</span>, <span class="id">_</span> =&gt; <span class="id">t2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">enhancedTop</span> =&gt; <span class="id">t1</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">enhancedSqlDate</span>, <span class="id">enhancedSqlDate</span> =&gt; <span class="id">enhancedSqlDate</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">enhancedSqlDatePeriod</span>, <span class="id">enhancedSqlDatePeriod</span> =&gt; <span class="id">enhancedSqlDatePeriod</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id">enhancedBottom</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">Inductive</span> <span class="id">enhanced_subtype</span> : <span class="id">enhanced_type</span> -&gt; <span class="id">enhanced_type</span> -&gt; <span class="kwd">Prop</span> :=<br/>
+| <span class="id">enhanced_subtype_top</span> <span class="id">t</span> : <span class="id">enhanced_subtype</span> <span class="id">t</span> <span class="id">enhancedTop</span><br/>
+| <span class="id">enhanced_subtype_bottom</span> <span class="id"><a name="enhanced_subtype_bottom">t</a></span> : <span class="id">enhanced_subtype</span> <span class="id">enhancedBottom</span> <span class="id">t</span><br/>
+| <span class="id">enhanced_subtype_refl</span> <span class="id">t</span> : <span class="id">enhanced_subtype</span> <span class="id">t</span> <span class="id">t</span>.<br/>
+<br/>
+<span class="kwd">Instance</span> <span class="id">enhanced_subtype_pre</span> : <span class="id">PreOrder</span> <span class="id">enhanced_subtype</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4389')">Proof.</div>
+<div class="proofscript" id="proof4389">
+&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">x</span>; <span class="id">constructor</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">inversion</span> <span class="id">H0</span>; <span class="tactic">subst</span>; <span class="tactic">try</span> <span class="id">constructor</span>; <span class="tactic">congruence</span>.<br/>
+Qed.</div>
+<br/>
+<span class="kwd">Instance</span> <span class="id">enhanced_subtype_post</span> : <span class="id"><a name="enhanced_subtype_post">PartialOrder</a></span> <span class="id">eq</span> <span class="id">enhanced_subtype</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4390')">Proof.</div>
+<div class="proofscript" id="proof4390">
+&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">x</span> <span class="id">y</span>; <span class="tactic">split</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">red</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="id">constructor</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">destruct</span> 1.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">inversion</span> <span class="id">H0</span>; <span class="tactic">congruence</span>.<br/>
+Qed.</div>
+<br/>
+<span class="kwd">Instance</span> <span class="id">enhanced_type_lattice</span> : <span class="id"><a name="enhanced_type_lattice">Lattice</a></span> <span class="id">enhanced_type</span> <span class="id">eq</span><br/>
+&nbsp;&nbsp;:= {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">join</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">enhanced_type_join</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">meet</span> := <span class="id">enhanced_type_meet</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4391')">Proof.</div>
+<div class="proofscript" id="proof4391">
+&nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">t1</span> <span class="id">t2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">t1</span>; <span class="tactic">destruct</span> <span class="id">t2</span>; <span class="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">t1</span> <span class="id">t2</span> <span class="id">t3</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">t1</span>; <span class="tactic">destruct</span> <span class="id">t2</span>; <span class="tactic">destruct</span> <span class="id">t3</span>; <span class="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">t1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">t1</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">t1</span> <span class="id">t2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">t1</span>; <span class="tactic">destruct</span> <span class="id">t2</span>; <span class="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">t1</span> <span class="id">t2</span> <span class="id">t3</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">t1</span>; <span class="tactic">destruct</span> <span class="id">t2</span>; <span class="tactic">destruct</span> <span class="id">t3</span>; <span class="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">t1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">t1</span>; <span class="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">t1</span> <span class="id">t2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">t1</span>; <span class="tactic">destruct</span> <span class="id">t2</span>; <span class="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">t1</span> <span class="id">t2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">t1</span>; <span class="tactic">destruct</span> <span class="id">t2</span>; <span class="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+Defined.</div>
+<br/>
+<span class="kwd">Instance</span> <span class="id">enhanced_type_olattice</span> : <span class="id">OLattice</span> <span class="id">eq</span> <span class="id">enhanced_subtype</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4392')">Proof.</div>
+<div class="proofscript" id="proof4392">
+&nbsp;&nbsp;<span class="id">constructor</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">inversion</span> 1; <span class="tactic">simpl</span>; <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">inversion</span> 1; <span class="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>.<br/>
+Qed.</div>
+<br/>
+<span class="kwd">Program</span> <span class="kwd">Instance</span> <span class="id">enhanced_foreign_type</span> : <span class="id"><a name="enhanced_foreign_type">foreign_type</a></span><br/>
+&nbsp;&nbsp;:= <span class="id">mk_foreign_type</span> <span class="id">enhanced_type</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_type">_</a></span> <span class="id">_</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4393')">Next Obligation.</div>
+<div class="proofscript" id="proof4393">
+&nbsp;&nbsp;<span class="tactic">red</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id">equiv</span>, <span class="id">complement</span>.<br/>
+&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#complement">change</a></span> ({<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
+&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
+Defined.</div>
+<div class="toggleproof" onclick="toggleDisplay('proof4394')">Next Obligation.</div>
+<div class="proofscript" id="proof4394">
+&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">try</span> <span class="id">solve</span> [<span class="id">left</span>; <span class="id">constructor</span> | <span class="id">right</span>; <span class="tactic">inversion</span> 1].<br/>
+Defined.</div>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>
