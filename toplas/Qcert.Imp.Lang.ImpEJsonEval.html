@@ -1,0 +1,192 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Imp.Lang.ImpEJsonEval</title>
+<meta name="description" content="Documentation of Coq module Qcert.Imp.Lang.ImpEJsonEval" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Imp.Lang.ImpEJsonEval</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Max.html">Max</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Peano_dec.html">Peano_dec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Decidable.html">Decidable</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Brands.BrandRelation.html">BrandRelation</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.EJson.EJsonRuntime.html">EJsonRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.Imp.html">Imp</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEval.html">ImpEval</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html">ImpEJson</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ImpEJsonEval">ImpEJsonEval</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejson</span>:<span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejruntime</span>:<span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime">foreign_ejson_runtime</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> (<span class="id">h</span>:<span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="ImpEJsonEval.EvalInstantiation">EvalInstantiation</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_model_normalize">imp_ejson_model_normalize</a></span> (<span class="id">c</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_constant">imp_ejson_constant</a></span>) : <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">c</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#cejnull">cejnull</a></span> =&gt; <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejnull">ejnull</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#cejnumber">cejnumber</a></span> <span class="id">f</span> =&gt; <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejnumber">ejnumber</a></span> <span class="id">f</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#cejbigint">cejbigint</a></span> <span class="id">n</span> =&gt; <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> <span class="id">n</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#cejbool">cejbool</a></span> <span class="id">b</span> =&gt; <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbool">ejbool</a></span> <span class="id">b</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#cejstring">cejstring</a></span> <span class="id">s</span> =&gt; <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejstring">ejstring</a></span> <span class="id">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#cejforeign">cejforeign</a></span> <span class="id">f</span> =&gt; <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> <span class="id">f</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_model_to_bool">imp_ejson_model_to_bool</a></span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#bool">bool</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbool">ejbool</a></span> <span class="id">b</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">b</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_model_to_list">imp_ejson_model_to_list</a></span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejarray">ejarray</a></span> <span class="id">c</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id">c</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_model_to_Z">imp_ejson_model_to_Z</a></span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Numbers.BinNums.html#Z">Z</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> <span class="id">n</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">n</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_Z_to_data">imp_ejson_Z_to_data</a></span> (<span class="id">n</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Numbers.BinNums.html#Z">Z</a></span>) : <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span> := <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> <span class="id">n</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_op_eval">imp_ejson_op_eval</a></span> (<span class="id">op</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_op">imp_ejson_op</a></span>) (<span class="id">dl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Operators.EJsonOperators.html#ejson_op_eval">ejson_op_eval</a></span> <span class="id">op</span> <span class="id">dl</span>. <br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_runtime_eval">imp_ejson_runtime_eval</a></span> (<span class="id">op</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_runtime_op">imp_ejson_runtime_op</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">dl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Operators.EJsonRuntimeOperators.html#ejson_runtime_eval">ejson_runtime_eval</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#ImpEJsonEval.h">h</a></span> <span class="id">op</span> <span class="id">dl</span>. <br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#ImpEJsonEval.EvalInstantiation">EvalInstantiation</a></span>.<br/>
+<br/>
+<h2> Evaluation Semantics </h2>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="ImpEJsonEval.Evaluation">Evaluation</a></span>.<br/>
+<br/>
+<div class="doc">Evaluation takes a ImpQcert expression and an environment. It
+          returns an optional value. When <span class="bracket"><span class="id">None</span></span> is returned, it
+          denotes an error. An error is always propagated. </div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_expr_eval">imp_ejson_expr_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(σ:<span class="id"><a href="Qcert.EJson.Model.EJson.html#pd_jbindings">pd_jbindings</a></span>) (<span class="id">e</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_expr">imp_ejson_expr</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_expr_eval">imp_expr_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_constant">imp_ejson_constant</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_op">imp_ejson_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_runtime_op">imp_ejson_runtime_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_normalize">imp_ejson_model_normalize</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_runtime_eval">imp_ejson_runtime_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_op_eval">imp_ejson_op_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;σ <span class="id">e</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_decls_eval">imp_ejson_decls_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(σ:<span class="id"><a href="Qcert.EJson.Model.EJson.html#pd_jbindings">pd_jbindings</a></span>) (<span class="id">el</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_expr">imp_ejson_expr</a></span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#pd_jbindings">pd_jbindings</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_decls_eval">imp_decls_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_constant">imp_ejson_constant</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_op">imp_ejson_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_runtime_op">imp_ejson_runtime_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_normalize">imp_ejson_model_normalize</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_runtime_eval">imp_ejson_runtime_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_op_eval">imp_ejson_op_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;σ <span class="id">el</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_decls_erase">imp_ejson_decls_erase</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(σ:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#pd_jbindings">pd_jbindings</a></span>) (<span class="id">el</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_expr">imp_ejson_expr</a></span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#pd_jbindings">pd_jbindings</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_decls_erase">imp_decls_erase</a></span> σ <span class="id">el</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_stmt_eval">imp_ejson_stmt_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">s</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_stmt">imp_ejson_stmt</a></span>) (σ:<span class="id"><a href="Qcert.EJson.Model.EJson.html#pd_jbindings">pd_jbindings</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#pd_jbindings">pd_jbindings</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_stmt_eval">imp_stmt_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_constant">imp_ejson_constant</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_op">imp_ejson_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_runtime_op">imp_ejson_runtime_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_normalize">imp_ejson_model_normalize</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_to_bool">imp_ejson_model_to_bool</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_to_Z">imp_ejson_model_to_Z</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_to_list">imp_ejson_model_to_list</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_Z_to_data">imp_ejson_Z_to_data</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_runtime_eval">imp_ejson_runtime_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_op_eval">imp_ejson_op_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">s</span> σ.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_function_eval">imp_ejson_function_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">f</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_function">imp_ejson_function</a></span>) <span class="id">args</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_function_eval">imp_function_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_constant">imp_ejson_constant</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_op">imp_ejson_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_runtime_op">imp_ejson_runtime_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_normalize">imp_ejson_model_normalize</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_to_bool">imp_ejson_model_to_bool</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_to_Z">imp_ejson_model_to_Z</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_to_list">imp_ejson_model_to_list</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_Z_to_data">imp_ejson_Z_to_data</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_runtime_eval">imp_ejson_runtime_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_op_eval">imp_ejson_op_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">f</span> <span class="id">args</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Import</span> <span class="id">ListNotations</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_eval">imp_ejson_eval</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson">imp_ejson</a></span>) (<span class="id">d</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= @<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_eval">imp_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_constant">imp_ejson_constant</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_op">imp_ejson_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_runtime_op">imp_ejson_runtime_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_normalize">imp_ejson_model_normalize</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_to_bool">imp_ejson_model_to_bool</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_to_Z">imp_ejson_model_to_Z</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_model_to_list">imp_ejson_model_to_list</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_Z_to_data">imp_ejson_Z_to_data</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_runtime_eval">imp_ejson_runtime_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_op_eval">imp_ejson_op_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">q</span> <span class="id">d</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_eval_top_on_ejson">imp_ejson_eval_top_on_ejson</a></span> σ<span class="id">c</span> (<span class="id">q</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson">imp_ejson</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_model">imp_ejson_model</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> σ<span class="id">c</span>' := <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span> (<span class="kwd">fun</span> <span class="id">xy</span> =&gt; (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">xy</span>), <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">xy</span>)) (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> σ<span class="id">c</span>) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#olift">olift</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#id">id</a></span> (<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_eval">imp_ejson_eval</a></span> <span class="id">q</span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejobject">ejobject</a></span> σ<span class="id">c</span>')).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#ImpEJsonEval.Evaluation">Evaluation</a></span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#ImpEJsonEval">ImpEJsonEval</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Model.ForeignDataToEJson.html">ForeignDataToEJson</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Model.DataToEJson.html">DataToEJson</a></span>.<br/>
+<span class="kwd">Section</span> <span class="id"><a name="Top">Top</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejson</span>:<span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fdatatoejson</span>:<span class="id"><a href="Qcert.Translation.Model.ForeignDataToEJson.html#foreign_to_ejson">foreign_to_ejson</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejruntime</span>:<span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime">foreign_ejson_runtime</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> (<span class="id">h</span>:<span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_eval_top">imp_ejson_eval_top</a></span> (<span class="id">cenv</span>: <span class="id"><a href="Qcert.Data.Model.Data.html#bindings">bindings</a></span>) (<span class="id">q</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson">imp_ejson</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">jenv</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span> (<span class="kwd">fun</span> <span class="id">xy</span> =&gt; (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">xy</span>, <span class="id"><a href="Qcert.Translation.Model.DataToEJson.html#data_to_ejson">data_to_ejson</a></span>(<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">xy</span>))) <span class="id">cenv</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Translation.Model.DataToEJson.html#ejson_to_data">ejson_to_data</a></span> (<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_eval_top_on_ejson">imp_ejson_eval_top_on_ejson</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#Top.h">h</a></span> <span class="id">jenv</span> <span class="id">q</span>).<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#Top">Top</a></span>.<br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

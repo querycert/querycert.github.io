@@ -1,0 +1,203 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Driver.CompCustom</title>
+<meta name="description" content="Documentation of Coq module Qcert.Driver.CompCustom" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Driver.CompCustom</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.SQL.SQLRuntime.html">SQLRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.SQLPP.SQLPPRuntime.html">SQLPPRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.OQL.OQLRuntime.html">OQLRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.LambdaNRA.LambdaNRARuntime.html">LambdaNRARuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.CAMPRule.CAMPRuleRuntime.html">CAMPRuleRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.TechRule.TechRuleRuntime.html">TechRuleRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.DesignerRule.DesignerRuleRuntime.html">DesignerRuleRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRA.NRARuntime.html">NRARuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRAEnv.NRAEnvRuntime.html">NRAEnvRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRC.NNRCRuntime.html">NNRCRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRS.NNRSRuntime.html">NNRSRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRSimp.NNRSimpRuntime.html">NNRSimpRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.ImpRuntime.html">ImpRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRCMR.NNRCMRRuntime.html">NNRCMRRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.DNNRC.DNNRCRuntime.html">DNNRCRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.tDNNRC.tDNNRCRuntime.html">tDNNRCRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.CAMP.CAMPRuntime.html">CAMPRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.JavaScriptAst.JavaScriptAstRuntime.html">JavaScriptAstRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.JavaScript.JavaScriptRuntime.html">JavaScriptRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Java.JavaRuntime.html">JavaRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.SparkDF.SparkDFRuntime.html">SparkDFRuntime</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.OQLtoNRAEnv.html">OQLtoNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.SQLtoNRAEnv.html">SQLtoNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.SQLPPtoNRAEnv.html">SQLPPtoNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.LambdaNRAtoNRAEnv.html">LambdaNRAtoNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.CAMPRuletoCAMP.html">CAMPRuletoCAMP</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.TechRuletoCAMPRule.html">TechRuletoCAMPRule</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.DesignerRuletoCAMPRule.html">DesignerRuletoCAMPRule</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.CAMPtoNRA.html">CAMPtoNRA</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.CAMPtocNRAEnv.html">CAMPtocNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.CAMPtoNRAEnv.html">CAMPtoNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NRAtocNNRC.html">NRAtocNNRC</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.cNRAEnvtocNNRC.html">cNRAEnvtocNNRC</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html">NRAEnvtoNNRC</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.cNRAEnvtoNRA.html">cNRAEnvtoNRA</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.cNRAEnvtoNRAEnv.html">cNRAEnvtoNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NRAEnvtocNRAEnv.html">NRAEnvtocNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NRAtocNRAEnv.html">NRAtocNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NNRCtocNNRC.html">NNRCtocNNRC</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NNRCtoNNRS.html">NNRCtoNNRS</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NNRStoNNRSimp.html">NNRStoNNRSimp</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NNRSimptoImpData.html">NNRSimptoImpData</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.ImpDatatoImpEJson.html">ImpDatatoImpEJson</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.ImpEJsontoJavaScriptAst.html">ImpEJsontoJavaScriptAst</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html">JavaScriptAsttoJavaScript</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NNRCtoDNNRC.html">NNRCtoDNNRC</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NNRCtoNNRCMR.html">NNRCtoNNRCMR</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NNRCtoJava.html">NNRCtoJava</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.cNNRCtoCAMP.html">cNNRCtoCAMP</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.cNNRCtoNNRC.html">cNNRCtoNNRC</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NNRCMRtoNNRC.html">NNRCMRtoNNRC</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.NNRCMRtoDNNRC.html">NNRCMRtoDNNRC</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.DNNRCtotDNNRC.html">DNNRCtotDNNRC</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.tDNNRCtoSparkDF.html">tDNNRCtoSparkDF</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRAEnv.NRAEnvOptim.html">NRAEnvOptim</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRC.NNRCOptim.html">NNRCOptim</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRCMR.NNRCMROptim.html">NNRCMROptim</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.tDNNRC.tDNNRCOptim.html">tDNNRCOptim</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRSimp.NNRSimpOptim.html">NNRSimpOptim</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.OptimizerLogger.html">OptimizerLogger</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Model.ForeignDataToEJson.html">ForeignDataToEJson</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html">ForeignToEJsonRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToReduceOps.html">ForeignToReduceOps</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToSpark.html">ForeignToSpark</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToJava.html">ForeignToJava</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToJavaScriptAst.html">ForeignToJavaScriptAst</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToScala.html">ForeignToScala</a></span>.<br/>
+<br/>
+<div class="doc">Compiler Driver </div>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Driver.CompLang.html">CompLang</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Driver.CompEnv.html">CompEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Driver.CompConfig.html">CompConfig</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Driver.CompDriver.html">CompDriver</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="CompCustom">CompCustom</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">list_scope</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ft</span>:<span class="id"><a href="Qcert.TypeSystem.ForeignType.html#foreign_type">foreign_type</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejson</span>:<span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftejson</span>:<span class="id"><a href="Qcert.Translation.Model.ForeignDataToEJson.html#foreign_to_ejson">foreign_to_ejson</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">frtejson</span>:<span class="id"><a href="Qcert.Translation.Operators.ForeignToEJsonRuntime.html#foreign_to_ejson_runtime">foreign_to_ejson_runtime</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fredop</span>:<span class="id"><a href="Qcert.NNRCMR.Lang.ForeignReduceOps.html#foreign_reduce_op">foreign_reduce_op</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftoredop</span>:<span class="id"><a href="Qcert.Translation.Operators.ForeignToReduceOps.html#foreign_to_reduce_op">foreign_to_reduce_op</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">bm</span>:<span class="id"><a href="Qcert.TypeSystem.TBrandModel.html#brand_model">brand_model</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftyping</span>: <span class="id"><a href="Qcert.Data.ForeignTyping.html#foreign_typing">foreign_typing</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">nraenv_logger</span>:<span class="id"><a href="Qcert.Utils.OptimizerLogger.html#optimizer_logger">optimizer_logger</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.Driver.CompLang.html#nraenv">nraenv</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">nnrc_logger</span>:<span class="id"><a href="Qcert.Utils.OptimizerLogger.html#optimizer_logger">optimizer_logger</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.Driver.CompLang.html#nnrc">nnrc</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">nnrs_imp_expr_logger</span>:<span class="id"><a href="Qcert.Utils.OptimizerLogger.html#optimizer_logger">optimizer_logger</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.Driver.CompLang.html#nnrs_imp_expr">nnrs_imp_expr</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">nnrs_imp_stmt_logger</span>:<span class="id"><a href="Qcert.Utils.OptimizerLogger.html#optimizer_logger">optimizer_logger</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.Driver.CompLang.html#nnrs_imp_stmt">nnrs_imp_stmt</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">nnrs_imp_logger</span>:<span class="id"><a href="Qcert.Utils.OptimizerLogger.html#optimizer_logger">optimizer_logger</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> <span class="id"><a href="Qcert.Driver.CompLang.html#nnrs_imp">nnrs_imp</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">dnnrc_logger</span>:<span class="id"><a href="Qcert.Utils.OptimizerLogger.html#optimizer_logger">optimizer_logger</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base">DNNRCBase.dnnrc_base</a></span> <span class="id">_</span> (<span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html#type_annotation">type_annotation</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#unit">unit</a></span>) <span class="id"><a href="Qcert.Dataframe.Lang.Dataframe.html#dataframe">dataframe</a></span>)}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftojava</span>:<span class="id"><a href="Qcert.Translation.Operators.ForeignToJava.html#foreign_to_java">foreign_to_java</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftos</span>:<span class="id"><a href="Qcert.Translation.Operators.ForeignToScala.html#foreign_to_scala">foreign_to_scala</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftospark</span>:<span class="id"><a href="Qcert.Translation.Operators.ForeignToSpark.html#foreign_to_spark">foreign_to_spark</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftjsast</span>:<span class="id"><a href="Qcert.Translation.Operators.ForeignToJavaScriptAst.html#foreign_ejson_to_ajavascript">foreign_ejson_to_ajavascript</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="CompCustom.Verified">Verified</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="compile_nraenv_to_imp_data_verified">compile_nraenv_to_imp_data_verified</a></span> (<span class="id">conf</span>:<span class="id"><a href="Qcert.Driver.CompConfig.html#driver_config">driver_config</a></span>) (<span class="id">q</span>:<span class="id"><a href="Qcert.Driver.CompLang.html#query">query</a></span>) : <span class="id"><a href="Qcert.Driver.CompLang.html#query">query</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">dv</span> := <span class="id"><a href="Qcert.Driver.CompDriver.html#driver_of_path">driver_of_path</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">conf</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Driver.CompLang.html#L_nraenv">L_nraenv</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_nnrc">L_nnrc</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_nnrs">L_nnrs</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_nnrs_imp">L_nnrs_imp</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_imp_data">L_imp_data</a></span>::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">List.rev</a></span> (<span class="id"><a href="Qcert.Driver.CompDriver.html#compile">compile</a></span> <span class="id">dv</span> <span class="id">q</span>) <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> =&gt; <span class="id"><a href="Qcert.Driver.CompLang.html#Q_error">Q_error</a></span> "<span class="id">No</span> <span class="id">compilation</span> <span class="id">result</span>!"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">target</span> :: <span class="id">_</span> =&gt; <span class="id">target</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="compile_nraenv_to_imp_data_verified_yields_result">compile_nraenv_to_imp_data_verified_yields_result</a></span> <span class="id">conf</span> <span class="id">q</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">q</span>', <span class="id"><a href="Qcert.Driver.CompCustom.html#compile_nraenv_to_imp_data_verified">compile_nraenv_to_imp_data_verified</a></span> <span class="id">conf</span> (<span class="id"><a href="Qcert.Driver.CompLang.html#Q_nraenv">Q_nraenv</a></span> <span class="id">q</span>) = <span class="id"><a href="Qcert.Driver.CompLang.html#Q_imp_data">Q_imp_data</a></span> <span class="id">q</span>'.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4287')">Proof.</div>
+<div class="proofscript" id="proof4287">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Driver.CompCustom.html#compile_nraenv_to_imp_data_verified">compile_nraenv_to_imp_data_verified</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> (<span class="id"><a href="Qcert.Driver.CompDriver.html#nnrs_imp_to_imp_data">nnrs_imp_to_imp_data</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Driver.CompConfig.html#comp_qname_lowercase">comp_qname_lowercase</a></span> <span class="id">conf</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Driver.CompDriver.html#nnrs_to_nnrs_imp">nnrs_to_nnrs_imp</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Driver.CompDriver.html#nnrc_to_nnrs">nnrc_to_nnrs</a></span> (<span class="id"><a href="Qcert.Driver.CompConfig.html#vars_of_constants_config">vars_of_constants_config</a></span> (<span class="id"><a href="Qcert.Driver.CompConfig.html#comp_constants">comp_constants</a></span> <span class="id">conf</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html#init_venv">init_venv</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html#init_vid">init_vid</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html#nraenv_to_nnrc">NRAEnvtoNNRC.nraenv_to_nnrc</a></span> <span class="id">q</span> <span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html#init_vid">init_vid</a></span> <span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html#init_venv">init_venv</a></span>)))))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="compile_nraenv_to_imp_ejson_verified">compile_nraenv_to_imp_ejson_verified</a></span> (<span class="id">conf</span>:<span class="id"><a href="Qcert.Driver.CompConfig.html#driver_config">driver_config</a></span>) (<span class="id">q</span>:<span class="id"><a href="Qcert.Driver.CompLang.html#query">query</a></span>) : <span class="id"><a href="Qcert.Driver.CompLang.html#query">query</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">dv</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Driver.CompDriver.html#driver_of_path">driver_of_path</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">conf</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Driver.CompLang.html#L_nraenv">L_nraenv</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_nnrc">L_nnrc</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_nnrs">L_nnrs</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_nnrs_imp">L_nnrs_imp</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_imp_data">L_imp_data</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_imp_ejson">L_imp_ejson</a></span>::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">List.rev</a></span> (<span class="id"><a href="Qcert.Driver.CompDriver.html#compile">compile</a></span> <span class="id">dv</span> <span class="id">q</span>) <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> =&gt; <span class="id"><a href="Qcert.Driver.CompLang.html#Q_error">Q_error</a></span> "<span class="id">No</span> <span class="id">compilation</span> <span class="id">result</span>!"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">target</span> :: <span class="id">_</span> =&gt; <span class="id">target</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="compile_nraenv_to_imp_ejson_verified_yields_result">compile_nraenv_to_imp_ejson_verified_yields_result</a></span> <span class="id">conf</span> <span class="id">q</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">q</span>', <span class="id"><a href="Qcert.Driver.CompCustom.html#compile_nraenv_to_imp_ejson_verified">compile_nraenv_to_imp_ejson_verified</a></span> <span class="id">conf</span> (<span class="id"><a href="Qcert.Driver.CompLang.html#Q_nraenv">Q_nraenv</a></span> <span class="id">q</span>) = <span class="id"><a href="Qcert.Driver.CompLang.html#Q_imp_ejson">Q_imp_ejson</a></span> <span class="id">q</span>'.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4288')">Proof.</div>
+<div class="proofscript" id="proof4288">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Driver.CompCustom.html#compile_nraenv_to_imp_ejson_verified">compile_nraenv_to_imp_ejson_verified</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> (<span class="id"><a href="Qcert.Driver.CompDriver.html#imp_data_to_imp_ejson">imp_data_to_imp_ejson</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Driver.CompDriver.html#nnrs_imp_to_imp_data">nnrs_imp_to_imp_data</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Driver.CompConfig.html#comp_qname_lowercase">comp_qname_lowercase</a></span> <span class="id">conf</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Driver.CompDriver.html#nnrs_to_nnrs_imp">nnrs_to_nnrs_imp</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Driver.CompDriver.html#nnrc_to_nnrs">nnrc_to_nnrs</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Driver.CompConfig.html#vars_of_constants_config">vars_of_constants_config</a></span> (<span class="id"><a href="Qcert.Driver.CompConfig.html#comp_constants">comp_constants</a></span> <span class="id">conf</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html#init_venv">init_venv</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html#init_vid">init_vid</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html#nraenv_to_nnrc">NRAEnvtoNNRC.nraenv_to_nnrc</a></span> <span class="id">q</span> <span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html#init_vid">init_vid</a></span> <span class="id"><a href="Qcert.Translation.Lang.NRAEnvtoNNRC.html#init_venv">init_venv</a></span>))))))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Driver.CompCustom.html#CompCustom.Verified">Verified</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="CompCustom.Others">Others</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="compile_nnrc_to_javascript_ast">compile_nnrc_to_javascript_ast</a></span> (<span class="id">conf</span>:<span class="id"><a href="Qcert.Driver.CompConfig.html#driver_config">driver_config</a></span>) (<span class="id">q</span>:<span class="id"><a href="Qcert.Driver.CompLang.html#query">query</a></span>) : <span class="id"><a href="Qcert.Driver.CompLang.html#query">query</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">dv</span> := <span class="id"><a href="Qcert.Driver.CompDriver.html#driver_of_path">driver_of_path</a></span> <span class="id">conf</span> (<span class="id"><a href="Qcert.Driver.CompLang.html#L_nnrc">L_nnrc</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_nnrs">L_nnrs</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_nnrs_imp">L_nnrs_imp</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_imp_data">L_imp_data</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_imp_ejson">L_imp_ejson</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_js_ast">L_js_ast</a></span>::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">List.rev</a></span> (<span class="id"><a href="Qcert.Driver.CompDriver.html#compile">compile</a></span> <span class="id">dv</span> <span class="id">q</span>) <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> =&gt; <span class="id"><a href="Qcert.Driver.CompLang.html#Q_error">Q_error</a></span> "<span class="id">No</span> <span class="id">compilation</span> <span class="id">result</span>!"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">target</span> :: <span class="id">_</span> =&gt; <span class="id">target</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="compile_nnrc_to_java">compile_nnrc_to_java</a></span> (<span class="id">conf</span>:<span class="id"><a href="Qcert.Driver.CompConfig.html#driver_config">driver_config</a></span>) (<span class="id">q</span>:<span class="id"><a href="Qcert.Driver.CompLang.html#query">query</a></span>) : <span class="id"><a href="Qcert.Driver.CompLang.html#query">query</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">dv</span> := <span class="id"><a href="Qcert.Driver.CompDriver.html#driver_of_path">driver_of_path</a></span> <span class="id">conf</span> (<span class="id"><a href="Qcert.Driver.CompLang.html#L_nnrc">L_nnrc</a></span>::<span class="id"><a href="Qcert.Driver.CompLang.html#L_java">L_java</a></span>::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">List.rev</a></span> (<span class="id"><a href="Qcert.Driver.CompDriver.html#compile">compile</a></span> <span class="id">dv</span> <span class="id">q</span>) <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> =&gt; <span class="id"><a href="Qcert.Driver.CompLang.html#Q_error">Q_error</a></span> "<span class="id">No</span> <span class="id">compilation</span> <span class="id">result</span>!"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">target</span> :: <span class="id">_</span> =&gt; <span class="id">target</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Driver.CompCustom.html#CompCustom.Others">Others</a></span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Driver.CompCustom.html#CompCustom">CompCustom</a></span>.<br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

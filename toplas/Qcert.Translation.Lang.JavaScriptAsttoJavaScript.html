@@ -1,0 +1,410 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Translation.Lang.JavaScriptAsttoJavaScript</title>
+<meta name="description" content="Documentation of Coq module Qcert.Translation.Lang.JavaScriptAsttoJavaScript" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Translation.Lang.JavaScriptAsttoJavaScript</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Peano_dec.html">Peano_dec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.JavaScriptAst.JavaScriptAstRuntime.html">JavaScriptAstRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.JavaScript.JavaScriptRuntime.html">JavaScriptRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id">JsAst.JsNumber</span>.<br/>
+<br/>
+<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string_scope</span>.<br/>
+<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nstring_scope</span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ToString">ToString</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="ToString.Util">Util</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="eol">eol</a></span>:<span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> := ^<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.Ascii.html#ascii_of_nat">Ascii.ascii_of_nat</a></span> 10) <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#EmptyString">EmptyString</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="quotel">quotel</a></span>:<span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> := ^"""".<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="indent">indent</a></span> (<span class="id">i</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">i</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 0 =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#S">S</a></span> <span class="id">j</span> =&gt; ^"  " +++ (<span class="id">indent</span> <span class="id">j</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="comma_list_string">comma_list_string</a></span> <span class="id">l</span> := <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_concat">nstring_concat</a></span> (^", ") (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_quote">nstring_quote</a></span> <span class="id">l</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="comma_list">comma_list</a></span> <span class="id">l</span> := <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_concat">nstring_concat</a></span> (^", ") <span class="id">l</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="js_quote_char">js_quote_char</a></span> (<span class="id">a</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.Ascii.html#ascii">ascii</a></span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">a</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| "008"%<span class="id">char</span> =&gt; ^"\<span class="id">b</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| "009"%<span class="id">char</span> =&gt; ^"\<span class="id">t</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| "010"%<span class="id">char</span> =&gt; ^"\<span class="id">n</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| "013"%<span class="id">char</span> =&gt; ^"\<span class="id">r</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| """"%<span class="id">char</span> =&gt; ^"\"""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| "\"%<span class="id">char</span> =&gt; ^"\\"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; ^<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id">a</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#EmptyString">EmptyString</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="js_quote_string">js_quote_string</a></span> (<span class="id">s</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_flat_map">nstring_flat_map</a></span> <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#js_quote_char">js_quote_char</a></span> (^<span class="id">s</span>).<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="js_quote_number">js_quote_number</a></span> (<span class="id">n</span>:<span class="id">number</span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">if</span> (<span class="id"><a href="Qcert.Utils.Float.html#float_eq">float_eq</a></span> <span class="id">n</span> <span class="id"><a href="Qcert.Utils.Float.html#float_infinity">float_infinity</a></span>) <span class="kwd">then</span> ^"<span class="id">Infinity</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">else</span> <span class="kwd">if</span> (<span class="id"><a href="Qcert.Utils.Float.html#float_eq">float_eq</a></span> <span class="id">n</span> <span class="id"><a href="Qcert.Utils.Float.html#float_neg_infinity">float_neg_infinity</a></span>) <span class="kwd">then</span> ^"-<span class="id">Infinity</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">else</span> <span class="kwd">if</span> (<span class="id"><a href="Qcert.Utils.Float.html#float_eq">float_eq</a></span> <span class="id">n</span> <span class="id"><a href="Qcert.Utils.Float.html#float_nan">float_nan</a></span>) <span class="kwd">then</span> ^"<span class="id">NaN</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">else</span> ^<span class="id">to_string</span> <span class="id">n</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#ToString.Util">Util</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nstring_of_literal">nstring_of_literal</a></span> (<span class="id">c</span>: <span class="id">literal</span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">c</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">literal_null</span> =&gt; ^"<span class="id">null</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">literal_bool</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> =&gt; ^"<span class="id">true</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">literal_bool</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> =&gt; ^"<span class="id">false</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">literal_number</span> <span class="id">n</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#js_quote_number">js_quote_number</a></span> <span class="id">n</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">literal_string</span> <span class="id">s</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#js_quote_string">js_quote_string</a></span> <span class="id">s</span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nstring_of_propname">nstring_of_propname</a></span> (<span class="id">name</span>: <span class="id">propname</span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">name</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">propname_identifier</span> <span class="id">n</span> =&gt; ^<span class="id">n</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">propname_string</span> <span class="id">s</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span> +++ ^<span class="id">s</span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">propname_number</span> <span class="id">n</span> =&gt; ^ <span class="id">to_string</span> <span class="id">n</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nstring_of_expr">nstring_of_expr</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">e</span>: <span class="id">expr</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">i</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="kwd">struct</span> <span class="id">e</span> }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_this</span> =&gt; ^"<span class="id">this</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_identifier</span> <span class="id">x</span> =&gt; ^<span class="id">x</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_literal</span> <span class="id">c</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#nstring_of_literal">nstring_of_literal</a></span> <span class="id">c</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_object</span> <span class="id">o</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">props</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> (<span class="id">prop</span>: (<span class="id">propname</span> * <span class="id">propbody</span>)) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> (<span class="id">name</span>, <span class="id">body</span>) := <span class="id">prop</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ (<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> (<span class="id">i</span>+1)) +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">body</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">propbody_val</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#nstring_of_propname">nstring_of_propname</a></span> <span class="id">name</span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ ^": " +++ ^"(" +++ <span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1) +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">propbody_get</span> <span class="id">funcbody</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="id">get</span> " +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#nstring_of_propname">nstring_of_propname</a></span> <span class="id">name</span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ ^"() {" +++ (<span class="id">nstring_of_funcbody</span> <span class="id">funcbody</span> (<span class="id">i</span>+1)) +++ ^"}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">propbody_set</span> <span class="id">args</span> <span class="id">funcbody</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="tactic">set</span> " +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#nstring_of_propname">nstring_of_propname</a></span> <span class="id">name</span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ ^"(" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list_string">comma_list_string</a></span> <span class="id">args</span> +++ ^") {"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ <span class="id">nstring_of_funcbody</span> <span class="id">funcbody</span> (<span class="id">i</span>+1) +++ ^"}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">o</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"{" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list">comma_list</a></span> <span class="id">props</span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_array</span> <span class="id">a</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">l</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">eopt</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">eopt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span> =&gt; <span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^"<span class="id">null</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">a</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"[ " +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list">comma_list</a></span> <span class="id">l</span> +++ ^" ]"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_function</span> <span class="id">fopt</span> <span class="id">args</span> <span class="id">body</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">name</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">fopt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">f</span> =&gt; ^<span class="id">f</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"(<span class="id">function</span> " +++ <span class="id">name</span> +++ ^"(" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list_string">comma_list_string</a></span> <span class="id">args</span> +++ ^") {" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> (<span class="id">i</span>+1) +++ <span class="id">nstring_of_funcbody</span> <span class="id">body</span> (<span class="id">i</span>+1) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"})"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_access</span> <span class="id">e1</span> <span class="id">e2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_expr</span> <span class="id">e1</span> <span class="id">i</span> +++ ^"[" +++ <span class="id">nstring_of_expr</span> <span class="id">e2</span> (<span class="id">i</span>+1) +++ ^"]"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_member</span> <span class="id">e</span> <span class="id">s</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_expr</span> <span class="id">e</span> <span class="id">i</span> +++ ^"[" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span> +++ ^<span class="id">s</span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span> +++ ^"]"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_new</span> <span class="id">e</span> <span class="id">args</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">args</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span> (<span class="kwd">fun</span> <span class="id">e</span> =&gt; <span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1)) <span class="id">args</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="id">new</span> " +++ <span class="id">nstring_of_expr</span> <span class="id">e</span> <span class="id">i</span> +++ ^"(" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list">comma_list</a></span> <span class="id">args</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_call</span> <span class="id">f</span> <span class="id">args</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">args</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span> (<span class="kwd">fun</span> <span class="id">e</span> =&gt; <span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1)) <span class="id">args</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_expr</span> <span class="id">f</span> <span class="id">i</span> +++ ^"(" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list">comma_list</a></span> <span class="id">args</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_unary_op</span> <span class="id">op</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">e</span> := <span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_delete</span> =&gt; ^"(<span class="id">delete</span> " +++ <span class="id">e</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_void</span> =&gt; ^"(<span class="id">void</span> " +++ <span class="id">e</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_typeof</span> =&gt; ^"(<span class="id">typeof</span> " +++ <span class="id">e</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_post_incr</span> =&gt; ^"(" +++ <span class="id">e</span> +++ ^"++)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_post_decr</span> =&gt; ^"(" +++ <span class="id">e</span> +++ ^"--)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_pre_incr</span> =&gt; ^"(++" +++ <span class="id">e</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_pre_decr</span> =&gt; ^"(--" +++ <span class="id">e</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_add</span> =&gt; ^"(+" +++ <span class="id">e</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_neg</span> =&gt; ^"(-" +++ <span class="id">e</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_bitwise_not</span> =&gt; ^"(~" +++ <span class="id">e</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">unary_op_not</span> =&gt; ^"(!" +++ <span class="id">e</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_binary_op</span> <span class="id">e1</span> <span class="id">op</span> <span class="id">e2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">e1</span> := <span class="id">nstring_of_expr</span> <span class="id">e1</span> (<span class="id">i</span>+1) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">e2</span> := <span class="id">nstring_of_expr</span> <span class="id">e2</span> (<span class="id">i</span>+1) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_mult</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" * " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_div</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" / " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_mod</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" % " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_add</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" + " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_sub</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" - " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_left_shift</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" &lt;&lt; " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_right_shift</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" &gt;&gt; " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_unsigned_right_shift</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" &gt;&gt;&gt; " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_lt</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" &lt; " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_gt</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" &gt; " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_le</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" &lt;= " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_ge</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" &gt;= " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_instanceof</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" <span class="id">instanceof</span> " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_in</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" <span class="kwd">in</span> " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_equal</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" == " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_disequal</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" != " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_strict_equal</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" === " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_strict_disequal</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" !== " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_bitwise_and</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" &amp; " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_bitwise_or</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" | " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_bitwise_xor</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" ^ " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_and</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" &amp;&amp; " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_or</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^" || " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">binary_op_coma</span> =&gt; ^"(" +++ <span class="id">e1</span> +++ ^", " +++ <span class="id">e2</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_conditional</span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">e1</span> := <span class="id">nstring_of_expr</span> <span class="id">e1</span> (<span class="id">i</span>+1) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">e2</span> := <span class="id">nstring_of_expr</span> <span class="id">e2</span> (<span class="id">i</span>+1) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">e3</span> := <span class="id">nstring_of_expr</span> <span class="id">e3</span> (<span class="id">i</span>+1) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"(" +++ <span class="id">e1</span> +++ ^" ? " +++ <span class="id">e2</span> +++ ^" : " +++ <span class="id">e3</span> +++ ^")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">expr_assign</span> <span class="id">e1</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> <span class="id">e2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">e1</span> := <span class="id">nstring_of_expr</span> <span class="id">e1</span> (<span class="id">i</span>+1) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">e2</span> := <span class="id">nstring_of_expr</span> <span class="id">e2</span> (<span class="id">i</span>+1) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">e1</span> +++ ^" = " +++ <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; ^"<span class="id">XXX</span> <span class="id">TODO</span> <span class="id">XXX</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">with</span> <span class="id"><a name="nstring_of_stat">nstring_of_stat</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">s</span>: <span class="id">stat</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">i</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="kwd">struct</span> <span class="id">s</span> }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_expr</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_expr</span> <span class="id">e</span> <span class="id">i</span> +++ ^";"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_label</span> <span class="id">lbl</span> <span class="id">s</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^<span class="id">lbl</span> +++ ^":" +++ <span class="id">nstring_of_stat</span> <span class="id">s</span> <span class="id">i</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_block</span> <span class="id">l</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">seq</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span> (<span class="kwd">fun</span> <span class="id">s</span> =&gt; <span class="id">nstring_of_stat</span> <span class="id">s</span> (<span class="id">i</span>+1)) <span class="id">l</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"{" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_concat">nstring_concat</a></span> (^";" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span>) <span class="id">seq</span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_var_decl</span> <span class="id">l</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">decls</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> (<span class="id">x_e_opt</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id">expr</span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> (<span class="id">x</span>, <span class="id">e_opt</span>) := <span class="id">x_e_opt</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="id">var</span> " +++ ^<span class="id">x</span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^" = " +++ <span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">l</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_concat">nstring_concat</a></span> (^";" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span>) <span class="id">decls</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_let_decl</span> <span class="id">l</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">decls</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> (<span class="id">x_e_opt</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id">expr</span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> (<span class="id">x</span>, <span class="id">e_opt</span>) := <span class="id">x_e_opt</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="kwd">let</span> " +++ ^<span class="id">x</span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^" = " +++ <span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">l</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_concat">nstring_concat</a></span> (^";" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span>) <span class="id">decls</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_if</span> <span class="id">e</span> <span class="id">s1</span> <span class="id">s2_opt</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="kwd">if</span> (" +++ <span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1) +++ ^") {" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_stat</span> <span class="id">s1</span> (<span class="id">i</span>+1) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"} <span class="kwd">else</span> {" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">s2_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">s2</span> =&gt; <span class="id">nstring_of_stat</span> <span class="id">s2</span> (<span class="id">i</span>+1) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_return</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="kwd">return</span> ;"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_return</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="kwd">return</span> " +++ (<span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1)) +++ ^";"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_for_var</span> <span class="id">lbl</span> <span class="id">vars</span> <span class="id">e2_opt</span> <span class="id">e3_opt</span> <span class="id">s</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">decls</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> (<span class="id">decl</span>: (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id">expr</span>)) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> (<span class="id">x</span>, <span class="id">e1_opt</span>) := <span class="id">decl</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^<span class="id">x</span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e1_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e1</span> =&gt; ^" = " +++ <span class="id">nstring_of_expr</span> <span class="id">e1</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">vars</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="kwd">for</span> (" +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="id">var</span> " +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list">comma_list</a></span> <span class="id">decls</span> +++ ^"; " +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e2_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e2</span> =&gt; <span class="id">nstring_of_expr</span> <span class="id">e2</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> +++ ^"; " +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e3_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e3</span> =&gt; <span class="id">nstring_of_expr</span> <span class="id">e3</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> +++ ^") {" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_stat</span> <span class="id">s</span> (<span class="id">i</span>+1) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"}" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_for_let</span> <span class="id">lbl</span> <span class="id">vars</span> <span class="id">e2_opt</span> <span class="id">e3_opt</span> <span class="id">s</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">decls</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> (<span class="id">decl</span>: (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id">expr</span>)) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> (<span class="id">x</span>, <span class="id">e1_opt</span>) := <span class="id">decl</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^<span class="id">x</span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e1_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e1</span> =&gt; ^" = " +++ <span class="id">nstring_of_expr</span> <span class="id">e1</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">vars</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="kwd">for</span> (" +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="kwd">let</span> " +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list">comma_list</a></span> <span class="id">decls</span> +++ ^"; " +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e2_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e2</span> =&gt; <span class="id">nstring_of_expr</span> <span class="id">e2</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> +++ ^"; " +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e3_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e3</span> =&gt; <span class="id">nstring_of_expr</span> <span class="id">e3</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> +++ ^") {" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_stat</span> <span class="id">s</span> (<span class="id">i</span>+1) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"}" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_for_in_var</span> <span class="id">lbl</span> <span class="id">x</span> <span class="id">e1_opt</span> <span class="id">e2</span> <span class="id">s</span> =&gt;<br/>
+ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="kwd">for</span> (<span class="id">var</span> " +++ ^<span class="id">x</span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e1_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span> =&gt; ^" = " +++ <span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^" <span class="kwd">in</span> " +++ <span class="id">nstring_of_expr</span> <span class="id">e2</span> (<span class="id">i</span>+1)  +++ ^") {" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_stat</span> <span class="id">s</span> (<span class="id">i</span>+1) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"}" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">stat_for_in_let</span> <span class="id">lbl</span> <span class="id">x</span> <span class="id">e1_opt</span> <span class="id">e2</span> <span class="id">s</span> =&gt;<br/>
+ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^"<span class="kwd">for</span> (<span class="kwd">let</span> " +++ ^<span class="id">x</span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e1_opt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span> =&gt; ^" = " +++ <span class="id">nstring_of_expr</span> <span class="id">e</span> (<span class="id">i</span>+1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; ^""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^" <span class="kwd">in</span> " +++ <span class="id">nstring_of_expr</span> <span class="id">e2</span> (<span class="id">i</span>+1)  +++ ^") {" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_stat</span> <span class="id">s</span> (<span class="id">i</span>+1) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"}" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; ^"<span class="id">XXX</span> <span class="id">TODO</span> <span class="id">XXX</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">with</span> <span class="id"><a name="nstring_of_element">nstring_of_element</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">e</span>: <span class="id">element</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">i</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="kwd">struct</span> <span class="id">e</span> }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">element_stat</span> <span class="id">s</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_stat</span> <span class="id">s</span> <span class="id">i</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">element_func_decl</span> <span class="id">f</span> <span class="id">params</span> <span class="id">body</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ ^"<span class="id">function</span> " +++ ^<span class="id">f</span> +++ ^"(" +++ (<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list_string">comma_list_string</a></span> <span class="id">params</span>) +++ ^") {" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ <span class="id">nstring_of_funcbody</span> <span class="id">body</span> (<span class="id">i</span>+1) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">with</span> <span class="id"><a name="nstring_of_prog">nstring_of_prog</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">p</span>: <span class="id">prog</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">i</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="kwd">struct</span> <span class="id">p</span> }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">p</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">prog_intro</span> <span class="id">_</span> <span class="id">elems</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">elems</span>' := <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span> (<span class="kwd">fun</span> <span class="id">e</span> =&gt; <span class="id">nstring_of_element</span> <span class="id">e</span> <span class="id">i</span>) <span class="id">elems</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_concat">nstring_concat</a></span> <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> <span class="id">elems</span>'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">with</span> <span class="id"><a name="nstring_of_funcbody">nstring_of_funcbody</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">body</span>: <span class="id">funcbody</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">i</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="kwd">struct</span> <span class="id">body</span> }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">body</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">funcbody_intro</span> <span class="id">p</span> <span class="id">_</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nstring_of_prog</span> <span class="id">p</span> <span class="id">i</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nstring_of_funcdecl">nstring_of_funcdecl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">f</span>:<span class="id">funcdecl</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">i</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ ^"<span class="id">function</span> " +++ ^ (<span class="id">f</span>.(<span class="id">funcdecl_name</span>)) +++ ^"(" +++ (<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list_string">comma_list_string</a></span> <span class="id">f</span>.(<span class="id">funcdecl_parameters</span>)) +++ ^") {" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#nstring_of_funcbody">nstring_of_funcbody</a></span> <span class="id">f</span>.(<span class="id">funcdecl_body</span>) (<span class="id">i</span>+1) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"}"<br/>
+&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nstring_of_method">nstring_of_method</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">f</span>:<span class="id">funcdecl</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">i</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"<span class="id">static</span> " +++ ^ (<span class="id">f</span>.(<span class="id">funcdecl_name</span>)) +++ ^"(" +++ (<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list_string">comma_list_string</a></span> <span class="id">f</span>.(<span class="id">funcdecl_parameters</span>)) +++ ^") {" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#nstring_of_funcbody">nstring_of_funcbody</a></span> <span class="id">f</span>.(<span class="id">funcdecl_body</span>) (<span class="id">i</span>+1) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> +++ ^"}"<br/>
+&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nstring_of_decl">nstring_of_decl</a></span>(<span class="id">d</span>:<span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html#topdecl">topdecl</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html#strictmode">strictmode</a></span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ ^"'<span class="id">use</span> <span class="id">strict</span>';"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html#comment">comment</a></span> <span class="id">c</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ ^"/*" +++ ^<span class="id">c</span> +++ ^"*/"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html#elementdecl">elementdecl</a></span> <span class="id">fd</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#nstring_of_element">nstring_of_element</a></span> <span class="id">fd</span> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html#classdecl">classdecl</a></span> <span class="id">cn</span> <span class="id">cd</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ ^"<span class="id">class</span> " +++ ^<span class="id">cn</span> +++ ^"{"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">q</span> =&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_append">nstring_append</a></span> <span class="id">acc</span> (<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#nstring_of_method">nstring_of_method</a></span> <span class="id">q</span> 1)) <span class="id">cd</span> (^ (""%<span class="id">string</span>)) +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++ ^"}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html#constdecl">constdecl</a></span> <span class="id">x</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> +++ ^"<span class="id">const</span> " +++ ^<span class="id">x</span> +++ ^"=" +++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#nstring_of_expr">nstring_of_expr</a></span> <span class="id">e</span> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#ToString">ToString</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="JavaScriptAsttoJavaScript">JavaScriptAsttoJavaScript</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="js_ast_to_js_top">js_ast_to_js_top</a></span> (<span class="id">ja</span>:<span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html#js_ast">js_ast</a></span>) : <span class="id"><a href="Qcert.JavaScript.Lang.JavaScript.html#javascript">javascript</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">f</span> =&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_append">nstring_append</a></span> <span class="id">acc</span> (<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#nstring_of_decl">nstring_of_decl</a></span> <span class="id">f</span>)) <span class="id">ja</span> (^ (""%<span class="id">string</span>)).<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#JavaScriptAsttoJavaScript">JavaScriptAsttoJavaScript</a></span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

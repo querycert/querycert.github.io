@@ -1,0 +1,297 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.NNRS.Lang.NNRS</title>
+<meta name="description" content="Documentation of Coq module Qcert.NNRS.Lang.NNRS" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.NNRS.Lang.NNRS</h1>
+<div class="coq">
+<br/>
+<div class="doc">NNRS is a variant of the named nested relational calculus
+     (NNRC) that is meant to be more imperative in feel.  It is used
+     as an intermediate language between NNRC and more imperative /
+     statement oriented backends </div>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Max.html">Max</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Peano_dec.html">Peano_dec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Decidable.html">Decidable</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<br/>
+<span class="id">Declare</span> <span class="kwd">Scope</span> <span class="id">nnrs_scope</span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NNRS">NNRS</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="kwd">Syntax</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="nnrs_expr">nnrs_expr</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSGetConstant">NNRSGetConstant</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id">nnrs_expr</span>                                   <span class="docright">(* global variable lookup (<span class="bracket">$$<span class="id">v</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSVar">NNRSVar</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id">nnrs_expr</span>                                           <span class="docright">(* local variable lookup (<span class="bracket">$<span class="id">v</span></span>) *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSConst">NNRSConst</a></span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> -&gt; <span class="id">nnrs_expr</span>                                        <span class="docright">(* constant data (<span class="bracket"><span class="id">d</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSBinop">NNRSBinop</a></span> : <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op">binary_op</a></span> -&gt; <span class="id">nnrs_expr</span> -&gt; <span class="id">nnrs_expr</span> -&gt; <span class="id">nnrs_expr</span> <span class="docright">(* binary operator (<span class="bracket"><span class="id">e</span>₁ ⊠ <span class="id">e</span>₂</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSUnop">NNRSUnop</a></span> : <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#unary_op">unary_op</a></span> -&gt; <span class="id">nnrs_expr</span> -&gt; <span class="id">nnrs_expr</span>                    <span class="docright">(* unary operator (<span class="bracket">⊞ <span class="id">e</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSGroupBy">NNRSGroupBy</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id">nnrs_expr</span> -&gt; <span class="id">nnrs_expr</span>    <span class="docright">(* group by expression (<span class="bracket"><span class="id">e</span> <span class="id">groupby</span> <span class="id">g</span> <span class="id">fields</span></span>) -- only in full NNRC  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="nnrs_stmt">nnrs_stmt</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSSeq">NNRSSeq</a></span> : <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span>                    <span class="docright">(* sequence (<span class="bracket"><span class="id">s</span>₁; <span class="id">s</span>₂</span>])  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSLet">NNRSLet</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span> -&gt; <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span> <span class="docright">(* variable declaration (<span class="bracket"><span class="id">var</span> $<span class="id">v</span> := <span class="id">e</span>₁; <span class="id">s</span>₂</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSLetMut">NNRSLetMut</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span> <span class="docright">(* variable declaration (<span class="bracket"><span class="id">var</span> $<span class="id">v</span>; <span class="id">s</span>₁; <span class="id">s</span>₂</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSLetMutColl">NNRSLetMutColl</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span>    <span class="docright">(* mutable collection declaration (<span class="bracket"><span class="id">var</span> $<span class="id">v</span> := {}; <span class="id">s1</span> ; <span class="id">s2</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSAssign">NNRSAssign</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span> -&gt; <span class="id">nnrs_stmt</span>                           <span class="docright">(* variable assignent (<span class="bracket">$<span class="id">v</span> := <span class="id">e</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSPush">NNRSPush</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span> -&gt; <span class="id">nnrs_stmt</span>                             <span class="docright">(* push item in mutable collection (<span class="bracket"><span class="id">push</span> <span class="id">e</span> <span class="kwd">in</span> $<span class="id">v</span></span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSFor">NNRSFor</a></span> : <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span> -&gt; <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span>             <span class="docright">(* for loop (<span class="bracket"><span class="kwd">for</span> ($<span class="id">v</span> <span class="kwd">in</span> <span class="id">e</span>₁) { <span class="id">s</span>₂ }</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSIf">NNRSIf</a></span> : <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span> -&gt; <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span>    <span class="docright">(* conditional (<span class="bracket"><span class="kwd">if</span> <span class="id">e</span>₁ { <span class="id">s</span>₂ } <span class="kwd">else</span> { <span class="id">s</span>₃ }</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NNRSEither">NNRSEither</a></span> : <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span>                                                   <span class="docright">(* case expression (<span class="bracket"><span class="id">either</span> <span class="id">e</span> <span class="tactic">case</span> <span class="id">left</span> $<span class="id">v</span>₁ { <span class="id">s</span>₁ } <span class="tactic">case</span> <span class="id">right</span> $<span class="id">v</span>₂ { <span class="id">s</span>₂ }</span>)  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id">nnrs_stmt</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> -&gt; <span class="id">nnrs_stmt</span> -&gt; <span class="id">nnrs_stmt</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+<br/>
+<div class="doc"><span class="bracket"><span class="id">nnrs</span></span> is composed of the statement evaluating the query
+        and the variable containing the result of the evaluation </div>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nnrs">nnrs</a></span> : <span class="kwd">Set</span> := (<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmt">nnrs_stmt</a></span> * <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="kwd">Syntax</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="NNRS.dec">dec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrs_expr_eqdec">nnrs_expr_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3167')">Proof.</div>
+<div class="proofscript" id="proof3167">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op_eqdec">binary_op_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#unary_op_eqdec">unary_op_eqdec</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Model.Data.html#data_eqdec">data_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">decide</span> <span class="id">equality</span>; <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrs_stmt_eqdec">nnrs_stmt_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmt">nnrs_stmt</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3168')">Proof.</div>
+<div class="proofscript" id="proof3168">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmt">nnrs_stmt</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr_eqdec">nnrs_expr_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrs_eqdec">nnrs_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs">nnrs</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3169')">Proof.</div>
+<div class="proofscript" id="proof3169">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> [<span class="id">s1</span> <span class="id">r1</span>] [<span class="id">s2</span> <span class="id">r2</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">r1</span> == <span class="id">r2</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id">s1</span> == <span class="id">s2</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">left</span>; <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">right</span>; <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRS.dec">dec</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="NNRS.Core">Core</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrs_exprIsCore">nnrs_exprIsCore</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">e</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSGetConstant">NNRSGetConstant</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSVar">NNRSVar</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSConst">NNRSConst</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSBinop">NNRSBinop</a></span> <span class="id">_</span> <span class="id">e1</span> <span class="id">e2</span> =&gt; <span class="id">nnrs_exprIsCore</span> <span class="id">e1</span> /\ <span class="id">nnrs_exprIsCore</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSUnop">NNRSUnop</a></span> <span class="id">_</span> <span class="id">e1</span> =&gt; <span class="id">nnrs_exprIsCore</span> <span class="id">e1</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSGroupBy">NNRSGroupBy</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrs_stmtIsCore">nnrs_stmtIsCore</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmt">nnrs_stmt</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSSeq">NNRSSeq</a></span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_stmtIsCore</span> <span class="id">s1</span> /\ <span class="id">nnrs_stmtIsCore</span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSLet">NNRSLet</a></span> <span class="id">_</span> <span class="id">e</span> <span class="id">s1</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore">nnrs_exprIsCore</a></span> <span class="id">e</span> /\ <span class="id">nnrs_stmtIsCore</span> <span class="id">s1</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSLetMut">NNRSLetMut</a></span> <span class="id">_</span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_stmtIsCore</span> <span class="id">s1</span> /\ <span class="id">nnrs_stmtIsCore</span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSLetMutColl">NNRSLetMutColl</a></span> <span class="id">_</span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_stmtIsCore</span> <span class="id">s1</span> /\ <span class="id">nnrs_stmtIsCore</span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSAssign">NNRSAssign</a></span> <span class="id">_</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore">nnrs_exprIsCore</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSPush">NNRSPush</a></span> <span class="id">_</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore">nnrs_exprIsCore</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSFor">NNRSFor</a></span> <span class="id">_</span> <span class="id">e</span> <span class="id">s1</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore">nnrs_exprIsCore</a></span> <span class="id">e</span> /\ <span class="id">nnrs_stmtIsCore</span> <span class="id">s1</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSIf">NNRSIf</a></span> <span class="id">e</span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore">nnrs_exprIsCore</a></span> <span class="id">e</span> /\ <span class="id">nnrs_stmtIsCore</span> <span class="id">s1</span> /\ <span class="id">nnrs_stmtIsCore</span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRSEither">NNRSEither</a></span> <span class="id">e</span> <span class="id">_</span> <span class="id">s1</span> <span class="id">_</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore">nnrs_exprIsCore</a></span> <span class="id">e</span> /\ <span class="id">nnrs_stmtIsCore</span> <span class="id">s1</span> /\ <span class="id">nnrs_stmtIsCore</span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> .<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nnrsIsCore">nnrsIsCore</a></span> (<span class="id">sr</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs">nnrs</a></span>) := <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmtIsCore">nnrs_stmtIsCore</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">sr</span>).<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nnrs_core">nnrs_core</a></span> : <span class="kwd">Set</span> := {<span class="id">sr</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs">nnrs</a></span> | <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrsIsCore">nnrsIsCore</a></span> <span class="id">sr</span>}.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nnrs_core_to_nnrs">nnrs_core_to_nnrs</a></span> (<span class="id">sr</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_core">nnrs_core</a></span>) : <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs">nnrs</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> <span class="id">sr</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="NNRS.Core.ext">ext</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_exprIsCore_ext">nnrs_exprIsCore_ext</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span>) (<span class="id">pf1</span> <span class="id">pf2</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore">nnrs_exprIsCore</a></span> <span class="id">e</span>) : <span class="id">pf1</span> = <span class="id">pf2</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3170')">Proof.</div>
+<div class="proofscript" id="proof3170">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> (<span class="tactic">destruct</span> <span class="id">pf1</span>; <span class="tactic">destruct</span> <span class="id">pf2</span>; <span class="tactic">trivial</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="tactic">f_equal</span>; <span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_stmtIsCore_ext">nnrs_stmtIsCore_ext</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmt">nnrs_stmt</a></span>) (<span class="id">pf1</span> <span class="id">pf2</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmtIsCore">nnrs_stmtIsCore</a></span> <span class="id">s</span>) : <span class="id">pf1</span> = <span class="id">pf2</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3171')">Proof.</div>
+<div class="proofscript" id="proof3171">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">s</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> (<span class="tactic">destruct</span> <span class="id">pf1</span>; <span class="tactic">destruct</span> <span class="id">pf2</span>; <span class="tactic">trivial</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> (<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">destruct</span> <span class="id">a0</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="tactic">f_equal</span>; <span class="tactic">eauto</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore_ext">nnrs_exprIsCore_ext</a></span>; <span class="tactic">eauto</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">try</span> <span class="tactic">f_equal</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrsIsCore_ext">nnrsIsCore_ext</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs">nnrs</a></span>) (<span class="id">pf1</span> <span class="id">pf2</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrsIsCore">nnrsIsCore</a></span> <span class="id">e</span>) : <span class="id">pf1</span> = <span class="id">pf2</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3172')">Proof.</div>
+<div class="proofscript" id="proof3172">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmtIsCore_ext">nnrs_stmtIsCore_ext</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_core_ext">nnrs_core_ext</a></span> <span class="id">e</span> (<span class="id">pf1</span> <span class="id">pf2</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrsIsCore">nnrsIsCore</a></span> <span class="id">e</span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#exist">exist</a></span> <span class="id">_</span> <span class="id">e</span> <span class="id">pf1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#exist">exist</a></span> <span class="id">_</span> <span class="id">e</span> <span class="id">pf2</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3173')">Proof.</div>
+<div class="proofscript" id="proof3173">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>; <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrsIsCore_ext">nnrsIsCore_ext</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_core_fequal">nnrs_core_fequal</a></span> (<span class="id">e1</span> <span class="id">e2</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_core">nnrs_core</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> <span class="id">e1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> <span class="id">e2</span> -&gt; <span class="id">e1</span> = <span class="id">e2</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3174')">Proof.</div>
+<div class="proofscript" id="proof3174">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">e1</span>; <span class="tactic">destruct</span> <span class="id">e2</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">eqq</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_core_ext">nnrs_core_ext</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRS.Core.ext">ext</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="NNRS.Core.dec">dec</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_exprIsCore_dec">nnrs_exprIsCore_dec</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_expr">nnrs_expr</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore">nnrs_exprIsCore</a></span> <span class="id">e</span>} + {~ <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore">nnrs_exprIsCore</a></span> <span class="id">e</span>}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3175')">Proof.</div>
+<div class="proofscript" id="proof3175">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">eauto</span> 3.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">IHe1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">IHe2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_stmtIsCore_dec">nnrs_stmtIsCore_dec</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmt">nnrs_stmt</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmtIsCore">nnrs_stmtIsCore</a></span> <span class="id">s</span>} + {~ <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmtIsCore">nnrs_stmtIsCore</a></span> <span class="id">s</span>}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3176')">Proof.</div>
+<div class="proofscript" id="proof3176">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">s</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">IHs1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore_dec">nnrs_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">IHs1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">IHs1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore_dec">nnrs_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore_dec">nnrs_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore_dec">nnrs_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore_dec">nnrs_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">destruct</span> <span class="id">IHs2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_exprIsCore_dec">nnrs_exprIsCore_dec</a></span> <span class="id">n</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">destruct</span> <span class="id">IHs1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">destruct</span> <span class="id">IHs2</span>; [<span class="id">left</span>|<span class="id">right</span>]; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrsIsCore_dec">nnrsIsCore_dec</a></span> (<span class="id">sr</span>:<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs">nnrs</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrsIsCore">nnrsIsCore</a></span> <span class="id">sr</span>} + {~ <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrsIsCore">nnrsIsCore</a></span> <span class="id">sr</span>}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3177')">Proof.</div>
+<div class="proofscript" id="proof3177">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_stmtIsCore_dec">nnrs_stmtIsCore_dec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrs_core_eqdec">nnrs_core_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_core">nnrs_core</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3178')">Proof.</div>
+<div class="proofscript" id="proof3178">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">x</span> <span class="id">y</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span> <span class="kwd">as</span> [<span class="id">x</span> <span class="id">xpf</span>]; <span class="tactic">destruct</span> <span class="id">y</span> <span class="kwd">as</span> [<span class="id">y</span> <span class="id">ypf</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">x</span> == <span class="id">y</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">left</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#nnrs_core_fequal">nnrs_core_fequal</a></span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">right</span>. <span class="tactic">inversion</span> 1; <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRS.Core.dec">dec</a></span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRS.Core">Core</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NNRS.Env">Env</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="pd_bindings">pd_bindings</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="mc_bindings">mc_bindings</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="md_bindings">md_bindings</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>).<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRS.Env">Env</a></span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRS.Lang.NNRS.html#NNRS">NNRS</a></span>.<br/>
+<br/>
+<span class="kwd">Tactic</span> <span class="kwd">Notation</span> "<span class="id">nnrs_expr_cases</span>" <span class="id">tactic</span>(<span class="id">first</span>) <span class="id">ident</span>(<span class="id">c</span>) :=<br/>
+&nbsp;&nbsp;<span class="id">first</span>;<br/>
+&nbsp;&nbsp;[ <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSGetConstant</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSVar</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSConst</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSBinop</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSUnop</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSGroupBy</span>"%<span class="id">string</span>].<br/>
+<br/>
+<span class="kwd">Tactic</span> <span class="kwd">Notation</span> "<span class="id">nnrs_stmt_cases</span>" <span class="id">tactic</span>(<span class="id">first</span>) <span class="id">ident</span>(<span class="id">c</span>) :=<br/>
+&nbsp;&nbsp;<span class="id">first</span>;<br/>
+&nbsp;&nbsp;[ <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSSeq</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSLet</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSLetMut</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSLetMutColl</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSAssign</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSPush</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSFor</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSIf</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">NNRSEither</span>"%<span class="id">string</span>].<br/>
+<br/>
+<span class="kwd">Delimit</span> <span class="kwd">Scope</span> <span class="id">nnrs_scope</span> <span class="kwd">with</span> <span class="id">nnrs</span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

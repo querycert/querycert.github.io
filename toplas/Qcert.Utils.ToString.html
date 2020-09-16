@@ -1,0 +1,72 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Utils.ToString</title>
+<meta name="description" content="Documentation of Coq module Qcert.Utils.ToString" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Utils.ToString</h1>
+<div class="coq">
+<br/>
+<div class="doc">This modules defines conversions between numbers and strings. This
+relies on an intermediate representation of numbers in base 'n'. The
+main use for this is when defining fresh names. </div>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.Ascii.html">Ascii</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html">Equivalence</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Compare_dec.html">Compare_dec</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Digits.html">Qcert.Utils.Digits</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html">Qcert.Utils.CoqLibAdd</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Float.html">Qcert.Utils.Float</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.StringAdd.html">Qcert.Utils.StringAdd</a></span>.<br/>
+<br/>
+<h1> Preliminaries </h1>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ToString">ToString</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="boolToString">boolToString</a></span> (<span class="id">b</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#bool">bool</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">if</span> <span class="id">b</span> <span class="kwd">then</span> "<span class="id">true</span>" <span class="kwd">else</span> "<span class="id">false</span>".<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="quote_char">quote_char</a></span> (<span class="id">a</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.Ascii.html#ascii">ascii</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">a</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| """"%<span class="id">char</span> =&gt; "\"""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id">a</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#EmptyString">EmptyString</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="quote_string">quote_string</a></span> (<span class="id">s</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Utils.StringAdd.html#flat_map_string">flat_map_string</a></span> <span class="id"><a href="Qcert.Utils.ToString.html#quote_char">quote_char</a></span> <span class="id">s</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="stringToStringQuote">stringToStringQuote</a></span> (<span class="id">quotel</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) (<span class="id">s</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= "" ++ <span class="id">quotel</span> ++ "" ++ <span class="id"><a href="Qcert.Utils.ToString.html#quote_string">quote_string</a></span> <span class="id">s</span> ++ "" ++ <span class="id">quotel</span> ++ "".<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="stringToString">stringToString</a></span> (<span class="id">s</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id">s</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ToString_Z">ToString_Z</a></span> : <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#ToString">ToString</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Numbers.BinNums.html#Z">Z</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= { <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> := <span class="id"><a href="Qcert.Utils.Digits.html#Z_to_string10">Z_to_string10</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ToString_nat">ToString_nat</a></span> : <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#ToString">ToString</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= { <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> := <span class="id"><a href="Qcert.Utils.Digits.html#nat_to_string10">nat_to_string10</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ToString_float">ToString_float</a></span> : <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#ToString">ToString</a></span> <span class="id"><a href="Qcert.Utils.Float.html#float">float</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= { <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> := <span class="id"><a href="Qcert.Utils.Float.html#float_to_string">float_to_string</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ToString_bool">ToString_bool</a></span> : <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#ToString">ToString</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#bool">bool</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= { <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> := <span class="id"><a href="Qcert.Utils.ToString.html#boolToString">boolToString</a></span>}.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Utils.ToString.html#ToString">ToString</a></span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

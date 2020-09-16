@@ -1,0 +1,205 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Data.Operators.BinaryOperators</title>
+<meta name="description" content="Documentation of Coq module Qcert.Data.Operators.BinaryOperators" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Data.Operators.BinaryOperators</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.Model.ForeignData.html">ForeignData</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.Operators.ForeignOperators.html">ForeignOperators</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="BinaryOperators">BinaryOperators</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fdata</span>:<span class="id"><a href="Qcert.Data.Model.ForeignData.html#foreign_data">foreign_data</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">foperators</span>:<span class="id"><a href="Qcert.Data.Operators.ForeignOperators.html#foreign_operators">foreign_operators</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="nat_arith_binary_op">nat_arith_binary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a name="NatPlus">NatPlus</a></span>     <span class="docright">(* addition  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NatMinus">NatMinus</a></span>    <span class="docright">(* substraction  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NatMult">NatMult</a></span>     <span class="docright">(* multiplication  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NatDiv">NatDiv</a></span>      <span class="docright">(* division  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NatRem">NatRem</a></span>      <span class="docright">(* remainder  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NatMin">NatMin</a></span>      <span class="docright">(* smallest  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="NatMax">NatMax</a></span>.     <span class="docright">(* biggest  *)</span><br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="float_arith_binary_op">float_arith_binary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatPlus">FloatPlus</a></span>   <span class="docright">(* addition  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatMinus">FloatMinus</a></span>  <span class="docright">(* substraction  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatMult">FloatMult</a></span>   <span class="docright">(* multiplication  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatDiv">FloatDiv</a></span>    <span class="docright">(* division  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatPow">FloatPow</a></span>    <span class="docright">(* exponent  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatMin">FloatMin</a></span>    <span class="docright">(* min  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatMax">FloatMax</a></span>    <span class="docright">(* max  *)</span><br/>
+&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="float_compare_binary_op">float_compare_binary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatLt">FloatLt</a></span>     <span class="docright">(* less than  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatLe">FloatLe</a></span>     <span class="docright">(* less than or equal to  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatGt">FloatGt</a></span>     <span class="docright">(* greater than  *)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="FloatGe">FloatGe</a></span>     <span class="docright">(* greater than or equal to  *)</span><br/>
+&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="binary_op">binary_op</a></span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpEqual">OpEqual</a></span> : <span class="id">binary_op</span>                                   <span class="docright">(* equality  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpRecConcat">OpRecConcat</a></span> : <span class="id">binary_op</span>                               <span class="docright">(* record concatenation  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpRecMerge">OpRecMerge</a></span> : <span class="id">binary_op</span>                                <span class="docright">(* record merge-concatenation  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpAnd">OpAnd</a></span> : <span class="id">binary_op</span>                                     <span class="docright">(* boolean conjunction  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpOr">OpOr</a></span> : <span class="id">binary_op</span>                                      <span class="docright">(* boolean disjunction  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpLt">OpLt</a></span> : <span class="id">binary_op</span>                                      <span class="docright">(* less than  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpLe">OpLe</a></span> : <span class="id">binary_op</span>                                      <span class="docright">(* less than or equal to  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpBagUnion">OpBagUnion</a></span> : <span class="id">binary_op</span>                                <span class="docright">(* bag union  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpBagDiff">OpBagDiff</a></span> : <span class="id">binary_op</span>                                 <span class="docright">(* bag difference  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpBagMin">OpBagMin</a></span> : <span class="id">binary_op</span>                                  <span class="docright">(* bag min  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpBagMax">OpBagMax</a></span> : <span class="id">binary_op</span>                                  <span class="docright">(* bag max  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpBagNth">OpBagNth</a></span> : <span class="id">binary_op</span>                                  <span class="docright">(* random element in a bag  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpContains">OpContains</a></span> : <span class="id">binary_op</span>                                <span class="docright">(* is an element in a collection  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpStringConcat">OpStringConcat</a></span> : <span class="id">binary_op</span>                            <span class="docright">(* string concatenation  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpStringJoin">OpStringJoin</a></span> : <span class="id">binary_op</span>                              <span class="docright">(* string join  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpNatBinary">OpNatBinary</a></span> : <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#nat_arith_binary_op">nat_arith_binary_op</a></span> -&gt; <span class="id">binary_op</span>        <span class="docright">(* arithmetic operators on integers  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpFloatBinary">OpFloatBinary</a></span> : <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_arith_binary_op">float_arith_binary_op</a></span> -&gt; <span class="id">binary_op</span>    <span class="docright">(* arithmetic operators on floats  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpFloatCompare">OpFloatCompare</a></span> : <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_compare_binary_op">float_compare_binary_op</a></span> -&gt; <span class="id">binary_op</span> <span class="docright">(* comparison operators on floats  *)</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="OpForeignBinary">OpForeignBinary</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">fb</span> : <span class="id"><a href="Qcert.Data.Operators.ForeignOperators.html#foreign_operators_binary">foreign_operators_binary</a></span>) : <span class="id">binary_op</span>         <span class="docright">(* foreign binary operators  *)</span><br/>
+&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nat_arith_binary_op_eqdec">nat_arith_binary_op_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#nat_arith_binary_op">nat_arith_binary_op</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1732')">Proof.</div>
+<div class="proofscript" id="proof1732">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#nat_arith_binary_op">nat_arith_binary_op</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
+&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="float_arith_binary_op_eqdec">float_arith_binary_op_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_arith_binary_op">float_arith_binary_op</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1733')">Proof.</div>
+<div class="proofscript" id="proof1733">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_arith_binary_op">float_arith_binary_op</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
+&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="float_compare_binary_op_eqdec">float_compare_binary_op_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_compare_binary_op">float_compare_binary_op</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1734')">Proof.</div>
+<div class="proofscript" id="proof1734">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_compare_binary_op">float_compare_binary_op</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
+&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="binary_op_eqdec">binary_op_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op">binary_op</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1735')">Proof.</div>
+<div class="proofscript" id="proof1735">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op">binary_op</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#nat_arith_binary_op_eqdec">nat_arith_binary_op_eqdec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_arith_binary_op_eqdec">float_arith_binary_op_eqdec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_compare_binary_op_eqdec">float_compare_binary_op_eqdec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.ForeignOperators.html#foreign_operators_binary_dec">foreign_operators_binary_dec</a></span>.<br/>
+&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ToString_nat_binary_op">ToString_nat_binary_op</a></span> : <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#ToString">ToString</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#nat_arith_binary_op">nat_arith_binary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">fun</span> (<span class="id">op</span>:<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#nat_arith_binary_op">nat_arith_binary_op</a></span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatPlus">NatPlus</a></span> =&gt; "<span class="id">NatPlus</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatMinus">NatMinus</a></span> =&gt; "<span class="id">NatMinus</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatMult">NatMult</a></span> =&gt; "<span class="id">NatMult</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatMin">NatMin</a></span> =&gt; "<span class="id">NatMin</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatMax">NatMax</a></span> =&gt; "<span class="id">NatMax</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatDiv">NatDiv</a></span> =&gt; "<span class="id">NatDiv</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatRem">NatRem</a></span> =&gt; "<span class="id">NatRem</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ToString_float_arith_binary_op">ToString_float_arith_binary_op</a></span> : <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#ToString">ToString</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_arith_binary_op">float_arith_binary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">fun</span> (<span class="id">op</span>:<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_arith_binary_op">float_arith_binary_op</a></span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatPlus">FloatPlus</a></span> =&gt; "<span class="id">FloatPlus</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatMinus">FloatMinus</a></span> =&gt; "<span class="id">FloatMinus</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatMult">FloatMult</a></span> =&gt; "<span class="id">FloatMult</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatDiv">FloatDiv</a></span> =&gt; "<span class="id">FloatDiv</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatPow">FloatPow</a></span> =&gt; "<span class="id">FloatPow</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatMin">FloatMin</a></span> =&gt; "<span class="id">FloatMin</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatMax">FloatMax</a></span> =&gt; "<span class="id">FloatMax</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ToString_float_compare_binary_op">ToString_float_compare_binary_op</a></span> : <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#ToString">ToString</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_compare_binary_op">float_compare_binary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">fun</span> (<span class="id">op</span>:<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#float_compare_binary_op">float_compare_binary_op</a></span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatLt">FloatLt</a></span> =&gt; "<span class="id">FloatLt</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatLe">FloatLe</a></span> =&gt; "<span class="id">FloatLe</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatGt">FloatGt</a></span> =&gt; "<span class="id">FloatGt</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#FloatGe">FloatGe</a></span> =&gt; "<span class="id">FloatGe</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ToString_binary_op">ToString_binary_op</a></span> : <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#ToString">ToString</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op">binary_op</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= {<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">fun</span> (<span class="id">op</span>:<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op">binary_op</a></span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpEqual">OpEqual</a></span> =&gt; "<span class="id">OpEqual</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpRecConcat">OpRecConcat</a></span>  =&gt; "<span class="id">OpRecConcat</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpRecMerge">OpRecMerge</a></span>  =&gt; "<span class="id">OpRecMerge</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpAnd">OpAnd</a></span>  =&gt; "<span class="id">OpAnd</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpOr">OpOr</a></span>  =&gt; "<span class="id">OpOr</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpLt">OpLt</a></span>  =&gt; "<span class="id">OpLt</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpLe">OpLe</a></span>  =&gt; "<span class="id">OpLe</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagUnion">OpBagUnion</a></span> =&gt; "<span class="id">OpBagUnion</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagDiff">OpBagDiff</a></span> =&gt; "<span class="id">OpBagDiff</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagMin">OpBagMin</a></span> =&gt; "<span class="id">OpBagMin</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagMax">OpBagMax</a></span> =&gt; "<span class="id">OpBagMax</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagNth">OpBagNth</a></span> =&gt; "<span class="id">OpBagNth</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpContains">OpContains</a></span>  =&gt; "<span class="id">OpContains</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpStringConcat">OpStringConcat</a></span>  =&gt; "<span class="id">OpStringConcat</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpStringJoin">OpStringJoin</a></span>  =&gt; "<span class="id">OpStringJoin</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpNatBinary">OpNatBinary</a></span> <span class="id">aop</span> =&gt; "(<span class="id">OpNatBinary</span> " ++ (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> <span class="id">aop</span>) ++ ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpFloatBinary">OpFloatBinary</a></span> <span class="id">aop</span> =&gt; "(<span class="id">OpFloatBinary</span> " ++ (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> <span class="id">aop</span>) ++ ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpFloatCompare">OpFloatCompare</a></span> <span class="id">aop</span> =&gt; "(<span class="id">OpFloatCompare</span> " ++ (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> <span class="id">aop</span>) ++ ")"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpForeignBinary">OpForeignBinary</a></span> <span class="id">fb</span> =&gt; <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> <span class="id">fb</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#BinaryOperators">BinaryOperators</a></span>.<br/>
+<br/>
+<span class="kwd">Tactic</span> <span class="kwd">Notation</span> "<span class="id">binary_op_cases</span>" <span class="id">tactic</span>(<span class="id">first</span>) <span class="id">ident</span>(<span class="id">c</span>) :=<br/>
+&nbsp;&nbsp;<span class="id">first</span>;<br/>
+&nbsp;&nbsp;[ <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpEqual</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpRecConcat</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpRecMerge</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpAnd</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpOr</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpLt</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpLe</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpBagUnion</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpBagDiff</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpBagMin</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpBagMax</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpBagNth</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpContains</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpStringConcat</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpStringJoin</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpNatBinary</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpFloatBinary</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpFloatCompare</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">OpForeignBinary</span>"%<span class="id">string</span>].<br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

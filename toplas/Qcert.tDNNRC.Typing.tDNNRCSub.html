@@ -1,0 +1,162 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.tDNNRC.Typing.tDNNRCSub</title>
+<meta name="description" content="Documentation of Coq module Qcert.tDNNRC.Typing.tDNNRCSub" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.tDNNRC.Typing.tDNNRCSub</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="kwd">Program</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataSystem.html">DataSystem</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.DNNRC.DNNRCSystem.html">DNNRCSystem</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.tDNNRC.Lang.tDNNRC.html">tDNNRC</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="tDNNRCSub">tDNNRCSub</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Data.DataSystem.html#basic_model">basic_model</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="tDNNRCSub.typ">typ</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> (τ<span class="id">constants</span>:<span class="id"><a href="Qcert.Data.ModelTyping.TDBindings.html#tdbindings">tdbindings</a></span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="dnnrc_base_type_sub">dnnrc_base_type_sub</a></span> {<span class="id">A</span> <span class="id">plug_type</span>:<span class="kwd">Set</span>}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">plug</span>:<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#AlgPlug">AlgPlug</a></span> <span class="id">plug_type</span>} {<span class="id">tplug</span>: <span class="id"><a href="Qcert.DNNRC.Typing.TDNNRCBase.html#TAlgPlug">TAlgPlug</a></span>} :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.ModelTyping.TDBindings.html#tdbindings">tdbindings</a></span> -&gt; @<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base">dnnrc_base</a></span> <span class="id">_</span> <span class="id">A</span> <span class="id">plug_type</span> -&gt; <span class="id"><a href="Qcert.TypeSystem.DType.html#drtype">drtype</a></span> -&gt; <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCGetConstant">TDNNRCGetConstant</a></span> {τ<span class="id">out</span>} <span class="id">tenv</span> <span class="id">s</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.OperatorsTyping.TUtil.html#tdot">tdot</a></span> τ<span class="id">constants</span> <span class="id">s</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> τ<span class="id">out</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCGetConstant">DNNRCGetConstant</a></span> <span class="id">a</span> <span class="id">s</span>) τ<span class="id">out</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCVar">TDNNRCVar</a></span> {τ} <span class="id">tenv</span> <span class="id">v</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Assoc.html#lookup">lookup</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#equiv_dec">equiv_dec</a></span> <span class="id">tenv</span> <span class="id">v</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> τ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCVar">DNNRCVar</a></span> <span class="id">a</span> <span class="id">v</span>) τ<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCConst">TDNNRCConst</a></span> {τ} <span class="id">tenv</span> <span class="id">c</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.ModelTyping.TData.html#data_type">data_type</a></span> (<span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id">c</span>) τ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCConst">DNNRCConst</a></span> <span class="id">a</span> <span class="id">c</span>) (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCBinop">TDNNRCBinop</a></span>  {τ₁ τ₂ τ} <span class="id">tenv</span> <span class="id">b</span> <span class="id">e1</span> <span class="id">e2</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.OperatorsTyping.TBinaryOperators.html#binary_op_type">binary_op_type</a></span> <span class="id">b</span> τ₁ τ₂ τ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e1</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ₁) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e2</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ₂) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCBinop">DNNRCBinop</a></span> <span class="id">a</span> <span class="id">b</span> <span class="id">e1</span> <span class="id">e2</span>) (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCUnop">TDNNRCUnop</a></span> {τ₁ τ} <span class="id">tenv</span> <span class="id">u</span> <span class="id">e1</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>), <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.OperatorsTyping.TUnaryOperators.html#unary_op_type">unary_op_type</a></span> <span class="id">u</span> τ₁ τ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e1</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ₁) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCUnop">DNNRCUnop</a></span> <span class="id">a</span> <span class="id">u</span> <span class="id">e1</span>) (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCLet">TDNNRCLet</a></span> {τ₁ τ₂} <span class="id">v</span> <span class="id">tenv</span> <span class="id">e1</span> <span class="id">e2</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>), <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e1</span> τ₁ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> ((<span class="id">v</span>,τ₁)::<span class="id">tenv</span>) <span class="id">e2</span> τ₂ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCLet">DNNRCLet</a></span> <span class="id">a</span> <span class="id">v</span> <span class="id">e1</span> <span class="id">e2</span>) τ₂<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNRCForLocal">TDNRCForLocal</a></span> {τ₁ τ₂} <span class="id">v</span> <span class="id">tenv</span> <span class="id">e1</span> <span class="id">e2</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e1</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Coll">Coll</a></span> τ₁)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> ((<span class="id">v</span>,(<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ₁))::<span class="id">tenv</span>) <span class="id">e2</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ₂) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCFor">DNNRCFor</a></span> <span class="id">a</span> <span class="id">v</span> <span class="id">e1</span> <span class="id">e2</span>) (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Coll">Coll</a></span> τ₂))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNRCForDist">TDNRCForDist</a></span> {τ₁ τ₂} <span class="id">v</span> <span class="id">tenv</span> <span class="id">e1</span> <span class="id">e2</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e1</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tdistr">Tdistr</a></span> τ₁) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> ((<span class="id">v</span>,(<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ₁))::<span class="id">tenv</span>) <span class="id">e2</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ₂) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCFor">DNNRCFor</a></span> <span class="id">a</span> <span class="id">v</span> <span class="id">e1</span> <span class="id">e2</span>) (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tdistr">Tdistr</a></span> τ₂)                      <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNRCIf">TDNRCIf</a></span> {τ} <span class="id">tenv</span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>), <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e1</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> <span class="id"><a href="Qcert.TypeSystem.RType.html#Bool">Bool</a></span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e2</span> τ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e3</span> τ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCIf">DNNRCIf</a></span> <span class="id">a</span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span>) τ<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCEither">TDNNRCEither</a></span> {τ τ<span class="id">l</span> τ<span class="id">r</span>} <span class="id">tenv</span> <span class="id">ed</span> <span class="id">xl</span> <span class="id">el</span> <span class="id">xr</span> <span class="id">er</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>), <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">ed</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Either">Either</a></span> τ<span class="id">l</span> τ<span class="id">r</span>)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> ((<span class="id">xl</span>,(<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ<span class="id">l</span>))::<span class="id">tenv</span>) <span class="id">el</span> τ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> ((<span class="id">xr</span>,(<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> τ<span class="id">r</span>))::<span class="id">tenv</span>) <span class="id">er</span> τ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCEither">DNNRCEither</a></span> <span class="id">a</span> <span class="id">ed</span> <span class="id">xl</span> <span class="id">el</span> <span class="id">xr</span> <span class="id">er</span>) τ<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCCollect">TDNNRCCollect</a></span> {τ} <span class="id">tenv</span> <span class="id">e</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tdistr">Tdistr</a></span> τ) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCCollect">DNNRCCollect</a></span> <span class="id">a</span> <span class="id">e</span>) (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Coll">Coll</a></span> τ))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCDispatch">TDNNRCDispatch</a></span> {τ} <span class="id">tenv</span> <span class="id">e</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> <span class="id">e</span> (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Coll">Coll</a></span> τ)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCDispatch">DNNRCDispatch</a></span> <span class="id">a</span> <span class="id">e</span>) (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tdistr">Tdistr</a></span> τ)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCAlg">TDNNRCAlg</a></span> {τ<span class="id">out</span>} <span class="id">tenv</span> <span class="id">tbindings</span> <span class="id">op</span> <span class="id">nl</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">a</span>:<span class="id">A</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall2">Forall2</a></span> (<span class="kwd">fun</span> <span class="id">n</span> τ =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">n</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> τ<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">n</span>) (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tdistr">Tdistr</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> τ)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nl</span> <span class="id">tbindings</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.DNNRC.Typing.TDNNRCBase.html#plug_typing">plug_typing</a></span> <span class="id">op</span> <span class="id">tbindings</span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Coll">Coll</a></span> τ<span class="id">out</span>) -&gt; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> <span class="id">tenv</span> (<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#DNNRCAlg">DNNRCAlg</a></span> <span class="id">a</span> <span class="id">op</span> <span class="id">nl</span>) (<span class="id"><a href="Qcert.TypeSystem.DType.html#Tdistr">Tdistr</a></span> τ<span class="id">out</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="TDNNRCSubsumption">TDNNRCSubsumption</a></span> {τ<span class="id">env</span> τ<span class="id">out</span>} τ<span class="id">env</span>' τ<span class="id">out</span>' <span class="id">e</span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.ModelTyping.TDBindings.html#tdbindings_sub">tdbindings_sub</a></span> τ<span class="id">env</span>' τ<span class="id">env</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.ModelTyping.TDData.html#drtype_sub">drtype_sub</a></span> τ<span class="id">out</span> τ<span class="id">out</span>' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> τ<span class="id">env</span> <span class="id">e</span> τ<span class="id">out</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">dnnrc_base_type_sub</span> τ<span class="id">env</span>' <span class="id">e</span> τ<span class="id">out</span>'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dnnrc_base_type_sub_proper">dnnrc_base_type_sub_proper</a></span> {<span class="id">A</span> <span class="id">plug_type</span>:<span class="kwd">Set</span>} {<span class="id">plug</span>:<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#AlgPlug">AlgPlug</a></span> <span class="id">plug_type</span>} {<span class="id">tplug</span>: <span class="id"><a href="Qcert.DNNRC.Typing.TDNNRCBase.html#TAlgPlug">TAlgPlug</a></span>} :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.Data.ModelTyping.TDBindings.html#tdbindings_sub">tdbindings_sub</a></span> --&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Data.ModelTyping.TDData.html#drtype_sub">drtype_sub</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>) (<span class="id"><a href="Qcert.tDNNRC.Typing.tDNNRCSub.html#dnnrc_base_type_sub">dnnrc_base_type_sub</a></span> (<span class="id">A</span>:=<span class="id">A</span>)).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3731')">Proof.</div>
+<div class="proofscript" id="proof3731">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#flip">flip</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.tDNNRC.Typing.tDNNRCSub.html#TDNNRCSubsumption">TDNNRCSubsumption</a></span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="dbindings_type_proper">dbindings_type_proper</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Data.ModelTyping.TDBindings.html#tdbindings_sub">tdbindings_sub</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>) <span class="id"><a href="Qcert.Data.ModelTyping.TDBindings.html#dbindings_type">dbindings_type</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3732')">Proof.</div>
+<div class="proofscript" id="proof3732">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#flip">flip</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>, <span class="id"><a href="Qcert.Data.ModelTyping.TDBindings.html#tdbindings_sub">tdbindings_sub</a></span>, <span class="id"><a href="Qcert.Data.ModelTyping.TDBindings.html#dbindings_type">dbindings_type</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">y</span> <span class="id">y0</span> <span class="id">H0</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">x0</span>; <span class="tactic">intros</span> <span class="id">x</span> <span class="id">y0</span> <span class="id">F1</span> <span class="id">F2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">invcs</span> <span class="id">F1</span>; <span class="id">invcs</span> <span class="id">F2</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">destruct</span> <span class="id">x1</span>; <span class="tactic">intuition</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span> <span class="kwd">in</span> <span class="id">H2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.tDNNRC.Typing.tDNNRCSub.html#tDNNRCSub.typ">typ</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="tDNNRCSub.lift">lift</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dnnrc_base_type_to_dnnrc_base_type_sub">dnnrc_base_type_to_dnnrc_base_type_sub</a></span> {<span class="id">A</span>} (<span class="id">plug_type</span>:<span class="kwd">Set</span>) (<span class="id">plug</span>:<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#AlgPlug">AlgPlug</a></span> <span class="id">plug_type</span>) {<span class="id">tplug</span>:<span class="id"><a href="Qcert.DNNRC.Typing.TDNNRCBase.html#TAlgPlug">TAlgPlug</a></span>} {τ<span class="id">c</span>} {τ} (<span class="id">tenv</span>:<span class="id"><a href="Qcert.Data.ModelTyping.TDBindings.html#tdbindings">tdbindings</a></span>) (<span class="id">e</span>:@<span class="id"><a href="Qcert.DNNRC.Lang.DNNRCBase.html#dnnrc_base">dnnrc_base</a></span> <span class="id">_</span> <span class="id">A</span> <span class="id">plug_type</span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.DNNRC.Typing.TDNNRCBase.html#dnnrc_base_type">dnnrc_base_type</a></span> τ<span class="id">c</span> <span class="id">tenv</span> <span class="id">e</span> τ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.tDNNRC.Typing.tDNNRCSub.html#dnnrc_base_type_sub">dnnrc_base_type_sub</a></span> τ<span class="id">c</span> <span class="id">tenv</span> <span class="id">e</span> τ.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3733')">Proof.</div>
+<div class="proofscript" id="proof3733">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="Qcert.tDNNRC.Typing.tDNNRCSub.html#dnnrc_base_type_sub">dnnrc_base_type_sub</a></span> : <span class="id">qcert</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">tenv</span> τ.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">tenv</span> τ <span class="id">dt</span>; <span class="id">invcs</span> <span class="id">dt</span>; <span class="id">qeauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">try</span> <span class="id">eassumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">H5</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#Forall2_incl">Forall2_incl</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> ? ? <span class="id">inn1</span> <span class="id">inn2</span> [<span class="id">eqq1</span> <span class="id">eqq2</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.tDNNRC.Typing.tDNNRCSub.html#tDNNRCSub.lift">lift</a></span>.<br/>
+&nbsp;&nbsp;<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.tDNNRC.Typing.tDNNRCSub.html#tDNNRCSub">tDNNRCSub</a></span>.<br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

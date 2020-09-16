@@ -1,0 +1,49 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Imp.Optim.ImpEJsonOptimizer</title>
+<meta name="description" content="Documentation of Coq module Qcert.Imp.Optim.ImpEJsonOptimizer" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Imp.Optim.ImpEJsonOptimizer</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.EJson.EJsonRuntime.html">EJsonRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.Imp.html">Imp</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html">ImpEJson</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html">ImpEJsonEval</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Optim.ImpEJsonRewrite.html">ImpEJsonRewrite</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ImpEJsonOptimizer">ImpEJsonOptimizer</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejson</span>:<span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejruntime</span>:<span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime">foreign_ejson_runtime</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_ejson_optim_top">imp_ejson_optim_top</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson">imp_ejson</a></span>) : <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson">imp_ejson</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Optim.ImpEJsonRewrite.html#imp_ejson_rewrite">imp_ejson_rewrite</a></span> <span class="id">q</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="ImpEJsonOptimizer.Correctness">Correctness</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="imp_ejson_optim_top_correct">imp_ejson_optim_top_correct</a></span> <span class="id">h</span> (σ : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>)) (<span class="id">q</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson">imp_ejson</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_eval_top_on_ejson">imp_ejson_eval_top_on_ejson</a></span> <span class="id">h</span> σ <span class="id">q</span> =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_eval_top_on_ejson">imp_ejson_eval_top_on_ejson</a></span> <span class="id">h</span> σ (<span class="id"><a href="Qcert.Imp.Optim.ImpEJsonOptimizer.html#imp_ejson_optim_top">imp_ejson_optim_top</a></span> <span class="id">q</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3672')">Proof.</div>
+<div class="proofscript" id="proof3672">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJsonEval.html#imp_ejson_eval_top_on_ejson">imp_ejson_eval_top_on_ejson</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Imp.Optim.ImpEJsonOptimizer.html#imp_ejson_optim_top">imp_ejson_optim_top</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Imp.Optim.ImpEJsonRewrite.html#imp_ejson_rewrite_correct">imp_ejson_rewrite_correct</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Optim.ImpEJsonOptimizer.html#ImpEJsonOptimizer.Correctness">Correctness</a></span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Optim.ImpEJsonOptimizer.html#ImpEJsonOptimizer">ImpEJsonOptimizer</a></span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

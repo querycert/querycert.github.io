@@ -1,0 +1,112 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Imp.Lang.ImpVars</title>
+<meta name="description" content="Documentation of Coq module Qcert.Imp.Lang.ImpVars" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Imp.Lang.ImpVars</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html">Permutation</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Max.html">Max</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Peano_dec.html">Peano_dec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Decidable.html">Decidable</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.Imp.html">Imp</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ImpVars">ImpVars</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Import</span> <span class="id">ListNotations</span>.<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">Constant</span>: <span class="kwd">Set</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">Op</span>: <span class="kwd">Set</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">Runtime</span>: <span class="kwd">Set</span>}.<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="imp_expr_free_vars">imp_expr_free_vars</a></span> (<span class="id">e</span>:@<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_expr">imp_expr</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#ImpVars.Constant">Constant</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#ImpVars.Op">Op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#ImpVars.Runtime">Runtime</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Imp.Lang.Imp.html#var">var</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">e</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprError">ImpExprError</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprVar">ImpExprVar</a></span> <span class="id">v</span> =&gt; <span class="id">v</span> :: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprConst">ImpExprConst</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprOp">ImpExprOp</a></span> <span class="id">_</span> <span class="id">l</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">e</span> =&gt; <span class="id">imp_expr_free_vars</span> <span class="id">e</span> ++ <span class="id">acc</span>) <span class="id">l</span> []<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprRuntimeCall">ImpExprRuntimeCall</a></span> <span class="id">_</span> <span class="id">l</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">e</span> =&gt; <span class="id">imp_expr_free_vars</span> <span class="id">e</span> ++ <span class="id">acc</span>) <span class="id">l</span> []<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="imp_stmt_free_vars">imp_stmt_free_vars</a></span> (<span class="id">stmt</span>:<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_stmt">imp_stmt</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Imp.Lang.Imp.html#var">var</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">stmt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtBlock">ImpStmtBlock</a></span> <span class="id">decls</span> <span class="id">stmts</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_right">List.fold_right</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">decl</span> <span class="id">acc</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">decl</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| (<span class="id">v</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>) =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> <span class="id">acc</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| (<span class="id">v</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span>) =&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#imp_expr_free_vars">imp_expr_free_vars</a></span> <span class="id">e</span> ++ (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> <span class="id">acc</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_right">List.fold_right</a></span> (<span class="kwd">fun</span> <span class="id">s</span> <span class="id">acc</span> =&gt; <span class="id">imp_stmt_free_vars</span> <span class="id">s</span> ++ <span class="id">acc</span>) [] <span class="id">stmts</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decls</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtAssign">ImpStmtAssign</a></span> <span class="id">x</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">x</span> :: <span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#imp_expr_free_vars">imp_expr_free_vars</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtFor">ImpStmtFor</a></span> <span class="id">v</span> <span class="id">e</span> <span class="id">s</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#imp_expr_free_vars">imp_expr_free_vars</a></span> <span class="id">e</span> ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> (<span class="id">imp_stmt_free_vars</span> <span class="id">s</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtForRange">ImpStmtForRange</a></span> <span class="id">v</span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">s</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#imp_expr_free_vars">imp_expr_free_vars</a></span> <span class="id">e1</span> ++ <span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#imp_expr_free_vars">imp_expr_free_vars</a></span> <span class="id">e2</span> ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> (<span class="id">imp_stmt_free_vars</span> <span class="id">s</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtIf">ImpStmtIf</a></span> <span class="id">e</span> <span class="id">s1</span> <span class="id">s2</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#imp_expr_free_vars">imp_expr_free_vars</a></span> <span class="id">e</span> ++ <span class="id">imp_stmt_free_vars</span> <span class="id">s1</span> ++ <span class="id">imp_stmt_free_vars</span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="imp_stmt_bound_vars">imp_stmt_bound_vars</a></span> (<span class="id">stmt</span>:@<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_stmt">imp_stmt</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#ImpVars.Constant">Constant</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#ImpVars.Op">Op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#ImpVars.Runtime">Runtime</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Imp.Lang.Imp.html#var">var</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">stmt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtBlock">ImpStmtBlock</a></span> <span class="id">decls</span> <span class="id">stmts</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">decl</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">decl</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| (<span class="id">v</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>) =&gt; <span class="id">v</span> :: <span class="id">acc</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| (<span class="id">v</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span>) =&gt; <span class="id">v</span> :: <span class="id">acc</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decls</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">s</span> =&gt; <span class="id">imp_stmt_bound_vars</span> <span class="id">s</span> ++ <span class="id">acc</span>) <span class="id">stmts</span> [])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtAssign">ImpStmtAssign</a></span> <span class="id">x</span> <span class="id">e</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtFor">ImpStmtFor</a></span> <span class="id">v</span> <span class="id">e</span> <span class="id">s</span> =&gt; <span class="id">v</span> :: <span class="id">imp_stmt_bound_vars</span> <span class="id">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtForRange">ImpStmtForRange</a></span> <span class="id">v</span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">s</span> =&gt; <span class="id">v</span> :: <span class="id">imp_stmt_bound_vars</span> <span class="id">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtIf">ImpStmtIf</a></span> <span class="id">e</span> <span class="id">s1</span> <span class="id">s2</span> =&gt; <span class="id">imp_stmt_bound_vars</span> <span class="id">s1</span> ++ <span class="id">imp_stmt_bound_vars</span> <span class="id">s2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="remove_perm_proper">remove_perm_proper</a></span> {<span class="id">A</span>} <span class="id">dec</span> <span class="id">v</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> ((@<span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation">Permutation</a></span> <span class="id">A</span>) ==&gt; (@<span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation">Permutation</a></span> <span class="id">A</span>)) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id">dec</span> <span class="id">v</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3645')">Proof.</div>
+<div class="proofscript" id="proof3645">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_ind_bis">Permutation_ind_bis</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">match_destr</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="id">match_destr</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#perm_swap">perm_swap</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">etransitivity</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpVars.html#ImpVars">ImpVars</a></span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

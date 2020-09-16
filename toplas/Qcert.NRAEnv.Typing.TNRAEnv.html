@@ -1,0 +1,212 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.NRAEnv.Typing.TNRAEnv</title>
+<meta name="description" content="Documentation of Coq module Qcert.NRAEnv.Typing.TNRAEnv" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.NRAEnv.Typing.TNRAEnv</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Compare_dec.html">Compare_dec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="kwd">Program</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataSystem.html">DataSystem</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.cNRAEnv.cNRAEnvSystem.html">cNRAEnvSystem</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html">NRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnvEq.html">NRAEnvEq</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="TNRAEnv">TNRAEnv</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nraenv_scope</span>.<br/>
+&nbsp;&nbsp;<br/>
+<div class="doc">Typing for NRA </div>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="TNRAEnv.typ">typ</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Data.DataSystem.html#basic_model">basic_model</a></span>}.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> (τ<span class="id">constants</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nraenv_type">nraenv_type</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span>) : <span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span> -&gt; <span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span> -&gt; <span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span> -&gt; <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="Qcert.cNRAEnv.Typing.TcNRAEnv.html#nraenv_core_type">nraenv_core_type</a></span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#TNRAEnv.typ.m">m</a></span> τ<span class="id">constants</span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="id">q</span>).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#TNRAEnv.typ">typ</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Notation</span> "<span class="id">Op</span> ▷ₓ <span class="id">A</span> &gt;=&gt; <span class="id">B</span> ⊣ <span class="id">C</span> ; <span class="id">E</span>" := (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span> <span class="id">C</span> <span class="id">Op</span> <span class="id">E</span> <span class="id">A</span> <span class="id">B</span>) (<span class="tactic">at</span> <span class="id">level</span> 70).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="TNRAEnv.groupby">groupby</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Data.DataSystem.html#basic_model">basic_model</a></span>}.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> (τ<span class="id">constants</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>)).<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="type_NRAEnvGroupBy">type_NRAEnvGroupBy</a></span> {<span class="id">k</span> τ<span class="id">l</span> <span class="id">pf</span>} τ<span class="id">cenv</span> τ<span class="id">env</span> τ<span class="kwd">in</span> <span class="id">g</span> <span class="id">sl</span> <span class="id">e</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Sublist.html#sublist">sublist</a></span> <span class="id">sl</span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> τ<span class="id">l</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">e</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; (<span class="id"><a href="Qcert.TypeSystem.RType.html#Coll">Coll</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id">k</span> τ<span class="id">l</span> <span class="id">pf</span>)) ⊣ τ<span class="id">cenv</span> ; τ<span class="id">env</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvGroupBy">NRAEnvGroupBy</a></span> <span class="id">g</span> <span class="id">sl</span> <span class="id">e</span>) ▷ₓ τ<span class="kwd">in</span> &gt;=&gt;  (<span class="id"><a href="Qcert.Data.OperatorsTyping.TGroupBy.html#GroupBy_type">GroupBy_type</a></span> <span class="id">g</span> <span class="id">sl</span> <span class="id">k</span> τ<span class="id">l</span> <span class="id">pf</span>) ⊣ τ<span class="id">cenv</span> ; τ<span class="id">env</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2397')">Proof.</div>
+<div class="proofscript" id="proof2397">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Data.OperatorsTyping.TGroupBy.html#GroupBy_type">GroupBy_type</a></span>, <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">subl</span> <span class="id">typ</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#macro_cNRAEnvGroupBy">macro_cNRAEnvGroupBy</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> (<span class="id">econstructor</span>; <span class="tactic">try</span> <span class="id">eassumption</span>; <span class="id">qtrivial</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Unshelve</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">simpl</span>; <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> (<span class="id"><a href="Qcert.Utils.Sublist.html#is_list_sorted_sublist">is_list_sorted_sublist</a></span> <span class="id">pf</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Sublist.html#sublist_domain">sublist_domain</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Bindings.html#sublist_rproject">sublist_rproject</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="type_NRAEnvGroupBy_inv">type_NRAEnvGroupBy_inv</a></span> {τ} τ<span class="id">cenv</span> τ<span class="id">env</span> τ<span class="kwd">in</span> <span class="id">g</span> <span class="id">sl</span> <span class="id">e</span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvGroupBy">NRAEnvGroupBy</a></span> <span class="id">g</span> <span class="id">sl</span> <span class="id">e</span>) ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; τ ⊣ τ<span class="id">cenv</span> ; τ<span class="id">env</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">k</span> τ<span class="id">l</span> <span class="id">pf</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;τ = (<span class="id"><a href="Qcert.Data.OperatorsTyping.TGroupBy.html#GroupBy_type">GroupBy_type</a></span> <span class="id">g</span> <span class="id">sl</span> <span class="id">k</span> τ<span class="id">l</span> <span class="id">pf</span>) /\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Sublist.html#sublist">sublist</a></span> <span class="id">sl</span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> τ<span class="id">l</span>) /\ <span class="id">e</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; (<span class="id"><a href="Qcert.TypeSystem.RType.html#Coll">Coll</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Rec">Rec</a></span> <span class="id">k</span> τ<span class="id">l</span> <span class="id">pf</span>)) ⊣ τ<span class="id">cenv</span> ; τ<span class="id">env</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2398')">Proof.</div>
+<div class="proofscript" id="proof2398">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Data.OperatorsTyping.TGroupBy.html#GroupBy_type">GroupBy_type</a></span>, <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#macro_cNRAEnvGroupBy">macro_cNRAEnvGroupBy</a></span>, <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#macro_cNRAEnvProject">macro_cNRAEnvProject</a></span>; <span class="tactic">intros</span> <span class="id">typ</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nraenv_core_inverter</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">x0</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Data.OperatorsTyping.TUtil.html#tdot">tdot</a></span>, <span class="id"><a href="Qcert.Utils.Bindings.html#edot">edot</a></span>, <span class="id"><a href="Qcert.Utils.Bindings.html#rec_concat_sort">rec_concat_sort</a></span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.Bindings.html#assoc_lookupr_drec_sort">assoc_lookupr_drec_sort</a></span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H0</span>; <span class="id">invcs</span> <span class="id">H8</span>; <span class="id">invcs</span> <span class="id">H9</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H13</span>; <span class="id">rtype_equalizer</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Coll_inside">Coll_inside</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">H12</span>) <span class="kwd">as</span> [? <span class="id">eqq1</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="id">eqq1</span> <span class="kwd">in</span> <span class="id">H12</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">Rec</span>₀<span class="id">_eq_proj1_Rec</span> <span class="id">eqq1</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.TypeSystem.RType.html#Coll_right_inv">Coll_right_inv</a></span> <span class="kwd">in</span> <span class="id">H12</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H3</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">Rec</span>₀<span class="id">_eq_proj1_Rec</span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">H0</span> <span class="kwd">as</span> [??]; <span class="tactic">subst</span>; <span class="tactic">clear</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">do</span> 3 <span class="id">eexists</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">erewrite</span> <span class="id"><a href="Qcert.TypeSystem.RType.html#Rec_pr_irrel">Rec_pr_irrel</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">erewrite</span> <span class="id"><a href="Qcert.TypeSystem.RType.html#Rec_pr_irrel">Rec_pr_irrel</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#TNRAEnv.groupby">groupby</a></span>.<br/>
+<div class="doc">Type lemmas for individual algebraic expressions </div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="TNRAEnv.prop">prop</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Data.DataSystem.html#basic_model">basic_model</a></span>}.<br/>
+<br/>
+<div class="doc">Main typing soundness theorem for the NRA </div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="typed_nraenv_yields_typed_nraenv_core">typed_nraenv_yields_typed_nraenv_core</a></span> {τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} (<span class="id">op</span>:<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">op</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>;τ<span class="id">env</span>) -&gt; <span class="id"><a href="Qcert.cNRAEnv.Typing.TcNRAEnv.html#nraenv_core_type">nraenv_core_type</a></span> τ<span class="id">c</span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="id">op</span>) τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2399')">Proof.</div>
+<div class="proofscript" id="proof2399">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span>; <span class="tactic">intro</span>; <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="typed_nraenv_core_yields_typed_nraenv">typed_nraenv_core_yields_typed_nraenv</a></span> {τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} (<span class="id">op</span>:<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNRAEnv.Typing.TcNRAEnv.html#nraenv_core_type">nraenv_core_type</a></span> τ<span class="id">c</span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="id">op</span>) τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span> -&gt; (<span class="id">op</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>;τ<span class="id">env</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2400')">Proof.</div>
+<div class="proofscript" id="proof2400">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> τ<span class="kwd">in</span> τ<span class="id">out</span> τ<span class="id">env</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">op</span>; <span class="tactic">intros</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;Takes&nbsp;care&nbsp;of&nbsp;all&nbsp;core&nbsp;operators&nbsp;*)</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span>; <span class="tactic">assumption</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> (<span class="id">solve</span>[<span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">clear</span> <span class="id">H</span>; <span class="tactic">subst</span>; <span class="tactic">repeat</span> <span class="id">econstructor</span>; <span class="tactic">eauto</span>]).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="typed_nraenv_core_iff_typed_nraenv">typed_nraenv_core_iff_typed_nraenv</a></span> {τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} (<span class="id">op</span>:<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">op</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>;τ<span class="id">env</span>) &lt;-&gt; <span class="id"><a href="Qcert.cNRAEnv.Typing.TcNRAEnv.html#nraenv_core_type">nraenv_core_type</a></span> τ<span class="id">c</span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="id">op</span>) τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2401')">Proof.</div>
+<div class="proofscript" id="proof2401">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#typed_nraenv_yields_typed_nraenv_core">typed_nraenv_yields_typed_nraenv_core</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#typed_nraenv_core_yields_typed_nraenv">typed_nraenv_core_yields_typed_nraenv</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="typed_nraenv_yields_typed_data">typed_nraenv_yields_typed_data</a></span> {τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} <span class="id">c</span> (<span class="id">env</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>) (<span class="id">d</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>) (<span class="id">op</span>:<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.ModelTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id">c</span> τ<span class="id">c</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">env</span> ▹ τ<span class="id">env</span>) -&gt; (<span class="id">d</span> ▹ τ<span class="kwd">in</span>) -&gt; (<span class="id">op</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>;τ<span class="id">env</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">exists</span> <span class="id">x</span>, (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_eval">nraenv_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id">c</span> <span class="id">op</span> <span class="id">env</span> <span class="id">d</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">x</span> /\ (<span class="id">x</span> ▹ τ<span class="id">out</span>))).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2402')">Proof.</div>
+<div class="proofscript" id="proof2402">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_eval">nraenv_eval</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.cNRAEnv.Typing.TcNRAEnv.html#typed_nraenv_core_yields_typed_data">typed_nraenv_core_yields_typed_data</a></span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#TNRAEnv.prop.m">m</a></span> τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>); <span class="tactic">try</span> <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+<div class="doc">Corrolaries of the main type soudness theorem </div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="typed_nraenv_total">typed_nraenv_total</a></span> {τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} (<span class="id">op</span>:<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span>) (<span class="id">HOpT</span>: <span class="id">op</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>;τ<span class="id">env</span>) <span class="id">c</span> (<span class="id">env</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>) (<span class="id">d</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.ModelTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id">c</span> τ<span class="id">c</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">env</span> ▹ τ<span class="id">env</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d</span> ▹ τ<span class="kwd">in</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <span class="id">x</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> | <span class="id">x</span> ▹ τ<span class="id">out</span> }.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2403')">Proof.</div>
+<div class="proofscript" id="proof2403">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Hc</span> <span class="id">Henv</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">HdT</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#typed_nraenv_yields_typed_data">typed_nraenv_yields_typed_data</a></span> <span class="id">c</span> <span class="id">env</span> <span class="id">d</span> <span class="id">op</span> <span class="id">Hc</span> <span class="id">Henv</span> <span class="id">HdT</span> <span class="id">HOpT</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_eval">nraenv_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id">c</span> <span class="id">op</span> <span class="id">env</span> <span class="id">d</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Data.ModelTyping.TData.html#data_type">data_type</a></span> <span class="id">d0</span> τ<span class="id">out</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>. <span class="tactic">inversion</span> <span class="id">H0</span>. <span class="tactic">inversion</span> <span class="id">H1</span>. <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">exists</span> <span class="id">d0</span>. <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">cut</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span>. <span class="tactic">intuition</span>. <span class="tactic">inversion</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">H0</span>. <span class="tactic">inversion</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="tnraenv_eval">tnraenv_eval</a></span> {τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} (<span class="id">op</span>:<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span>) (<span class="id">HOpT</span>: <span class="id">op</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>;τ<span class="id">env</span>) <span class="id">c</span> (<span class="id">env</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>) (<span class="id">d</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.ModelTyping.TBindings.html#bindings_type">bindings_type</a></span> <span class="id">c</span> τ<span class="id">c</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">env</span> ▹ τ<span class="id">env</span>) -&gt; (<span class="id">d</span> ▹ τ<span class="kwd">in</span>) -&gt; <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof2404')">Proof.</div>
+<div class="proofscript" id="proof2404">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">Hc</span> <span class="id">Henv</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">HdT</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#typed_nraenv_total">typed_nraenv_total</a></span> <span class="id">op</span> <span class="id">HOpT</span> <span class="id">c</span> <span class="id">env</span> <span class="id">d</span> <span class="id">Hc</span> <span class="id">Henv</span> <span class="id">HdT</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">exact</span> <span class="id">x</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#TNRAEnv.prop">prop</a></span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#TNRAEnv">TNRAEnv</a></span>.<br/>
+<br/>
+<br/>
+<span class="kwd">Notation</span> "<span class="id">Op</span> ▷ₓ <span class="id">A</span> &gt;=&gt; <span class="id">B</span> ⊣ <span class="id">C</span> ; <span class="id">E</span>" := (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span> <span class="id">C</span> <span class="id">Op</span> <span class="id">E</span> <span class="id">A</span> <span class="id">B</span>) (<span class="tactic">at</span> <span class="id">level</span> 70).<br/>
+<span class="kwd">Notation</span> "<span class="id">Op</span> @▷ₓ <span class="id">d</span> ⊣ <span class="id">C</span> ; <span class="id">e</span>" := (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#tnraenv_eval">tnraenv_eval</a></span> <span class="id">C</span> <span class="id">Op</span> <span class="id">e</span> <span class="id">d</span>) (<span class="tactic">at</span> <span class="id">level</span> 70).<br/>
+<br/>
+<br/>
+<span class="kwd">Hint</span> <span class="kwd">Unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span> : <span class="id">qcert</span>.<br/>
+<span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#unary_op_type">unary_op_type</a></span> : <span class="id">qcert</span>.<br/>
+<span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#binary_op_type">binary_op_type</a></span> : <span class="id">qcert</span>.<br/>
+<br/>
+<span class="kwd">Ltac</span> <span class="id">nraenv_inferer</span> :=<br/>
+&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#nraenv_type">nraenv_type</a></span> <span class="kwd">in</span> *;<br/>
+&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_eval">nraenv_eval</a></span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *;<br/>
+&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">nraenv_core_inverter</span>; <span class="tactic">subst</span>; <span class="tactic">try</span> <span class="tactic">eauto</span>.<br/>
+<br/>
+<span class="kwd">Ltac</span> <span class="id">nraenv_input_well_typed</span> :=<br/>
+&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">progress</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">goal</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [<span class="id">HO</span>:?<span class="id">op</span> ▷ₓ ?τ<span class="kwd">in</span> &gt;=&gt; ?τ<span class="id">out</span> ⊣  ?τ<span class="id">c</span> ; ?τ<span class="id">env</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">HI</span>:?<span class="id">x</span> ▹ ?τ<span class="kwd">in</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">HE</span>:?<span class="id">env</span> ▹ ?τ<span class="id">env</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">HC</span>:<span class="id"><a href="Qcert.Data.ModelTyping.TBindings.html#bindings_type">bindings_type</a></span> ?<span class="id">c</span> ?τ<span class="id">c</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|- <span class="id">context</span> [(<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_eval">nraenv_eval</a></span> ?<span class="id">h</span> ?<span class="id">c</span> ?<span class="id">op</span> ?<span class="id">env</span> ?<span class="id">x</span>)]] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">xout</span> := <span class="tactic">fresh</span> "<span class="id">dout</span>" <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">xtype</span> := <span class="tactic">fresh</span> "τ<span class="id">out</span>" <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">xeval</span> := <span class="tactic">fresh</span> "<span class="id">eout</span>" <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnv.html#typed_nraenv_yields_typed_data">typed_nraenv_yields_typed_data</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">op</span> <span class="id">HC</span> <span class="id">HE</span> <span class="id">HI</span> <span class="id">HO</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">as</span> [<span class="id">xout</span> [<span class="id">xeval</span> <span class="id">xtype</span>]]; <span class="tactic">rewrite</span> <span class="id">xeval</span> <span class="kwd">in</span> *; <span class="tactic">simpl</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>; <span class="id">input_well_typed</span>.<br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

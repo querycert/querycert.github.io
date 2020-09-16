@@ -1,0 +1,68 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Utils.NativeString</title>
+<meta name="description" content="Documentation of Coq module Qcert.Utils.NativeString" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Utils.NativeString</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.StringAdd.html">StringAdd</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.Ascii.html">Ascii</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NativeString">NativeString</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Parameter</span> <span class="id"><a name="nstring">nstring</a></span> : <span class="kwd">Set</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Parameter</span> <span class="id"><a name="nstring_quote">nstring_quote</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Parameter</span> <span class="id"><a name="nstring_unquote">nstring_unquote</a></span> : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Parameter</span> <span class="id"><a name="nstring_append">nstring_append</a></span> : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> -&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> -&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Parameter</span> <span class="id"><a name="nstring_flat_map">nstring_flat_map</a></span> : (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.Ascii.html#ascii">Ascii.ascii</a></span> -&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>) -&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> -&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Parameter</span> <span class="id"><a name="nstring_map">nstring_map</a></span> :  (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.Ascii.html#ascii">Ascii.ascii</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.Ascii.html#ascii">Ascii.ascii</a></span>) -&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> -&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nstrint_multi_append">nstrint_multi_append</a></span> {<span class="id">A</span>} <span class="id">separator</span> (<span class="id">f</span>:<span class="id">A</span> -&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>) (<span class="id">elems</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">A</span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">elems</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> =&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_quote">nstring_quote</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#EmptyString">EmptyString</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">e</span> :: <span class="id">elems</span>' =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">e</span> =&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_append">nstring_append</a></span> (<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_append">nstring_append</a></span> <span class="id">acc</span> <span class="id">separator</span>) (<span class="id">f</span> <span class="id">e</span>)) <span class="id">elems</span>' (<span class="id">f</span> <span class="id">e</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nstring_concat">nstring_concat</a></span> (<span class="id">sep</span> : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>) (<span class="id">ls</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">ls</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> =&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_quote">nstring_quote</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#EmptyString">EmptyString</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">x</span> :: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> =&gt; <span class="id">x</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">x</span> :: (<span class="id">_</span> :: <span class="id">_</span>) <span class="kwd">as</span> <span class="id">xs</span> =&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_append">nstring_append</a></span> (<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_append">nstring_append</a></span> <span class="id">x</span> <span class="id">sep</span>) (<span class="id">nstring_concat</span> <span class="id">sep</span> <span class="id">xs</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="nstring_map_concat">nstring_map_concat</a></span> {<span class="id">A</span>} (<span class="id">separator</span>:<span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>) (<span class="id">f</span>:<span class="id">A</span> -&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>) (<span class="id">elems</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">A</span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">elems</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> =&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_quote">nstring_quote</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#EmptyString">EmptyString</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">e</span> :: <span class="id">elems</span>' =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">e</span> =&gt; <span class="id"><a href="Qcert.Utils.NativeString.html#nstring_append">nstring_append</a></span> (<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_append">nstring_append</a></span> <span class="id">acc</span> <span class="id">separator</span>) (<span class="id">f</span> <span class="id">e</span>)) <span class="id">elems</span>' (<span class="id">f</span> <span class="id">e</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Utils.NativeString.html#NativeString">NativeString</a></span>.<br/>
+<br/>
+<span class="id">Declare</span> <span class="kwd">Scope</span> <span class="id">nstring_scope</span>.<br/>
+<br/>
+<span class="kwd">Notation</span> "^ <span class="id">e</span>" := (<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_quote">nstring_quote</a></span> <span class="id">e</span>) (<span class="id">left</span> <span class="id">associativity</span>, <span class="tactic">at</span> <span class="id">level</span> 40) : <span class="id">nstring_scope</span>.<br/>
+<span class="kwd">Notation</span> "&amp; <span class="id">e</span>" := (<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_unquote">nstring_unquote</a></span> <span class="id">e</span>) (<span class="id">left</span> <span class="id">associativity</span>, <span class="tactic">at</span> <span class="id">level</span> 40) : <span class="id">nstring_scope</span>.<br/>
+<span class="kwd">Notation</span> "<span class="id">e1</span> +++ <span class="id">e2</span>" := (<span class="id"><a href="Qcert.Utils.NativeString.html#nstring_append">nstring_append</a></span> <span class="id">e1</span> <span class="id">e2</span>) (<span class="id">right</span> <span class="id">associativity</span>, <span class="tactic">at</span> <span class="id">level</span> 70): <span class="id">nstring_scope</span>.<br/>
+<br/>
+<span class="id">Extract</span> <span class="id">Constant</span> <span class="id">nstring</span> =&gt; "<span class="id">string</span>".<br/>
+<span class="id">Extract</span> <span class="id">Constant</span> <span class="id">nstring_quote</span> =&gt; "(<span class="kwd">fun</span> <span class="id">s1</span> -&gt; <span class="id">Util.string_of_char_list</span> <span class="id">s1</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Constant</span> <span class="id">nstring_unquote</span> =&gt; "(<span class="kwd">fun</span> <span class="id">s1</span> -&gt; <span class="id">Util.char_list_of_string</span> <span class="id">s1</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Constant</span> <span class="id">nstring_append</span> =&gt; "(<span class="kwd">fun</span> <span class="id">s1</span> <span class="id">s2</span> -&gt; <span class="id">s1</span> ^ <span class="id">s2</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Constant</span> <span class="id">nstring_flat_map</span> =&gt; "(<span class="kwd">fun</span> <span class="id">f</span> <span class="id">s</span> -&gt; <span class="id">Util.flat_map_string</span> <span class="id">f</span> <span class="id">s</span>)".<br/>
+<span class="id">Extract</span> <span class="id">Constant</span> <span class="id">nstring_map</span> =&gt; "(<span class="kwd">fun</span> <span class="id">f</span> <span class="id">s</span> -&gt; <span class="id">Util.map_string</span> <span class="id">f</span> <span class="id">s</span>)".<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

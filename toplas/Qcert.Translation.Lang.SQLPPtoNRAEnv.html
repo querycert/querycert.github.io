@@ -1,0 +1,175 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Translation.Lang.SQLPPtoNRAEnv</title>
+<meta name="description" content="Documentation of Coq module Qcert.Translation.Lang.SQLPPtoNRAEnv" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Translation.Lang.SQLPPtoNRAEnv</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.SQLPP.SQLPPRuntime.html">SQLPPRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRAEnv.NRAEnvRuntime.html">NRAEnvRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Lang.SQLtoNRAEnv.html">SQLtoNRAEnv</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="SQLPPtoNRAEnv">SQLPPtoNRAEnv</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id"><a name="sqlpp_to_nraenv_SPEq">sqlpp_to_nraenv_SPEq</a></span> <span class="id">sqlpp_to_nraenv</span> (<span class="id">e1</span> <span class="id">e2</span>:<span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp_expr">sqlpp_expr</a></span>) : <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span><br/>
+&nbsp;&nbsp;:= <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpEqual">OpEqual</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>).<br/>
+&nbsp;&nbsp;<br/>
+<span class="kwd">Definition</span> <span class="id"><a name="sqlpp_to_nraenv_not_implemented">sqlpp_to_nraenv_not_implemented</a></span> (<span class="id">what</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) : <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span> :=<br/>
+&nbsp;<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dstring">dstring</a></span> ("<span class="id">NRAEnv</span> <span class="id">translation</span> <span class="id">not</span> <span class="id">Implemented</span>: " ++ <span class="id">what</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<span class="kwd">Fixpoint</span> <span class="id"><a name="sqlpp_to_nraenv">sqlpp_to_nraenv</a></span> (<span class="id">q</span>:<span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp">sqlpp</a></span>) : <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">q</span> <span class="kwd">with</span><br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPPositive">SPPositive</a></span> <span class="id">expr</span><br/>
+&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> (<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpNatBinary">OpNatBinary</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatPlus">NatPlus</a></span>) (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dnat">dnat</a></span> 0)) (<span class="id">sqlpp_to_nraenv</span> <span class="id">expr</span>)<br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPNegative">SPNegative</a></span> <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> (<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpNatBinary">OpNatBinary</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatMinus">NatMinus</a></span>) (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dnat">dnat</a></span> 0)) (<span class="id">sqlpp_to_nraenv</span> <span class="id">expr</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPExists">SPExists</a></span> <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvUnop">NRAEnvUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpNeg">OpNeg</a></span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpLe">OpLe</a></span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvUnop">NRAEnvUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpCount">OpCount</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">expr</span>)) (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dnat">dnat</a></span> 0)))<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPNot">SPNot</a></span> <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvUnop">NRAEnvUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpNeg">OpNeg</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">expr</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPIsNull">SPIsNull</a></span> <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPIsMissing">SPIsMissing</a></span> <span class="id">expr</span><br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPIsUnknown">SPIsUnknown</a></span> <span class="id">expr</span><br/>
+&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpEqual">OpEqual</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">expr</span>) (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span>)<br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPPlus">SPPlus</a></span> <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> (<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpNatBinary">OpNatBinary</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatPlus">NatPlus</a></span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPMinus">SPMinus</a></span>  <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> (<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpNatBinary">OpNatBinary</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatMinus">NatMinus</a></span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPMult">SPMult</a></span> <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> (<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpNatBinary">OpNatBinary</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatMult">NatMult</a></span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPDiv">SPDiv</a></span> <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> (<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpNatBinary">OpNatBinary</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatDiv">NatDiv</a></span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPMod">SPMod</a></span> <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> (<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpNatBinary">OpNatBinary</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#NatRem">NatRem</a></span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPExp">SPExp</a></span> <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.Translation.Lang.SQLPPtoNRAEnv.html#sqlpp_to_nraenv_not_implemented">sqlpp_to_nraenv_not_implemented</a></span> "<span class="id">exp</span> <span class="id">operator</span>" <br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPConcat">SPConcat</a></span> <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpStringConcat">OpStringConcat</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPIn">SPIn</a></span> <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpContains">OpContains</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPEq">SPEq</a></span>  <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFuzzyEq">SPFuzzyEq</a></span> <span class="id">e1</span> <span class="id">e2</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.Translation.Lang.SQLPPtoNRAEnv.html#sqlpp_to_nraenv_SPEq">sqlpp_to_nraenv_SPEq</a></span> <span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPNeq">SPNeq</a></span>  <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvUnop">NRAEnvUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpNeg">OpNeg</a></span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpEqual">OpEqual</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>))<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPLt">SPLt</a></span>  <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpLt">OpLt</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPGt">SPGt</a></span>  <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpLt">OpLt</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPLe">SPLe</a></span>  <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpLe">OpLe</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPGe">SPGe</a></span>  <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpLe">OpLe</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPLike">SPLike</a></span>  <span class="id">e</span> <span class="id">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvUnop">NRAEnvUnop</a></span> (<span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpLike">OpLike</a></span> <span class="id">s</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPAnd">SPAnd</a></span>  <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpAnd">OpAnd</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPOr">SPOr</a></span>  <span class="id">e1</span> <span class="id">e2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpOr">OpOr</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>)<br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPBetween">SPBetween</a></span>  <span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpAnd">OpAnd</a></span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpLe">OpLe</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e2</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpLe">OpLe</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">e1</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">e3</span>))<br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPSimpleCase">SPSimpleCase</a></span> <span class="id">value</span> <span class="id">whenthens</span> <span class="id">deflt</span><br/>
+&nbsp;&nbsp;&nbsp;=&gt; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">last</span> := <span class="kwd">match</span> <span class="id">deflt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">dflt</span> =&gt; <span class="id">sqlpp_to_nraenv</span> <span class="id">dflt</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_right">List.fold_right</a></span> (<span class="kwd">fun</span> <span class="id">wt</span> <span class="id">acc</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">wt</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPWhenThen">SPWhenThen</a></span> <span class="id">whn</span> <span class="id">thn</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.SQLtoNRAEnv.html#nraenv_if">nraenv_if</a></span> (<span class="id"><a href="Qcert.Translation.Lang.SQLPPtoNRAEnv.html#sqlpp_to_nraenv_SPEq">sqlpp_to_nraenv_SPEq</a></span> <span class="id">sqlpp_to_nraenv</span> <span class="id">whn</span> <span class="id">value</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">thn</span>) <span class="id">acc</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">last</span> <span class="id">whenthens</span><br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPSearchedCase">SPSearchedCase</a></span> <span class="id">whenthens</span> <span class="id">deflt</span><br/>
+&nbsp;&nbsp;=&gt; <span class="kwd">let</span> <span class="id">last</span> := <span class="kwd">match</span> <span class="id">deflt</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">dflt</span> =&gt; <span class="id">sqlpp_to_nraenv</span> <span class="id">dflt</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_right">List.fold_right</a></span> (<span class="kwd">fun</span> <span class="id">wt</span> <span class="id">acc</span> =&gt; <span class="kwd">match</span> <span class="id">wt</span> <span class="kwd">with</span> <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPWhenThen">SPWhenThen</a></span> <span class="id">w</span> <span class="id">t</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.SQLtoNRAEnv.html#nraenv_if">nraenv_if</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">w</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">t</span>) <span class="id">acc</span> <span class="kwd">end</span>) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">last</span> <span class="id">whenthens</span><br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPSome">SPSome</a></span>  <span class="id">_</span> <span class="id">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPEvery">SPEvery</a></span> <span class="id">_</span> <span class="id">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.Translation.Lang.SQLPPtoNRAEnv.html#sqlpp_to_nraenv_not_implemented">sqlpp_to_nraenv_not_implemented</a></span> "<span class="id">quantified</span> <span class="id">expressions</span> (<span class="id">SOME</span> | <span class="id">EVERY</span>)"<br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPDot">SPDot</a></span>  <span class="id">expr</span> <span class="id">name</span><br/>
+&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvUnop">NRAEnvUnop</a></span> (<span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpDot">OpDot</a></span> <span class="id">name</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">expr</span>)<br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPIndex">SPIndex</a></span>  <span class="id">_</span> <span class="id">_</span><br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPIndexAny">SPIndexAny</a></span> <span class="id">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.Translation.Lang.SQLPPtoNRAEnv.html#sqlpp_to_nraenv_not_implemented">sqlpp_to_nraenv_not_implemented</a></span> "<span class="id">indexing</span> <span class="id">expressions</span>"<br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPLiteral">SPLiteral</a></span> <span class="id">d</span><br/>
+&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> <span class="id">d</span><br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPNull">SPNull</a></span><br/>
+&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPMissing">SPMissing</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span><br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPVarRef">SPVarRef</a></span> <span class="id">name</span><br/>
+&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvUnop">NRAEnvUnop</a></span> (<span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpDot">OpDot</a></span> <span class="id">name</span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvID">NRAEnvID</a></span><br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFunctionCall">SPFunctionCall</a></span> <span class="id">name</span> <span class="id">args</span><br/>
+&nbsp;&nbsp;=&gt; <span class="kwd">match</span> <span class="id">name</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFget_year">SPFget_year</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFget_month">SPFget_month</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFget_day">SPFget_day</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFget_hour">SPFget_hour</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFget_minute">SPFget_minute</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFget_second">SPFget_second</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFget_millisecond">SPFget_millisecond</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFavg">SPFavg</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFmin">SPFmin</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFmax">SPFmax</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFcount">SPFcount</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFsum">SPFsum</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFcoll_avg">SPFcoll_avg</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFcoll_min">SPFcoll_min</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFcoll_max">SPFcoll_max</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFcoll_count">SPFcoll_count</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFcoll_sum">SPFcoll_sum</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFarray_avg">SPFarray_avg</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFarray_min">SPFarray_min</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFarray_max">SPFarray_max</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFarray_count">SPFarray_count</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFarray_sum">SPFarray_sum</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFsqrt">SPFsqrt</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFsubstring">SPFsubstring</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFregexp_contains">SPFregexp_contains</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPFcontains">SPFcontains</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.Translation.Lang.SQLPPtoNRAEnv.html#sqlpp_to_nraenv_not_implemented">sqlpp_to_nraenv_not_implemented</a></span> "<span class="id">function</span> <span class="id">call</span> <span class="id">expressions</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPArray">SPArray</a></span> <span class="id">items</span><br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPBag">SPBag</a></span> <span class="id">items</span><br/>
+&nbsp;&nbsp;=&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_right">List.fold_right</a></span> (<span class="kwd">fun</span> <span class="id">expr</span> <span class="id">acc</span> =&gt; <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagUnion">OpBagUnion</a></span> (<span class="id">sqlpp_to_nraenv</span> <span class="id">expr</span>) <span class="id">acc</span>) (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)) <span class="id">items</span><br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPObject">SPObject</a></span> <span class="id">items</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_right">List.fold_right</a></span> (<span class="kwd">fun</span> (<span class="id">item</span> : (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#sqlpp">sqlpp</a></span>)) <span class="id">acc</span> =&gt; <span class="kwd">let</span> (<span class="id">name</span> , <span class="id">expr</span>) := <span class="id">item</span> <span class="kwd">in</span> <br/>
+&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpRecConcat">OpRecConcat</a></span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvUnop">NRAEnvUnop</a></span> (<span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpRec">OpRec</a></span> <span class="id">name</span>) (<span class="id">sqlpp_to_nraenv</span> <span class="id">expr</span>)) <span class="id">acc</span>) (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)) <span class="id">items</span><br/>
+&nbsp;| <span class="id"><a href="Qcert.SQLPP.Lang.SQLPP.html#SPQuery">SPQuery</a></span> <span class="id">stmt</span><br/>
+&nbsp;&nbsp;=&gt; <span class="id"><a href="Qcert.Translation.Lang.SQLPPtoNRAEnv.html#sqlpp_to_nraenv_not_implemented">sqlpp_to_nraenv_not_implemented</a></span> "<span class="id">select</span>"<br/>
+&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+<span class="kwd">Definition</span> <span class="id"><a name="sqlpp_to_nraenv_top">sqlpp_to_nraenv_top</a></span> := <span class="id"><a href="Qcert.Translation.Lang.SQLPPtoNRAEnv.html#sqlpp_to_nraenv">sqlpp_to_nraenv</a></span>.<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Translation.Lang.SQLPPtoNRAEnv.html#SQLPPtoNRAEnv">SQLPPtoNRAEnv</a></span>.<br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

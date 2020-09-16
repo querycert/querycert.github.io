@@ -1,0 +1,209 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.NNRSimp.Lang.NNRSimpVars</title>
+<meta name="description" content="Documentation of Coq module Qcert.NNRSimp.Lang.NNRSimpVars" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.NNRSimp.Lang.NNRSimpVars</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html">Permutation</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Arith.html">Arith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Max.html">Max</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Peano_dec.html">Peano_dec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Decidable.html">Decidable</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html">NNRSimp</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NNRSimpVars">NNRSimpVars</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}. <br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> (<span class="id">h</span>:<span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_t">brand_relation_t</a></span>).<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_expr">nnrs_imp_expr</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">e</span> <span class="kwd">with</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpGetConstant">NNRSimpGetConstant</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpVar">NNRSimpVar</a></span> <span class="id">v</span> =&gt; <span class="id">v</span> :: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpConst">NNRSimpConst</a></span> <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpBinop">NNRSimpBinop</a></span> <span class="id">_</span> <span class="id">e</span>₁ <span class="id">e</span>₂ =&gt; <span class="id">nnrs_imp_expr_free_vars</span> <span class="id">e</span>₁ ++ <span class="id">nnrs_imp_expr_free_vars</span> <span class="id">e</span>₂<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpUnop">NNRSimpUnop</a></span> <span class="id">_</span> <span class="id">e</span>₁ =&gt; <span class="id">nnrs_imp_expr_free_vars</span> <span class="id">e</span>₁ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpGroupBy">NNRSimpGroupBy</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">e</span>₁ =&gt; <span class="id">nnrs_imp_expr_free_vars</span> <span class="id">e</span>₁<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_stmt">nnrs_imp_stmt</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSkip">NNRSimpSkip</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span> <span class="id">s</span>₁ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_imp_stmt_free_vars</span> <span class="id">s</span>₁ ++ <span class="id">nnrs_imp_stmt_free_vars</span> <span class="id">s</span>₂<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpAssign">NNRSimpAssign</a></span> <span class="id">v</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">v</span>::(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">v</span> <span class="id">eo</span> <span class="id">s</span>₀ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">eo</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span> =&gt; <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> (<span class="id">nnrs_imp_stmt_free_vars</span> <span class="id">s</span>₀)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">v</span> <span class="id">e</span> <span class="id">s</span>₀ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span> ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> (<span class="id">nnrs_imp_stmt_free_vars</span> <span class="id">s</span>₀)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpIf">NNRSimpIf</a></span> <span class="id">e</span> <span class="id">s</span>₁ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span> ++ <span class="id">nnrs_imp_stmt_free_vars</span> <span class="id">s</span>₁ ++ <span class="id">nnrs_imp_stmt_free_vars</span> <span class="id">s</span>₂<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id">e</span> <span class="id">x</span>₁ <span class="id">s</span>₁ <span class="id">x</span>₂ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span> ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span>₁ (<span class="id">nnrs_imp_stmt_free_vars</span> <span class="id">s</span>₁) ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span>₂ (<span class="id">nnrs_imp_stmt_free_vars</span> <span class="id">s</span>₂)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrs_imp_stmt_bound_vars">nnrs_imp_stmt_bound_vars</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_stmt">nnrs_imp_stmt</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSkip">NNRSimpSkip</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span> <span class="id">s</span>₁ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_imp_stmt_bound_vars</span> <span class="id">s</span>₁ ++ <span class="id">nnrs_imp_stmt_bound_vars</span> <span class="id">s</span>₂<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpAssign">NNRSimpAssign</a></span> <span class="id">v</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">v</span> <span class="id">eo</span> <span class="id">s</span>₀ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">v</span>::(<span class="id">nnrs_imp_stmt_bound_vars</span> <span class="id">s</span>₀)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">v</span> <span class="id">e</span> <span class="id">s</span>₀ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">v</span>::(<span class="id">nnrs_imp_stmt_bound_vars</span> <span class="id">s</span>₀)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpIf">NNRSimpIf</a></span> <span class="id">e</span> <span class="id">s</span>₁ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_imp_stmt_bound_vars</span> <span class="id">s</span>₁ ++ <span class="id">nnrs_imp_stmt_bound_vars</span> <span class="id">s</span>₂<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id">e</span> <span class="id">x</span>₁ <span class="id">s</span>₁ <span class="id">x</span>₂ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">x</span>₁::(<span class="id">nnrs_imp_stmt_bound_vars</span> <span class="id">s</span>₁) ++ <span class="id">x</span>₂::(<span class="id">nnrs_imp_stmt_bound_vars</span> <span class="id">s</span>₂)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrs_imp_stmt_mayberead_vars">nnrs_imp_stmt_mayberead_vars</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_stmt">nnrs_imp_stmt</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSkip">NNRSimpSkip</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span> <span class="id">s</span>₁ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_imp_stmt_mayberead_vars</span> <span class="id">s</span>₁ ++ <span class="id">nnrs_imp_stmt_mayberead_vars</span> <span class="id">s</span>₂<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpAssign">NNRSimpAssign</a></span> <span class="id">v</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">v</span> <span class="id">eo</span> <span class="id">s</span>₀ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">eo</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span> =&gt; <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> (<span class="id">nnrs_imp_stmt_mayberead_vars</span> <span class="id">s</span>₀)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">v</span> <span class="id">e</span> <span class="id">s</span>₀ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span> ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> (<span class="id">nnrs_imp_stmt_mayberead_vars</span> <span class="id">s</span>₀)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpIf">NNRSimpIf</a></span> <span class="id">e</span> <span class="id">s</span>₁ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span> ++ <span class="id">nnrs_imp_stmt_mayberead_vars</span> <span class="id">s</span>₁ ++ <span class="id">nnrs_imp_stmt_mayberead_vars</span> <span class="id">s</span>₂<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id">e</span> <span class="id">x</span>₁ <span class="id">s</span>₁ <span class="id">x</span>₂ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span> ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span>₁ (<span class="id">nnrs_imp_stmt_mayberead_vars</span> <span class="id">s</span>₁) ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span>₂ (<span class="id">nnrs_imp_stmt_mayberead_vars</span> <span class="id">s</span>₂)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Fixpoint</span> <span class="id"><a name="nnrs_imp_stmt_maybewritten_vars">nnrs_imp_stmt_maybewritten_vars</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_stmt">nnrs_imp_stmt</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSkip">NNRSimpSkip</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span> <span class="id">s</span>₁ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_imp_stmt_maybewritten_vars</span> <span class="id">s</span>₁ ++ <span class="id">nnrs_imp_stmt_maybewritten_vars</span> <span class="id">s</span>₂<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpAssign">NNRSimpAssign</a></span> <span class="id">v</span> <span class="id">e</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">v</span>::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">v</span> <span class="id">eo</span> <span class="id">s</span>₀ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> (<span class="id">nnrs_imp_stmt_maybewritten_vars</span> <span class="id">s</span>₀)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">v</span> <span class="id">e</span> <span class="id">s</span>₀ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> (<span class="id">nnrs_imp_stmt_maybewritten_vars</span> <span class="id">s</span>₀)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpIf">NNRSimpIf</a></span> <span class="id">e</span> <span class="id">s</span>₁ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_imp_stmt_maybewritten_vars</span> <span class="id">s</span>₁ ++ <span class="id">nnrs_imp_stmt_maybewritten_vars</span> <span class="id">s</span>₂<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id">e</span> <span class="id">x</span>₁ <span class="id">s</span>₁ <span class="id">x</span>₂ <span class="id">s</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span>₁ (<span class="id">nnrs_imp_stmt_maybewritten_vars</span> <span class="id">s</span>₁) ++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span>₂ (<span class="id">nnrs_imp_stmt_maybewritten_vars</span> <span class="id">s</span>₂)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="remove_perm_proper">remove_perm_proper</a></span> {<span class="id">A</span>} <span class="id">dec</span> <span class="id">v</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> ((@<span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation">Permutation</a></span> <span class="id">A</span>) ==&gt; (@<span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation">Permutation</a></span> <span class="id">A</span>)) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id">dec</span> <span class="id">v</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3383')">Proof.</div>
+<div class="proofscript" id="proof3383">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_ind_bis">Permutation_ind_bis</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">match_destr</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> <span class="id">match_destr</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#perm_swap">perm_swap</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">etransitivity</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_imp_stmt_free_vars_readwrite_perm">nnrs_imp_stmt_free_vars_readwrite_perm</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_stmt">nnrs_imp_stmt</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation">Permutation</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_mayberead_vars">nnrs_imp_stmt_mayberead_vars</a></span> <span class="id">s</span> ++ <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_maybewritten_vars">nnrs_imp_stmt_maybewritten_vars</a></span> <span class="id">s</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3384')">Proof.</div>
+<div class="proofscript" id="proof3384">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_imp_stmt_cases</span> (<span class="tactic">induction</span> <span class="id">s</span>) <span class="id">Case</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRSimpSkip</span>"%<span class="id">string</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRSimpSeq</span>"%<span class="id">string</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">IHs1</span>, <span class="id">IHs2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_ass">app_ass</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> &lt;- <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_ass">app_ass</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app_swap">Permutation_app_swap</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRSimpAssign</span>"%<span class="id">string</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_cons_append">Permutation_cons_append</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRSimpLet</span>"%<span class="id">string</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_ass">app_ass</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#list_remove_append_distrib">list_remove_append_distrib</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#remove_perm_proper">remove_perm_proper</a></span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRSimpFor</span>"%<span class="id">string</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_ass">app_ass</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#list_remove_append_distrib">list_remove_append_distrib</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#remove_perm_proper">remove_perm_proper</a></span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRSimpIf</span>"%<span class="id">string</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_ass">app_ass</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">IHs1</span>, <span class="id">IHs2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_ass">app_ass</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> &lt;- <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_ass">app_ass</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app_swap">Permutation_app_swap</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">Case</span> "<span class="id">NNRSimpEither</span>"%<span class="id">string</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_ass">app_ass</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">transitivity</span> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_mayberead_vars">nnrs_imp_stmt_mayberead_vars</a></span> <span class="id">s1</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_maybewritten_vars">nnrs_imp_stmt_maybewritten_vars</a></span> <span class="id">s1</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v0</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_mayberead_vars">nnrs_imp_stmt_mayberead_vars</a></span> <span class="id">s2</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">v0</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_maybewritten_vars">nnrs_imp_stmt_maybewritten_vars</a></span> <span class="id">s2</span>))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#list_remove_append_distrib">list_remove_append_distrib</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#remove_perm_proper">remove_perm_proper</a></span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_ass">app_ass</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> &lt;- <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_ass">app_ass</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app">Permutation_app</a></span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Permutation.html#Permutation_app_swap">Permutation_app_swap</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_imp_stmt_free_vars_readwrite_equiv">nnrs_imp_stmt_free_vars_readwrite_equiv</a></span> (<span class="id">s</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_stmt">nnrs_imp_stmt</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_mayberead_vars">nnrs_imp_stmt_mayberead_vars</a></span> <span class="id">s</span> ++ <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_maybewritten_vars">nnrs_imp_stmt_maybewritten_vars</a></span> <span class="id">s</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3385')">Proof.</div>
+<div class="proofscript" id="proof3385">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars_readwrite_perm">nnrs_imp_stmt_free_vars_readwrite_perm</a></span>; <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#NNRSimpVars">NNRSimpVars</a></span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

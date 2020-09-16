@@ -1,0 +1,80 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Tests.NNRCTest</title>
+<meta name="description" content="Documentation of Coq module Qcert.Tests.NNRCTest" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Tests.NNRCTest</h1>
+<div class="coq">
+<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<br/>
+<span class="kwd">Delimit</span> <span class="kwd">Scope</span> <span class="id">data_scope</span> <span class="kwd">with</span> <span class="id">data</span>.<br/>
+<br/>
+<span class="kwd">Notation</span> "⊥" := (<span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span>) : <span class="id">data_scope</span>. <br/>
+<br/>
+<span class="kwd">Notation</span> "[||]" := (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) : <span class="id">data_scope</span>. <br/>
+<span class="kwd">Notation</span> "[| <span class="id">x1</span> ; .. ; <span class="id">xn</span> |]" := (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#cons">cons</a></span> <span class="id">x1</span> .. (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#cons">cons</a></span> <span class="id">xn</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) ..)) : <span class="id">data_scope</span>.<br/>
+<br/>
+<span class="kwd">Notation</span> "{||}" := (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) : <span class="id">data_scope</span>. <br/>
+<span class="kwd">Notation</span> "{| <span class="id">x1</span> ; .. ; <span class="id">xn</span> |}" := (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#cons">cons</a></span> <span class="id">x1</span> .. (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#cons">cons</a></span> <span class="id">xn</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) ..)) : <span class="id">data_scope</span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRC.NNRCRuntime.html">NNRCRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html">cNNRC</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Trivial.TrivialModel.html">TrivialModel</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NNRCTest">NNRCTest</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string_scope</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nnrc_scope</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">data_scope</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">Z_scope</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="db1">db1</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;([| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 1); ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 3) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 1); ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 5) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 2); ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 7) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 4); ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 5) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="db2">db2</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;([| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 1); ("<span class="id">C</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 13) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 2); ("<span class="id">C</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 15) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 3); ("<span class="id">C</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 17) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 4); ("<span class="id">C</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 15) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="init_vid">init_vid</a></span> := "<span class="id">id</span>"%<span class="id">string</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="init_venv">init_venv</a></span> := "<span class="id">env</span>"%<span class="id">string</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="natural_join_aux">natural_join_aux</a></span> <span class="id">varid</span> <span class="id">varenv</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> (<span class="id">t1</span>,<span class="id">t2</span>) := <span class="id"><a href="Qcert.Utils.Fresh.html#fresh_var2">fresh_var2</a></span> "<span class="id">tprod</span>$" "<span class="id">tprod</span>$" (<span class="id">varid</span>::<span class="id">varenv</span>::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpFlatten">OpFlatten</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpFlatten">OpFlatten</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">t1</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> <span class="id"><a href="Qcert.Tests.NNRCTest.html#db1">db1</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">t2</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> <span class="id"><a href="Qcert.Tests.NNRCTest.html#db2">db2</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCBinop">NNRCBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpRecMerge">OpRecMerge</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">t1</span>) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">t2</span>))))).<br/>
+&nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="natural_join">natural_join</a></span> : <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc">nnrc</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Tests.NNRCTest.html#natural_join_aux">natural_join_aux</a></span> <span class="id"><a href="Qcert.Tests.NNRCTest.html#init_vid">init_vid</a></span> <span class="id"><a href="Qcert.Tests.NNRCTest.html#init_venv">init_venv</a></span>.<br/>
+&nbsp;&nbsp;<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Tests.NNRCTest.html#NNRCTest">NNRCTest</a></span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>

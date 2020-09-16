@@ -1,0 +1,95 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Tests.NRAEnvTest</title>
+<meta name="description" content="Documentation of Coq module Qcert.Tests.NRAEnvTest" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Tests.NRAEnvTest</h1>
+<div class="coq">
+<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<br/>
+<span class="id">Declare</span> <span class="kwd">Scope</span> <span class="id">data_scope</span>.<br/>
+<br/>
+<span class="kwd">Delimit</span> <span class="kwd">Scope</span> <span class="id">data_scope</span> <span class="kwd">with</span> <span class="id">data</span>.<br/>
+<br/>
+<span class="kwd">Notation</span> "⊥" := (<span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span>) : <span class="id">data_scope</span>. <br/>
+<br/>
+<span class="kwd">Notation</span> "[||]" := (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) : <span class="id">data_scope</span>. <br/>
+<span class="kwd">Notation</span> "[| <span class="id">x1</span> ; .. ; <span class="id">xn</span> |]" := (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#cons">cons</a></span> <span class="id">x1</span> .. (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#cons">cons</a></span> <span class="id">xn</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) ..)) : <span class="id">data_scope</span>.<br/>
+<br/>
+<span class="kwd">Notation</span> "{||}" := (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) : <span class="id">data_scope</span>. <br/>
+<span class="kwd">Notation</span> "{| <span class="id">x1</span> ; .. ; <span class="id">xn</span> |}" := (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#cons">cons</a></span> <span class="id">x1</span> .. (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#cons">cons</a></span> <span class="id">xn</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) ..)) : <span class="id">data_scope</span>.<br/>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NRAEnv.NRAEnvRuntime.html">NRAEnvRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnv.html">cNRAEnv</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Trivial.TrivialModel.html">TrivialModel</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NRAEnvTest">NRAEnvTest</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">Z_scope</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string_scope</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nraenv_core_scope</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">data_scope</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="merge_env_example">merge_env_example</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 1); ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 3) |].<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="merge_succeeds">merge_succeeds</a></span> : <span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnv.html#nraenv_core">nraenv_core</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= χᵉ⟨ (<span class="id">ENV</span>·"<span class="id">A</span>") ♯+ (<span class="id">ENV</span>·"<span class="id">C</span>") ⟩ ◯ₑ (<span class="id">ENV</span> ⊗ ‵ [| ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 3) ; ("<span class="id">C</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 4) |]).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Remark</span> <span class="id"><a name="merge_succeeds_result">merge_succeeds_result</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> ⊢ₑ <span class="id"><a href="Qcert.Tests.NRAEnvTest.html#merge_succeeds">merge_succeeds</a></span> @ₑ <span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> ; <span class="id"><a href="Qcert.Tests.NRAEnvTest.html#merge_env_example">merge_env_example</a></span> =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> {| <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 5 |}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4517')">Proof.</div>
+<div class="proofscript" id="proof4517">
+ <span class="tactic">reflexivity</span>. Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="merge_fails">merge_fails</a></span> : <span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnv.html#nraenv_core">nraenv_core</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= χᵉ⟨ (<span class="id">ENV</span>·"<span class="id">A</span>") ♯+ (<span class="id">ENV</span>·"<span class="id">C</span>") ⟩ ◯ₑ (<span class="id">ENV</span> ⊗ ‵ [| ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 2) ; ("<span class="id">C</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 4) |]).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Remark</span> <span class="id"><a name="merge_fails_result">merge_fails_result</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> ⊢ₑ <span class="id"><a href="Qcert.Tests.NRAEnvTest.html#merge_fails">merge_fails</a></span> @ₑ <span class="id"><a href="Qcert.Data.Model.Data.html#dunit">dunit</a></span> ⊣ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> ; <span class="id"><a href="Qcert.Tests.NRAEnvTest.html#merge_env_example">merge_env_example</a></span> =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> {||}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4518')">Proof.</div>
+<div class="proofscript" id="proof4518">
+ <span class="tactic">reflexivity</span>. Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="db1">db1</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;([| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 1); ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 3) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 1); ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 5) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 2); ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 7) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 4); ("<span class="id">B</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 5) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="db2">db2</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;([| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 1); ("<span class="id">C</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 13) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 2); ("<span class="id">C</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 15) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 3); ("<span class="id">C</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 17) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: [| ("<span class="id">A</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 4); ("<span class="id">C</span>", <span class="id"><a href="Qcert.Data.Model.Data.html#dconst">dconst</a></span> 15) |]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Example</span> <span class="id"><a name="natural_join">natural_join</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvNaturalJoin">NRAEnvNaturalJoin</a></span> (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> <span class="id"><a href="Qcert.Tests.NRAEnvTest.html#db1">db1</a></span>) (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span> <span class="id"><a href="Qcert.Tests.NRAEnvTest.html#db2">db2</a></span>).<br/>
+&nbsp;&nbsp;<br/>
+<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Tests.NRAEnvTest.html#NRAEnvTest">NRAEnvTest</a></span>.<br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</a></div>
+</body>
+</html>
