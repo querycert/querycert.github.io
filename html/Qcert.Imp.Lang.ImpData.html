@@ -1,0 +1,103 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Imp.Lang.ImpData</title>
+<meta name="description" content="Documentation of Coq module Qcert.Imp.Lang.ImpData" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Imp.Lang.ImpData</h1>
+<div class="coq">
+<br/>
+<div class="doc">Imp with the Q*cert data model </div>
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Decidable.html">Decidable</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.Imp.html">Imp</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="ImpData">ImpData</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="kwd">Syntax</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_data_model">imp_data_model</a></span> := <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_data_constant">imp_data_constant</a></span> : <span class="kwd">Set</span> := <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="imp_data_op">imp_data_op</a></span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="DataOpUnary">DataOpUnary</a></span> : <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#unary_op">unary_op</a></span> -&gt; <span class="id">imp_data_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="DataOpBinary">DataOpBinary</a></span> : <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op">binary_op</a></span> -&gt; <span class="id">imp_data_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="imp_data_runtime_op">imp_data_runtime_op</a></span> : <span class="kwd">Set</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="DataRuntimeGroupby">DataRuntimeGroupby</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id">imp_data_runtime_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="DataRuntimeEither">DataRuntimeEither</a></span> : <span class="id">imp_data_runtime_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="DataRuntimeToLeft">DataRuntimeToLeft</a></span> : <span class="id">imp_data_runtime_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="DataRuntimeToRight">DataRuntimeToRight</a></span> : <span class="id">imp_data_runtime_op</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_data_expr">imp_data_expr</a></span> := @<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_expr">imp_expr</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_constant">imp_data_constant</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_op">imp_data_op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_runtime_op">imp_data_runtime_op</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_data_stmt">imp_data_stmt</a></span> := @<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_stmt">imp_stmt</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_constant">imp_data_constant</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_op">imp_data_op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_runtime_op">imp_data_runtime_op</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_data_function">imp_data_function</a></span> := @<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_function">imp_function</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_constant">imp_data_constant</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_op">imp_data_op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_runtime_op">imp_data_runtime_op</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_data">imp_data</a></span> := @<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp">imp</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_constant">imp_data_constant</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_op">imp_data_op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_runtime_op">imp_data_runtime_op</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="kwd">Syntax</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="ImpData.dec">dec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_data_constant_eqdec">imp_data_constant_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_constant">imp_data_constant</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3662')">Proof.</div>
+<div class="proofscript" id="proof3662">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Model.Data.html#data_eqdec">data_eqdec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_data_op_eqdec">imp_data_op_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_op">imp_data_op</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3663')">Proof.</div>
+<div class="proofscript" id="proof3663">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_op">imp_data_op</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#unary_op_eqdec">unary_op_eqdec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op_eqdec">binary_op_eqdec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_data_runtime_op_eqdec">imp_data_runtime_op_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_runtime_op">imp_data_runtime_op</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3664')">Proof.</div>
+<div class="proofscript" id="proof3664">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_runtime_op">imp_data_runtime_op</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">clear</span> <span class="id">a</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">l0</span>; <span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">intros</span>; <span class="tactic">destruct</span> <span class="id">l0</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="id">solve</span>[<span class="id">right</span>; <span class="tactic">inversion</span> 1].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">left</span>; <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> (<span class="id">IHl</span> <span class="id">l0</span>); <span class="tactic">intros</span>; <span class="tactic">clear</span> <span class="id">IHl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">subst</span>; <span class="tactic">destruct</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id">a</span> <span class="id">s1</span>); <span class="tactic">subst</span>; [<span class="id">left</span>; <span class="tactic">reflexivity</span>| <span class="id">right</span>; <span class="tactic">congruence</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_data_expr_eqdec">imp_data_expr_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_expr">imp_data_expr</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3665')">Proof.</div>
+<div class="proofscript" id="proof3665">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_expr_eqdec">imp_expr_eqdec</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_constant">imp_data_constant</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_op">imp_data_op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_runtime_op">imp_data_runtime_op</a></span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_constant_eqdec">imp_data_constant_eqdec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_op_eqdec">imp_data_op_eqdec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#imp_data_runtime_op_eqdec">imp_data_runtime_op_eqdec</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#ImpData.dec">dec</a></span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpData.html#ImpData">ImpData</a></span>.<br/>
+<br/>
+<span class="kwd">Tactic</span> <span class="kwd">Notation</span> "<span class="id">imp_data_runtime_op_cases</span>" <span class="id">tactic</span>(<span class="id">first</span>) <span class="id">ident</span>(<span class="id">c</span>) :=<br/>
+&nbsp;&nbsp;<span class="id">first</span>;<br/>
+&nbsp;&nbsp;[ <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">DataRuntimeGroupby</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">DataRuntimeEither</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">DataRuntimeLeft</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;| <span class="id">Case_aux</span> <span class="id">c</span> "<span class="id">DataRuntimeRight</span>"%<span class="id">string</span><br/>
+&nbsp;&nbsp;].<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

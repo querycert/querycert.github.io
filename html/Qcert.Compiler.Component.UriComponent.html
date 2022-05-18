@@ -26,9 +26,8 @@
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Operators.ForeignToJava.html">ForeignToJava</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Java.JavaSystem.html">JavaSystem</a></span>.<br/>
 <br/>
-<span class="kwd">Import</span> <span class="id">ListNotations</span>.<br/>
+<span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#ListNotations">ListNotations</a></span>.<br/>
 <span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string_scope</span>.<br/>
-<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nstring_scope</span>.<br/>
 <br/>
 <div class="doc">Log functions part of the Ergo Standard Library </div>
 <br/>
@@ -42,13 +41,13 @@
 <span class="kwd">Section</span> <span class="id"><a name="UriOperators">UriOperators</a></span>.<br/>
 <div class="doc">Ast </div>
 &nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="uri_unary_op">uri_unary_op</a></span> :=<br/>
-&nbsp;&nbsp;| <span class="id"><a name="uop_uri_encode">uop_uri_encode</a></span> : <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uri_unary_op">uri_unary_op</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="uop_uri_decode">uop_uri_decode</a></span> : <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uri_unary_op">uri_unary_op</a></span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="uop_uri_encode">uop_uri_encode</a></span> : <span class="id">uri_unary_op</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="uop_uri_decode">uop_uri_decode</a></span> : <span class="id">uri_unary_op</span><br/>
 &nbsp;&nbsp;.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="UriOperators.toString">toString</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="uri_unary_op_tostring">uri_unary_op_tostring</a></span> (<span class="id">f</span>:<span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uri_unary_op">uri_unary_op</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#f">f</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">f</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uop_uri_encode">uop_uri_encode</a></span> =&gt; "<span class="id">uriEncode</span>"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uop_uri_decode">uop_uri_decode</a></span> =&gt; "<span class="id">uriDecode</span>"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
@@ -56,15 +55,15 @@
 &nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#UriOperators.toString">toString</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="UriOperators.toJava">toJava</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="cname">cname</a></span> : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> := ^"<span class="id">UriComponent</span>".<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="cname">cname</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> := "<span class="id">UriComponent</span>".<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="uri_to_java_unary_op">uri_to_java_unary_op</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">indent</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) (<span class="id">eol</span>:<span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">quotel</span>:<span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>) (<span class="id">fu</span>:<span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uri_unary_op">uri_unary_op</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">indent</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) (<span class="id">eol</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">quotel</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) (<span class="id">fu</span>:<span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uri_unary_op">uri_unary_op</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d</span>:<span class="id"><a href="Qcert.Java.Lang.Java.html#java_json">java_json</a></span>) : <span class="id"><a href="Qcert.Java.Lang.Java.html#java_json">java_json</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#fu">fu</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uop_uri_encode">uop_uri_encode</a></span> =&gt; <span class="id"><a href="Qcert.Java.Lang.Java.html#mk_java_unary_op0_foreign">mk_java_unary_op0_foreign</a></span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#cname">cname</a></span> (^"<span class="id">uriEncode</span>") <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#d">d</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uop_uri_decode">uop_uri_decode</a></span> =&gt; <span class="id"><a href="Qcert.Java.Lang.Java.html#mk_java_unary_op0_foreign">mk_java_unary_op0_foreign</a></span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#cname">cname</a></span> (^"<span class="id">uriDecode</span>") <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#d">d</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">fu</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uop_uri_encode">uop_uri_encode</a></span> =&gt; <span class="id"><a href="Qcert.Java.Lang.Java.html#mk_java_unary_op0_foreign">mk_java_unary_op0_foreign</a></span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#cname">cname</a></span> "<span class="id">uriEncode</span>" <span class="id">d</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#uop_uri_decode">uop_uri_decode</a></span> =&gt; <span class="id"><a href="Qcert.Java.Lang.Java.html#mk_java_unary_op0_foreign">mk_java_unary_op0_foreign</a></span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#cname">cname</a></span> "<span class="id">uriDecode</span>" <span class="id">d</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#UriOperators.toJava">toJava</a></span>.<br/>
@@ -76,9 +75,16 @@
 &nbsp;&nbsp;&nbsp;&nbsp;.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="ejson_uri_runtime_op_tostring">ejson_uri_runtime_op_tostring</a></span> <span class="id">op</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#op">op</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#EJsonRuntimeUriEncode">EJsonRuntimeUriEncode</a></span> =&gt; "<span class="id">uriEncode</span>"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#EJsonRuntimeUriDecode">EJsonRuntimeUriDecode</a></span> =&gt; "<span class="id">uriDecode</span>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="ejson_uri_runtime_op_fromstring">ejson_uri_runtime_op_fromstring</a></span> <span class="id">opname</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#ejson_uri_runtime_op">ejson_uri_runtime_op</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">opname</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| "<span class="id">uriEncode</span>" =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#EJsonRuntimeUriEncode">EJsonRuntimeUriEncode</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| "<span class="id">uriDecode</span>" =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#EJsonRuntimeUriDecode">EJsonRuntimeUriDecode</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#UriOperators.toEJson">toEJson</a></span>.<br/>

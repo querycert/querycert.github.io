@@ -32,17 +32,20 @@
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpUnflatten.html">NNRSimpUnflatten</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpUnflatten.html">TNNRSimpUnflatten</a></span>.<br/>
 <br/>
+<span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#ListNotations">ListNotations</a></span>.<br/>
+<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">list_scope</span>.<br/>
+<br/>
 <span class="kwd">Section</span> <span class="id"><a name="TNNRSimpRewrite">TNNRSimpRewrite</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nnrs_imp</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Data.DataSystem.html#basic_model">basic_model</a></span>}.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Immediate</span> <span class="id">type_NNRSimpSkip</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Hint</span> <span class="kwd">Immediate</span> <span class="id">type_NNRSimpSkip</span> : <span class="id">qcert</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="distinct_nil_trew">distinct_nil_trew</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpUnop">NNRSimpUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpDistinct">OpDistinct</a></span> (‵{||}) ⇒ᵉ ‵{||}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3542')">Proof.</div>
-<div class="proofscript" id="proof3542">
+<div class="toggleproof" onclick="toggleDisplay('proof3594')">Proof.</div>
+<div class="proofscript" id="proof3594">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimpEq.html#nnrs_imp_expr_eq_rewrites_to">nnrs_imp_expr_eq_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpRewrite.html#distinct_nil_eq">distinct_nil_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span> ??? <span class="id">typ</span>.<br/>
@@ -52,20 +55,20 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="for_nil_trew">for_nil_trew</a></span> <span class="id">x</span> <span class="id">e2</span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> ‵{||} <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e2">e2</a></span>) ⇒ˢ <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSkip">NNRSimpSkip</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3543')">Proof.</div>
-<div class="proofscript" id="proof3543">
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">x</span> ‵{||} <span class="id">e2</span>) ⇒ˢ <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSkip">NNRSimpSkip</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3595')">Proof.</div>
+<div class="proofscript" id="proof3595">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimpEq.html#nnrs_imp_stmt_eq_rewrites_to">nnrs_imp_stmt_eq_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpRewrite.html#for_nil_eq">for_nil_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> (<span class="id">match_destr</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">qeauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="bagunion_nil_l_trew">bagunion_nil_l_trew</a></span> <span class="id">e</span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpBinop">NNRSimpBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagUnion">OpBagUnion</a></span> ‵{||} <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span>) ⇒ᵉ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3544')">Proof.</div>
-<div class="proofscript" id="proof3544">
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpBinop">NNRSimpBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagUnion">OpBagUnion</a></span> ‵{||} <span class="id">e</span>) ⇒ᵉ <span class="id">e</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3596')">Proof.</div>
+<div class="proofscript" id="proof3596">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> ??? <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H3</span>.<br/>
@@ -80,9 +83,9 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="bagunion_nil_r_trew">bagunion_nil_r_trew</a></span> <span class="id">e</span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpBinop">NNRSimpBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagUnion">OpBagUnion</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> ‵{||}) ⇒ᵉ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3545')">Proof.</div>
-<div class="proofscript" id="proof3545">
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpBinop">NNRSimpBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagUnion">OpBagUnion</a></span> <span class="id">e</span> ‵{||}) ⇒ᵉ <span class="id">e</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3597')">Proof.</div>
+<div class="proofscript" id="proof3597">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> ??? <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H3</span>.<br/>
@@ -99,9 +102,9 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="concat_nil_l_trew">concat_nil_l_trew</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_expr">nnrs_imp_expr</a></span>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;‵[||] ⊕ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> ⇒ᵉ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3546')">Proof.</div>
-<div class="proofscript" id="proof3546">
+&nbsp;&nbsp;&nbsp;&nbsp;‵[||] ⊕ <span class="id">e</span> ⇒ᵉ <span class="id">e</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3598')">Proof.</div>
+<div class="proofscript" id="proof3598">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> ??? <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
@@ -124,9 +127,9 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="concat_nil_r_trew">concat_nil_r_trew</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_expr">nnrs_imp_expr</a></span>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> ⊕ ‵[||]  ⇒ᵉ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3547')">Proof.</div>
-<div class="proofscript" id="proof3547">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">e</span> ⊕ ‵[||]  ⇒ᵉ <span class="id">e</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3599')">Proof.</div>
+<div class="proofscript" id="proof3599">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> ??? <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
@@ -151,9 +154,9 @@
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="merge_nil_l_trew">merge_nil_l_trew</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_expr">nnrs_imp_expr</a></span>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;‵[||] ⊗ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span>  ⇒ᵉ   ‵{| <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span>|}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3548')">Proof.</div>
-<div class="proofscript" id="proof3548">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;‵[||] ⊗ <span class="id">e</span>  ⇒ᵉ   ‵{| <span class="id">e</span>|}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3600')">Proof.</div>
+<div class="proofscript" id="proof3600">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> ??? <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
@@ -196,9 +199,9 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="merge_nil_r_trew">merge_nil_r_trew</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_expr">nnrs_imp_expr</a></span>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> ⊗ ‵[||]   ⇒ᵉ   ‵{| <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span>|}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3549')">Proof.</div>
-<div class="proofscript" id="proof3549">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">e</span> ⊗ ‵[||]   ⇒ᵉ   ‵{| <span class="id">e</span>|}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3601')">Proof.</div>
+<div class="proofscript" id="proof3601">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> ??? <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
@@ -243,8 +246,8 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="flatten_nil_trew">flatten_nil_trew</a></span> : ♯<span class="id">flatten</span>( ‵{||}) ⇒ᵉ ‵{||}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3550')">Proof.</div>
-<div class="proofscript" id="proof3550">
+<div class="toggleproof" onclick="toggleDisplay('proof3602')">Proof.</div>
+<div class="proofscript" id="proof3602">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> ??? <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H2</span>.<br/>
@@ -254,8 +257,8 @@
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="flatten_nil_nil_trew">flatten_nil_nil_trew</a></span> : ♯<span class="id">flatten</span>( ‵ (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> [<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> []])) ⇒ᵉ ‵{||}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3551')">Proof.</div>
-<div class="proofscript" id="proof3551">
+<div class="toggleproof" onclick="toggleDisplay('proof3603')">Proof.</div>
+<div class="proofscript" id="proof3603">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> ??? <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H2</span>.<br/>
@@ -264,20 +267,20 @@
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="update_first_same">update_first_same</a></span> {<span class="id">A</span> <span class="id">B</span>} <span class="id">dec</span> (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#A">A</a></span>*<span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#B">B</a></span>)) <span class="id">v</span> <span class="id">x</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Assoc.html#lookup">lookup</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#dec">dec</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#l">l</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#v">v</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Assoc.html#update_first">update_first</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#dec">dec</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#l">l</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#v">v</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> = <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#l">l</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3552')">Proof.</div>
-<div class="proofscript" id="proof3552">
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="update_first_same">update_first_same</a></span> {<span class="id">A</span> <span class="id">B</span>} <span class="id">dec</span> (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id">A</span>*<span class="id">B</span>)) <span class="id">v</span> <span class="id">x</span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Assoc.html#lookup">lookup</a></span> <span class="id">dec</span> <span class="id">l</span> <span class="id">v</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">x</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Assoc.html#update_first">update_first</a></span> <span class="id">dec</span> <span class="id">l</span> <span class="id">v</span> <span class="id">x</span> = <span class="id">l</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3604')">Proof.</div>
+<div class="proofscript" id="proof3604">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span> <span class="id">inn</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">invcs</span> <span class="id">inn</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">IHl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="assign_self_trew">assign_self_trew</a></span> <span class="id">v</span> : <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpAssign">NNRSimpAssign</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#v">v</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpVar">NNRSimpVar</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#v">v</a></span>) ⇒ˢ <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSkip">NNRSimpSkip</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3553')">Proof.</div>
-<div class="proofscript" id="proof3553">
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="assign_self_trew">assign_self_trew</a></span> <span class="id">v</span> : <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpAssign">NNRSimpAssign</a></span> <span class="id">v</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpVar">NNRSimpVar</a></span> <span class="id">v</span>) ⇒ˢ <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSkip">NNRSimpSkip</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3605')">Proof.</div>
+<div class="proofscript" id="proof3605">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span> Γ<span class="id">c</span> Γ <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; [| <span class="tactic">split</span>]; <span class="tactic">simpl</span>.<br/>
@@ -309,10 +312,10 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="unflatten_let_none_trew">unflatten_let_none_trew</a></span> <span class="id">x</span> (<span class="id">s</span> <span class="id">s</span>':<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_stmt">nnrs_imp_stmt</a></span>):<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpUnflatten.html#nnrs_imp_stmt_unflatten_safe">nnrs_imp_stmt_unflatten_safe</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">s</span>' -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span> ⇒ˢ <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> <span class="id">s</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3554')">Proof.</div>
-<div class="proofscript" id="proof3554">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpUnflatten.html#nnrs_imp_stmt_unflatten_safe">nnrs_imp_stmt_unflatten_safe</a></span> <span class="id">s</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">s</span>' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> <span class="id">s</span> ⇒ˢ <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> <span class="id">s</span>'.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3606')">Proof.</div>
+<div class="proofscript" id="proof3606">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">eqq1</span> Γ<span class="id">c</span> Γ <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpUnflatten.html#nnrs_imp_stmt_unflatten_safe_var_usage">nnrs_imp_stmt_unflatten_safe_var_usage</a></span> <span class="id">eqq1</span>) <span class="kwd">in</span> <span class="id">H2</span>.<br/>
@@ -361,11 +364,11 @@
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="unflatten_let_some_trew">unflatten_let_some_trew</a></span> <span class="id">x</span> (<span class="id">e</span> <span class="id">e</span>':<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_expr">nnrs_imp_expr</a></span>) (<span class="id">s</span> <span class="id">s</span>':<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_stmt">nnrs_imp_stmt</a></span>):<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpUnflatten.html#nnrs_imp_expr_unflatten_init">nnrs_imp_expr_unflatten_init</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span>' -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpUnflatten.html#nnrs_imp_stmt_unflatten_safe">nnrs_imp_stmt_unflatten_safe</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">s</span>' -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span>) <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span> ⇒ˢ <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span>') <span class="id">s</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3555')">Proof.</div>
-<div class="proofscript" id="proof3555">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpUnflatten.html#nnrs_imp_expr_unflatten_init">nnrs_imp_expr_unflatten_init</a></span> <span class="id">e</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span>' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpUnflatten.html#nnrs_imp_stmt_unflatten_safe">nnrs_imp_stmt_unflatten_safe</a></span> <span class="id">s</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">s</span>' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span>) <span class="id">s</span> ⇒ˢ <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">e</span>') <span class="id">s</span>'.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3607')">Proof.</div>
+<div class="proofscript" id="proof3607">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">eqq_init</span> <span class="id">eqq1</span> Γ<span class="id">c</span> Γ <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
@@ -427,12 +430,12 @@
 <br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="rename_let_trew">rename_let_trew</a></span> <span class="id">x</span> <span class="id">x</span>' <span class="id">e</span> <span class="id">s</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_bound_vars">nnrs_imp_stmt_bound_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span>) ⇒ˢ<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>' <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> <span class="id">x</span>')).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3556')">Proof.</div>
-<div class="proofscript" id="proof3556">
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_bound_vars">nnrs_imp_stmt_bound_vars</a></span> <span class="id">s</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span> <span class="id">e</span> <span class="id">s</span>) ⇒ˢ<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>' <span class="id">e</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id">s</span> <span class="id">x</span> <span class="id">x</span>')).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3608')">Proof.</div>
+<div class="proofscript" id="proof3608">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimpEq.html#nnrs_imp_stmt_eq_rewrites_to">nnrs_imp_stmt_eq_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpRewrite.html#rename_let_eq">rename_let_eq</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -447,12 +450,12 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="rename_for_trew">rename_for_trew</a></span> <span class="id">x</span> <span class="id">x</span>' <span class="id">e</span> <span class="id">s</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_bound_vars">nnrs_imp_stmt_bound_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span>) ⇒ˢ<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">x</span>' <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#s">s</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#x">x</a></span> <span class="id">x</span>')).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3557')">Proof.</div>
-<div class="proofscript" id="proof3557">
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_bound_vars">nnrs_imp_stmt_bound_vars</a></span> <span class="id">s</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">x</span> <span class="id">e</span> <span class="id">s</span>) ⇒ˢ<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">x</span>' <span class="id">e</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id">s</span> <span class="id">x</span> <span class="id">x</span>')).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3609')">Proof.</div>
+<div class="proofscript" id="proof3609">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimpEq.html#nnrs_imp_stmt_eq_rewrites_to">nnrs_imp_stmt_eq_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpRewrite.html#rename_for_eq">rename_for_eq</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -466,10 +469,10 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="rename_either_l_trew">rename_either_l_trew</a></span> <span class="id">e</span> <span class="id">s</span>₁ <span class="id">x</span>₁ <span class="id">x</span>₁' <span class="id">x</span>₂ <span class="id">s</span>₂:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>₁) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_bound_vars">nnrs_imp_stmt_bound_vars</a></span> <span class="id">s</span>₁) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> <span class="id">x</span>₁ <span class="id">s</span>₁ <span class="id">x</span>₂ <span class="id">s</span>₂) ⇒ˢ<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> <span class="id">x</span>₁' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id">s</span>₁ <span class="id">x</span>₁ <span class="id">x</span>₁') <span class="id">x</span>₂ <span class="id">s</span>₂).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3558')">Proof.</div>
-<div class="proofscript" id="proof3558">
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id">e</span> <span class="id">x</span>₁ <span class="id">s</span>₁ <span class="id">x</span>₂ <span class="id">s</span>₂) ⇒ˢ<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id">e</span> <span class="id">x</span>₁' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id">s</span>₁ <span class="id">x</span>₁ <span class="id">x</span>₁') <span class="id">x</span>₂ <span class="id">s</span>₂).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3610')">Proof.</div>
+<div class="proofscript" id="proof3610">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimpEq.html#nnrs_imp_stmt_eq_rewrites_to">nnrs_imp_stmt_eq_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpRewrite.html#rename_either_l_eq">rename_either_l_eq</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -483,10 +486,10 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="rename_either_r_trew">rename_either_r_trew</a></span> <span class="id">e</span> <span class="id">s</span>₁ <span class="id">x</span>₁ <span class="id">x</span>₂ <span class="id">x</span>₂'  <span class="id">s</span>₂:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₂' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>₂) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₂' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_bound_vars">nnrs_imp_stmt_bound_vars</a></span> <span class="id">s</span>₂) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> <span class="id">x</span>₁ <span class="id">s</span>₁ <span class="id">x</span>₂ <span class="id">s</span>₂) ⇒ˢ<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span> <span class="id">x</span>₁ <span class="id">s</span>₁ <span class="id">x</span>₂' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id">s</span>₂ <span class="id">x</span>₂ <span class="id">x</span>₂')).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3559')">Proof.</div>
-<div class="proofscript" id="proof3559">
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id">e</span> <span class="id">x</span>₁ <span class="id">s</span>₁ <span class="id">x</span>₂ <span class="id">s</span>₂) ⇒ˢ<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpEither">NNRSimpEither</a></span> <span class="id">e</span> <span class="id">x</span>₁ <span class="id">s</span>₁ <span class="id">x</span>₂' (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id">s</span>₂ <span class="id">x</span>₂ <span class="id">x</span>₂')).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3611')">Proof.</div>
+<div class="proofscript" id="proof3611">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimpEq.html#nnrs_imp_stmt_eq_rewrites_to">nnrs_imp_stmt_eq_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpRewrite.html#rename_either_r_eq">rename_either_r_eq</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -582,17 +585,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ ~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₃ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_bound_vars">nnrs_imp_stmt_bound_vars</a></span> <span class="id">s</span>₂)) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>₁ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>₂ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#oe">oe</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>₂ <span class="id">oe</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span> <span class="id">s</span>₁<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpAssign">NNRSimpAssign</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpVar">NNRSimpVar</a></span> <span class="id">x</span>₂))))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">s</span>₂)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⇒ˢ<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>₃<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#oe">oe</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">oe</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id">s</span>₁ <span class="id">x</span>₂ <span class="id">x</span>₃)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id">s</span>₂ <span class="id">x</span>₁ <span class="id">x</span>₃)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3560')">Proof.</div>
-<div class="proofscript" id="proof3560">
+<div class="toggleproof" onclick="toggleDisplay('proof3612')">Proof.</div>
+<div class="proofscript" id="proof3612">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H4</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">invcs</span> <span class="id">H9</span>.<br/>
@@ -870,16 +873,16 @@
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_bound_vars">nnrs_imp_stmt_bound_vars</a></span> <span class="id">s</span>₁) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>₁ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>₂ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#oe">oe</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>₂ <span class="id">oe</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span> <span class="id">s</span>₁<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpAssign">NNRSimpAssign</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpVar">NNRSimpVar</a></span> <span class="id">x</span>₂))))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">s</span>₂)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⇒ˢ<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>₁ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#oe">oe</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>₁ <span class="id">oe</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpRename.html#nnrs_imp_stmt_rename">nnrs_imp_stmt_rename</a></span> <span class="id">s</span>₁ <span class="id">x</span>₂ <span class="id">x</span>₁)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">s</span>₂).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3561')">Proof.</div>
-<div class="proofscript" id="proof3561">
+<div class="toggleproof" onclick="toggleDisplay('proof3613')">Proof.</div>
+<div class="proofscript" id="proof3613">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#let_let_coalesce_trew">let_let_coalesce_trew</a></span> <span class="id">x</span>₁ <span class="id">x</span>₂ <span class="id">x</span>₁ <span class="id">oe</span> <span class="id">s</span>₁ <span class="id">s</span>₂)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">HH</span>.<br/>
@@ -891,37 +894,37 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">x</span>₁ &lt;&gt; <span class="id">tmp</span>₁ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">x</span>₁ &lt;&gt; <span class="id">tmp</span>₂ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">tmp</span>₂ &lt;&gt; <span class="id">tmp</span>₁ -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#expr">expr</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#source">source</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">tmp</span>₂ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#source">source</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">tmp</span>₂ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#expr">expr</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">tmp</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#body">body</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#body">body</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#rest">rest</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#liftP">liftP</a></span> (<span class="kwd">fun</span> <span class="id">e</span> =&gt; ~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#e">e</a></span>)) <span class="id">expr</span>₂ -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#disjoint">disjoint</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_maybewritten_vars">nnrs_imp_stmt_maybewritten_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#body">body</a></span>) (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#expr">expr</a></span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">expr</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">source</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">tmp</span>₂ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">source</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">tmp</span>₂ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">expr</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">tmp</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">body</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">body</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">rest</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#liftP">liftP</a></span> (<span class="kwd">fun</span> <span class="id">e</span> =&gt; ~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>₁ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span>)) <span class="id">expr</span>₂ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#disjoint">disjoint</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_maybewritten_vars">nnrs_imp_stmt_maybewritten_vars</a></span> <span class="id">body</span>) (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">expr</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">x</span>₁ (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpConst">NNRSimpConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">tmp</span>₁ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#source">source</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">tmp</span>₁ <span class="id">source</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpAssign">NNRSimpAssign</a></span> <span class="id">x</span>₁<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpBinop">NNRSimpBinop</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagUnion">OpBagUnion</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpVar">NNRSimpVar</a></span> <span class="id">x</span>₁)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpUnop">NNRSimpUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpBag">OpBag</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#expr">expr</a></span>))))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpUnop">NNRSimpUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpBag">OpBag</a></span> <span class="id">expr</span>))))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">tmp</span>₂ <span class="id">expr</span>₂<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">tmp</span>₃ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpVar">NNRSimpVar</a></span> <span class="id">x</span>₁)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#body">body</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">body</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#rest">rest</a></span>)))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">rest</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⇒ˢ<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">tmp</span>₂ <span class="id">expr</span>₂<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpSeq">NNRSimpSeq</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">tmp</span>₁ <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#source">source</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">tmp</span>₃ (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#expr">expr</a></span>) <span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#body">body</a></span>))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Optim.TNNRSimpRewrite.html#rest">rest</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3562')">Proof.</div>
-<div class="proofscript" id="proof3562">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpFor">NNRSimpFor</a></span> <span class="id">tmp</span>₁ <span class="id">source</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#NNRSimpLet">NNRSimpLet</a></span> <span class="id">tmp</span>₃ (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">expr</span>) <span class="id">body</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">rest</span>)).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3614')">Proof.</div>
+<div class="proofscript" id="proof3614">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimpEq.html#nnrs_imp_stmt_eq_rewrites_to">nnrs_imp_stmt_eq_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRSimp.Optim.NNRSimpRewrite.html#for_for_fuse_eq">for_for_fuse_eq</a></span>; <span class="tactic">trivial</span>.<br/>

@@ -51,7 +51,7 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="infer_binary_op_type_sub">infer_binary_op_type_sub</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">b</span>:<span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op">binary_op</a></span>) (τ₁ τ₂:<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>*<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>*<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>) :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Data.OperatorsTyping.TOperatorsInferSub.html#b">b</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">b</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpEqual">OpEqual</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> τ<span class="id">common</span> := τ₁ ⊔ τ₂ <span class="kwd">in</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Bool">Bool</a></span>, τ<span class="id">common</span>, τ<span class="id">common</span>)<br/>
@@ -147,7 +147,7 @@
 &nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="TOperatorsInferSub.u">u</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="infer_unary_op_type_sub">infer_unary_op_type_sub</a></span> (<span class="id">u</span>:<span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#unary_op">unary_op</a></span>) (τ₁:<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>*<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>) :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Data.OperatorsTyping.TOperatorsInferSub.html#u">u</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">u</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpIdentity">OpIdentity</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (τ₁,τ₁)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpNeg">OpNeg</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">if</span> <span class="id"><a href="Qcert.TypeSystem.RSubtype.html#subtype_dec">subtype_dec</a></span> τ₁ <span class="id"><a href="Qcert.TypeSystem.RType.html#Bool">Bool</a></span><br/>

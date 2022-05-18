@@ -1,0 +1,55 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.WasmAst.Lang.WasmAst</title>
+<meta name="description" content="Documentation of Coq module Qcert.WasmAst.Lang.WasmAst" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.WasmAst.Lang.WasmAst</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html">ForeignEJson</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.EJson.Model.EJson.html">EJson</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Brands.BrandRelation.html">BrandRelation</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Data.DataRuntime.html">DataRuntime</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Model.ForeignDataToEJson.html">ForeignDataToEJson</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Translation.Model.DataToEJson.html">DataToEJson</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="WasmAst">WasmAst</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">foreign_ejson_model</span>:<span class="kwd">Set</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejson</span>:<span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span> <span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#WasmAst.foreign_ejson_model">foreign_ejson_model</a></span>}.<br/>
+<br/>
+<div class="doc">WASM programs are in AST form </div>
+&nbsp;&nbsp;<span class="kwd">Parameter</span> <span class="id"><a name="wasm_ast">wasm_ast</a></span> : <span class="kwd">Set</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Parameter</span> <span class="id"><a name="wasm_ast_eval">wasm_ast_eval</a></span> : <span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#wasm_ast">wasm_ast</a></span> -&gt; @<span class="id"><a href="Qcert.EJson.Model.EJson.html#jbindings">jbindings</a></span> <span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#WasmAst.foreign_ejson_model">foreign_ejson_model</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (@<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> <span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#WasmAst.foreign_ejson_model">foreign_ejson_model</a></span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Parameter</span> <span class="id"><a name="wasm_ast_to_string">wasm_ast_to_string</a></span> : <span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#wasm_ast">wasm_ast</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#WasmAst">WasmAst</a></span>.<br/>
+<br/>
+<span class="id">Extract</span> <span class="id">Constant</span> <span class="id">wasm_ast</span> =&gt; "<span class="id">Wasm_ast.t</span>".<br/>
+<span class="id">Extract</span> <span class="id">Constant</span> <span class="id">wasm_ast_eval</span> =&gt; "<span class="id">Wasm_ast.eval</span>".<br/>
+<span class="id">Extract</span> <span class="id">Constant</span> <span class="id">wasm_ast_to_string</span> =&gt; "<span class="id">Wasm_ast.to_string</span>".<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="Top">Top</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">foreign_ejson_model</span>:<span class="kwd">Set</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejson</span>:<span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span> <span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#Top.foreign_ejson_model">foreign_ejson_model</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">foreign_ejson_runtime_op</span> : <span class="kwd">Set</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fdatatoejson</span>:<span class="id"><a href="Qcert.Translation.Model.ForeignDataToEJson.html#foreign_to_ejson">foreign_to_ejson</a></span> <span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#Top.foreign_ejson_model">foreign_ejson_model</a></span> <span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#Top.foreign_ejson_runtime_op">foreign_ejson_runtime_op</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="wasm_ast_eval_top">wasm_ast_eval_top</a></span> (<span class="id">cenv</span>: <span class="id"><a href="Qcert.Data.Model.Data.html#bindings">bindings</a></span>) (<span class="id">q</span>:<span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#wasm_ast">wasm_ast</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">let</span> <span class="id">jenv</span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">List.map</a></span> (<span class="kwd">fun</span> <span class="id">xy</span> =&gt; (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">xy</span>, <span class="id"><a href="Qcert.Translation.Model.DataToEJson.html#data_to_ejson">data_to_ejson</a></span>(<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">xy</span>))) <span class="id">cenv</span> <span class="kwd">in</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Translation.Model.DataToEJson.html#ejson_to_data">ejson_to_data</a></span> (<span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#wasm_ast_eval">wasm_ast_eval</a></span> <span class="id">q</span> <span class="id">jenv</span>).<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.WasmAst.Lang.WasmAst.html#Top">Top</a></span>.<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>

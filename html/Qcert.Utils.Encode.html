@@ -19,76 +19,77 @@
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html">CoqLibAdd</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.StringAdd.html">StringAdd</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Bindings.html">Bindings</a></span>.<br/>
 <br/>
 <span class="kwd">Section</span> <span class="id"><a name="Encode">Encode</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="key_encode">key_encode</a></span> (<span class="id">s</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> <span class="id">s</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> <span class="id">s</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> <span class="id">s</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id">s</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="key_decode">key_decode</a></span> (<span class="id">s</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#EmptyString">EmptyString</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#EmptyString">EmptyString</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> <span class="id">s</span>) =&gt;  <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> <span class="id">s</span>) =&gt;  <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$"%<span class="id">char</span> <span class="id">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id">s</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_decode">key_encode_decode</a></span> (<span class="id">s</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) : <span class="id"><a href="Qcert.Utils.Encode.html#key_decode">key_decode</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) = <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_decode">key_encode_decode</a></span> (<span class="id">s</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) : <span class="id"><a href="Qcert.Utils.Encode.html#key_decode">key_decode</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) = <span class="id">s</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">do</span> 2 (<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_data">key_encode_not_data</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) &lt;&gt; "$<span class="id">data</span>"%<span class="id">string</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1041')">Proof.</div>
-<div class="proofscript" id="proof1041">
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_data">key_encode_not_data</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) &lt;&gt; "$<span class="id">data</span>"%<span class="id">string</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1076')">Proof.</div>
+<div class="proofscript" id="proof1076">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_class">key_encode_not_class</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) &lt;&gt; "$<span class="id">class</span>"%<span class="id">string</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1042')">Proof.</div>
-<div class="proofscript" id="proof1042">
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_class">key_encode_not_class</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) &lt;&gt; "$<span class="id">class</span>"%<span class="id">string</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1077')">Proof.</div>
+<div class="proofscript" id="proof1077">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_foreign">key_encode_not_foreign</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) &lt;&gt; "$<span class="id">foreign</span>"%<span class="id">string</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1043')">Proof.</div>
-<div class="proofscript" id="proof1043">
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_foreign">key_encode_not_foreign</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) &lt;&gt; "$<span class="id">foreign</span>"%<span class="id">string</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1078')">Proof.</div>
+<div class="proofscript" id="proof1078">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_nat">key_encode_not_nat</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) &lt;&gt; "$<span class="id">nat</span>"%<span class="id">string</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1044')">Proof.</div>
-<div class="proofscript" id="proof1044">
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_nat">key_encode_not_nat</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) &lt;&gt; "$<span class="id">nat</span>"%<span class="id">string</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1079')">Proof.</div>
+<div class="proofscript" id="proof1079">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_left">key_encode_not_left</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) &lt;&gt; "$<span class="id">left</span>"%<span class="id">string</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1045')">Proof.</div>
-<div class="proofscript" id="proof1045">
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_left">key_encode_not_left</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) &lt;&gt; "$<span class="id">left</span>"%<span class="id">string</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1080')">Proof.</div>
+<div class="proofscript" id="proof1080">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_right">key_encode_not_right</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) &lt;&gt; "$<span class="id">right</span>"%<span class="id">string</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1046')">Proof.</div>
-<div class="proofscript" id="proof1046">
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_right">key_encode_not_right</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) &lt;&gt; "$<span class="id">right</span>"%<span class="id">string</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1081')">Proof.</div>
+<div class="proofscript" id="proof1081">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_not_dollar">match_not_dollar</a></span> <span class="id">a</span> <span class="id">s</span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Encode.html#a">a</a></span> &lt;&gt; "$"%<span class="id">char</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.Encode.html#a">a</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| "$"%<span class="id">char</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$" (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$" <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#a">a</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#a">a</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1047')">Proof.</div>
-<div class="proofscript" id="proof1047">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">a</span> &lt;&gt; "$"%<span class="id">char</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">a</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| "$"%<span class="id">char</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$" (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$" <span class="id">s</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id">a</span> <span class="id">s</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id">a</span> <span class="id">s</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1082')">Proof.</div>
+<div class="proofscript" id="proof1082">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
@@ -102,10 +103,10 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_inv">key_encode_inv</a></span> <span class="id">s</span> <span class="id">s0</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) = (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> = <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1048')">Proof.</div>
-<div class="proofscript" id="proof1048">
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) = (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s0</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">s</span> = <span class="id">s0</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1083')">Proof.</div>
+<div class="proofscript" id="proof1083">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">destruct</span> <span class="id">s0</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
@@ -148,10 +149,10 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_diff">key_encode_diff</a></span> <span class="id">s</span> <span class="id">s0</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> &lt;&gt; <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;-&gt; (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) &lt;&gt; (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1049')">Proof.</div>
-<div class="proofscript" id="proof1049">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">s</span> &lt;&gt; <span class="id">s0</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt; (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) &lt;&gt; (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s0</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1084')">Proof.</div>
+<div class="proofscript" id="proof1084">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#not">not</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -160,25 +161,25 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_eq">key_encode_eq</a></span> <span class="id">s</span> <span class="id">s0</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) = (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span>) &lt;-&gt; <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> = <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1050')">Proof.</div>
-<div class="proofscript" id="proof1050">
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) = (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s0</span>) &lt;-&gt; <span class="id">s</span> = <span class="id">s0</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1085')">Proof.</div>
+<div class="proofscript" id="proof1085">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Encode.html#key_encode_inv">key_encode_inv</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span>; <span class="tactic">subst</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="in_map_key_encode">in_map_key_encode</a></span> <span class="id">s</span> <span class="id">pl</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#pl">pl</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#pl">pl</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1051')">Proof.</div>
-<div class="proofscript" id="proof1051">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">s</span> <span class="id">pl</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">pl</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1086')">Proof.</div>
+<div class="proofscript" id="proof1086">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#in_map">in_map</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="in_map_key_encode_inv">in_map_key_encode_inv</a></span> <span class="id">s</span> <span class="id">pl</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#pl">pl</a></span>) -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#pl">pl</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1052')">Proof.</div>
-<div class="proofscript" id="proof1052">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">pl</span>) -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">s</span> <span class="id">pl</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1087')">Proof.</div>
+<div class="proofscript" id="proof1087">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">pl</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
@@ -189,12 +190,12 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_one_dollar_character">match_one_dollar_character</a></span> <span class="id">a</span> <span class="id">s0</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">b</span> <span class="id">s</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.Encode.html#a">a</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| "$"%<span class="id">char</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$" (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$" <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#a">a</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#b">b</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1053')">Proof.</div>
-<div class="proofscript" id="proof1053">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">a</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| "$"%<span class="id">char</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$" (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> "$" <span class="id">s0</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id">a</span> <span class="id">s0</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#String">String</a></span> <span class="id">b</span> <span class="id">s</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1088')">Proof.</div>
+<div class="proofscript" id="proof1088">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id"><a href="Qcert.Utils.StringAdd.html#ascii_dec">ascii_dec</a></span> <span class="id">a</span> "$"%<span class="id">char</span>); <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">a0</span>.<br/>
@@ -205,9 +206,9 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_lt">key_encode_lt</a></span> <span class="id">s</span> <span class="id">s0</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span> -&gt; <span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1054')">Proof.</div>
-<div class="proofscript" id="proof1054">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> <span class="id">s</span> <span class="id">s0</span> -&gt; <span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s0</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1089')">Proof.</div>
+<div class="proofscript" id="proof1089">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">s0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">s</span>; <span class="tactic">destruct</span> <span class="id">s0</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">auto</span>.<br/>
@@ -244,9 +245,9 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_lt_inv">key_encode_lt_inv</a></span> <span class="id">s</span> <span class="id">s0</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span>) -&gt; <span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1055')">Proof.</div>
-<div class="proofscript" id="proof1055">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s0</span>) -&gt; <span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> <span class="id">s</span> <span class="id">s0</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1090')">Proof.</div>
+<div class="proofscript" id="proof1090">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">s0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">s</span>; <span class="tactic">destruct</span> <span class="id">s0</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">auto</span>.<br/>
@@ -284,22 +285,22 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_lt_idem">key_encode_lt_idem</a></span> <span class="id">s</span> <span class="id">s0</span>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span> &lt;-&gt; <span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span>) (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#s0">s0</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1056')">Proof.</div>
-<div class="proofscript" id="proof1056">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> <span class="id">s</span> <span class="id">s0</span> &lt;-&gt; <span class="id"><a href="Qcert.Utils.StringAdd.html#StringOrder.lt">StringOrder.lt</a></span> (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s0</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1091')">Proof.</div>
+<div class="proofscript" id="proof1091">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Encode.html#key_encode_lt">key_encode_lt</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Encode.html#key_encode_lt_inv">key_encode_lt_inv</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_not_left">match_not_left</a></span> {<span class="id">A</span>} <span class="id">s</span> (<span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.Utils.Encode.html#A">A</a></span>):<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> &lt;&gt; "$<span class="id">left</span>"%<span class="id">string</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">left</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#y">y</a></span><br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_not_left">match_not_left</a></span> {<span class="id">A</span>} <span class="id">s</span> (<span class="id">x</span> <span class="id">y</span>:<span class="id">A</span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">s</span> &lt;&gt; "$<span class="id">left</span>"%<span class="id">string</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">left</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">y</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1057')">Proof.</div>
-<div class="proofscript" id="proof1057">
+<div class="toggleproof" onclick="toggleDisplay('proof1092')">Proof.</div>
+<div class="proofscript" id="proof1092">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> (<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
@@ -313,14 +314,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b6</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>).<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_not_right">match_not_right</a></span> {<span class="id">A</span>} <span class="id">s</span> (<span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.Utils.Encode.html#A">A</a></span>):<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> &lt;&gt; "$<span class="id">right</span>"%<span class="id">string</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">right</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#y">y</a></span><br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_not_right">match_not_right</a></span> {<span class="id">A</span>} <span class="id">s</span> (<span class="id">x</span> <span class="id">y</span>:<span class="id">A</span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">s</span> &lt;&gt; "$<span class="id">right</span>"%<span class="id">string</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">right</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">y</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1058')">Proof.</div>
-<div class="proofscript" id="proof1058">
+<div class="toggleproof" onclick="toggleDisplay('proof1093')">Proof.</div>
+<div class="proofscript" id="proof1093">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> (<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
@@ -334,15 +335,15 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b6</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>).<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_neither_left_nor_right">match_neither_left_nor_right</a></span> {<span class="id">A</span>} <span class="id">s</span> (<span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.Utils.Encode.html#A">A</a></span>):<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> &lt;&gt; "$<span class="id">right</span>"%<span class="id">string</span> -&gt; <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> &lt;&gt; "$<span class="id">left</span>"%<span class="id">string</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Utils.Encode.html#s">s</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">right</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#x">x</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">left</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id"><a href="Qcert.Utils.Encode.html#y">y</a></span><br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_neither_left_nor_right">match_neither_left_nor_right</a></span> {<span class="id">A</span>} <span class="id">s</span> (<span class="id">x</span> <span class="id">y</span>:<span class="id">A</span>):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">s</span> &lt;&gt; "$<span class="id">right</span>"%<span class="id">string</span> -&gt; <span class="id">s</span> &lt;&gt; "$<span class="id">left</span>"%<span class="id">string</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">s</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">right</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">x</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| "$<span class="id">left</span>"%<span class="id">string</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">y</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1059')">Proof.</div>
-<div class="proofscript" id="proof1059">
+<div class="toggleproof" onclick="toggleDisplay('proof1094')">Proof.</div>
+<div class="proofscript" id="proof1094">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> (<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
@@ -354,6 +355,21 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b4</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b5</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b6</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>).<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="rec_field_lt_key_eq">rec_field_lt_key_eq</a></span> {<span class="id">A</span> <span class="id">B</span>} (<span class="id">x</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id">A</span>) (<span class="id">y</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id">A</span>) (<span class="id">f</span>:<span class="id">A</span> -&gt; <span class="id">B</span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Bindings.html#rec_field_lt">rec_field_lt</a></span> <span class="id">x</span> <span class="id">y</span> &lt;-&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Bindings.html#rec_field_lt">rec_field_lt</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">x</span>), <span class="id">f</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">x</span>)) (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">y</span>), <span class="id">f</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">y</span>)).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1095')">Proof.</div>
+<div class="proofscript" id="proof1095">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Bindings.html#rec_field_lt">rec_field_lt</a></span> <span class="kwd">in</span> *; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="id"><a href="Qcert.Utils.Encode.html#key_encode_lt_idem">key_encode_lt_idem</a></span>; <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Bindings.html#rec_field_lt">rec_field_lt</a></span> <span class="kwd">in</span> *; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.Encode.html#key_encode_lt_idem">key_encode_lt_idem</a></span>; <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 <span class="kwd">End</span> <span class="id"><a href="Qcert.Utils.Encode.html#Encode">Encode</a></span>.<br/>

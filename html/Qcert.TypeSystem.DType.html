@@ -32,12 +32,12 @@
 &nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">br</span>:<span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation">brand_relation</a></span>}.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="drtype">drtype</a></span> : <span class="kwd">Set</span> :=<br/>
-&nbsp;&nbsp;| <span class="id"><a name="Tlocal">Tlocal</a></span> : <span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span> -&gt; <span class="id"><a href="Qcert.TypeSystem.DType.html#drtype">drtype</a></span><br/>
-&nbsp;&nbsp;| <span class="id"><a name="Tdistr">Tdistr</a></span> : <span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span> -&gt; <span class="id"><a href="Qcert.TypeSystem.DType.html#drtype">drtype</a></span>.<br/>
+&nbsp;&nbsp;| <span class="id"><a name="Tlocal">Tlocal</a></span> : <span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span> -&gt; <span class="id">drtype</span><br/>
+&nbsp;&nbsp;| <span class="id"><a name="Tdistr">Tdistr</a></span> : <span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span> -&gt; <span class="id">drtype</span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="drtype_eqdec">drtype_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.TypeSystem.DType.html#drtype">drtype</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1235')">Proof.</div>
-<div class="proofscript" id="proof1235">
+<div class="toggleproof" onclick="toggleDisplay('proof1272')">Proof.</div>
+<div class="proofscript" id="proof1272">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id">r</span> == <span class="id">r0</span>); <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html#equiv">equiv</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#complement">complement</a></span> <span class="kwd">in</span> *; <span class="tactic">subst</span>.<br/>
@@ -52,7 +52,7 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="DType.unlocalize">unlocalize</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="unlocalize_drtype">unlocalize_drtype</a></span> (<span class="id">dt</span>:<span class="id"><a href="Qcert.TypeSystem.DType.html#drtype">drtype</a></span>) : <span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.TypeSystem.DType.html#dt">dt</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">dt</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.TypeSystem.DType.html#Tlocal">Tlocal</a></span> <span class="id">t</span> =&gt; <span class="id">t</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.TypeSystem.DType.html#Tdistr">Tdistr</a></span> <span class="id">t</span> =&gt; <span class="id"><a href="Qcert.TypeSystem.RType.html#Coll">Coll</a></span> <span class="id">t</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>

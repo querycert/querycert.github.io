@@ -36,22 +36,22 @@
 &nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="Schema.brand_relation">brand_relation</a></span>.<br/>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Program</span> <span class="kwd">Definition</span> <span class="id"><a name="mk_brand_relation">mk_brand_relation</a></span> (<span class="id">br</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)) : <span class="id"><a href="Qcert.Data.Model.DataResult.html#qresult">qresult</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation">brand_relation</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">if</span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_trans_dec">brand_relation_trans_dec</a></span> <span class="id"><a href="Qcert.Data.ModelTyping.Schema.html#br">br</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">if</span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_trans_dec">brand_relation_trans_dec</a></span> <span class="id">br</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">then</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">if</span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_assym_dec">brand_relation_assym_dec</a></span> <span class="id"><a href="Qcert.Data.ModelTyping.Schema.html#br">br</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">if</span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_assym_dec">brand_relation_assym_dec</a></span> <span class="id">br</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">then</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataResult.html#qsuccess">qsuccess</a></span> (<span class="id"><a href="Qcert.Brands.BrandRelation.html#mkBrand_relation">mkBrand_relation</a></span> <span class="id"><a href="Qcert.Data.ModelTyping.Schema.html#br">br</a></span> <span class="id">_</span> <span class="id">_</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataResult.html#qsuccess">qsuccess</a></span> (<span class="id"><a href="Qcert.Brands.BrandRelation.html#mkBrand_relation">mkBrand_relation</a></span> <span class="id">br</span> <span class="id">_</span> <span class="id">_</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">else</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataResult.html#qfailure">qfailure</a></span> (<span class="id"><a href="Qcert.Data.Model.DataResult.html#CompilationError">CompilationError</a></span> "<span class="id">Brand</span> <span class="id">relation</span> <span class="id">is</span> <span class="id">not</span> <span class="id">assymetric</span>")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">else</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataResult.html#qfailure">qfailure</a></span> (<span class="id"><a href="Qcert.Data.Model.DataResult.html#CompilationError">CompilationError</a></span> "<span class="id">Brand</span> <span class="id">relation</span> <span class="id">is</span> <span class="id">not</span> <span class="id">transitive</span>").<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1652')">Next Obligation.</div>
-<div class="proofscript" id="proof1652">
+<div class="toggleproof" onclick="toggleDisplay('proof1659')">Next Obligation.</div>
+<div class="proofscript" id="proof1659">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#holds">holds</a></span>, <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#is_true">is_true</a></span>; <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof1653')">Next Obligation.</div>
-<div class="proofscript" id="proof1653">
+<div class="toggleproof" onclick="toggleDisplay('proof1660')">Next Obligation.</div>
+<div class="proofscript" id="proof1660">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#holds">holds</a></span>, <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#is_true">is_true</a></span>; <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
@@ -61,17 +61,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ftype</span>:<span class="id"><a href="Qcert.TypeSystem.ForeignType.html#foreign_type">foreign_type</a></span>}.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Program</span> <span class="kwd">Definition</span> <span class="id"><a name="mk_brand_context">mk_brand_context</a></span> (<span class="id">b</span>:<span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation">brand_relation</a></span>) (<span class="id">bcds</span>:<span class="id"><a href="Qcert.TypeSystem.TBrandContext.html#brand_context_decls">brand_context_decls</a></span>) :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.TypeSystem.TBrandContext.html#mkBrand_context">mkBrand_context</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> <span class="id"><a href="Qcert.Data.ModelTyping.Schema.html#bcds">bcds</a></span>) <span class="id">_</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1654')">Next Obligation.</div>
-<div class="proofscript" id="proof1654">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.TypeSystem.TBrandContext.html#mkBrand_context">mkBrand_context</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> <span class="id">bcds</span>) <span class="id">_</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof1661')">Next Obligation.</div>
+<div class="proofscript" id="proof1661">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort_sorted">rec_sort_sorted</a></span> <span class="id">bcds</span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> <span class="id">bcds</span>) <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="make_brand_model_from_decls_fails">make_brand_model_from_decls_fails</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">b</span>:<span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation">brand_relation</a></span>) (<span class="id">bcds</span>:<span class="id"><a href="Qcert.TypeSystem.TBrandContext.html#brand_context_decls">brand_context_decls</a></span>) : <span class="id"><a href="Qcert.Data.Model.DataResult.html#qresult">qresult</a></span> <span class="id"><a href="Qcert.TypeSystem.TBrandModel.html#brand_model">brand_model</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1655')">Proof.</div>
-<div class="proofscript" id="proof1655">
+<div class="toggleproof" onclick="toggleDisplay('proof1662')">Proof.</div>
+<div class="proofscript" id="proof1662">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Data.ModelTyping.Schema.html#mk_brand_context">mk_brand_context</a></span> <span class="id">b</span> <span class="id">bcds</span>); <span class="tactic">intro</span> <span class="id">m</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.TypeSystem.TBrandModel.html#make_brand_model">make_brand_model</a></span> <span class="id">b</span> <span class="id">m</span>); <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#is_true">is_true</a></span> <span class="id"><a href="Qcert.TypeSystem.TBrandModel.html#brand_model_domain_dec">brand_model_domain_dec</a></span>).<br/>

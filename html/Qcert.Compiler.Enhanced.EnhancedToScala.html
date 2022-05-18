@@ -19,7 +19,6 @@
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html">RelationClasses</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html">Equivalence</a></span>.<br/>
-<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.ToString.html">ToString</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.TypeSystem.ForeignType.html">ForeignType</a></span>.<br/>
@@ -33,18 +32,16 @@
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedToJava.html">EnhancedToJava</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html">EnhancedType</a></span>.<br/>
 <br/>
-<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nstring_scope</span>.<br/>
-<br/>
-<span class="kwd">Definition</span> <span class="id"><a name="enhanced_to_scala_unary_op">enhanced_to_scala_unary_op</a></span> (<span class="id">op</span>: <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_unary_op">enhanced_unary_op</a></span>) (<span class="id">d</span>: <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
-&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedToScala.html#op">op</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_unary_sql_date_op">enhanced_unary_sql_date_op</a></span> <span class="id">op</span> =&gt; ^"<span class="id">EnhancedModel</span>: <span class="id">SQL</span> <span class="id">date</span> <span class="id">ops</span> <span class="id">not</span> <span class="id">supported</span> <span class="kwd">for</span> <span class="id">now</span>."<br/>
-&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_unary_uri_op">enhanced_unary_uri_op</a></span> <span class="id">op</span> =&gt; ^"<span class="id">EnhancedModel</span>: <span class="id">URI</span> <span class="id">ops</span> <span class="id">not</span> <span class="id">supported</span> <span class="kwd">for</span> <span class="id">now</span>."<br/>
+<span class="kwd">Definition</span> <span class="id"><a name="enhanced_to_scala_unary_op">enhanced_to_scala_unary_op</a></span> (<span class="id">op</span>: <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_unary_op">enhanced_unary_op</a></span>) (<span class="id">d</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_unary_sql_date_op">enhanced_unary_sql_date_op</a></span> <span class="id">op</span> =&gt; "<span class="id">EnhancedModel</span>: <span class="id">SQL</span> <span class="id">date</span> <span class="id">ops</span> <span class="id">not</span> <span class="id">supported</span> <span class="kwd">for</span> <span class="id">now</span>."<br/>
+&nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_unary_uri_op">enhanced_unary_uri_op</a></span> <span class="id">op</span> =&gt; "<span class="id">EnhancedModel</span>: <span class="id">URI</span> <span class="id">ops</span> <span class="id">not</span> <span class="id">supported</span> <span class="kwd">for</span> <span class="id">now</span>."<br/>
 &nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
-<span class="kwd">Definition</span> <span class="id"><a name="enhanced_to_scala_spark_datatype">enhanced_to_scala_spark_datatype</a></span> (<span class="id">ft</span>: <span class="id"><a href="Qcert.TypeSystem.ForeignType.html#foreign_type_type">foreign_type_type</a></span>) : <span class="id"><a href="Qcert.Utils.NativeString.html#nstring">nstring</a></span> :=<br/>
-&nbsp;&nbsp;^"<span class="id">FloatType</span>".<br/>
+<span class="kwd">Definition</span> <span class="id"><a name="enhanced_to_scala_spark_datatype">enhanced_to_scala_spark_datatype</a></span> (<span class="id">ft</span>: <span class="id"><a href="Qcert.TypeSystem.ForeignType.html#foreign_type_type">foreign_type_type</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> :=<br/>
+&nbsp;&nbsp;"<span class="id">FloatType</span>".<br/>
 <br/>
-<span class="kwd">Instance</span> <span class="id"><a name="enhanced_foreign_to_scala">enhanced_foreign_to_scala</a></span>:<br/>
+<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="enhanced_foreign_to_scala">enhanced_foreign_to_scala</a></span>:<br/>
 &nbsp;&nbsp;@<span class="id"><a href="Qcert.Translation.Operators.ForeignToScala.html#foreign_to_scala">foreign_to_scala</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_foreign_runtime">enhanced_foreign_runtime</a></span> <span class="id">_</span><br/>
 &nbsp;&nbsp;:= <span class="id"><a href="Qcert.Translation.Operators.ForeignToScala.html#mk_foreign_to_scala">mk_foreign_to_scala</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_foreign_runtime">enhanced_foreign_runtime</a></span> <span class="id">_</span><br/>

@@ -17,7 +17,15 @@
 <span class="kwd">Require</span> <span class="kwd">Export</span> <span class="id">JsAst.JsSyntax</span>.<br/>
 <br/>
 <span class="kwd">Section</span> <span class="id"><a name="JavaScriptAst">JavaScriptAst</a></span>.<br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="ajavascript">ajavascript</a></span> := <span class="id">prog</span>.<br/>
+&nbsp;&nbsp;<span class="kwd">Inductive</span> <span class="id"><a name="topdecl">topdecl</a></span> :=<br/>
+&nbsp;&nbsp;| <span class="id"><a name="strictmode">strictmode</a></span> : <span class="id">topdecl</span>                            <br/>
+&nbsp;&nbsp;| <span class="id"><a name="comment">comment</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id">topdecl</span>                     <br/>
+&nbsp;&nbsp;| <span class="id"><a name="elementdecl">elementdecl</a></span> : <span class="id">element</span> -&gt; <span class="id">topdecl</span>                <br/>
+&nbsp;&nbsp;| <span class="id"><a name="classdecl">classdecl</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">funcdecl</span> -&gt; <span class="id">topdecl</span>  <br/>
+&nbsp;&nbsp;| <span class="id"><a name="constdecl">constdecl</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id">expr</span> -&gt; <span class="id">topdecl</span>           <br/>
+&nbsp;&nbsp;.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="js_ast">js_ast</a></span> := <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html#topdecl">topdecl</a></span>.<br/>
 <br/>
 <span class="kwd">End</span> <span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html#JavaScriptAst">JavaScriptAst</a></span>.<br/>
 <br/>

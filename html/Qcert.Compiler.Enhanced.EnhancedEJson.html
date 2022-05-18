@@ -30,15 +30,15 @@
 <br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html">EnhancedData</a></span>.<br/>
 <br/>
-<span class="kwd">Import</span> <span class="id">ListNotations</span>.<br/>
+<span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#ListNotations">ListNotations</a></span>.<br/>
 <span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">list_scope</span>.<br/>
 <br/>
 <span class="kwd">Definition</span> <span class="id"><a name="enhanced_ejson">enhanced_ejson</a></span> : <span class="kwd">Set</span> := <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhanced_data">enhanced_data</a></span>.<br/>
 <br/>
-<span class="kwd">Program</span> <span class="kwd">Instance</span> <span class="id"><a name="enhanced_foreign_ejson">enhanced_foreign_ejson</a></span> : <span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span><br/>
+<span class="kwd">Global</span> <span class="kwd">Program</span> <span class="kwd">Instance</span> <span class="id"><a name="enhanced_foreign_ejson">enhanced_foreign_ejson</a></span> : <span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#foreign_ejson">foreign_ejson</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson">enhanced_ejson</a></span><br/>
 &nbsp;&nbsp;:= <span class="id"><a href="Qcert.EJson.Model.ForeignEJson.html#mk_foreign_ejson">mk_foreign_ejson</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson">enhanced_ejson</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4366')">Next Obligation.</div>
-<div class="proofscript" id="proof4366">
+<div class="toggleproof" onclick="toggleDisplay('proof4516')">Next Obligation.</div>
+<div class="proofscript" id="proof4516">
 &nbsp;&nbsp;<span class="tactic">red</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html#equiv">equiv</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#complement">complement</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="id">solve</span> [<span class="id">right</span>; <span class="tactic">inversion</span> 1].<br/>
@@ -49,21 +49,21 @@
 &nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">left</span>; <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">right</span>; <span class="tactic">congruence</span>.<br/>
 Defined.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof4367')">Next Obligation.</div>
-<div class="proofscript" id="proof4367">
+<div class="toggleproof" onclick="toggleDisplay('proof4517')">Next Obligation.</div>
+<div class="proofscript" id="proof4517">
 &nbsp;&nbsp;<span class="comment">(*&nbsp;normalized?&nbsp;*)</span><br/>
 &nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">exact</span> (@<span class="id"><a href="Qcert.Data.Model.ForeignData.html#foreign_data_normalized">foreign_data_normalized</a></span> <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#sql_date_foreign_data">sql_date_foreign_data</a></span> <span class="id">s</span>).<br/>
 &nbsp;&nbsp;- <span class="tactic">exact</span> (@<span class="id"><a href="Qcert.Data.Model.ForeignData.html#foreign_data_normalized">foreign_data_normalized</a></span> <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#sql_date_period_foreign_data">sql_date_period_foreign_data</a></span> <span class="id">s</span>).<br/>
 Defined.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof4368')">Next Obligation.</div>
-<div class="proofscript" id="proof4368">
+<div class="toggleproof" onclick="toggleDisplay('proof4518')">Next Obligation.</div>
+<div class="proofscript" id="proof4518">
 &nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">exact</span> (@<span class="id"><a href="Qcert.Data.Model.ForeignData.html#foreign_data_normalize_normalizes">foreign_data_normalize_normalizes</a></span> <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#sql_date_foreign_data">sql_date_foreign_data</a></span> <span class="id">s</span>).<br/>
 &nbsp;&nbsp;- <span class="tactic">exact</span> (@<span class="id"><a href="Qcert.Data.Model.ForeignData.html#foreign_data_normalize_normalizes">foreign_data_normalize_normalizes</a></span> <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#sql_date_period_foreign_data">sql_date_period_foreign_data</a></span> <span class="id">s</span>).<br/>
 Defined.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof4369')">Next Obligation.</div>
-<div class="proofscript" id="proof4369">
+<div class="toggleproof" onclick="toggleDisplay('proof4519')">Next Obligation.</div>
+<div class="proofscript" id="proof4519">
 &nbsp;&nbsp;<span class="id">constructor</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">destruct</span> 1.<br/>
 &nbsp;&nbsp;- <span class="tactic">exact</span> (@<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#toString">toString</a></span> <span class="id">_</span> (@<span class="id"><a href="Qcert.Data.Model.ForeignData.html#foreign_data_tostring">foreign_data_tostring</a></span> <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#sql_date_foreign_data">sql_date_foreign_data</a></span>) <span class="id">s</span>).<br/>
@@ -71,192 +71,213 @@ Defined.</div>
 Defined.</div>
 <br/>
 <span class="kwd">Inductive</span> <span class="id"><a name="enhanced_foreign_ejson_runtime_op">enhanced_foreign_ejson_runtime_op</a></span> :=<br/>
-| <span class="id"><a name="enhanced_ejson_sql_date">enhanced_ejson_sql_date</a></span> : <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#ejson_sql_date_runtime_op">ejson_sql_date_runtime_op</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_foreign_ejson_runtime_op">enhanced_foreign_ejson_runtime_op</a></span><br/>
-| <span class="id"><a name="enhanced_ejson_uri">enhanced_ejson_uri</a></span> : <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#ejson_uri_runtime_op">ejson_uri_runtime_op</a></span> -&gt; <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_foreign_ejson_runtime_op">enhanced_foreign_ejson_runtime_op</a></span><br/>
+| <span class="id"><a name="enhanced_ejson_sql_date">enhanced_ejson_sql_date</a></span> : <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#ejson_sql_date_runtime_op">ejson_sql_date_runtime_op</a></span> -&gt; <span class="id">enhanced_foreign_ejson_runtime_op</span><br/>
+| <span class="id"><a name="enhanced_ejson_uri">enhanced_ejson_uri</a></span> : <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#ejson_uri_runtime_op">ejson_uri_runtime_op</a></span> -&gt; <span class="id">enhanced_foreign_ejson_runtime_op</span><br/>
 .<br/>
 <br/>
 <span class="kwd">Definition</span> <span class="id"><a name="enhanced_foreign_ejson_runtime_op_tostring">enhanced_foreign_ejson_runtime_op_tostring</a></span> <span class="id">op</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> :=<br/>
-&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#op">op</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson_sql_date">enhanced_ejson_sql_date</a></span> <span class="id">sop</span> =&gt; <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#ejson_sql_date_runtime_op_tostring">ejson_sql_date_runtime_op_tostring</a></span> <span class="id">sop</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson_uri">enhanced_ejson_uri</a></span> <span class="id">sop</span> =&gt; <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#ejson_uri_runtime_op_tostring">ejson_uri_runtime_op_tostring</a></span> <span class="id">sop</span><br/>
 &nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
+<span class="kwd">Definition</span> <span class="id"><a name="enhanced_foreign_ejson_runtime_op_fromstring">enhanced_foreign_ejson_runtime_op_fromstring</a></span> <span class="id">opname</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_foreign_ejson_runtime_op">enhanced_foreign_ejson_runtime_op</a></span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#ejson_sql_date_runtime_op_fromstring">ejson_sql_date_runtime_op_fromstring</a></span> <span class="id">opname</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">op</span> =&gt;  <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson_sql_date">enhanced_ejson_sql_date</a></span> <span class="id">op</span>)<br/>
+&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#ejson_uri_runtime_op_fromstring">ejson_uri_runtime_op_fromstring</a></span> <span class="id">opname</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">op</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson_uri">enhanced_ejson_uri</a></span> <span class="id">op</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<br/>
 <span class="kwd">Definition</span> <span class="id"><a name="enhanced_ejson_sql_date_runtime_op_interp">enhanced_ejson_sql_date_runtime_op_interp</a></span> <span class="id">op</span> (<span class="id">dl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> :=<br/>
-&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#op">op</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateFromString">EJsonRuntimeDateFromString</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_unary">apply_unary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d">d</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejstring">ejstring</a></span> <span class="id">s</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_from_string">SQL_DATE_from_string</a></span> <span class="id">s</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateGetYear">EJsonRuntimeDateGetYear</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_unary">apply_unary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d">d</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">s</span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_get_year">SQL_DATE_get_year</a></span> <span class="id">s</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateGetMonth">EJsonRuntimeDateGetMonth</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_unary">apply_unary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d">d</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd</span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_get_month">SQL_DATE_get_month</a></span> <span class="id">fd</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateGetDay">EJsonRuntimeDateGetDay</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_unary">apply_unary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d">d</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd</span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_get_day">SQL_DATE_get_day</a></span> <span class="id">fd</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateNe">EJsonRuntimeDateNe</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd1</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd2</span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbool">ejbool</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_ne">SQL_DATE_ne</a></span> <span class="id">fd1</span> <span class="id">fd2</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateLt">EJsonRuntimeDateLt</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd1</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd2</span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbool">ejbool</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_lt">SQL_DATE_lt</a></span> <span class="id">fd1</span> <span class="id">fd2</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateLe">EJsonRuntimeDateLe</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd1</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd2</span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbool">ejbool</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_le">SQL_DATE_le</a></span> <span class="id">fd1</span> <span class="id">fd2</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateGt">EJsonRuntimeDateGt</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd1</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd2</span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbool">ejbool</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_gt">SQL_DATE_gt</a></span> <span class="id">fd1</span> <span class="id">fd2</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateGe">EJsonRuntimeDateGe</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd1</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd2</span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbool">ejbool</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_ge">SQL_DATE_ge</a></span> <span class="id">fd1</span> <span class="id">fd2</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateSetYear">EJsonRuntimeDateSetYear</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> <span class="id">n</span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_set_year">SQL_DATE_set_year</a></span> <span class="id">fd</span> <span class="id">n</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateSetMonth">EJsonRuntimeDateSetMonth</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> <span class="id">n</span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_set_month">SQL_DATE_set_month</a></span> <span class="id">fd</span> <span class="id">n</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimeDateSetDay">EJsonRuntimeDateSetDay</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejbigint">ejbigint</a></span> <span class="id">n</span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_set_day">SQL_DATE_set_day</a></span> <span class="id">fd</span> <span class="id">n</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimePeriodFromString">EJsonRuntimePeriodFromString</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_unary">apply_unary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d">d</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejstring">ejstring</a></span> <span class="id">s</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldateperiod">enhancedsqldateperiod</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_PERIOD_from_string">SQL_DATE_PERIOD_from_string</a></span> <span class="id">s</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimePeriodPlus">EJsonRuntimePeriodPlus</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldateperiod">enhancedsqldateperiod</a></span> <span class="id">id</span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldateperiod">enhancedsqldateperiod</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#id">id</a></span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_plus">SQL_DATE_plus</a></span> <span class="id">fd</span> <span class="id">id</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimePeriodMinus">EJsonRuntimePeriodMinus</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldateperiod">enhancedsqldateperiod</a></span> <span class="id">id</span>) =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldateperiod">enhancedsqldateperiod</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#id">id</a></span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_minus">SQL_DATE_minus</a></span> <span class="id">fd</span> <span class="id">id</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#EJsonRuntimePeriodBetween">EJsonRuntimePeriodBetween</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_binary">apply_binary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d1">d1</a></span>, <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d2">d2</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d1</span>, <span class="id">d2</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd1</span>), <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldate">enhancedsqldate</a></span> <span class="id">fd2</span>) =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejforeign">ejforeign</a></span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedData.html#enhancedsqldateperiod">enhancedsqldateperiod</a></span> (<span class="id"><a href="Qcert.Compiler.Component.SqlDateComponent.html#SQL_DATE_PERIOD_between">SQL_DATE_PERIOD_between</a></span> <span class="id">fd1</span> <span class="id">fd2</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span>, <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
-<span class="kwd">Definition</span> <span class="id"><a name="enhanced_ejson_uri_runtime_op_interp">enhanced_ejson_uri_runtime_op_interp</a></span> <span class="id">op</span> (<span class="id">dl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> :=<br/>
-&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#op">op</a></span> <span class="kwd">with</span><br/>
+<span class="kwd">Definition</span> <span class="id"><a name="enhanced_ejson_uri_runtime_op_interp">enhanced_ejson_uri_runtime_op_interp</a></span> <span class="id">op</span> (<span class="id">dl</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (@<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson">enhanced_ejson</a></span>)) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#EJsonRuntimeUriEncode">EJsonRuntimeUriEncode</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_unary">apply_unary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d">d</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejstring">ejstring</a></span> <span class="id">s</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejstring">ejstring</a></span> (<span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#URI_encode">URI_encode</a></span> <span class="id">s</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#EJsonRuntimeUriDecode">EJsonRuntimeUriDecode</a></span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Apply.html#apply_unary">apply_unary</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejson">ejson</a></span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#d">d</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="Qcert.EJson.Model.EJson.html#ejstring">ejstring</a></span> <span class="id">s</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.EJson.Model.EJson.html#ejstring">ejstring</a></span> (<span class="id"><a href="Qcert.Compiler.Component.UriComponent.html#URI_decode">URI_decode</a></span> <span class="id">s</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#dl">dl</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">dl</span><br/>
 &nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
 <span class="kwd">Definition</span> <span class="id"><a name="enhanced_foreign_ejson_runtime_op_interp">enhanced_foreign_ejson_runtime_op_interp</a></span> <span class="id">op</span> :=<br/>
-&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#op">op</a></span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">op</span> <span class="kwd">with</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson_sql_date">enhanced_ejson_sql_date</a></span> <span class="id">sop</span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson_sql_date_runtime_op_interp">enhanced_ejson_sql_date_runtime_op_interp</a></span> <span class="id">sop</span><br/>
 &nbsp;&nbsp;| <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson_uri">enhanced_ejson_uri</a></span> <span class="id">sop</span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson_uri_runtime_op_interp">enhanced_ejson_uri_runtime_op_interp</a></span> <span class="id">sop</span><br/>
 &nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
-<span class="kwd">Program</span> <span class="kwd">Instance</span> <span class="id"><a name="enhanced_foreign_ejson_runtime">enhanced_foreign_ejson_runtime</a></span> : <span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime">foreign_ejson_runtime</a></span> :=<br/>
-&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#mk_foreign_ejson_runtime">mk_foreign_ejson_runtime</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_foreign_ejson">enhanced_foreign_ejson</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_foreign_ejson_runtime_op">enhanced_foreign_ejson_runtime_op</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4370')">Next Obligation.</div>
-<div class="proofscript" id="proof4370">
+<span class="kwd">Global</span> <span class="kwd">Program</span> <span class="kwd">Instance</span> <span class="id"><a name="enhanced_foreign_ejson_runtime">enhanced_foreign_ejson_runtime</a></span> : <span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime">foreign_ejson_runtime</a></span> <span class="id">_</span> :=<br/>
+&nbsp;&nbsp;<span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#mk_foreign_ejson_runtime">mk_foreign_ejson_runtime</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_foreign_ejson_runtime_op">enhanced_foreign_ejson_runtime_op</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_ejson">enhanced_ejson</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_foreign_ejson">enhanced_foreign_ejson</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4520')">Next Obligation.</div>
+<div class="proofscript" id="proof4520">
 &nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html#equiv">equiv</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="id">change</span> ({<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
 &nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
 &nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
 &nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
 Defined.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof4371')">Next Obligation.</div>
-<div class="proofscript" id="proof4371">
+<div class="toggleproof" onclick="toggleDisplay('proof4521')">Next Obligation.</div>
+<div class="proofscript" id="proof4521">
 &nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">intros</span> <span class="id">op</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">exact</span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_foreign_ejson_runtime_op_tostring">enhanced_foreign_ejson_runtime_op_tostring</a></span> <span class="id">op</span>).<br/>
 Defined.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof4372')">Next Obligation.</div>
-<div class="proofscript" id="proof4372">
+<div class="toggleproof" onclick="toggleDisplay('proof4522')">Next Obligation.</div>
+<div class="proofscript" id="proof4522">
 &nbsp;&nbsp;<span class="tactic">exact</span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_foreign_ejson_runtime_op_interp">enhanced_foreign_ejson_runtime_op_interp</a></span> <span class="id">f</span> <span class="id">dl</span>).<br/>
 Defined.</div>
-<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4523')">Next Obligation.</div>
+<div class="proofscript" id="proof4523">
+&nbsp;&nbsp;<span class="tactic">exact</span> (<span class="id"><a href="Qcert.EJson.Operators.EJsonRuntimeOperators.html#defaultEJsonToString">defaultEJsonToString</a></span> <span class="id">H</span>).<br/>
+Defined.</div>
+<div class="toggleproof" onclick="toggleDisplay('proof4524')">Next Obligation.</div>
+<div class="proofscript" id="proof4524">
+&nbsp;&nbsp;<span class="tactic">exact</span> (<span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedEJson.html#enhanced_foreign_ejson_runtime_op_fromstring">enhanced_foreign_ejson_runtime_op_fromstring</a></span> <span class="id">H</span>).<br/>
+Defined.</div>
+<div class="toggleproof" onclick="toggleDisplay('proof4525')">Next Obligation.</div>
+<div class="proofscript" id="proof4525">
+&nbsp;&nbsp;<span class="tactic">exact</span> (<span class="id"><a href="Qcert.EJson.Operators.EJsonRuntimeOperators.html#defaultEJsonToString">defaultEJsonToString</a></span> <span class="id">H</span>).<br/>
+Defined.</div>
 
 </div>
 <div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>

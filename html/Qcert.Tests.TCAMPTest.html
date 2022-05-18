@@ -21,7 +21,7 @@
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
 <span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">string</span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
-<span class="kwd">Import</span> <span class="id">ListNotations</span>.<br/>
+<span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#ListNotations">ListNotations</a></span>.<br/>
 <br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Tests.CAMPTest.html">CAMPTest</a></span>.<br/>
 <span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
@@ -70,9 +70,9 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="R1typed">R1typed</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#camp_rule_type">TCAMPRule.camp_rule_type</a></span> (<span class="id"><a href="Qcert.TypeSystem.RType.html#Brand">Brand</a></span> (<span class="id"><a href="Qcert.Utils.ListAdd.html#singleton">singleton</a></span> "<span class="id">Entity</span>")) (<span class="id"><a href="Qcert.TypeSystem.RType.html#Coll">Coll</a></span> <span class="id"><a href="Qcert.TypeSystem.RType.html#String">String</a></span>) <span class="id"><a href="Qcert.Tests.CAMPTest.html#R1">R1</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4439')">Proof.</div>
-<div class="proofscript" id="proof4439">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">TCAMPSugar.PTCast</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof4596')">Proof.</div>
+<div class="proofscript" id="proof4596">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">TCAMPSugar.PTCast</span> : <span class="id">qcert</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Tests.CAMPTest.html#R1">R1</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.CAMPRule.Typing.TCAMPRule.html#camp_rule_type">TCAMPRule.camp_rule_type</a></span>; <span class="tactic">simpl</span>.<br/>
@@ -126,7 +126,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>. <span class="id">econstructor</span>. <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">econstructor</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Grab</span> <span class="id">Existential</span> <span class="kwd">Variables</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Unshelve</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>. <span class="tactic">eauto</span>. <span class="tactic">eauto</span>. <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>

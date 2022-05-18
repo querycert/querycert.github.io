@@ -1,0 +1,306 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Module Qcert.Imp.Lang.ImpEq</title>
+<meta name="description" content="Documentation of Coq module Qcert.Imp.Lang.ImpEq" />
+<link href="coq2html.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="coq2html.js"> </script>
+</head>
+
+<body onload="hideAll('proofscript')">
+<h1 class="title">Module Qcert.Imp.Lang.ImpEq</h1>
+<div class="coq">
+<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html">String</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html">List</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.ZArith.html">ZArith</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Bool.Bool.html">Bool</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Arith.Compare_dec.html">Compare_dec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html">Equivalence</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html">Morphisms</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Setoids.Setoid.html">Setoid</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html">EquivDec</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="kwd">Program</span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Utils.Utils.html">Utils</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.Imp.html">Imp</a></span>.<br/>
+<span class="kwd">Require</span> <span class="kwd">Import</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEval.html">ImpEval</a></span>.<br/>
+<br/>
+<span class="kwd">Section</span> <span class="id"><a name="NNRSimpEq">NNRSimpEq</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">imp_scope</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">Model</span>: <span class="kwd">Type</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">Constant</span>: <span class="kwd">Set</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">Op</span>: <span class="kwd">Set</span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">Runtime</span>: <span class="kwd">Set</span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ConstantNormalize</span>: <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Constant">Constant</a></span> -&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ModelToBool</span>: <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#bool">bool</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ModelToZ</span>: <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Numbers.BinNums.html#Z">Z</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ModelToList</span>: <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span>)}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">ZToModel</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Numbers.BinNums.html#Z">Z</a></span> -&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">RuntimeEval</span>: <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Runtime">Runtime</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span>}.<br/>
+&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">OpEval</span>: <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Op">Op</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span>}.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_expr_eq">imp_expr_eq</a></span> (<span class="id">e</span>₁ <span class="id">e</span>₂:<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_expr">imp_expr</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (σ:<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#pd_rbindings">pd_rbindings</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_expr_eval">imp_expr_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ConstantNormalize</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ConstantNormalize">ConstantNormalize</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">OpEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.OpEval">OpEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">RuntimeEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.RuntimeEval">RuntimeEval</a></span>) σ <span class="id">e</span>₁ =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_expr_eval">imp_expr_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ConstantNormalize</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ConstantNormalize">ConstantNormalize</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">OpEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.OpEval">OpEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">RuntimeEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.RuntimeEval">RuntimeEval</a></span>) σ <span class="id">e</span>₂.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_expr_list_eq">imp_expr_list_eq</a></span> (<span class="id">el</span>₁ <span class="id">el</span>₂:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_expr">imp_expr</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall2">Forall2</a></span> (<span class="kwd">fun</span> <span class="id">e</span>₁ <span class="id">e</span>₂ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (σ:<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#pd_rbindings">pd_rbindings</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_expr_eval">imp_expr_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ConstantNormalize</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ConstantNormalize">ConstantNormalize</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">OpEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.OpEval">OpEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">RuntimeEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.RuntimeEval">RuntimeEval</a></span>) σ <span class="id">e</span>₁ =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_expr_eval">imp_expr_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ConstantNormalize</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ConstantNormalize">ConstantNormalize</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">OpEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.OpEval">OpEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">RuntimeEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.RuntimeEval">RuntimeEval</a></span>) σ <span class="id">e</span>₂) <span class="id">el</span>₁ <span class="id">el</span>₂.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_stmt_eq">imp_stmt_eq</a></span> (<span class="id">s</span>₁ <span class="id">s</span>₂:<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_stmt">imp_stmt</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (σ:<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#pd_rbindings">pd_rbindings</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_stmt_eval">imp_stmt_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ConstantNormalize</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ConstantNormalize">ConstantNormalize</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">OpEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.OpEval">OpEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">RuntimeEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.RuntimeEval">RuntimeEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToBool</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToBool">ModelToBool</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToZ</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToZ">ModelToZ</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToList</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToList">ModelToList</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ZToModel</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ZToModel">ZToModel</a></span>) <span class="id">s</span>₁ σ =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_stmt_eval">imp_stmt_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ConstantNormalize</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ConstantNormalize">ConstantNormalize</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">OpEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.OpEval">OpEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">RuntimeEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.RuntimeEval">RuntimeEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToBool</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToBool">ModelToBool</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToZ</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToZ">ModelToZ</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToList</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToList">ModelToList</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ZToModel</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ZToModel">ZToModel</a></span>) <span class="id">s</span>₂ σ.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_function_eq">imp_function_eq</a></span> (<span class="id">f</span>₁ <span class="id">f</span>₂:<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_function">imp_function</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_function_eval">imp_function_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ConstantNormalize</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ConstantNormalize">ConstantNormalize</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">OpEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.OpEval">OpEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">RuntimeEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.RuntimeEval">RuntimeEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToBool</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToBool">ModelToBool</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToZ</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToZ">ModelToZ</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToList</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToList">ModelToList</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ZToModel</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ZToModel">ZToModel</a></span>) <span class="id">f</span>₁ <span class="id">d</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_function_eval">imp_function_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ConstantNormalize</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ConstantNormalize">ConstantNormalize</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">OpEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.OpEval">OpEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">RuntimeEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.RuntimeEval">RuntimeEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToBool</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToBool">ModelToBool</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToZ</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToZ">ModelToZ</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToList</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToList">ModelToList</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ZToModel</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ZToModel">ZToModel</a></span>) <span class="id">f</span>₂ <span class="id">d</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="imp_eq">imp_eq</a></span> (<span class="id">q</span>₁ <span class="id">q</span>₂:<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp">imp</a></span>) : <span class="kwd">Prop</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.Model">Model</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_eval">imp_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ConstantNormalize</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ConstantNormalize">ConstantNormalize</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">OpEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.OpEval">OpEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">RuntimeEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.RuntimeEval">RuntimeEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToBool</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToBool">ModelToBool</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToZ</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToZ">ModelToZ</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToList</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToList">ModelToList</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ZToModel</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ZToModel">ZToModel</a></span>) <span class="id">q</span>₁ <span class="id">d</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_eval">imp_eval</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ConstantNormalize</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ConstantNormalize">ConstantNormalize</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">OpEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.OpEval">OpEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">RuntimeEval</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.RuntimeEval">RuntimeEval</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToBool</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToBool">ModelToBool</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToZ</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToZ">ModelToZ</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ModelToList</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ModelToList">ModelToList</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">ZToModel</span>:=<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.ZToModel">ZToModel</a></span>) <span class="id">q</span>₂ <span class="id">d</span>.<br/>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_expr_equiv">imp_expr_equiv</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3648')">Proof.</div>
+<div class="proofscript" id="proof3648">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">symmetry</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">H</span>; <span class="tactic">eauto</span>. <br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_expr_list_equiv">imp_expr_list_equiv</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_list_eq">imp_expr_list_eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3649')">Proof.</div>
+<div class="proofscript" id="proof3649">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_list_eq">imp_expr_list_eq</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">symmetry</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">H</span>. <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_stmt_equiv">imp_stmt_equiv</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3650')">Proof.</div>
+<div class="proofscript" id="proof3650">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">symmetry</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">H</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_function_equiv">imp_function_equiv</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_function_eq">imp_function_eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3651')">Proof.</div>
+<div class="proofscript" id="proof3651">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_function_eq">imp_function_eq</a></span>. <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">symmetry</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">H</span>; <span class="tactic">eauto</span>. <br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_equiv">imp_equiv</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_eq">imp_eq</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3652')">Proof.</div>
+<div class="proofscript" id="proof3652">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_eq">imp_eq</a></span>. <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">symmetry</span>; <span class="tactic">eauto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">H</span>; <span class="tactic">eauto</span>. <br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="NNRSimpEq.proper">proper</a></span>.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ImpExprError_proper">ImpExprError_proper</a></span> <span class="id">msg</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span> (<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprError">ImpExprError</a></span> <span class="id">msg</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3653')">Proof.</div>
+<div class="proofscript" id="proof3653">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ImpExprVar_proper">ImpExprVar_proper</a></span> <span class="id">v</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span> (<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprVar">ImpExprVar</a></span> <span class="id">v</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3654')">Proof.</div>
+<div class="proofscript" id="proof3654">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ImpExprConst_proper">ImpExprConst_proper</a></span> <span class="id">d</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span> (<span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprConst">ImpExprConst</a></span> <span class="id">d</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3655')">Proof.</div>
+<div class="proofscript" id="proof3655">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="match_eq_lemma">match_eq_lemma</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">A</span> <span class="id">B</span>  (<span class="id">l1</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span>  <span class="id">A</span>) (<span class="id">l2</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span>  <span class="id">A</span>) <span class="id">f</span> (<span class="id">z</span>:<span class="id">B</span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">l1</span> = <span class="id">l2</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">l1</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">x</span> =&gt; <span class="id">f</span> <span class="id">x</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id">z</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">l2</span> <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">x</span> =&gt; <span class="id">f</span> <span class="id">x</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id">z</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3656')">Proof.</div>
+<div class="proofscript" id="proof3656">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">do</span> 3 <span class="tactic">intro</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ImpExprOp_proper">ImpExprOp_proper</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_list_eq">imp_expr_list_eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span>) <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprOp">ImpExprOp</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3657')">Proof.</div>
+<div class="proofscript" id="proof3657">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_list_eq">imp_expr_list_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Lift.html#olift">olift</a></span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#match_eq_lemma">match_eq_lemma</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> 2 <span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map_map_fusion">lift_map_map_fusion</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> 1.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_expr_eval">imp_expr_eval</a></span>;[|<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">IHForall2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ImpExprRuntimeCall_proper">ImpExprRuntimeCall_proper</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_list_eq">imp_expr_list_eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span>) <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpExprRuntimeCall">ImpExprRuntimeCall</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3658')">Proof.</div>
+<div class="proofscript" id="proof3658">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_list_eq">imp_expr_list_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Lift.html#olift">olift</a></span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#match_eq_lemma">match_eq_lemma</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> 2 <span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map_map_fusion">lift_map_map_fusion</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> 1.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEval.html#imp_expr_eval">imp_expr_eval</a></span>;[|<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">IHForall2</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ImpStmtAssign">ImpStmtAssign</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span>) <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtAssign">ImpStmtAssign</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3659')">Proof.</div>
+<div class="proofscript" id="proof3659">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span>; <span class="tactic">subst</span>; <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ImpStmtIf">ImpStmtIf</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span>) <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpStmtIf">ImpStmtIf</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3660')">Proof.</div>
+<div class="proofscript" id="proof3660">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H</span>; <span class="tactic">rewrite</span> <span class="id">H0</span>; <span class="tactic">rewrite</span> <span class="id">H1</span>; <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="ImpFun_proper">ImpFun_proper</a></span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_function_eq">imp_function_eq</a></span>) <span class="id"><a href="Qcert.Imp.Lang.Imp.html#ImpFun">ImpFun</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3661')">Proof.</div>
+<div class="proofscript" id="proof3661">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_function_eq">imp_function_eq</a></span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq.proper">proper</a></span>.<br/>
+&nbsp;&nbsp;<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#NNRSimpEq">NNRSimpEq</a></span>.<br/>
+<br/>
+<span class="kwd">Notation</span> "<span class="id">X</span> ≡ᵉ <span class="id">Y</span>" := (<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_expr_eq">imp_expr_eq</a></span> <span class="id">X</span> <span class="id">Y</span>) (<span class="tactic">at</span> <span class="id">level</span> 90) : <span class="id">imp_scope</span>. <br/>
+<br/>
+<span class="kwd">Notation</span> "<span class="id">X</span> ≡ˢ <span class="id">Y</span>" := (<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_stmt_eq">imp_stmt_eq</a></span> <span class="id">X</span> <span class="id">Y</span>) (<span class="tactic">at</span> <span class="id">level</span> 90) : <span class="id">imp_scope</span>. <br/>
+<br/>
+<span class="kwd">Notation</span> "<span class="id">X</span> ≡ˢⁱ <span class="id">Y</span>" := (<span class="id"><a href="Qcert.Imp.Lang.ImpEq.html#imp_eq">imp_eq</a></span> <span class="id">X</span> <span class="id">Y</span>) (<span class="tactic">at</span> <span class="id">level</span> 90) : <span class="id">imp_scope</span>. <br/>
+<br/>
+
+</div>
+<div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>
+</body>
+</html>
