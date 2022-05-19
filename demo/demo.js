@@ -96,10 +96,7 @@ function compileButton() {
     }
     theTextArea.value = "[ Compiling query ]";
     var middlePath = path.slice(1, -1);
-    var handler = function (resultPack) {
-        theTextArea.value = resultPack.result;
-    };
-    qcertWhiskDispatch({
+    var input = {
         source: path[0],
         target: path[path.length - 1],
         path: middlePath,
@@ -113,7 +110,9 @@ function compileButton() {
         eval: false,
         input: undefined,
         optims: JSON.stringify(optimconf) /* XXX Add optimizations here XXX */
-    }, handler);
+    };
+    var resultPack = Qcert.compile(input);
+    theTextArea.value = resultPack.result;
 }
 // Executes when execute button is pressed.  This button shows when the execute tab shows.
 function executeButton() {
@@ -221,8 +220,13 @@ function saveConfig() {
     link.click();
 }
 function getClearConfig() {
+    function clearOptimsInOptimsList(optims) {
+        for (var k in Object.keys(optims)) {
+            optims[k] = [optPlaceholder];
+        }
+    }
     function clearOptimsInPhaseList(array) {
-        array.forEach(function (elem) { return elem.optims = [optPlaceholder]; });
+        array.forEach(function (elem) { return clearOptimsInOptimsList(elem.optims); });
     }
     function clearOptimsInTopList(array) {
         array.forEach(function (elem) { return clearOptimsInPhaseList(elem.phases); });
@@ -1982,7 +1986,7 @@ function getCountWithUpdate(listnode) {
 }
 var OptimPhaseTab = /** @class */ (function (_super) {
     __extends(OptimPhaseTab, _super);
-    function OptimPhaseTab(canvas, div, modulebase, optims, phase, options) {
+    function OptimPhaseTab(canvas, div, modulebase, optims, phase, optimsType, options) {
         var _this = _super.call(this, canvas) || this;
         _this.name = phase.name;
         _this.iter = phase.iter;
@@ -1992,13 +1996,14 @@ var OptimPhaseTab = /** @class */ (function (_super) {
         _this.parentDiv = div;
         var newdiv = document.createElement('div');
         _this.optimDiv = newdiv;
+        _this.optimsType = optimsType;
         var divTitle = document.createElement('h3');
         divTitle.style.cssFloat = 'center';
         var titlenodetext = function (num) { return "Currently selected optimizations (" + num + ")"; };
-        var displayedCount = phase.optims.length;
+        var displayedCount = phase.optims[optimsType].length;
         if (displayedCount == 0)
-            phase.optims = [optPlaceholder];
-        else if (displayedCount == 1 && phase.optims[0] == optPlaceholder)
+            phase.optims[optimsType] = [optPlaceholder];
+        else if (displayedCount == 1 && phase.optims[optimsType][0] == optPlaceholder)
             displayedCount = 0;
         var titlenode = document.createTextNode(titlenodetext(displayedCount));
         divTitle.appendChild(titlenode);
@@ -2008,8 +2013,8 @@ var OptimPhaseTab = /** @class */ (function (_super) {
         newdiv.appendChild(divIterations);
         var listnode = document.createElement('ul');
         listnode.classList.add('optim-list');
-        for (var i = 0; i < phase.optims.length; i++) {
-            listnode.appendChild(makePhaseOptimElement(modulebase, optims, phase.optims[i]));
+        for (var i = 0; i < phase.optims[optimsType].length; i++) {
+            listnode.appendChild(makePhaseOptimElement(modulebase, optims, phase.optims[optimsType][i]));
         }
         function updateListAndTitleContent() {
             var elemCount = getCountWithUpdate(listnode);
@@ -2044,18 +2049,20 @@ var OptimPhaseTab = /** @class */ (function (_super) {
         return _this;
     }
     OptimPhaseTab.make = function (canvas, parentDiv, modulebase, optims, phase, options) {
-        return new OptimPhaseTab(canvas, parentDiv, modulebase, optims, phase, options);
+        return new OptimPhaseTab(canvas, parentDiv, modulebase, optims, phase, "top", options);
     };
     OptimPhaseTab.prototype.getPhase = function () {
         var optims = this.sortable.toArray();
         console.log(optims);
         if (optims.length == 1 && optims[0] == optPlaceholder)
             optims = [];
-        return {
+        var ret = {
             name: this.name,
-            optims: optims,
+            optims: {},
             iter: this.iter
         };
+        ret.optims[this.optimsType] = optims;
+        return ret;
     };
     OptimPhaseTab.prototype.getLabel = function () {
         return this.name;
@@ -2204,7 +2211,7 @@ function OptimizationsTabMakeFromConfig(canvas, defaults) {
         var opt = optims[i];
         var cfg = findFirstWithField(defaults, 'language', opt.language.name);
         var cfg_phases = cfg === undefined ? [] : cfg.phases;
-        optimTabs.push(OptimizationManager.make(canvas, opts, opt.language.name, opt.language.modulebase, opt.optims, cfg_phases));
+        optimTabs.push(OptimizationManager.make(canvas, opts, opt.language.name, opt.language.modulebase, opt.optims["top"], cfg_phases));
     }
     globalOptimTabs = optimTabs;
     return TabManager.make(canvas, { label: "Optim Config", rectOptions: { fill: '#FEBF01' } }, optimTabs, 0);
