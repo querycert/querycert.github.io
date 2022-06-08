@@ -124,8 +124,8 @@ single value as input. </div>
 <div class="doc">Equality between two NRA expressions is decidable. </div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nra_eqdec">nra_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra">nra</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1929')">Proof.</div>
-<div class="proofscript" id="proof1929">
+<div class="toggleproof" onclick="toggleDisplay('proof1961')">Proof.</div>
+<div class="proofscript" id="proof1961">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra">nra</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op_eqdec">binary_op_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#unary_op_eqdec">unary_op_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Model.Data.html#data_eqdec">data_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span>].<br/>
@@ -338,8 +338,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span> <span class="id">d1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d2</span> -&gt; <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem">nra_sem</a></span> <span class="id">e</span> <span class="id">d1</span> <span class="id">d2</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span>) <span class="id">l1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">l2</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem_map">nra_sem_map</a></span> <span class="id">e</span> <span class="id">l1</span> <span class="id">l2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1930')">Proof.</div>
-<div class="proofscript" id="proof1930">
+<div class="toggleproof" onclick="toggleDisplay('proof1962')">Proof.</div>
+<div class="proofscript" id="proof1962">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">l2</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l1</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">intros</span>.<br/>
@@ -356,8 +356,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span> <span class="id">d1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d2</span> -&gt; <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem">nra_sem</a></span> <span class="id">e</span> <span class="id">d1</span> <span class="id">d2</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Operators.Iterators.html#omap_product">omap_product</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span>) <span class="id">l1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">l2</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem_map_product">nra_sem_map_product</a></span> <span class="id">e</span> <span class="id">l1</span> <span class="id">l2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1931')">Proof.</div>
-<div class="proofscript" id="proof1931">
+<div class="toggleproof" onclick="toggleDisplay('proof1963')">Proof.</div>
+<div class="proofscript" id="proof1963">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">l2</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l1</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">intros</span>.<br/>
@@ -399,8 +399,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">l1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">l2</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem_select">nra_sem_select</a></span> <span class="id">e</span> <span class="id">l1</span> <span class="id">l2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1932')">Proof.</div>
-<div class="proofscript" id="proof1932">
+<div class="toggleproof" onclick="toggleDisplay('proof1964')">Proof.</div>
+<div class="proofscript" id="proof1964">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">l2</span>; <span class="tactic">induction</span> <span class="id">l1</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H0</span>. <span class="id">econstructor</span>.<br/>
@@ -435,8 +435,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="omap_product_some_is_oproduct">omap_product_some_is_oproduct</a></span> <span class="id">d1</span> <span class="id">d2</span> <span class="id">l1</span> <span class="id">l2</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Operators.Iterators.html#omap_product">omap_product</a></span> (<span class="kwd">fun</span> <span class="id">_</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d2</span>) (<span class="id">d1</span> :: <span class="id">l1</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">l2</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">l</span>, <span class="id">d2</span> = <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id">l</span> /\ <span class="id"><a href="Qcert.Data.Operators.Iterators.html#oproduct">oproduct</a></span> (<span class="id">d1</span>::<span class="id">l1</span>) <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">l2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1933')">Proof.</div>
-<div class="proofscript" id="proof1933">
+<div class="toggleproof" onclick="toggleDisplay('proof1965')">Proof.</div>
+<div class="proofscript" id="proof1965">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Data.Operators.Iterators.html#omap_product">omap_product</a></span>, <span class="id"><a href="Qcert.Data.Operators.Iterators.html#oproduct">oproduct</a></span> <span class="kwd">in</span> *; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> <span class="id">d2</span>; <span class="tactic">intros</span>; <span class="tactic">rewrite</span> <span class="id">H0</span> <span class="kwd">in</span> *; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
@@ -451,8 +451,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nra_eval_correct">nra_eval_correct</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">d1</span> <span class="id">d2</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span> <span class="id">d1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d2</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem">nra_sem</a></span> <span class="id">e</span> <span class="id">d1</span> <span class="id">d2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1934')">Proof.</div>
-<div class="proofscript" id="proof1934">
+<div class="toggleproof" onclick="toggleDisplay('proof1966')">Proof.</div>
+<div class="proofscript" id="proof1966">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="id">econstructor</span>; <span class="tactic">eauto</span>.<br/>
@@ -564,8 +564,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem">nra_sem</a></span> <span class="id">e</span> <span class="id">d1</span> <span class="id">d2</span> -&gt; <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span> <span class="id">d1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d2</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem_map">nra_sem_map</a></span> <span class="id">e</span> <span class="id">c1</span> <span class="id">c2</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> (<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span>) <span class="id">c1</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id">c2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1935')">Proof.</div>
-<div class="proofscript" id="proof1935">
+<div class="toggleproof" onclick="toggleDisplay('proof1967')">Proof.</div>
+<div class="proofscript" id="proof1967">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c2</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c1</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">intros</span>.<br/>
@@ -582,8 +582,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">d1</span> <span class="id">d2</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>, <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem">nra_sem</a></span> <span class="id">e</span> <span class="id">d1</span> <span class="id">d2</span> -&gt; <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span> <span class="id">d1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d2</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem_map_product">nra_sem_map_product</a></span> <span class="id">e</span> <span class="id">c1</span> <span class="id">c2</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> (<span class="id"><a href="Qcert.Data.Operators.Iterators.html#omap_product">omap_product</a></span> (<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span>) <span class="id">c1</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id">c2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1936')">Proof.</div>
-<div class="proofscript" id="proof1936">
+<div class="toggleproof" onclick="toggleDisplay('proof1968')">Proof.</div>
+<div class="proofscript" id="proof1968">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c2</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c1</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">intros</span>.<br/>
@@ -635,8 +635,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dforeign">dforeign</a></span> <span class="id">_</span>) =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">c1</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id">c2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1937')">Proof.</div>
-<div class="proofscript" id="proof1937">
+<div class="toggleproof" onclick="toggleDisplay('proof1969')">Proof.</div>
+<div class="proofscript" id="proof1969">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c2</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c1</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">intros</span>.<br/>
@@ -690,8 +690,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nra_eval_complete">nra_eval_complete</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">d1</span> <span class="id">d2</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem">nra_sem</a></span> <span class="id">e</span> <span class="id">d1</span> <span class="id">d2</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span> <span class="id">d1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1938')">Proof.</div>
-<div class="proofscript" id="proof1938">
+<div class="toggleproof" onclick="toggleDisplay('proof1970')">Proof.</div>
+<div class="proofscript" id="proof1970">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -746,8 +746,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="nra_eval_correct_and_complete">nra_eval_correct_and_complete</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">d</span> <span class="id">d</span>',<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">e</span> <span class="id">d</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span>' &lt;-&gt; <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_sem">nra_sem</a></span> <span class="id">e</span> <span class="id">d</span> <span class="id">d</span>'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1939')">Proof.</div>
-<div class="proofscript" id="proof1939">
+<div class="toggleproof" onclick="toggleDisplay('proof1971')">Proof.</div>
+<div class="proofscript" id="proof1971">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval_correct">nra_eval_correct</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval_complete">nra_eval_complete</a></span>.<br/>
@@ -760,8 +760,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Operators.RecOperators.html#orecconcat">orecconcat</a></span> <span class="id">x</span> <span class="id">y</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">z</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRA.Semantics.h">h</a></span> <span class="id">x</span> -&gt; <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRA.Semantics.h">h</a></span> <span class="id">y</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRA.Semantics.h">h</a></span> <span class="id">z</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1940')">Proof.</div>
-<div class="proofscript" id="proof1940">
+<div class="toggleproof" onclick="toggleDisplay('proof1972')">Proof.</div>
+<div class="proofscript" id="proof1972">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 1; <span class="tactic">subst</span>.<br/>
@@ -773,8 +773,8 @@ single value as input. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRA.Lang.NRA.html#nra_eval">nra_eval</a></span> <span class="id">op</span> <span class="id">d</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">o</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRA.Semantics.h">h</a></span> <span class="id">d</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.NRA.Lang.NRA.html#NRA.Semantics.h">h</a></span> <span class="id">o</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1941')">Proof.</div>
-<div class="proofscript" id="proof1941">
+<div class="toggleproof" onclick="toggleDisplay('proof1973')">Proof.</div>
+<div class="proofscript" id="proof1973">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">HconstNorm</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">d</span> <span class="id">o</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">op</span>; <span class="tactic">simpl</span>.<br/>

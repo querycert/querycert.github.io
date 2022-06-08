@@ -30,8 +30,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="not_in_over_app">not_in_over_app</a></span> {<span class="id">A</span>} (<span class="id">x</span>:<span class="id">A</span>) (<span class="id">l1</span> <span class="id">l2</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">A</span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id">l1</span>++<span class="id">l2</span>) -&gt; ~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l1</span> /\ ~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3029')">Proof.</div>
-<div class="proofscript" id="proof3029">
+<div class="toggleproof" onclick="toggleDisplay('proof3062')">Proof.</div>
+<div class="proofscript" id="proof3062">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#not">not</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H</span>.<br/>
@@ -43,8 +43,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="really_fresh_is_really_fresh">really_fresh_is_really_fresh</a></span> {<span class="id">sep</span>} {<span class="id">oldvar</span>} (<span class="id">avoid</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) (<span class="id">x</span>:<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">x</span> = <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#really_fresh_in">really_fresh_in</a></span> <span class="id">sep</span> <span class="id">oldvar</span> <span class="id">avoid</span> <span class="id">e</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">avoid</span>) /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">e</span>)) /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_bound_vars">nnrc_bound_vars</a></span> <span class="id">e</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3030')">Proof.</div>
-<div class="proofscript" id="proof3030">
+<div class="toggleproof" onclick="toggleDisplay('proof3063')">Proof.</div>
+<div class="proofscript" id="proof3063">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">rewrite</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#really_fresh_from_avoid">really_fresh_from_avoid</a></span>.<br/>
@@ -59,8 +59,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id">l3</span> ++ <span class="id">l4</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;((~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l1</span>) /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l2</span>)) /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;((~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l3</span>) /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l4</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3031')">Proof.</div>
-<div class="proofscript" id="proof3031">
+<div class="toggleproof" onclick="toggleDisplay('proof3064')">Proof.</div>
+<div class="proofscript" id="proof3064">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H</span>; <span class="tactic">clear</span> <span class="id">H</span>; <span class="tactic">intros</span>; <span class="tactic">clear</span> <span class="id">H</span>; <span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
@@ -74,8 +74,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id">l3</span> ++ <span class="id">l4</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span> /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l1</span>) /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l3</span>)) /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span> /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l2</span>) /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l4</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3032')">Proof.</div>
-<div class="proofscript" id="proof3032">
+<div class="toggleproof" onclick="toggleDisplay('proof3065')">Proof.</div>
+<div class="proofscript" id="proof3065">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H</span>; <span class="tactic">clear</span> <span class="id">H</span>; <span class="tactic">intros</span>; <span class="tactic">clear</span> <span class="id">H</span>; <span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l1</span> /\ ~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l2</span>)<br/>
@@ -89,8 +89,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dupl_var_ignored">dupl_var_ignored</a></span> {<span class="id">h</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)} {<span class="id">cenv</span>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d1</span> <span class="id">d2</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>) (<span class="id">env</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#bindings">bindings</a></span>) (<span class="id">v</span>:<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>):<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v</span>,<span class="id">d1</span>) :: (<span class="id">v</span>,<span class="id">d2</span>) :: <span class="id">env</span>) <span class="id">e</span> = <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v</span>,<span class="id">d1</span>)::<span class="id">env</span>) <span class="id">e</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3033')">Proof.</div>
-<div class="proofscript" id="proof3033">
+<div class="toggleproof" onclick="toggleDisplay('proof3066')">Proof.</div>
+<div class="proofscript" id="proof3066">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCShadow.html#nnrc_core_eval_remove_duplicate_env">nnrc_core_eval_remove_duplicate_env</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id">v</span> <span class="id">d1</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id">d2</span> <span class="id">env</span> <span class="id">e</span>); <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_nil_l">app_nil_l</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#app_nil_l">app_nil_l</a></span> <span class="kwd">in</span> *.<br/>
@@ -101,8 +101,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="not_or">not_or</a></span> <span class="id">p1</span> <span class="id">p2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~(<span class="id">p1</span> \/ <span class="id">p2</span>) -&gt; ~<span class="id">p1</span> /\ ~<span class="id">p2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3034')">Proof.</div>
-<div class="proofscript" id="proof3034">
+<div class="toggleproof" onclick="toggleDisplay('proof3067')">Proof.</div>
+<div class="proofscript" id="proof3067">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#not">not</a></span> <span class="kwd">in</span> *; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H</span>; <span class="id">left</span>; <span class="tactic">assumption</span>.<br/>
@@ -112,8 +112,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="remove_in">remove_in</a></span> <span class="id">l</span> (<span class="id">x</span> <span class="id">v</span>:<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>):<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">v</span>&lt;&gt;<span class="id">x</span> -&gt; ~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#equiv_dec">equiv_dec</a></span> <span class="id">v</span> <span class="id">l</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3035')">Proof.</div>
-<div class="proofscript" id="proof3035">
+<div class="toggleproof" onclick="toggleDisplay('proof3068')">Proof.</div>
+<div class="proofscript" id="proof3068">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#not">not</a></span> <span class="kwd">in</span> *; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H1</span>; <span class="tactic">assumption</span>.<br/>
@@ -139,8 +139,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;~ (<span class="id">v</span> = <span class="id">x</span> \/ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id">l3</span> ++ <span class="id">l4</span>)) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">v</span> &lt;&gt; <span class="id">x</span>) /\ (~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span> /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l1</span>) /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l3</span>)) /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#False">False</a></span> /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l2</span>) /\ (~<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l4</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3036')">Proof.</div>
-<div class="proofscript" id="proof3036">
+<div class="toggleproof" onclick="toggleDisplay('proof3069')">Proof.</div>
+<div class="proofscript" id="proof3069">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H</span>; <span class="tactic">clear</span> <span class="id">H</span>; <span class="tactic">intros</span>. <span class="tactic">clear</span> <span class="id">H</span>; <span class="tactic">elim</span> <span class="id">H0</span>; <span class="tactic">clear</span> <span class="id">H0</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">v</span>&lt;&gt;<span class="id">x</span> /\ ~(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id">l3</span> ++ <span class="id">l4</span>))).<br/>
@@ -163,8 +163,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_subst_rename">nnrc_subst_rename</a></span> {<span class="id">sep</span>} {<span class="id">oldvar</span>} (<span class="id">e1</span> <span class="id">e2</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) (<span class="id">x1</span> <span class="id">x2</span>:<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">x2</span> = <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#really_fresh_in">really_fresh_in</a></span> <span class="id">sep</span> <span class="id">oldvar</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id">e2</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCEq.html#nnrc_core_eq">nnrc_core_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">x1</span> <span class="id">e1</span> <span class="id">e2</span>) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">x2</span> <span class="id">e1</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_subst">nnrc_subst</a></span> <span class="id">e2</span> <span class="id">x1</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">x2</span>))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3037')">Proof.</div>
-<div class="proofscript" id="proof3037">
+<div class="toggleproof" onclick="toggleDisplay('proof3070')">Proof.</div>
+<div class="proofscript" id="proof3070">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCEq.html#nnrc_core_eq">nnrc_core_eq</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> ? ? ? ? ? <span class="id">_</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#really_fresh_is_really_fresh">really_fresh_is_really_fresh</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id">e2</span> <span class="id">x2</span> <span class="id">H</span>); <span class="tactic">intros</span>. <span class="tactic">clear</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> <span class="id">e1</span>); <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
@@ -339,8 +339,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_sum">use_sum</a></span> <span class="id">u1</span> <span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#UsedOnce">UsedOnce</a></span> &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;((<span class="id">u1</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#UsedOnce">UsedOnce</a></span>) /\ (<span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span>)) \/<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;((<span class="id">u1</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span>) /\ (<span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#UsedOnce">UsedOnce</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3038')">Proof.</div>
-<div class="proofscript" id="proof3038">
+<div class="toggleproof" onclick="toggleDisplay('proof3071')">Proof.</div>
+<div class="proofscript" id="proof3071">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">u1</span>; <span class="tactic">destruct</span> <span class="id">u2</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_sum">use_sum</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">right</span>; <span class="tactic">split</span>; <span class="tactic">reflexivity</span>.<br/>
@@ -352,8 +352,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="use_sum_not">use_sum_not</a></span> <span class="id">u1</span> <span class="id">u2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_sum">use_sum</a></span> <span class="id">u1</span> <span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span> &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">u1</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span>) /\ (<span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3039')">Proof.</div>
-<div class="proofscript" id="proof3039">
+<div class="toggleproof" onclick="toggleDisplay('proof3072')">Proof.</div>
+<div class="proofscript" id="proof3072">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">u1</span>; <span class="tactic">destruct</span> <span class="id">u2</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_sum">use_sum</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">reflexivity</span>.<br/>
@@ -370,8 +370,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="use_alt_once">use_alt_once</a></span> <span class="id">u1</span> <span class="id">u2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_alt">use_alt</a></span> <span class="id">u1</span> <span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#UsedOnce">UsedOnce</a></span> &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;((<span class="id">u1</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#UsedOnce">UsedOnce</a></span>) /\ (<span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#UsedOnce">UsedOnce</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3040')">Proof.</div>
-<div class="proofscript" id="proof3040">
+<div class="toggleproof" onclick="toggleDisplay('proof3073')">Proof.</div>
+<div class="proofscript" id="proof3073">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">u1</span>; <span class="tactic">destruct</span> <span class="id">u2</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_alt">use_alt</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">reflexivity</span>.<br/>
@@ -382,8 +382,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="use_alt_not">use_alt_not</a></span> <span class="id">u1</span> <span class="id">u2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_alt">use_alt</a></span> <span class="id">u1</span> <span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span> &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;((<span class="id">u1</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span>) /\ (<span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3041')">Proof.</div>
-<div class="proofscript" id="proof3041">
+<div class="toggleproof" onclick="toggleDisplay('proof3074')">Proof.</div>
+<div class="proofscript" id="proof3074">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">u1</span>; <span class="tactic">destruct</span> <span class="id">u2</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_alt">use_alt</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">reflexivity</span>.<br/>
@@ -402,8 +402,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="use_exp_once">use_exp_once</a></span> <span class="id">u1</span> <span class="id">u2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_exp">use_exp</a></span> <span class="id">u1</span> <span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#UsedOnce">UsedOnce</a></span> &lt;-&gt; (<span class="id">u1</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#UsedOnce">UsedOnce</a></span>) /\ (<span class="id">u2</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3042')">Proof.</div>
-<div class="proofscript" id="proof3042">
+<div class="toggleproof" onclick="toggleDisplay('proof3075')">Proof.</div>
+<div class="proofscript" id="proof3075">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">u1</span>; <span class="tactic">destruct</span> <span class="id">u2</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_exp">use_exp</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">reflexivity</span>.<br/>
@@ -413,8 +413,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="use_exp_not">use_exp_not</a></span> <span class="id">x</span> <span class="id">y</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_exp">use_exp</a></span> <span class="id">x</span> <span class="id">y</span>) = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span> &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">x</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span> /\ <span class="id">y</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3043')">Proof.</div>
-<div class="proofscript" id="proof3043">
+<div class="toggleproof" onclick="toggleDisplay('proof3076')">Proof.</div>
+<div class="proofscript" id="proof3076">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_exp">use_exp</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>; <span class="tactic">try</span> <span class="id">match_destr</span>; <span class="tactic">intuition</span>; <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -445,8 +445,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="NotUsed_nfree">NotUsed_nfree</a></span> <span class="id">v</span> <span class="id">e</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_count">use_count</a></span> <span class="id">v</span> <span class="id">e</span> = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span> &lt;-&gt; ~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">v</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">e</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3044')">Proof.</div>
-<div class="proofscript" id="proof3044">
+<div class="toggleproof" onclick="toggleDisplay('proof3077')">Proof.</div>
+<div class="proofscript" id="proof3077">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_exp_not">use_exp_not</a></span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_sum_not">use_sum_not</a></span>;<br/>
@@ -481,8 +481,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">d</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>) (<span class="id">env</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#bindings">bindings</a></span>) (<span class="id">v</span>:<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#use_count">use_count</a></span> <span class="id">v</span> <span class="id">e</span>) = <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed">NotUsed</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v</span>,<span class="id">d</span>)::<span class="id">env</span>) <span class="id">e</span> = <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> <span class="id">e</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3045')">Proof.</div>
-<div class="proofscript" id="proof3045">
+<div class="toggleproof" onclick="toggleDisplay('proof3078')">Proof.</div>
+<div class="proofscript" id="proof3078">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#NotUsed_nfree">NotUsed_nfree</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCShadow.html#nnrc_core_eval_remove_free_env">nnrc_core_eval_remove_free_env</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id">v</span> <span class="id">d</span> <span class="id">env</span>); <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -512,8 +512,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_var_must_be_evaluated_dec">nnrc_var_must_be_evaluated_dec</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) (<span class="id">x</span>:<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#nnrc_var_must_be_evaluated">nnrc_var_must_be_evaluated</a></span> <span class="id">e</span> <span class="id">x</span>} + {~  <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#nnrc_var_must_be_evaluated">nnrc_var_must_be_evaluated</a></span> <span class="id">e</span> <span class="id">x</span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3046')">Proof.</div>
-<div class="proofscript" id="proof3046">
+<div class="toggleproof" onclick="toggleDisplay('proof3079')">Proof.</div>
+<div class="proofscript" id="proof3079">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span>; <span class="tactic">eauto</span> 3.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id">v</span> == <span class="id">x</span>); <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">IHe1</span>; [ <span class="tactic">tauto</span> | ].<br/>
@@ -534,8 +534,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Optim.NNRCRewriteUtil.html#nnrc_var_must_be_evaluated">nnrc_var_must_be_evaluated</a></span> <span class="id">e2</span> <span class="id">x</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> <span class="id">e1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_subst">nnrc_subst</a></span> <span class="id">e2</span> <span class="id">x</span> <span class="id">e1</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3047')">Proof.</div>
-<div class="proofscript" id="proof3047">
+<div class="toggleproof" onclick="toggleDisplay('proof3080')">Proof.</div>
+<div class="proofscript" id="proof3080">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">x</span> <span class="id">env</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e2</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">tauto</span>; <span class="tactic">intros</span> <span class="id">x</span> <span class="id">env</span> <span class="id">disj</span> <span class="id">me</span> <span class="id">eve</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span><br/>
@@ -582,8 +582,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">x</span> <span class="id">e1</span> <span class="id">e2</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_subst">nnrc_subst</a></span> <span class="id">e2</span> <span class="id">x</span> <span class="id">e1</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3048')">Proof.</div>
-<div class="proofscript" id="proof3048">
+<div class="toggleproof" onclick="toggleDisplay('proof3081')">Proof.</div>
+<div class="proofscript" id="proof3081">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> &lt;- <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base_eq">nnrc_to_nnrc_base_eq</a></span>.<br/>

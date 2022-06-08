@@ -44,8 +44,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> ⊢ (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> <span class="id">op2</span>) @ₓ <span class="id">x</span> ⊣ <span class="id">c</span>;<span class="id">env</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="tnraenv_equiv">tnraenv_equiv</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Data.DataSystem.html#basic_model">basic_model</a></span>} {τ<span class="id">c</span>} {τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>:<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>} : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Equivalence">Equivalence</a></span> (@<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_eq">tnraenv_eq</a></span> <span class="id">m</span> τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2405')">Proof.</div>
-<div class="proofscript" id="proof2405">
+<div class="toggleproof" onclick="toggleDisplay('proof2437')">Proof.</div>
+<div class="proofscript" id="proof2437">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Reflexive">Reflexive</a></span>, <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_eq">tnraenv_eq</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
@@ -63,16 +63,16 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nraenv_eq_impl_tnraenv_eq">nraenv_eq_impl_tnraenv_eq</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Data.DataSystem.html#basic_model">basic_model</a></span>} {τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>} (<span class="id">op1</span> <span class="id">op2</span>: τ<span class="kwd">in</span> ⇝ₓ τ<span class="id">out</span> ⊣ τ<span class="id">c</span>;τ<span class="id">env</span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;`<span class="id">op1</span> ≡ₓ `<span class="id">op2</span> -&gt; <span class="id">op1</span> ≡τₓ <span class="id">op2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2406')">Proof.</div>
-<div class="proofscript" id="proof2406">
+<div class="toggleproof" onclick="toggleDisplay('proof2438')">Proof.</div>
+<div class="proofscript" id="proof2438">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_eq">tnraenv_eq</a></span>, <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnvEq.html#nraenv_eq">nraenv_eq</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id">H</span>; <span class="id">qeauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nraenv_eq_pf_irrel">nraenv_eq_pf_irrel</a></span> {<span class="id">m</span>:<span class="id"><a href="Qcert.Data.DataSystem.html#basic_model">basic_model</a></span>} {<span class="id">op</span>} {τ<span class="kwd">in</span> τ<span class="id">out</span> τ<span class="id">c</span> τ<span class="id">env</span>} (<span class="id">pf1</span> <span class="id">pf2</span>: <span class="id">op</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>;τ<span class="id">env</span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_eq">tnraenv_eq</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#exist">exist</a></span> <span class="id">_</span> <span class="id">op</span> <span class="id">pf1</span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#exist">exist</a></span> <span class="id">_</span> <span class="id">op</span> <span class="id">pf2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2407')">Proof.</div>
-<div class="proofscript" id="proof2407">
+<div class="toggleproof" onclick="toggleDisplay('proof2439')">Proof.</div>
+<div class="proofscript" id="proof2439">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -97,8 +97,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">op1</span> ≡ₓ <span class="id">op2</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> {τ<span class="id">c</span>} {τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>:<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>}, <span class="id">op1</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>;τ<span class="id">env</span> -&gt; <span class="id">op2</span> ▷ₓ τ<span class="kwd">in</span> &gt;=&gt; τ<span class="id">out</span> ⊣ τ<span class="id">c</span>;τ<span class="id">env</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id">op1</span> ⇒ₓ <span class="id">op2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2408')">Proof.</div>
-<div class="proofscript" id="proof2408">
+<div class="toggleproof" onclick="toggleDisplay('proof2440')">Proof.</div>
+<div class="proofscript" id="proof2440">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="id">qeauto</span>.<br/>
@@ -106,8 +106,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="talg_rewrites_eq_is_typed_eq">talg_rewrites_eq_is_typed_eq</a></span> {τ<span class="id">c</span>} {τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>:<span class="id"><a href="Qcert.TypeSystem.RType.html#rtype">rtype</a></span>} (<span class="id">op1</span> <span class="id">op2</span>:<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#typed_nraenv">typed_nraenv</a></span> τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span>):<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(`<span class="id">op1</span> ⇒ₓ `<span class="id">op2</span>) -&gt; @<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_eq">tnraenv_eq</a></span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#TNRAEnvEq.m">m</a></span> τ<span class="id">c</span> τ<span class="id">env</span> τ<span class="kwd">in</span> τ<span class="id">out</span> <span class="id">op1</span> <span class="id">op2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2409')">Proof.</div>
-<div class="proofscript" id="proof2409">
+<div class="toggleproof" onclick="toggleDisplay('proof2441')">Proof.</div>
+<div class="proofscript" id="proof2441">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>, <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_eq">tnraenv_eq</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">dependent</span> <span class="tactic">induction</span> <span class="id">op1</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">dependent</span> <span class="tactic">induction</span> <span class="id">op2</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
@@ -122,8 +122,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="lift_tnraenv_core_eq_to_tnraenv_eq_r">lift_tnraenv_core_eq_to_tnraenv_eq_r</a></span> (<span class="id">q1</span> <span class="id">q2</span>:<span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnv.html#nraenv_core">nraenv_core</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">q1</span> ⇒ <span class="id">q2</span> -&gt; (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_to_nraenv">nraenv_core_to_nraenv</a></span> <span class="id">q1</span>) ⇒ₓ (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_to_nraenv">nraenv_core_to_nraenv</a></span> <span class="id">q2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2410')">Proof.</div>
-<div class="proofscript" id="proof2410">
+<div class="toggleproof" onclick="toggleDisplay('proof2442')">Proof.</div>
+<div class="proofscript" id="proof2442">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Typing.TcNRAEnvEq.html#tnraenv_core_rewrites_to">tnraenv_core_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -137,8 +137,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="lift_tnraenv_core_eq_to_tnraenv_eq_l">lift_tnraenv_core_eq_to_tnraenv_eq_l</a></span> (<span class="id">q1</span> <span class="id">q2</span>:<span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnv.html#nraenv_core">nraenv_core</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_to_nraenv">nraenv_core_to_nraenv</a></span> <span class="id">q1</span>) ⇒ₓ (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_to_nraenv">nraenv_core_to_nraenv</a></span> <span class="id">q2</span>) -&gt; <span class="id">q1</span> ⇒ <span class="id">q2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2411')">Proof.</div>
-<div class="proofscript" id="proof2411">
+<div class="toggleproof" onclick="toggleDisplay('proof2443')">Proof.</div>
+<div class="proofscript" id="proof2443">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Typing.TcNRAEnvEq.html#tnraenv_core_rewrites_to">tnraenv_core_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -152,8 +152,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="lift_tnraenv_core_eq_to_tnraenv_eq">lift_tnraenv_core_eq_to_tnraenv_eq</a></span> (<span class="id">q1</span> <span class="id">q2</span>:<span class="id"><a href="Qcert.cNRAEnv.Lang.cNRAEnv.html#nraenv_core">nraenv_core</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">q1</span> ⇒ <span class="id">q2</span> &lt;-&gt; (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_to_nraenv">nraenv_core_to_nraenv</a></span> <span class="id">q1</span>) ⇒ₓ (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_core_to_nraenv">nraenv_core_to_nraenv</a></span> <span class="id">q2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2412')">Proof.</div>
-<div class="proofscript" id="proof2412">
+<div class="toggleproof" onclick="toggleDisplay('proof2444')">Proof.</div>
+<div class="proofscript" id="proof2444">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_core_eq_to_tnraenv_eq_r">lift_tnraenv_core_eq_to_tnraenv_eq_r</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_core_eq_to_tnraenv_eq_l">lift_tnraenv_core_eq_to_tnraenv_eq_l</a></span>.<br/>
@@ -161,8 +161,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="lift_tnraenv_eq_to_tnraenv_core_eq_r">lift_tnraenv_eq_to_tnraenv_core_eq_r</a></span> (<span class="id">q1</span> <span class="id">q2</span>:<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">q1</span> ⇒ₓ <span class="id">q2</span> -&gt; (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="id">q1</span>) ⇒ (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="id">q2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2413')">Proof.</div>
-<div class="proofscript" id="proof2413">
+<div class="toggleproof" onclick="toggleDisplay('proof2445')">Proof.</div>
+<div class="proofscript" id="proof2445">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Typing.TcNRAEnvEq.html#tnraenv_core_rewrites_to">tnraenv_core_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -174,8 +174,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="lift_tnraenv_eq_to_tnraenv_core_eq_l">lift_tnraenv_eq_to_tnraenv_core_eq_l</a></span> (<span class="id">q1</span> <span class="id">q2</span>:<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="id">q1</span>) ⇒ (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="id">q2</span>) -&gt; <span class="id">q1</span> ⇒ₓ <span class="id">q2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2414')">Proof.</div>
-<div class="proofscript" id="proof2414">
+<div class="toggleproof" onclick="toggleDisplay('proof2446')">Proof.</div>
+<div class="proofscript" id="proof2446">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.cNRAEnv.Typing.TcNRAEnvEq.html#tnraenv_core_rewrites_to">tnraenv_core_rewrites_to</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
@@ -187,8 +187,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> (<span class="id">q1</span> <span class="id">q2</span>:<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv">nraenv</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">q1</span> ⇒ₓ <span class="id">q2</span> &lt;-&gt; (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="id">q1</span>) ⇒ (<span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#nraenv_to_nraenv_core">nraenv_to_nraenv_core</a></span> <span class="id">q2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2415')">Proof.</div>
-<div class="proofscript" id="proof2415">
+<div class="toggleproof" onclick="toggleDisplay('proof2447')">Proof.</div>
+<div class="proofscript" id="proof2447">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq_r">lift_tnraenv_eq_to_tnraenv_core_eq_r</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq_l">lift_tnraenv_eq_to_tnraenv_core_eq_l</a></span>.<br/>
@@ -197,8 +197,8 @@
 <br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span>  <span class="id"><a name="tnraenv_rewrites_to_pre">tnraenv_rewrites_to_pre</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PreOrder">PreOrder</a></span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2416')">Proof.</div>
-<div class="proofscript" id="proof2416">
+<div class="toggleproof" onclick="toggleDisplay('proof2448')">Proof.</div>
+<div class="proofscript" id="proof2448">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">try</span> <span class="tactic">assumption</span>; <span class="tactic">intros</span>.<br/>
@@ -217,8 +217,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_id_tproper">nraenv_id_tproper</a></span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvID">NRAEnvID</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2417')">Proof.</div>
-<div class="proofscript" id="proof2417">
+<div class="toggleproof" onclick="toggleDisplay('proof2449')">Proof.</div>
+<div class="proofscript" id="proof2449">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -226,8 +226,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_const_tproper">nraenv_const_tproper</a></span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvConst">NRAEnvConst</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2418')">Proof.</div>
-<div class="proofscript" id="proof2418">
+<div class="toggleproof" onclick="toggleDisplay('proof2450')">Proof.</div>
+<div class="proofscript" id="proof2450">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -237,8 +237,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvBinop">NRAEnvBinop</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2419')">Proof.</div>
-<div class="proofscript" id="proof2419">
+<div class="toggleproof" onclick="toggleDisplay('proof2451')">Proof.</div>
+<div class="proofscript" id="proof2451">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H1</span>.<br/>
@@ -251,8 +251,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_unop_tproper">nraenv_unop_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvUnop">NRAEnvUnop</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2420')">Proof.</div>
-<div class="proofscript" id="proof2420">
+<div class="toggleproof" onclick="toggleDisplay('proof2452')">Proof.</div>
+<div class="proofscript" id="proof2452">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span>.<br/>
@@ -264,8 +264,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_map_tproper">nraenv_map_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvMap">NRAEnvMap</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2421')">Proof.</div>
-<div class="proofscript" id="proof2421">
+<div class="toggleproof" onclick="toggleDisplay('proof2453')">Proof.</div>
+<div class="proofscript" id="proof2453">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
@@ -278,8 +278,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_mapconcat_tproper">nraenv_mapconcat_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvMapProduct">NRAEnvMapProduct</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2422')">Proof.</div>
-<div class="proofscript" id="proof2422">
+<div class="toggleproof" onclick="toggleDisplay('proof2454')">Proof.</div>
+<div class="proofscript" id="proof2454">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
@@ -292,8 +292,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_product_tproper">nraenv_product_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvProduct">NRAEnvProduct</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2423')">Proof.</div>
-<div class="proofscript" id="proof2423">
+<div class="toggleproof" onclick="toggleDisplay('proof2455')">Proof.</div>
+<div class="proofscript" id="proof2455">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
@@ -306,8 +306,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_select_tproper">nraenv_select_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvSelect">NRAEnvSelect</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2424')">Proof.</div>
-<div class="proofscript" id="proof2424">
+<div class="toggleproof" onclick="toggleDisplay('proof2456')">Proof.</div>
+<div class="proofscript" id="proof2456">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
@@ -320,8 +320,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_default_tproper">nraenv_default_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvDefault">NRAEnvDefault</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2425')">Proof.</div>
-<div class="proofscript" id="proof2425">
+<div class="toggleproof" onclick="toggleDisplay('proof2457')">Proof.</div>
+<div class="proofscript" id="proof2457">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
@@ -333,8 +333,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_either_tproper">nraenv_either_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvEither">NRAEnvEither</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2426')">Proof.</div>
-<div class="proofscript" id="proof2426">
+<div class="toggleproof" onclick="toggleDisplay('proof2458')">Proof.</div>
+<div class="proofscript" id="proof2458">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
@@ -346,8 +346,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_eitherconcat_tproper">nraenv_eitherconcat_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvEitherConcat">NRAEnvEitherConcat</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2427')">Proof.</div>
-<div class="proofscript" id="proof2427">
+<div class="toggleproof" onclick="toggleDisplay('proof2459')">Proof.</div>
+<div class="proofscript" id="proof2459">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
@@ -360,8 +360,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_app_tproper">nraenv_app_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvApp">NRAEnvApp</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2428')">Proof.</div>
-<div class="proofscript" id="proof2428">
+<div class="toggleproof" onclick="toggleDisplay('proof2460')">Proof.</div>
+<div class="proofscript" id="proof2460">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
@@ -374,8 +374,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_env_tproper">nraenv_env_tproper</a></span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvEnv">NRAEnvEnv</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2429')">Proof.</div>
-<div class="proofscript" id="proof2429">
+<div class="toggleproof" onclick="toggleDisplay('proof2461')">Proof.</div>
+<div class="proofscript" id="proof2461">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -383,8 +383,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_appenv_tproper">nraenv_appenv_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvAppEnv">NRAEnvAppEnv</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2430')">Proof.</div>
-<div class="proofscript" id="proof2430">
+<div class="toggleproof" onclick="toggleDisplay('proof2462')">Proof.</div>
+<div class="proofscript" id="proof2462">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
@@ -397,8 +397,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_mapenv_tproper">nraenv_mapenv_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvMapEnv">NRAEnvMapEnv</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2431')">Proof.</div>
-<div class="proofscript" id="proof2431">
+<div class="toggleproof" onclick="toggleDisplay('proof2463')">Proof.</div>
+<div class="proofscript" id="proof2463">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span>.<br/>
@@ -410,8 +410,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_flatmap_tproper">nraenv_flatmap_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvFlatMap">NRAEnvFlatMap</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2432')">Proof.</div>
-<div class="proofscript" id="proof2432">
+<div class="toggleproof" onclick="toggleDisplay('proof2464')">Proof.</div>
+<div class="proofscript" id="proof2464">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
@@ -427,8 +427,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvJoin">NRAEnvJoin</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2433')">Proof.</div>
-<div class="proofscript" id="proof2433">
+<div class="toggleproof" onclick="toggleDisplay('proof2465')">Proof.</div>
+<div class="proofscript" id="proof2465">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
@@ -444,8 +444,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvNaturalJoin">NRAEnvNaturalJoin</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2434')">Proof.</div>
-<div class="proofscript" id="proof2434">
+<div class="toggleproof" onclick="toggleDisplay('proof2466')">Proof.</div>
+<div class="proofscript" id="proof2466">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
@@ -458,8 +458,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_project_tproper">nraenv_project_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvProject">NRAEnvProject</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2435')">Proof.</div>
-<div class="proofscript" id="proof2435">
+<div class="toggleproof" onclick="toggleDisplay('proof2467')">Proof.</div>
+<div class="proofscript" id="proof2467">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
@@ -471,8 +471,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_group_by_tproper">nraenv_group_by_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvGroupBy">NRAEnvGroupBy</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2436')">Proof.</div>
-<div class="proofscript" id="proof2436">
+<div class="toggleproof" onclick="toggleDisplay('proof2468')">Proof.</div>
+<div class="proofscript" id="proof2468">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H1</span>.<br/>
@@ -484,8 +484,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nraenv_unnest_tproper">nraenv_unnest_tproper</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span> ==&gt; <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#tnraenv_rewrites_to">tnraenv_rewrites_to</a></span>) <span class="id"><a href="Qcert.NRAEnv.Lang.NRAEnv.html#NRAEnvUnnest">NRAEnvUnnest</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2437')">Proof.</div>
-<div class="proofscript" id="proof2437">
+<div class="toggleproof" onclick="toggleDisplay('proof2469')">Proof.</div>
+<div class="proofscript" id="proof2469">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NRAEnv.Typing.TNRAEnvEq.html#lift_tnraenv_eq_to_tnraenv_core_eq">lift_tnraenv_eq_to_tnraenv_core_eq</a></span> <span class="kwd">in</span> <span class="id">H1</span>.<br/>

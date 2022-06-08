@@ -83,8 +83,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="L_error">L_error</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> -&gt; <span class="id">language</span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="language_eq_dec">language_eq_dec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Driver.CompLang.html#language">language</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4246')">Proof.</div>
-<div class="proofscript" id="proof4246">
+<div class="toggleproof" onclick="toggleDisplay('proof4316')">Proof.</div>
+<div class="proofscript" id="proof4316">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">red</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">try</span> <span class="id">solve</span>[<span class="id">right</span>; <span class="tactic">inversion</span> 1]; <span class="tactic">try</span> (<span class="id">left</span>; <span class="tactic">reflexivity</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id">s</span> <span class="id">s0</span>).<br/>
@@ -168,8 +168,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="language_of_name_of_language">language_of_name_of_language</a></span> <span class="id">lang</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Driver.CompLang.html#no_L_error">no_L_error</a></span> <span class="id">lang</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Driver.CompLang.html#language_of_name_case_sensitive">language_of_name_case_sensitive</a></span> (<span class="id"><a href="Qcert.Driver.CompLang.html#name_of_language">name_of_language</a></span> <span class="id">lang</span>) = <span class="id">lang</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4247')">Proof.</div>
-<div class="proofscript" id="proof4247">
+<div class="toggleproof" onclick="toggleDisplay('proof4317')">Proof.</div>
+<div class="proofscript" id="proof4317">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">lang</span>; <span class="id">vm_compute</span>; <span class="tactic">tauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
@@ -183,8 +183,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a name="BackEnd">BackEnd</a></span> : <span class="id">language_kind</span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="language_kind_eq_dec">language_kind_eq_dec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Driver.CompLang.html#language_kind">language_kind</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4248')">Proof.</div>
-<div class="proofscript" id="proof4248">
+<div class="toggleproof" onclick="toggleDisplay('proof4318')">Proof.</div>
+<div class="proofscript" id="proof4318">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">red</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">try</span> <span class="id">solve</span>[<span class="id">right</span>; <span class="tactic">inversion</span> 1]; <span class="id">left</span>; <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
@@ -237,8 +237,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Driver.CompLang.html#no_L_error">no_L_error</a></span> <span class="id">lang</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">kind</span> <span class="id">s1</span> <span class="id">s2</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id">lang</span>, <span class="id">kind</span>, <span class="id">s1</span>, <span class="id">s2</span>) <span class="id"><a href="Qcert.Driver.CompLang.html#language_descriptions">language_descriptions</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4249')">Proof.</div>
-<div class="proofscript" id="proof4249">
+<div class="toggleproof" onclick="toggleDisplay('proof4319')">Proof.</div>
+<div class="proofscript" id="proof4319">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">lang</span>; <span class="id">vm_compute</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">do</span> 3 <span class="id">eexists</span>; <span class="tactic">tauto</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Unshelve</span>.<br/>

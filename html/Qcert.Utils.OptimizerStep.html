@@ -66,8 +66,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">optim_correct_list</span> :<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Utils.OptimizerStep.html#OptimizerStepModel">OptimizerStepModel</a></span> <span class="id">R</span>)} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_model_list_complete">optim_model_list_complete</a></span> <span class="id">optim_list</span> <span class="id">optim_correct_list</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_list_correct">optim_list_correct</a></span> <span class="id">R</span> <span class="id">optim_list</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1024')">Proof.</div>
-<div class="proofscript" id="proof1024">
+<div class="toggleproof" onclick="toggleDisplay('proof1034')">Proof.</div>
+<div class="proofscript" id="proof1034">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_model_list_complete">optim_model_list_complete</a></span>, <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_list_correct">optim_list_correct</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">pf</span> ? <span class="id">inn</span>.<br/>
@@ -84,8 +84,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="optim_list_distinct_dec">optim_list_distinct_dec</a></span> {<span class="id">lang</span>:<span class="kwd">Set</span>} <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">optim_list</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Utils.OptimizerStep.html#OptimizerStep">OptimizerStep</a></span> <span class="id">lang</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: {<span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_list_distinct">optim_list_distinct</a></span> <span class="id">optim_list</span>} + {~ <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_list_distinct">optim_list_distinct</a></span> <span class="id">optim_list</span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1025')">Proof.</div>
-<div class="proofscript" id="proof1025">
+<div class="toggleproof" onclick="toggleDisplay('proof1035')">Proof.</div>
+<div class="proofscript" id="proof1035">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#NoDup_dec">NoDup_dec</a></span>.<br/>
 &nbsp;&nbsp;Defined.</div>
 <br/>
@@ -97,8 +97,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">optim_list</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Utils.OptimizerStep.html#OptimizerStep">OptimizerStep</a></span> <span class="id">lang</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">pf</span>:<span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_list_distinct_holds">optim_list_distinct_holds</a></span> <span class="id">optim_list</span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_list_distinct">optim_list_distinct</a></span> <span class="id">optim_list</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1026')">Proof.</div>
-<div class="proofscript" id="proof1026">
+<div class="toggleproof" onclick="toggleDisplay('proof1036')">Proof.</div>
+<div class="proofscript" id="proof1036">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_list_distinct_dec">optim_list_distinct_dec</a></span> <span class="id">optim_list</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_list_distinct_holds">optim_list_distinct_holds</a></span>, <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#holds">holds</a></span>, <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#is_true">is_true</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr_in</span> <span class="id">pf</span>.<br/>
@@ -118,8 +118,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="optim_lookup_name_correct">optim_lookup_name_correct</a></span> {<span class="id">lang</span>:<span class="kwd">Set</span>} <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">optim_list</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Utils.OptimizerStep.html#OptimizerStep">OptimizerStep</a></span> <span class="id">lang</span>)) (<span class="id">name</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) (<span class="id">o</span>:<span class="id"><a href="Qcert.Utils.OptimizerStep.html#OptimizerStep">OptimizerStep</a></span> <span class="id">lang</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_lookup">optim_lookup</a></span> <span class="id">optim_list</span> <span class="id">name</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">o</span> -&gt; <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id">o</span> = <span class="id">name</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1027')">Proof.</div>
-<div class="proofscript" id="proof1027">
+<div class="toggleproof" onclick="toggleDisplay('proof1037')">Proof.</div>
+<div class="proofscript" id="proof1037">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">optim_list</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">invcs</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">match_destr_in</span> <span class="id">eqq</span>.<br/>
@@ -130,8 +130,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="optim_lookup_some_in">optim_lookup_some_in</a></span> {<span class="id">lang</span>:<span class="kwd">Set</span>} <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">optim_list</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Utils.OptimizerStep.html#OptimizerStep">OptimizerStep</a></span> <span class="id">lang</span>)) (<span class="id">name</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) (<span class="id">o</span>:<span class="id"><a href="Qcert.Utils.OptimizerStep.html#OptimizerStep">OptimizerStep</a></span> <span class="id">lang</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_lookup">optim_lookup</a></span> <span class="id">optim_list</span> <span class="id">name</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">o</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">o</span> <span class="id">optim_list</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1028')">Proof.</div>
-<div class="proofscript" id="proof1028">
+<div class="toggleproof" onclick="toggleDisplay('proof1038')">Proof.</div>
+<div class="proofscript" id="proof1038">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">optim_list</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">invcs</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">match_destr_in</span> <span class="id">eqq</span>.<br/>
@@ -143,8 +143,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">optim_list</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Utils.OptimizerStep.html#OptimizerStep">OptimizerStep</a></span> <span class="id">lang</span>)) (<span class="id">name</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_lookup">optim_lookup</a></span> <span class="id">optim_list</span> <span class="id">name</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">o</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">o</span> <span class="id">optim_list</span> -&gt; <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_step_name">optim_step_name</a></span> <span class="id">o</span> &lt;&gt; <span class="id">name</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1029')">Proof.</div>
-<div class="proofscript" id="proof1029">
+<div class="toggleproof" onclick="toggleDisplay('proof1039')">Proof.</div>
+<div class="proofscript" id="proof1039">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">optim_list</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">match_destr_in</span> <span class="id">eqq</span>.<br/>
@@ -175,8 +175,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="project_optims_incl">project_optims_incl</a></span> {<span class="id">lang</span>:<span class="kwd">Set</span>} <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">optim_list</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Utils.OptimizerStep.html#OptimizerStep">OptimizerStep</a></span> <span class="id">lang</span>)) (<span class="id">names</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.Utils.OptimizerStep.html#project_optims">project_optims</a></span> <span class="id">optim_list</span> <span class="id">names</span>) <span class="id">optim_list</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1030')">Proof.</div>
-<div class="proofscript" id="proof1030">
+<div class="toggleproof" onclick="toggleDisplay('proof1040')">Proof.</div>
+<div class="proofscript" id="proof1040">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.OptimizerStep.html#project_optims">project_optims</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">o</span> <span class="id">inn</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#in_flat_map">in_flat_map</a></span> <span class="kwd">in</span> <span class="id">inn</span>.<br/>
@@ -196,8 +196,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_model_list_complete">optim_model_list_complete</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.OptimizerStep.html#project_optims">project_optims</a></span> <span class="id">optim_list</span> <span class="id">names</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">optim_correct_list</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1031')">Proof.</div>
-<div class="proofscript" id="proof1031">
+<div class="toggleproof" onclick="toggleDisplay('proof1041')">Proof.</div>
+<div class="proofscript" id="proof1041">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">o</span> <span class="id">inn</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.OptimizerStep.html#project_optims_incl">project_optims_incl</a></span> <span class="kwd">in</span> <span class="id">inn</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">auto</span>.<br/>
@@ -209,8 +209,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">names</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_list_correct">optim_list_correct</a></span> <span class="id">R</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.OptimizerStep.html#project_optims">project_optims</a></span> <span class="id">optim_list</span> <span class="id">names</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1032')">Proof.</div>
-<div class="proofscript" id="proof1032">
+<div class="toggleproof" onclick="toggleDisplay('proof1042')">Proof.</div>
+<div class="proofscript" id="proof1042">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.OptimizerStep.html#optim_list_correct">optim_list_correct</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> ? <span class="id">inn</span>.<br/>

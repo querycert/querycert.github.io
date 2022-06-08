@@ -46,8 +46,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="type_substs_domain_eq">type_substs_domain_eq</a></span> {Γ<span class="id">c</span>} {Γ:<span class="id"><a href="Qcert.Data.ModelTyping.TBindings.html#tbindings">tbindings</a></span>} {<span class="id">sdefs</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>*<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>)} {τ<span class="id">defs</span>:<span class="id"><a href="Qcert.Data.ModelTyping.TBindings.html#tbindings">tbindings</a></span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> Γ <span class="id">sdefs</span> τ<span class="id">defs</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> <span class="id">sdefs</span> = <span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> τ<span class="id">defs</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3014')">Proof.</div>
-<div class="proofscript" id="proof3014">
+<div class="toggleproof" onclick="toggleDisplay('proof3047')">Proof.</div>
+<div class="proofscript" id="proof3047">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> τ<span class="id">defs</span> Γ .<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">destruct</span> τ<span class="id">defs</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span> Γ <span class="id">typ</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">try</span> <span class="id">contradiction</span>; <span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">try</span> <span class="id">contradiction</span>.<br/>
@@ -61,8 +61,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> Γ <span class="id">sdefs1</span> τ<span class="id">defs1</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> τ<span class="id">defs1</span>++Γ) <span class="id">sdefs2</span> τ<span class="id">defs2</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> Γ (<span class="id">sdefs1</span>++<span class="id">sdefs2</span>) (τ<span class="id">defs1</span>++τ<span class="id">defs2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3015')">Proof.</div>
-<div class="proofscript" id="proof3015">
+<div class="toggleproof" onclick="toggleDisplay('proof3048')">Proof.</div>
+<div class="proofscript" id="proof3048">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> Γ <span class="id">sdefs2</span> τ<span class="id">defs1</span> τ<span class="id">defs2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs1</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> Γ <span class="id">sdefs2</span> τ<span class="id">defs1</span> τ<span class="id">defs2</span> <span class="id">ts1</span> <span class="id">ts2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">match_destr_in</span> <span class="id">ts1</span>; <span class="tactic">try</span> <span class="id">contradiction</span>.<br/>
@@ -86,8 +86,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> τ<span class="id">defs2</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> Γ <span class="id">sdefs2</span> τ<span class="id">defs2</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> τ<span class="id">defs2</span> ++ Γ) <span class="id">n</span> τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3016')">Proof.</div>
-<div class="proofscript" id="proof3016">
+<div class="toggleproof" onclick="toggleDisplay('proof3049')">Proof.</div>
+<div class="proofscript" id="proof3049">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Opaque</span> <span class="id"><a href="Qcert.Utils.Fresh.html#fresh_var">fresh_var</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_kind</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>; <span class="id">invcs</span> <span class="id">eqq</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">exists</span> (τ<span class="id">defs1</span>++((<span class="id"><a href="Qcert.Utils.Fresh.html#fresh_var">fresh_var</a></span> "<span class="id">stratify</span>" <span class="id">bound_vars</span>, τ)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)); <span class="tactic">simpl</span>.<br/>
@@ -111,8 +111,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> Γ <span class="id">sdefs</span> τ<span class="id">defs</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> τ<span class="id">defs</span> ++ Γ) <span class="id">n</span> τ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id">n</span>,<span class="id">sdefs</span>)) τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3017')">Proof.</div>
-<div class="proofscript" id="proof3017">
+<div class="toggleproof" onclick="toggleDisplay('proof3050')">Proof.</div>
+<div class="proofscript" id="proof3050">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> τ<span class="id">defs</span> <span class="id">n</span> Γ.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">intros</span> τ<span class="id">defs</span> Γ; <span class="tactic">destruct</span> τ<span class="id">defs</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">n</span> <span class="id">typs</span> <span class="id">typn</span><br/>
@@ -136,8 +136,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> τ<span class="id">defs</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> Γ <span class="id">sdefs</span> τ<span class="id">defs</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> τ<span class="id">defs</span> ++ Γ) <span class="id">n</span> τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3018')">Proof.</div>
-<div class="proofscript" id="proof3018">
+<div class="toggleproof" onclick="toggleDisplay('proof3051')">Proof.</div>
+<div class="proofscript" id="proof3051">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#nnrc_core_type">nnrc_core_type</a></span> : <span class="id">qcert</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">required_kind</span> <span class="id">bound_vars</span> <span class="id">n</span> <span class="id">sdefs</span>.<br/>
@@ -350,8 +350,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span>  (<span class="id">required_kind</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#nnrcKind">nnrcKind</a></span>) (<span class="id">bound_vars</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">e</span>) <span class="id">bound_vars</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id">e</span> <span class="id">required_kind</span> <span class="id">bound_vars</span>)) τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3019')">Proof.</div>
-<div class="proofscript" id="proof3019">
+<div class="toggleproof" onclick="toggleDisplay('proof3052')">Proof.</div>
+<div class="proofscript" id="proof3052">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span> <span class="id">required_kind</span> <span class="id">bound_vars</span> <span class="id">inclb</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id">e</span> <span class="id">required_kind</span> <span class="id">bound_vars</span>); <span class="tactic">intros</span> ? ? <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#stratify_aux_preserves_types_fw">stratify_aux_preserves_types_fw</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">inclb</span> <span class="id">eqq</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">typ</span>)<br/>
@@ -363,8 +363,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{Γ<span class="id">c</span> Γ} (<span class="id">e</span>: <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) {τ} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ <span class="id">e</span> τ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id">e</span>) τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3020')">Proof.</div>
-<div class="proofscript" id="proof3020">
+<div class="toggleproof" onclick="toggleDisplay('proof3053')">Proof.</div>
+<div class="proofscript" id="proof3053">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#mk_expr_from_vars_stratify_aux_preserves_types_fw">mk_expr_from_vars_stratify_aux_preserves_types_fw</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
@@ -375,8 +375,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#length">length</a></span> <span class="id">sdefs1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#length">length</a></span> τ<span class="id">defs1</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> Γ <span class="id">sdefs1</span> τ<span class="id">defs1</span> /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> τ<span class="id">defs1</span>++Γ) <span class="id">sdefs2</span> τ<span class="id">defs2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3021')">Proof.</div>
-<div class="proofscript" id="proof3021">
+<div class="toggleproof" onclick="toggleDisplay('proof3054')">Proof.</div>
+<div class="proofscript" id="proof3054">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> Γ <span class="id">sdefs2</span> τ<span class="id">defs1</span> τ<span class="id">defs2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs1</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> Γ <span class="id">sdefs2</span> τ<span class="id">defs1</span> τ<span class="id">defs2</span> <span class="id">ts1</span> <span class="id">ts2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">match_destr</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="id">qeauto</span>.<br/>
@@ -397,8 +397,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;τ<span class="id">defs</span> = τ<span class="id">defs1</span> ++ τ<span class="id">defs2</span> /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> Γ <span class="id">sdefs1</span> τ<span class="id">defs1</span> /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> τ<span class="id">defs1</span>++Γ) <span class="id">sdefs2</span> τ<span class="id">defs2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3022')">Proof.</div>
-<div class="proofscript" id="proof3022">
+<div class="toggleproof" onclick="toggleDisplay('proof3055')">Proof.</div>
+<div class="proofscript" id="proof3055">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> Γ <span class="id">sdefs2</span> τ<span class="id">defs</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs1</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> Γ <span class="id">sdefs2</span> τ<span class="id">defs</span> <span class="id">ts</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">exists</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>, τ<span class="id">defs</span>; <span class="tactic">simpl</span>; <span class="tactic">tauto</span>.<br/>
@@ -421,8 +421,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> τ<span class="id">defs1</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> Γ <span class="id">sdefs1</span> τ<span class="id">defs1</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> τ<span class="id">defs1</span> ++ Γ) <span class="id">e</span> τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3023')">Proof.</div>
-<div class="proofscript" id="proof3023">
+<div class="toggleproof" onclick="toggleDisplay('proof3056')">Proof.</div>
+<div class="proofscript" id="proof3056">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">Opaque</span> <span class="id"><a href="Qcert.Utils.Fresh.html#fresh_var">fresh_var</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">required_kind</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>; <span class="id">invcs</span> <span class="id">eqq</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">generalize</span> (<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs_domain_eq">type_substs_domain_eq</a></span> <span class="id">H</span>); <span class="tactic">intros</span> <span class="id">deq</span>.<br/>
@@ -456,8 +456,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> τ<span class="id">defs</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#type_substs">type_substs</a></span> Γ<span class="id">c</span> Γ <span class="id">sdefs</span> τ<span class="id">defs</span> /\<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> τ<span class="id">defs</span> ++ Γ) <span class="id">n</span> τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3024')">Proof.</div>
-<div class="proofscript" id="proof3024">
+<div class="toggleproof" onclick="toggleDisplay('proof3057')">Proof.</div>
+<div class="proofscript" id="proof3057">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">n</span> Γ.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">sdefs</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">n</span> Γ <span class="id">typ</span>.<br/>
@@ -481,8 +481,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> τ,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#rev">rev</a></span> τ<span class="id">defs</span> ++ Γ) <span class="id">n</span> τ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ <span class="id">e</span> τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3025')">Proof.</div>
-<div class="proofscript" id="proof3025">
+<div class="toggleproof" onclick="toggleDisplay('proof3058')">Proof.</div>
+<div class="proofscript" id="proof3058">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#nnrc_core_type">nnrc_core_type</a></span> : <span class="id">qcert</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">required_kind</span> <span class="id">bound_vars</span> <span class="id">n</span> <span class="id">sdefs</span>.<br/>
@@ -673,8 +673,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">e</span>) <span class="id">bound_vars</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#mk_expr_from_vars">mk_expr_from_vars</a></span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify_aux">stratify_aux</a></span> <span class="id">e</span> <span class="id">required_kind</span> <span class="id">bound_vars</span>)) τ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ <span class="id">e</span> τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3026')">Proof.</div>
-<div class="proofscript" id="proof3026">
+<div class="toggleproof" onclick="toggleDisplay('proof3059')">Proof.</div>
+<div class="proofscript" id="proof3059">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">required_kind</span> <span class="id">bound_vars</span> <span class="id">inclb</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#mk_expr_from_vars_preserves_types_bk">mk_expr_from_vars_preserves_types_bk</a></span> <span class="id">typ</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">as</span> [τ<span class="id">defs1</span> [<span class="id">ts1</span> <span class="id">tp1</span>]].<br/>
@@ -686,8 +686,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{Γ<span class="id">c</span> Γ} (<span class="id">e</span>: <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) {τ} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id">e</span>) τ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ <span class="id">e</span> τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3027')">Proof.</div>
-<div class="proofscript" id="proof3027">
+<div class="toggleproof" onclick="toggleDisplay('proof3060')">Proof.</div>
+<div class="proofscript" id="proof3060">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#mk_expr_from_vars_stratify_aux_preserves_types_bk">mk_expr_from_vars_stratify_aux_preserves_types_bk</a></span>; <span class="id">qeauto</span>.<br/>
@@ -698,8 +698,8 @@
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="stratify_preserves_types">stratify_preserves_types</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Γ<span class="id">c</span> Γ (<span class="id">e</span>: <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) τ :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ <span class="id">e</span> τ &lt;-&gt; <span class="id"><a href="Qcert.NNRC.Typing.TNNRC.html#nnrc_type">nnrc_type</a></span> Γ<span class="id">c</span> Γ (<span class="id"><a href="Qcert.NNRC.Lang.NNRCStratify.html#stratify">stratify</a></span> <span class="id">e</span>) τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3028')">Proof.</div>
-<div class="proofscript" id="proof3028">
+<div class="toggleproof" onclick="toggleDisplay('proof3061')">Proof.</div>
+<div class="proofscript" id="proof3061">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#stratify_preserves_types_fw">stratify_preserves_types_fw</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRC.Typing.TNNRCStratify.html#stratify_preserves_types_bk">stratify_preserves_types_bk</a></span>; <span class="id">qeauto</span>.<br/>

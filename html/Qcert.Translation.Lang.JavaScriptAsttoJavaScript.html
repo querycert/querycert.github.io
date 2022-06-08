@@ -69,6 +69,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">literal_bool</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> =&gt; "<span class="id">false</span>"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">literal_number</span> <span class="id">n</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#js_quote_number">js_quote_number</a></span> <span class="id">n</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">literal_string</span> <span class="id">s</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span> ++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#js_quote_string">js_quote_string</a></span> <span class="id">s</span> ++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#quotel">quotel</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">literal_bigint</span> <span class="id">z</span> =&gt; <span class="id"><a href="Qcert.Utils.Digits.html#Z_to_string10">Z_to_string10</a></span> <span class="id">z</span> ++ "<span class="id">n</span>"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="string_of_propname">string_of_propname</a></span> (<span class="id">name</span>: <span class="id">propname</span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> :=<br/>
@@ -377,31 +378,31 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">f</span>:<span class="id">funcdecl</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">i</span>: <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span>) <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">eol</span> ++ <span class="id">indent</span> <span class="id">i</span> ++ "<span class="id">static</span> " ++ <span class="id">f</span>.(<span class="id">funcdecl_name</span>) ++ "(" ++ (<span class="id">comma_list</span> <span class="id">f</span>.(<span class="id">funcdecl_parameters</span>)) ++ ") {" ++ <span class="id">eol</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++ <span class="id">string_of_funcbody</span> <span class="id">f</span>.(<span class="id">funcdecl_body</span>) (<span class="id">i</span>+1) ++ <span class="id">eol</span> ++ <span class="id">indent</span> <span class="id">i</span> ++ "}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> ++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> ++ "<span class="id">static</span> " ++ <span class="id">f</span>.(<span class="id">funcdecl_name</span>) ++ "(" ++ (<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#comma_list">comma_list</a></span> <span class="id">f</span>.(<span class="id">funcdecl_parameters</span>)) ++ ") {" ++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#string_of_funcbody">string_of_funcbody</a></span> <span class="id">f</span>.(<span class="id">funcdecl_body</span>) (<span class="id">i</span>+1) ++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> ++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#indent">indent</a></span> <span class="id">i</span> ++ "}"<br/>
 &nbsp;&nbsp;.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">string_of_decl</span>(<span class="id">d</span>:<span class="id">topdecl</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id">string</span> :=<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="string_of_decl">string_of_decl</a></span>(<span class="id">d</span>:<span class="id">topdecl</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id">d</span> <span class="kwd">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">strictmode</span> =&gt; <span class="id">eol</span> ++ "'<span class="id">use</span> <span class="id">strict</span>';"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">comment</span> <span class="id">c</span> =&gt; <span class="id">eol</span> ++ "/*" ++ <span class="id">c</span> ++ "*/"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">elementdecl</span> <span class="id">fd</span> =&gt; <span class="id">string_of_element</span> <span class="id">fd</span> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">strictmode</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> ++ "'<span class="id">use</span> <span class="id">strict</span>';"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">comment</span> <span class="id">c</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> ++ "/*" ++ <span class="id">c</span> ++ "*/"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">elementdecl</span> <span class="id">fd</span> =&gt; <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#string_of_element">string_of_element</a></span> <span class="id">fd</span> 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">classdecl</span> <span class="id">cn</span> <span class="id">cd</span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">eol</span> ++ "<span class="id">class</span> " ++ <span class="id">cn</span> ++ "{"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++ <span class="id">List.fold_left</span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">q</span> =&gt; <span class="id">append</span> <span class="id">acc</span> (<span class="id">string_of_method</span> <span class="id">q</span> 1)) <span class="id">cd</span> (""%<span class="id">string</span>) ++ <span class="id">eol</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> ++ "<span class="id">class</span> " ++ <span class="id">cn</span> ++ "{"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">q</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#append">append</a></span> <span class="id">acc</span> (<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#string_of_method">string_of_method</a></span> <span class="id">q</span> 1)) <span class="id">cd</span> (""%<span class="id">string</span>) ++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++ "}"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">constdecl</span> <span class="id">x</span> <span class="id">e</span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">eol</span> ++ "<span class="id">const</span> " ++ <span class="id">x</span> ++ "=" ++ <span class="id">string_of_expr</span> <span class="id">e</span> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#eol">eol</a></span> ++ "<span class="id">const</span> " ++ <span class="id">x</span> ++ "=" ++ <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#string_of_expr">string_of_expr</a></span> <span class="id">e</span> 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
-<span class="kwd">End</span> <span class="id">ToString</span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#ToString">ToString</a></span>.<br/>
 <br/>
-<span class="kwd">Section</span> <span class="id">JavaScriptAsttoJavaScript</span>.<br/>
+<span class="kwd">Section</span> <span class="id"><a name="JavaScriptAsttoJavaScript">JavaScriptAsttoJavaScript</a></span>.<br/>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id">js_ast_to_js_top</span> (<span class="id">ja</span>:<span class="id">js_ast</span>) : <span class="id">javascript</span> :=<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">List.fold_left</span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">f</span> =&gt; <span class="id">append</span> <span class="id">acc</span> (<span class="id">string_of_decl</span> <span class="id">f</span>)) <span class="id">ja</span> (""%<span class="id">string</span>).<br/>
+&nbsp;&nbsp;<span class="kwd">Definition</span> <span class="id"><a name="js_ast_to_js_top">js_ast_to_js_top</a></span> (<span class="id">ja</span>:<span class="id"><a href="Qcert.JavaScriptAst.Lang.JavaScriptAst.html#js_ast">js_ast</a></span>) : <span class="id"><a href="Qcert.JavaScript.Lang.JavaScript.html#javascript">javascript</a></span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#fold_left">List.fold_left</a></span> (<span class="kwd">fun</span> <span class="id">acc</span> <span class="id">f</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#append">append</a></span> <span class="id">acc</span> (<span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#string_of_decl">string_of_decl</a></span> <span class="id">f</span>)) <span class="id">ja</span> (""%<span class="id">string</span>).<br/>
 <br/>
-<span class="kwd">End</span> <span class="id">JavaScriptAsttoJavaScript</span>.<br/>
+<span class="kwd">End</span> <span class="id"><a href="Qcert.Translation.Lang.JavaScriptAsttoJavaScript.html#JavaScriptAsttoJavaScript">JavaScriptAsttoJavaScript</a></span>.<br/>
 
 </div>
 <div class="footer"><hr/>Generated by <a href="https://github.com/xavierleroy/coq2html/">coq2html</div>

@@ -31,13 +31,13 @@
 <br/>
 <span class="kwd">Section</span> <span class="id"><a name="NNRCRewrite">NNRCRewrite</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Open</span> <span class="kwd">Scope</span> <span class="id">nnrc_scope</span>.<br/>
-<br/>
 &nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fruntime</span>:<span class="id"><a href="Qcert.Data.ForeignRuntime.html#foreign_runtime">foreign_runtime</a></span>}.<br/>
 <br/>
+<div class="doc"><span class="bracket"><span class="id">unshadow</span>(<span class="id">e</span>) ≡ᶜ <span class="id">e</span></span> </div>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_unshadow_preserves">nnrc_unshadow_preserves</a></span> <span class="id">sep</span> <span class="id">renamer</span> <span class="id">avoid</span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCShadow.html#unshadow">unshadow</a></span> <span class="id">sep</span> <span class="id">renamer</span> <span class="id">avoid</span> <span class="id">e</span>) <span class="id">e</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3049')">Proof.</div>
-<div class="proofscript" id="proof3049">
+<div class="toggleproof" onclick="toggleDisplay('proof3082')">Proof.</div>
+<div class="proofscript" id="proof3082">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
@@ -45,11 +45,11 @@
 &nbsp;&nbsp;Qed.</div>
 <br/>
 <br/>
-<br/>
+<div class="doc"><span class="bracket">{ <span class="id">a</span>: <span class="id">e</span> }.<span class="id">a</span> ≡ <span class="id">e</span></span> </div>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dot_of_rec">dot_of_rec</a></span> <span class="id">a</span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> (<span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpDot">OpDot</a></span> <span class="id">a</span>) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> (<span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpRec">OpRec</a></span> <span class="id">a</span>) <span class="id">e</span>)) <span class="id">e</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3050')">Proof.</div>
-<div class="proofscript" id="proof3050">
+<div class="toggleproof" onclick="toggleDisplay('proof3083')">Proof.</div>
+<div class="proofscript" id="proof3083">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span>; <span class="tactic">intros</span> ? ? ? ? <span class="id">_</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
@@ -58,12 +58,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">a</span> <span class="id">a</span>); <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-<br/>
+<div class="doc"><span class="bracket"><span class="id">nth</span> [<span class="id">e</span>] 0 ≡ <span class="id">left</span> <span class="id">e</span></span> </div>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nth0_bag">nth0_bag</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCBinop">NNRCBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagNth">OpBagNth</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpBag">OpBag</a></span> <span class="id">e</span>) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dnat">dnat</a></span> 0)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpLeft">OpLeft</a></span> <span class="id">e</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3051')">Proof.</div>
-<div class="proofscript" id="proof3051">
+<div class="toggleproof" onclick="toggleDisplay('proof3084')">Proof.</div>
+<div class="proofscript" id="proof3084">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span>; <span class="tactic">intros</span> ? ? ? ? <span class="id">_</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
@@ -71,27 +71,28 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-<br/>
+<div class="doc"><span class="bracket"><span class="id">nth</span> [] 0 ≡ <span class="id">none</span></span> </div>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nth0_nil">nth0_nil</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCBinop">NNRCBinop</a></span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#OpBagNth">OpBagNth</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dnat">dnat</a></span> 0)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dnone">dnone</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3052')">Proof.</div>
-<div class="proofscript" id="proof3052">
+<div class="toggleproof" onclick="toggleDisplay('proof3085')">Proof.</div>
+<div class="proofscript" id="proof3085">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span>; <span class="tactic">intros</span> ? ? ? ? <span class="id">_</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_merge_concat_to_concat">nnrc_merge_concat_to_concat</a></span> <span class="id">s1</span> <span class="id">s2</span> <span class="id">p1</span> <span class="id">p2</span>:<br/>
+<div class="doc"><span class="bracket"><span class="id">s</span>₁ ≠ <span class="id">s</span>₂ → { <span class="id">s</span>₁: <span class="id">e</span>₁ } ⊗ { <span class="id">s</span>₂: <span class="id">e</span>₂ } ≡ [ { <span class="id">s</span>₁: <span class="id">e</span>₁ } ⊕ { <span class="id">s</span>₂: <span class="id">e</span>₂ } ]</span> </div>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_merge_concat_to_concat">nnrc_merge_concat_to_concat</a></span> <span class="id">s1</span> <span class="id">s2</span> <span class="id">e1</span> <span class="id">e2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">s1</span> &lt;&gt; <span class="id">s2</span> -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;‵[| (<span class="id">s1</span>, <span class="id">p1</span>)|] ⊗ ‵[| (<span class="id">s2</span>, <span class="id">p2</span>)|] ≡ᶜ ‵{|‵[| (<span class="id">s1</span>, <span class="id">p1</span>)|] ⊕ ‵[| (<span class="id">s2</span>, <span class="id">p2</span>)|]|}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3053')">Proof.</div>
-<div class="proofscript" id="proof3053">
+&nbsp;&nbsp;&nbsp;&nbsp;‵[| (<span class="id">s1</span>, <span class="id">e1</span>)|] ⊗ ‵[| (<span class="id">s2</span>, <span class="id">e2</span>)|] ≡ᶜ ‵{|‵[| (<span class="id">s1</span>, <span class="id">e1</span>)|] ⊕ ‵[| (<span class="id">s2</span>, <span class="id">e2</span>)|]|}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3086')">Proof.</div>
+<div class="proofscript" id="proof3086">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">p1</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">p2</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e1</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e2</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Bindings.html#merge_bindings">merge_bindings</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Compat.html#compatible_with">compatible_with</a></span>; <span class="tactic">simpl</span>.<br/>
@@ -99,94 +100,34 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
-&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="for_nil">for_nil</a></span> <span class="id">x</span> <span class="id">e2</span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> ‵{||} <span class="id">e2</span>) ‵{||}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3054')">Proof.</div>
-<div class="proofscript" id="proof3054">
+<br/>
+<div class="doc"><span class="bracket"> { <span class="id">e</span> | $<span class="id">x</span> ∈ [] } ≡ [] </span> </div>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="for_nil">for_nil</a></span> <span class="id">x</span> <span class="id">e</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> ‵{||} <span class="id">e</span>) ‵{||}.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3087')">Proof.</div>
+<div class="proofscript" id="proof3087">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
+<div class="doc"><span class="bracket"> { <span class="id">e</span>₂ | $<span class="id">x</span> ∈ [ <span class="id">e</span>₁ ] } ≡ <span class="kwd">let</span> $<span class="id">x</span> := <span class="id">e</span>₁ <span class="kwd">in</span> <span class="id">e</span>₂ </span> </div>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="for_singleton_to_let">for_singleton_to_let</a></span> <span class="id">x</span> <span class="id">e1</span> <span class="id">e2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpBag">OpBag</a></span> <span class="id">e1</span>) <span class="id">e2</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpBag">OpBag</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">x</span> <span class="id">e1</span> <span class="id">e2</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3055')">Proof.</div>
-<div class="proofscript" id="proof3055">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpBag">OpBag</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">x</span> <span class="id">e1</span> <span class="id">e2</span>)).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3088')">Proof.</div>
+<div class="proofscript" id="proof3088">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e1</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
+<div class="doc"><span class="bracket"> ♯<span class="id">flatten</span>([]) ≡ [] </span> </div>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="flatten_nil_nnrc">flatten_nil_nnrc</a></span>  :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (♯<span class="id">flatten</span>(‵{||})) ‵{||}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3056')">Proof.</div>
-<div class="proofscript" id="proof3056">
+<div class="toggleproof" onclick="toggleDisplay('proof3089')">Proof.</div>
+<div class="proofscript" id="proof3089">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
-<br/>
-<br/>
-<div class="doc">cNNRC evaluation is only sensitive to the environment modulo
-      lookup. </div>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_core_eval_lookup_equiv_on">nnrc_core_eval_lookup_equiv_on</a></span> <span class="id">h</span> σ<span class="id">c</span> σ₁ σ₂ (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv_on">lookup_equiv_on</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">e</span>) σ₁ σ₂ -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> σ<span class="id">c</span> σ₁ <span class="id">e</span> = <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> σ<span class="id">c</span> σ₂ <span class="id">e</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3057')">Proof.</div>
-<div class="proofscript" id="proof3057">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> σ₁ σ₂.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> σ₁ σ₂ <span class="id">eqq</span>; <span class="tactic">trivial</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">try</span> <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv_on_dom_app">lookup_equiv_on_dom_app</a></span> <span class="kwd">in</span> <span class="id">eqq</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">red</span> <span class="kwd">in</span> <span class="id">eqq</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> <span class="id">eqq</span>; <span class="tactic">rewrite</span> <span class="id">eqq</span>; <span class="tactic">tauto</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">erewrite</span> <span class="id">IHe1</span>, <span class="id">IHe2</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>; <span class="tactic">tauto</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">erewrite</span> <span class="id">IHe</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>; <span class="tactic">tauto</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">eqq</span> <span class="kwd">as</span> [<span class="id">eqq1</span> <span class="id">eqq2</span>].<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">IHe1</span> <span class="id">_</span> <span class="id">_</span> <span class="id">eqq1</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">erewrite</span> <span class="id">IHe2</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv_on">lookup_equiv_on</a></span> <span class="kwd">in</span> *.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">eqq2</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#remove_in_neq">remove_in_neq</a></span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">eqq</span> <span class="kwd">as</span> [<span class="id">eqq1</span> <span class="id">eqq2</span>].<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">IHe1</span> <span class="id">_</span> <span class="id">_</span> <span class="id">eqq1</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map_ext">lift_map_ext</a></span>; <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">erewrite</span> <span class="id">IHe2</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv_on">lookup_equiv_on</a></span> <span class="kwd">in</span> *.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">eqq2</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#remove_in_neq">remove_in_neq</a></span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">eqq</span> <span class="kwd">as</span> [<span class="id">eqq1</span> <span class="id">eqq2</span>].<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">IHe1</span> <span class="id">_</span> <span class="id">_</span> <span class="id">eqq1</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Lift.html#olift_ext">olift_ext</a></span>; <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv_on_dom_app">lookup_equiv_on_dom_app</a></span> <span class="kwd">in</span> <span class="id">eqq2</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">eqq2</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">eauto</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">eqq</span> <span class="kwd">as</span> [<span class="id">eqq1</span> <span class="id">eqq2</span>].<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (<span class="id">IHe1</span> <span class="id">_</span> <span class="id">_</span> <span class="id">eqq1</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Lift.html#olift_ext">olift_ext</a></span>; <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv_on_dom_app">lookup_equiv_on_dom_app</a></span> <span class="kwd">in</span> <span class="id">eqq2</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">eqq2</span> <span class="kwd">as</span> [<span class="id">eqq2</span> <span class="id">eqq3</span>].<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">erewrite</span> <span class="id">IHe2</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv_on">lookup_equiv_on</a></span> <span class="kwd">in</span> *.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">eqq2</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#remove_in_neq">remove_in_neq</a></span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">erewrite</span> <span class="id">IHe3</span>; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv_on">lookup_equiv_on</a></span> <span class="kwd">in</span> *.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">eqq3</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#remove_in_neq">remove_in_neq</a></span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="map_sigma_fusion">map_sigma_fusion</a></span> (<span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) <span class="id">ee</span> (<span class="id">v1</span> <span class="id">v2</span>:<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) :<br/>
@@ -202,8 +143,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCIf">NNRCIf</a></span> <span class="id">e2</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpBag">OpBag</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">v2</span> <span class="id">ee</span> <span class="id">e3</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>))))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3058')">Proof.</div>
-<div class="proofscript" id="proof3058">
+<div class="toggleproof" onclick="toggleDisplay('proof3090')">Proof.</div>
+<div class="proofscript" id="proof3090">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">notinfree</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span>; <span class="tactic">intros</span> ? ? ? ? <span class="id">_</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
@@ -273,7 +214,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">replace</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v2</span>, <span class="id">d</span>) :: (<span class="id">v1</span>, <span class="id">a</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e3</span>)) <span class="kwd">with</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v2</span>, <span class="id">d</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e3</span>)).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2: { <span class="id">idtac</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewrite.html#nnrc_core_eval_lookup_equiv_on">nnrc_core_eval_lookup_equiv_on</a></span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_core_eval_lookup_equiv_on">nnrc_core_eval_lookup_equiv_on</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span> <span class="id">v2</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span> <span class="id">v1</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
@@ -312,8 +253,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCIf">NNRCIf</a></span> <span class="id">e2</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpBag">OpBag</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">v1</span> <span class="id">e</span> <span class="id">e3</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>))))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3059')">Proof.</div>
-<div class="proofscript" id="proof3059">
+<div class="toggleproof" onclick="toggleDisplay('proof3091')">Proof.</div>
+<div class="proofscript" id="proof3091">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span>; <span class="tactic">intros</span> ? ? ? ? <span class="id">_</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e1</span>)); <span class="tactic">try</span> <span class="tactic">reflexivity</span>; <span class="tactic">simpl</span>.<br/>
@@ -410,8 +351,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCIf">NNRCIf</a></span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span>) <span class="id">ebody</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCIf">NNRCIf</a></span> <span class="id">e1</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> <span class="id">e2</span> <span class="id">ebody</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> <span class="id">e3</span> <span class="id">ebody</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3060')">Proof.</div>
-<div class="proofscript" id="proof3060">
+<div class="toggleproof" onclick="toggleDisplay('proof3092')">Proof.</div>
+<div class="proofscript" id="proof3092">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e1</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
@@ -419,68 +360,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="for_over_for">for_over_for</a></span> <span class="id">x</span> <span class="id">y</span> <span class="id">source</span> <span class="id">body1</span> <span class="id">body2</span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">y</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">body2</span>) -&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">y</span> <span class="id">source</span> <span class="id">body1</span>) <span class="id">body2</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">y</span> <span class="id">source</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">x</span> <span class="id">body1</span> <span class="id">body2</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3061')">Proof.</div>
-<div class="proofscript" id="proof3061">
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">nin</span>; <span class="tactic">intros</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base_free_vars_same">nnrc_to_nnrc_base_free_vars_same</a></span> <span class="kwd">in</span> <span class="id">nin</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">source</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;simplify&nbsp;a&nbsp;bit&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">transitivity</span> (<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">y</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">body1</span>)) <span class="id">l</span>)<br/>
-&nbsp;&nbsp;<span class="kwd">with</span><br/>
-&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">c1</span> =&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">x</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">body2</span>))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">c1</span>)<br/>
-&nbsp;&nbsp;| <span class="id">_</span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">y</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">body1</span>)) <span class="id">l</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;another&nbsp;tweak&nbsp;*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">transitivity</span> (<span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.Lift.html#olift">olift</a></span> (<span class="kwd">fun</span> <span class="id">c1</span> =&gt; (<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">x</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">body2</span>))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">c1</span>)) (<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">y</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">body1</span>)) <span class="id">l</span>))).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">y</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">body1</span>)) <span class="id">l</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">y</span>, <span class="id">a</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">body1</span>))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.Lift.html#olift_lift">olift_lift</a></span>; <span class="tactic">simpl</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCShadow.html#nnrc_core_eval_remove_free_env">nnrc_core_eval_remove_free_env</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">x</span>, <span class="id">d</span>)::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) <span class="id">y</span> <span class="id">a</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">HH</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">HH</span> <span class="tactic">by</span> <span class="tactic">tauto</span>; <span class="tactic">clear</span> <span class="id">HH</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">x</span>, <span class="id">d</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">body2</span>))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">simpl</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;; [<span class="tactic">rewrite</span> &lt;- <span class="id">IHl</span> | ]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">y</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">body1</span>)) <span class="id">l</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;Qed.</div>
-&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="for_over_either_disjoint">for_over_either_disjoint</a></span> <span class="id">x</span> <span class="id">e1</span> <span class="id">xl</span> <span class="id">el</span> <span class="id">xr</span> <span class="id">er</span> <span class="id">ebody</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#disjoint">disjoint</a></span> (<span class="id">xl</span>::<span class="id">xr</span>::<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">ebody</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">e1</span> <span class="id">xl</span> <span class="id">el</span> <span class="id">xr</span> <span class="id">er</span>) <span class="id">ebody</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">e1</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">xl</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> <span class="id">el</span> <span class="id">ebody</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">xr</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> <span class="id">er</span> <span class="id">ebody</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3062')">Proof.</div>
-<div class="proofscript" id="proof3062">
+<div class="toggleproof" onclick="toggleDisplay('proof3093')">Proof.</div>
+<div class="proofscript" id="proof3093">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#disjoint_cons_inv1">disjoint_cons_inv1</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
@@ -503,8 +390,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>' (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_bound_vars">nnrc_bound_vars</a></span> <span class="id">e</span>₂) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">x</span> <span class="id">e</span>₁ <span class="id">e</span>₂)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">x</span>' <span class="id">e</span>₁ (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_subst">nnrc_subst</a></span> <span class="id">e</span>₂ <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">x</span>'))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3063')">Proof.</div>
-<div class="proofscript" id="proof3063">
+<div class="toggleproof" onclick="toggleDisplay('proof3094')">Proof.</div>
+<div class="proofscript" id="proof3094">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">nfree</span> <span class="id">nbound</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id"><a href="Qcert.NNRC.Lang.NNRCShadow.html#nnrc_eval_cons_subst">nnrc_eval_cons_subst</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">e</span>₂ <span class="id">env</span> <span class="id">x</span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -521,8 +408,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span>' (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_bound_vars">nnrc_bound_vars</a></span> <span class="id">e</span>₂) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> <span class="id">e</span>₁ <span class="id">e</span>₂)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span>' <span class="id">e</span>₁ (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_subst">nnrc_subst</a></span> <span class="id">e</span>₂ <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">x</span>'))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3064')">Proof.</div>
-<div class="proofscript" id="proof3064">
+<div class="toggleproof" onclick="toggleDisplay('proof3095')">Proof.</div>
+<div class="proofscript" id="proof3095">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">nfree</span> <span class="id">nbound</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id"><a href="Qcert.NNRC.Lang.NNRCShadow.html#nnrc_eval_cons_subst">nnrc_eval_cons_subst</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">e</span>₂ <span class="id">env</span> <span class="id">x</span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -541,8 +428,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">xl</span>' (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_bound_vars">nnrc_bound_vars</a></span> <span class="id">el</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">e1</span> <span class="id">xl</span> <span class="id">el</span> <span class="id">xr</span> <span class="id">er</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">e1</span> <span class="id">xl</span>' (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_subst">nnrc_subst</a></span> <span class="id">el</span> <span class="id">xl</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">xl</span>')) <span class="id">xr</span> <span class="id">er</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3065')">Proof.</div>
-<div class="proofscript" id="proof3065">
+<div class="toggleproof" onclick="toggleDisplay('proof3096')">Proof.</div>
+<div class="proofscript" id="proof3096">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">nfree</span> <span class="id">nbound</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id"><a href="Qcert.NNRC.Lang.NNRCShadow.html#nnrc_eval_cons_subst">nnrc_eval_cons_subst</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">el</span> <span class="id">env</span> <span class="id">xl</span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -559,8 +446,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">xr</span>' (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_bound_vars">nnrc_bound_vars</a></span> <span class="id">er</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">e1</span> <span class="id">xl</span> <span class="id">el</span> <span class="id">xr</span> <span class="id">er</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">e1</span> <span class="id">xl</span> <span class="id">el</span> <span class="id">xr</span>' (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_subst">nnrc_subst</a></span> <span class="id">er</span> <span class="id">xr</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">xr</span>'))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3066')">Proof.</div>
-<div class="proofscript" id="proof3066">
+<div class="toggleproof" onclick="toggleDisplay('proof3097')">Proof.</div>
+<div class="proofscript" id="proof3097">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">nfree</span> <span class="id">nbound</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (@<span class="id"><a href="Qcert.NNRC.Lang.NNRCShadow.html#nnrc_eval_cons_subst">nnrc_eval_cons_subst</a></span> <span class="id">_</span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">er</span> <span class="id">env</span> <span class="id">xr</span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -580,8 +467,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">e1</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">xl</span>' (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_subst">nnrc_subst</a></span> <span class="id">el</span> <span class="id">xl</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">xl</span>')) <span class="id">ebody</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">xr</span>' (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_subst">nnrc_subst</a></span> <span class="id">er</span> <span class="id">xr</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">xr</span>')) <span class="id">ebody</span>))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3067')">Proof.</div>
-<div class="proofscript" id="proof3067">
+<div class="toggleproof" onclick="toggleDisplay('proof3098')">Proof.</div>
+<div class="proofscript" id="proof3098">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">transitivity</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">e1</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#really_fresh_in_ext">really_fresh_in_ext</a></span> <span class="id">sep</span> <span class="id">xl</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">el</span> ++ <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_bound_vars">nnrc_bound_vars</a></span> <span class="id">el</span>) <span class="id">ebody</span>)<br/>
@@ -627,8 +514,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrcunop_over_either">nnrcunop_over_either</a></span> <span class="id">op</span> <span class="id">e1</span> <span class="id">xl</span> <span class="id">el</span> <span class="id">xr</span> <span class="id">er</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id">op</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">e1</span> <span class="id">xl</span> <span class="id">el</span> <span class="id">xr</span> <span class="id">er</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">e1</span> <span class="id">xl</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id">op</span> <span class="id">el</span>) <span class="id">xr</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id">op</span> <span class="id">er</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3068')">Proof.</div>
-<div class="proofscript" id="proof3068">
+<div class="toggleproof" onclick="toggleDisplay('proof3099')">Proof.</div>
+<div class="proofscript" id="proof3099">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
@@ -637,8 +524,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrcunop_over_if">nnrcunop_over_if</a></span> <span class="id">op</span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id">op</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCIf">NNRCIf</a></span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCIf">NNRCIf</a></span> <span class="id">e1</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id">op</span> <span class="id">e2</span>) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id">op</span> <span class="id">e3</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3069')">Proof.</div>
-<div class="proofscript" id="proof3069">
+<div class="toggleproof" onclick="toggleDisplay('proof3100')">Proof.</div>
+<div class="proofscript" id="proof3100">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e1</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
@@ -648,8 +535,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrcbinop_over_if_left">nnrcbinop_over_if_left</a></span> <span class="id">op</span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span> <span class="id">e</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCBinop">NNRCBinop</a></span> <span class="id">op</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCIf">NNRCIf</a></span> <span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span>) <span class="id">e</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCIf">NNRCIf</a></span> <span class="id">e1</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCBinop">NNRCBinop</a></span> <span class="id">op</span> <span class="id">e2</span> <span class="id">e</span>) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCBinop">NNRCBinop</a></span> <span class="id">op</span> <span class="id">e3</span> <span class="id">e</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3070')">Proof.</div>
-<div class="proofscript" id="proof3070">
+<div class="toggleproof" onclick="toggleDisplay('proof3101')">Proof.</div>
+<div class="proofscript" id="proof3101">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e1</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
@@ -660,8 +547,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">e</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCBinop">NNRCBinop</a></span> <span class="id">op</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">x</span> <span class="id">e1</span> <span class="id">e2</span>) <span class="id">e</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">x</span> <span class="id">e1</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCBinop">NNRCBinop</a></span> <span class="id">op</span> <span class="id">e2</span> <span class="id">e</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3071')">Proof.</div>
-<div class="proofscript" id="proof3071">
+<div class="toggleproof" onclick="toggleDisplay('proof3102')">Proof.</div>
+<div class="proofscript" id="proof3102">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e1</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
@@ -686,8 +573,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpBag">OpBag</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">v</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)))))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">v</span> <span class="id">e2</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCIf">NNRCIf</a></span> <span class="id">e1</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCUnop">NNRCUnop</a></span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#OpBag">OpBag</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCVar">NNRCVar</a></span> <span class="id">v</span>)) (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>)))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3072')">Proof.</div>
-<div class="proofscript" id="proof3072">
+<div class="toggleproof" onclick="toggleDisplay('proof3103')">Proof.</div>
+<div class="proofscript" id="proof3103">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span>; <span class="tactic">intros</span> ? ? ? ? <span class="id">_</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e2</span>)); <span class="tactic">try</span> <span class="tactic">reflexivity</span>; <span class="tactic">simpl</span>.<br/>
@@ -699,8 +586,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="unshadow_free_vars">unshadow_free_vars</a></span> <span class="id">sep</span> <span class="id">renamer</span> (<span class="id">x</span>:<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) (<span class="id">e</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>):<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCShadow.html#unshadow">unshadow</a></span> <span class="id">sep</span> <span class="id">renamer</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id">e</span>)) -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">e</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3073')">Proof.</div>
-<div class="proofscript" id="proof3073">
+<div class="toggleproof" onclick="toggleDisplay('proof3104')">Proof.</div>
+<div class="proofscript" id="proof3104">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRCShadow.html#unshadow_nnrc_free_vars">unshadow_nnrc_free_vars</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -709,8 +596,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrcproject_over_concat">nnrcproject_over_concat</a></span> <span class="id">sl</span> <span class="id">p1</span> <span class="id">p2</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;π[<span class="id">sl</span>](<span class="id">p1</span> ⊕ <span class="id">p2</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;≡ᶜ π[<span class="id">sl</span>](<span class="id">p1</span>) ⊕ π[<span class="id">sl</span>](<span class="id">p2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3074')">Proof.</div>
-<div class="proofscript" id="proof3074">
+<div class="toggleproof" onclick="toggleDisplay('proof3105')">Proof.</div>
+<div class="proofscript" id="proof3105">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">p2</span>));<br/>
@@ -725,8 +612,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrcproject_over_const">nnrcproject_over_const</a></span> <span class="id">sl</span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;π[<span class="id">sl</span>](<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id">l</span>)) ≡ᶜ <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCConst">NNRCConst</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rproject">rproject</a></span> <span class="id">l</span> <span class="id">sl</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3075')">Proof.</div>
-<div class="proofscript" id="proof3075">
+<div class="toggleproof" onclick="toggleDisplay('proof3106')">Proof.</div>
+<div class="proofscript" id="proof3106">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.Bindings.html#rproject_rec_sort_commute">rproject_rec_sort_commute</a></span>.<br/>
@@ -736,8 +623,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrcproject_over_rec_in">nnrcproject_over_rec_in</a></span> <span class="id">sl</span> <span class="id">s</span> <span class="id">p</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">s</span> <span class="id">sl</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;π[<span class="id">sl</span>](‵[| (<span class="id">s</span>, <span class="id">p</span>) |]) ≡ᶜ ‵[| (<span class="id">s</span>, <span class="id">p</span>) |].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3076')">Proof.</div>
-<div class="proofscript" id="proof3076">
+<div class="toggleproof" onclick="toggleDisplay('proof3107')">Proof.</div>
+<div class="proofscript" id="proof3107">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">p</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
@@ -746,8 +633,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrcproject_over_nnrcproject">nnrcproject_over_nnrcproject</a></span> <span class="id">sl1</span> <span class="id">sl2</span> <span class="id">p</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;π[<span class="id">sl1</span>](π[<span class="id">sl2</span>](<span class="id">p</span>)) ≡ᶜ π[<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.ListSet.html#set_inter">set_inter</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id">sl2</span> <span class="id">sl1</span>](<span class="id">p</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3077')">Proof.</div>
-<div class="proofscript" id="proof3077">
+<div class="toggleproof" onclick="toggleDisplay('proof3108')">Proof.</div>
+<div class="proofscript" id="proof3108">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">p</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
@@ -758,12 +645,77 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrcproject_over_either">nnrcproject_over_either</a></span> <span class="id">sl</span> <span class="id">p</span> <span class="id">xl</span> <span class="id">xr</span> <span class="id">p1</span> <span class="id">p2</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;π[<span class="id">sl</span>](<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">p</span> <span class="id">xl</span> <span class="id">p1</span> <span class="id">xr</span> <span class="id">p2</span>) ≡ᶜ <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCEither">NNRCEither</a></span> <span class="id">p</span> <span class="id">xl</span> (π[<span class="id">sl</span>](<span class="id">p1</span>)) <span class="id">xr</span> (π[<span class="id">sl</span>](<span class="id">p2</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3078')">Proof.</div>
-<div class="proofscript" id="proof3078">
+<div class="toggleproof" onclick="toggleDisplay('proof3109')">Proof.</div>
+<div class="proofscript" id="proof3109">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">p</span>)); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrcloop_fusion">nnrcloop_fusion</a></span> (<span class="id">v1</span> <span class="id">v2</span>:<span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span>) (<span class="id">e1</span> <span class="id">e2</span> <span class="id">e3</span>:<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc">nnrc</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">v1</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRCVars.html#nnrc_free_vars">nnrc_free_vars</a></span> <span class="id">e3</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">v2</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">v1</span> <span class="id">e1</span> <span class="id">e2</span>) <span class="id">e3</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCFor">NNRCFor</a></span> <span class="id">v1</span> <span class="id">e1</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#NNRCLet">NNRCLet</a></span> <span class="id">v2</span> <span class="id">e2</span> <span class="id">e3</span>)).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof3110')">Proof.</div>
+<div class="proofscript" id="proof3110">
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">notinfree</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRCEq.html#nnrc_eq">nnrc_eq</a></span>; <span class="tactic">intros</span> ? ? ? ? <span class="id">_</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_eval">nnrc_eval</a></span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> <span class="id">env</span> (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e1</span>)); <span class="tactic">try</span> <span class="tactic">reflexivity</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">clear</span> <span class="id">e1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span> <span class="kwd">in</span> *.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; [<span class="tactic">reflexivity</span>| ].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v1</span>, <span class="id">a</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e2</span>)); <span class="tactic">try</span> <span class="tactic">reflexivity</span>; <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v1</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e2</span>)) <span class="id">l</span>); <span class="id">case_eq</span> (<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">match</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v1</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e2</span>) <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d0</span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v2</span>, <span class="id">d0</span>) :: (<span class="id">v1</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e3</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>) <span class="id">l</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">rewrite</span> <span class="id">H0</span> <span class="kwd">in</span> *; <span class="tactic">rewrite</span> <span class="id">H1</span> <span class="kwd">in</span> *; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">clear</span> <span class="id">H0</span> <span class="id">H1</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">case_eq</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v2</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e3</span>)) <span class="id">l1</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">rewrite</span> <span class="id">H0</span> <span class="kwd">in</span> *; <span class="tactic">simpl</span> <span class="kwd">in</span> *; [|<span class="tactic">congruence</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">IHl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">replace</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v2</span>, <span class="id">d</span>) :: (<span class="id">v1</span>, <span class="id">a</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e3</span>)) <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v2</span>, <span class="id">d</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e3</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2: { <span class="id">idtac</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_core_eval_lookup_equiv_on">nnrc_core_eval_lookup_equiv_on</a></span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span> <span class="id">v2</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span> <span class="id">v1</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base_free_vars_same">nnrc_to_nnrc_base_free_vars_same</a></span> <span class="kwd">in</span> <span class="id">notinfree</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">case_eq</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v2</span>, <span class="id">d1</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e3</span>)) <span class="id">l0</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">rewrite</span> <span class="id">H0</span> <span class="kwd">in</span> *; <span class="tactic">simpl</span> <span class="kwd">in</span> *; [<span class="tactic">congruence</span>| ].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">replace</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v2</span>, <span class="id">d</span>) :: (<span class="id">v1</span>, <span class="id">a</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e3</span>)) <span class="kwd">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v2</span>, <span class="id">d</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e3</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2: { <span class="id">idtac</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_core_eval_lookup_equiv_on">nnrc_core_eval_lookup_equiv_on</a></span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span> <span class="id">v2</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#string_eqdec">string_eqdec</a></span> <span class="id">x</span> <span class="id">v1</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base_free_vars_same">nnrc_to_nnrc_base_free_vars_same</a></span> <span class="kwd">in</span> <span class="id">notinfree</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">h</span> <span class="id">cenv</span> ((<span class="id">v2</span>, <span class="id">d</span>) :: (<span class="id">v1</span>, <span class="id">a</span>) :: <span class="id">env</span>) (<span class="id"><a href="Qcert.NNRC.Lang.NNRC.html#nnrc_to_nnrc_base">nnrc_to_nnrc_base</a></span> <span class="id">e3</span>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 <span class="kwd">End</span> <span class="id"><a href="Qcert.NNRC.Optim.NNRCRewrite.html#NNRCRewrite">NNRCRewrite</a></span>.<br/>

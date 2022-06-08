@@ -48,8 +48,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">fejruntime</span>:<span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime">foreign_ejson_runtime</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#ImpEJson.foreign_ejson_runtime_op">foreign_ejson_runtime_op</a></span>}.<br/>
 <div class="doc">Equality is decidable for json </div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="cejson_eq_dec">cejson_eq_dec</a></span> : <span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>:@<span class="id"><a href="Qcert.EJson.Model.EJson.html#cejson">cejson</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#ImpEJson.foreign_ejson_model">foreign_ejson_model</a></span>, {<span class="id">x</span>=<span class="id">y</span>}+{<span class="id">x</span>&lt;&gt;<span class="id">y</span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3666')">Proof.</div>
-<div class="proofscript" id="proof3666">
+<div class="toggleproof" onclick="toggleDisplay('proof3698')">Proof.</div>
+<div class="proofscript" id="proof3698">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">try</span> <span class="id">solve</span>[<span class="id">right</span>; <span class="tactic">inversion</span> 1].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">left</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.FloatAdd.html#float_eq_dec">float_eq_dec</a></span> <span class="id">f</span> <span class="id">f0</span>).<br/>
@@ -72,14 +72,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="cejson_eqdec">cejson_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.EJson.Model.EJson.html#cejson">cejson</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> := <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#cejson_eq_dec">cejson_eq_dec</a></span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_ejson_constant_eqdec">imp_ejson_constant_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_constant">imp_ejson_constant</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3667')">Proof.</div>
-<div class="proofscript" id="proof3667">
+<div class="toggleproof" onclick="toggleDisplay('proof3699')">Proof.</div>
+<div class="proofscript" id="proof3699">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#cejson_eqdec">cejson_eqdec</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_ejson_op_eqdec">imp_ejson_op_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_op">imp_ejson_op</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3668')">Proof.</div>
-<div class="proofscript" id="proof3668">
+<div class="toggleproof" onclick="toggleDisplay('proof3700')">Proof.</div>
+<div class="proofscript" id="proof3700">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_op">imp_ejson_op</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">revert</span> <span class="id">l0</span>; <span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">intros</span>; <span class="tactic">destruct</span> <span class="id">l0</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="id">solve</span>[<span class="id">right</span>; <span class="tactic">inversion</span> 1].<br/>
@@ -92,16 +92,16 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_ejson_runtime_op_eqdec">imp_ejson_runtime_op_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_runtime_op">imp_ejson_runtime_op</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3669')">Proof.</div>
-<div class="proofscript" id="proof3669">
+<div class="toggleproof" onclick="toggleDisplay('proof3701')">Proof.</div>
+<div class="proofscript" id="proof3701">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_runtime_op">imp_ejson_runtime_op</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.EJson.Operators.ForeignEJsonRuntime.html#foreign_ejson_runtime_op_dec">foreign_ejson_runtime_op_dec</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="imp_ejson_expr_eqdec">imp_ejson_expr_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_expr">imp_ejson_expr</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3670')">Proof.</div>
-<div class="proofscript" id="proof3670">
+<div class="toggleproof" onclick="toggleDisplay('proof3702')">Proof.</div>
+<div class="proofscript" id="proof3702">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.Imp.Lang.Imp.html#imp_expr_eqdec">imp_expr_eqdec</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_constant">imp_ejson_constant</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_op">imp_ejson_op</a></span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_runtime_op">imp_ejson_runtime_op</a></span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_constant_eqdec">imp_ejson_constant_eqdec</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Imp.Lang.ImpEJson.html#imp_ejson_op_eqdec">imp_ejson_op_eqdec</a></span>.<br/>

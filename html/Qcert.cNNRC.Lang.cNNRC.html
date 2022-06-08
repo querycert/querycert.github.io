@@ -135,8 +135,8 @@ instead of: <span class="bracket"><span class="id">e1</span> = <span class="id">
 <div class="doc">Equality between two NNRC expressions is decidable. </div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_eqdec">nnrc_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc">nnrc</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2756')">Proof.</div>
-<div class="proofscript" id="proof2756">
+<div class="toggleproof" onclick="toggleDisplay('proof2788')">Proof.</div>
+<div class="proofscript" id="proof2788">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">change</span> (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span> : <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc">nnrc</a></span>,  {<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="id">solve</span> [<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.BinaryOperators.html#binary_op_eqdec">binary_op_eqdec</a></span> | <span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Operators.UnaryOperators.html#unary_op_eqdec">unary_op_eqdec</a></span><br/>
@@ -145,8 +145,8 @@ instead of: <span class="bracket"><span class="id">e1</span> = <span class="id">
 &nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrcIsCore_ext">nnrcIsCore_ext</a></span> (<span class="id">e</span>:<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc">nnrc</a></span>) (<span class="id">pf1</span> <span class="id">pf2</span>:<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> <span class="id">e</span>) : <span class="id">pf1</span> = <span class="id">pf2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2757')">Proof.</div>
-<div class="proofscript" id="proof2757">
+<div class="toggleproof" onclick="toggleDisplay('proof2789')">Proof.</div>
+<div class="proofscript" id="proof2789">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> (<span class="tactic">destruct</span> <span class="id">pf1</span>; <span class="tactic">destruct</span> <span class="id">pf2</span>; <span class="tactic">trivial</span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">try</span> <span class="tactic">f_equal</span>; <span class="tactic">auto</span>.<br/>
@@ -158,23 +158,23 @@ instead of: <span class="bracket"><span class="id">e1</span> = <span class="id">
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_core_ext">nnrc_core_ext</a></span> <span class="id">e</span> (<span class="id">pf1</span> <span class="id">pf2</span>:<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore">nnrcIsCore</a></span> <span class="id">e</span>) : <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#exist">exist</a></span> <span class="id">_</span> <span class="id">e</span> <span class="id">pf1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#exist">exist</a></span> <span class="id">_</span> <span class="id">e</span> <span class="id">pf2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2758')">Proof.</div>
-<div class="proofscript" id="proof2758">
+<div class="toggleproof" onclick="toggleDisplay('proof2790')">Proof.</div>
+<div class="proofscript" id="proof2790">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">f_equal</span>; <span class="tactic">apply</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrcIsCore_ext">nnrcIsCore_ext</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_core_fequal">nnrc_core_fequal</a></span> (<span class="id">e1</span> <span class="id">e2</span>:<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core">nnrc_core</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> <span class="id">e1</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#proj1_sig">proj1_sig</a></span> <span class="id">e2</span> -&gt; <span class="id">e1</span> = <span class="id">e2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2759')">Proof.</div>
-<div class="proofscript" id="proof2759">
+<div class="toggleproof" onclick="toggleDisplay('proof2791')">Proof.</div>
+<div class="proofscript" id="proof2791">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">e1</span>; <span class="tactic">destruct</span> <span class="id">e2</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_ext">nnrc_core_ext</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_core_eqdec">nnrc_core_eqdec</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core">nnrc_core</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2760')">Proof.</div>
-<div class="proofscript" id="proof2760">
+<div class="toggleproof" onclick="toggleDisplay('proof2792')">Proof.</div>
+<div class="proofscript" id="proof2792">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">x</span> <span class="id">y</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">x</span> <span class="kwd">as</span> [<span class="id">x</span> <span class="id">xpf</span>]; <span class="tactic">destruct</span> <span class="id">y</span> <span class="kwd">as</span> [<span class="id">y</span> <span class="id">ypf</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">x</span> == <span class="id">y</span>).<br/>
@@ -334,8 +334,8 @@ instead of: <span class="bracket"><span class="id">e1</span> = <span class="id">
       lookup. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrc_core_eval_lookup_equiv_prop">nnrc_core_eval_lookup_equiv_prop</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv">lookup_equiv</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>) <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2761')">Proof.</div>
-<div class="proofscript" id="proof2761">
+<div class="toggleproof" onclick="toggleDisplay('proof2793')">Proof.</div>
+<div class="proofscript" id="proof2793">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv">lookup_equiv</a></span>; <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rename</span> <span class="id">y0</span> <span class="id">into</span> <span class="id">e</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">x</span> <span class="id">y</span> <span class="id">H</span>.<br/>
@@ -377,8 +377,8 @@ instead of: <span class="bracket"><span class="id">e1</span> = <span class="id">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> (<span class="id">env</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#bindings">bindings</a></span>) (<span class="id">d</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">env</span> <span class="id">e</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span> -&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_sem">nnrc_core_sem</a></span> <span class="id">env</span> <span class="id">e</span> <span class="id">d</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_sem_for">nnrc_core_sem_for</a></span> <span class="id">v</span> <span class="id">env</span> <span class="id">e</span> <span class="id">l1</span> <span class="id">l2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2762')">Proof.</div>
-<div class="proofscript" id="proof2762">
+<div class="toggleproof" onclick="toggleDisplay('proof2794')">Proof.</div>
+<div class="proofscript" id="proof2794">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">l2</span>; <span class="tactic">induction</span> <span class="id">l1</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>; <span class="id">econstructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">case_eq</span> (<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> ((<span class="id">v</span>, <span class="id">a</span>) :: <span class="id">env</span>) <span class="id">e</span>); <span class="tactic">intros</span>;<br/>
@@ -399,8 +399,8 @@ instead of: <span class="bracket"><span class="id">e1</span> = <span class="id">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_core_eval_correct">nnrc_core_eval_correct</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">env</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">env</span> <span class="id">e</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_sem">nnrc_core_sem</a></span> <span class="id">env</span> <span class="id">e</span> <span class="id">d</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2763')">Proof.</div>
-<div class="proofscript" id="proof2763">
+<div class="toggleproof" onclick="toggleDisplay('proof2795')">Proof.</div>
+<div class="proofscript" id="proof2795">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">constructor</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">constructor</span>; <span class="tactic">trivial</span>.<br/>
@@ -474,8 +474,8 @@ instead of: <span class="bracket"><span class="id">e1</span> = <span class="id">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_sem_for">nnrc_core_sem_for</a></span> <span class="id">v</span> <span class="id">env</span> <span class="id">e</span> <span class="id">c1</span> <span class="id">c2</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lift.html#lift">lift</a></span> <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> (<span class="id"><a href="Qcert.Utils.LiftIterators.html#lift_map">lift_map</a></span> (<span class="kwd">fun</span> <span class="id">d1</span> : <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> ((<span class="id">v</span>, <span class="id">d1</span>) :: <span class="id">env</span>) <span class="id">e</span>) <span class="id">c1</span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id">c2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2764')">Proof.</div>
-<div class="proofscript" id="proof2764">
+<div class="toggleproof" onclick="toggleDisplay('proof2796')">Proof.</div>
+<div class="proofscript" id="proof2796">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intro</span> <span class="id">Hcomp</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">c2</span>; <span class="tactic">induction</span> <span class="id">c1</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">auto</span>.<br/>
@@ -493,8 +493,8 @@ instead of: <span class="bracket"><span class="id">e1</span> = <span class="id">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrc_core_eval_complete">nnrc_core_eval_complete</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">env</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_sem">nnrc_core_sem</a></span> <span class="id">env</span> <span class="id">e</span> <span class="id">d</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">env</span> <span class="id">e</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2765')">Proof.</div>
-<div class="proofscript" id="proof2765">
+<div class="toggleproof" onclick="toggleDisplay('proof2797')">Proof.</div>
+<div class="proofscript" id="proof2797">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">subst</span>; <span class="tactic">simpl</span>; <span class="tactic">auto</span>.<br/>
@@ -527,8 +527,8 @@ instead of: <span class="bracket"><span class="id">e1</span> = <span class="id">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="nnrc_core_eval_correct_and_complete">nnrc_core_eval_correct_and_complete</a></span> : <span class="kwd">forall</span> <span class="id">e</span> <span class="id">env</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval">nnrc_core_eval</a></span> <span class="id">env</span> <span class="id">e</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span> &lt;-&gt; <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_sem">nnrc_core_sem</a></span> <span class="id">env</span> <span class="id">e</span> <span class="id">d</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2766')">Proof.</div>
-<div class="proofscript" id="proof2766">
+<div class="toggleproof" onclick="toggleDisplay('proof2798')">Proof.</div>
+<div class="proofscript" id="proof2798">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval_correct">nnrc_core_eval_correct</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval_complete">nnrc_core_eval_complete</a></span>.<br/>
@@ -564,8 +564,8 @@ instead of: <span class="bracket"><span class="id">e1</span> = <span class="id">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">q</span>:<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core">nnrc_core</a></span>) (<span class="id">d</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_eval_top">nnrc_core_eval_top</a></span> <span class="id">q</span> <span class="id">cenv</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.cNNRC.Lang.cNNRC.html#nnrc_core_sem_top">nnrc_core_sem_top</a></span> <span class="id">q</span> <span class="id">cenv</span> <span class="id">d</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof2767')">Proof.</div>
-<div class="proofscript" id="proof2767">
+<div class="toggleproof" onclick="toggleDisplay('proof2799')">Proof.</div>
+<div class="proofscript" id="proof2799">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">cenv</span> <span class="id">HconstNorm</span> <span class="id">q</span> <span class="id">d</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">q</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">simpl</span>.<br/>

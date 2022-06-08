@@ -81,16 +81,16 @@
 | <span class="id"><a name="enhanced_subtype_refl">enhanced_subtype_refl</a></span> <span class="id">t</span> : <span class="id">enhanced_subtype</span> <span class="id">t</span> <span class="id">t</span>.<br/>
 <br/>
 <span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="enhanced_subtype_pre">enhanced_subtype_pre</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PreOrder">PreOrder</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_subtype">enhanced_subtype</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4547')">Proof.</div>
-<div class="proofscript" id="proof4547">
+<div class="toggleproof" onclick="toggleDisplay('proof4617')">Proof.</div>
+<div class="proofscript" id="proof4617">
 &nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">x</span>; <span class="id">constructor</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">inversion</span> <span class="id">H</span>; <span class="tactic">inversion</span> <span class="id">H0</span>; <span class="tactic">subst</span>; <span class="tactic">try</span> <span class="id">constructor</span>; <span class="tactic">congruence</span>.<br/>
 Qed.</div>
 <br/>
 <span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="enhanced_subtype_post">enhanced_subtype_post</a></span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PartialOrder">PartialOrder</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_subtype">enhanced_subtype</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4548')">Proof.</div>
-<div class="proofscript" id="proof4548">
+<div class="toggleproof" onclick="toggleDisplay('proof4618')">Proof.</div>
+<div class="proofscript" id="proof4618">
 &nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">x</span> <span class="id">y</span>; <span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">red</span>.<br/>
@@ -104,8 +104,8 @@ Qed.</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Lattice.html#join">join</a></span> := <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_type_join">enhanced_type_join</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; <span class="id"><a href="Qcert.Utils.Lattice.html#meet">meet</a></span> := <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_type_meet">enhanced_type_meet</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4549')">Proof.</div>
-<div class="proofscript" id="proof4549">
+<div class="toggleproof" onclick="toggleDisplay('proof4619')">Proof.</div>
+<div class="proofscript" id="proof4619">
 &nbsp;&nbsp;- <span class="tactic">red</span>; <span class="tactic">intros</span> <span class="id">t1</span> <span class="id">t2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">t1</span>; <span class="tactic">destruct</span> <span class="id">t2</span>; <span class="tactic">simpl</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
@@ -133,8 +133,8 @@ Qed.</div>
 Defined.</div>
 <br/>
 <span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="enhanced_type_olattice">enhanced_type_olattice</a></span> : <span class="id"><a href="Qcert.Utils.Lattice.html#OLattice">OLattice</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_subtype">enhanced_subtype</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4550')">Proof.</div>
-<div class="proofscript" id="proof4550">
+<div class="toggleproof" onclick="toggleDisplay('proof4620')">Proof.</div>
+<div class="proofscript" id="proof4620">
 &nbsp;&nbsp;<span class="id">constructor</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">inversion</span> 1; <span class="tactic">simpl</span>; <span class="tactic">reflexivity</span>.<br/>
@@ -144,16 +144,16 @@ Qed.</div>
 <br/>
 <span class="kwd">Global</span> <span class="kwd">Program</span> <span class="kwd">Instance</span> <span class="id"><a name="enhanced_foreign_type">enhanced_foreign_type</a></span> : <span class="id"><a href="Qcert.TypeSystem.ForeignType.html#foreign_type">foreign_type</a></span><br/>
 &nbsp;&nbsp;:= <span class="id"><a href="Qcert.TypeSystem.ForeignType.html#mk_foreign_type">mk_foreign_type</a></span> <span class="id"><a href="Qcert.Compiler.Enhanced.EnhancedType.html#enhanced_type">enhanced_type</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof4551')">Next Obligation.</div>
-<div class="proofscript" id="proof4551">
+<div class="toggleproof" onclick="toggleDisplay('proof4621')">Next Obligation.</div>
+<div class="proofscript" id="proof4621">
 &nbsp;&nbsp;<span class="tactic">red</span>.<br/>
 &nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html#equiv">equiv</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#complement">complement</a></span>.<br/>
 &nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;<span class="id">change</span> ({<span class="id">x</span> = <span class="id">y</span>} + {<span class="id">x</span> &lt;&gt; <span class="id">y</span>}).<br/>
 &nbsp;&nbsp;<span class="id">decide</span> <span class="id">equality</span>.<br/>
 Defined.</div>
-<div class="toggleproof" onclick="toggleDisplay('proof4552')">Next Obligation.</div>
-<div class="proofscript" id="proof4552">
+<div class="toggleproof" onclick="toggleDisplay('proof4622')">Next Obligation.</div>
+<div class="proofscript" id="proof4622">
 &nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">destruct</span> <span class="id">b</span>; <span class="tactic">try</span> <span class="id">solve</span> [<span class="id">left</span>; <span class="id">constructor</span> | <span class="id">right</span>; <span class="tactic">inversion</span> 1].<br/>
 Defined.</div>
 <br/>

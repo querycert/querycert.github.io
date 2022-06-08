@@ -25,8 +25,8 @@
 <br/>
 <span class="kwd">Section</span> <span class="id"><a name="EJsonToEJsonMut">EJsonToEJsonMut</a></span>.<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="string_dec_from_neq">string_dec_from_neq</a></span> {<span class="id">a</span> <span class="id">b</span>} (<span class="id">pf</span>:<span class="id">a</span> &lt;&gt; <span class="id">b</span>) : <span class="id">exists</span> <span class="id">pf2</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id">a</span> <span class="id">b</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Specif.html#right">right</a></span> <span class="id">pf2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1915')">Proof.</div>
-<div class="proofscript" id="proof1915">
+<div class="toggleproof" onclick="toggleDisplay('proof1947')">Proof.</div>
+<div class="proofscript" id="proof1947">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id">a</span> <span class="id">b</span>); <span class="tactic">try</span> <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -54,8 +54,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="list_n_nat_map_comm">list_n_nat_map_comm</a></span> {<span class="id">A</span> <span class="id">B</span>} (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">A</span>) (<span class="id">f</span>:<span class="id">A</span> -&gt; <span class="id">B</span>) <span class="id">n</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#list_n_nat">list_n_nat</a></span> <span class="id">n</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id">f</span> <span class="id">l</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id">f</span> (<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#list_n_nat">list_n_nat</a></span> <span class="id">n</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1916')">Proof.</div>
-<div class="proofscript" id="proof1916">
+<div class="toggleproof" onclick="toggleDisplay('proof1948')">Proof.</div>
+<div class="proofscript" id="proof1948">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">l</span>; <span class="tactic">induction</span> <span class="id">n</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">l</span>; <span class="tactic">simpl</span>.<br/>
@@ -66,15 +66,15 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="list_n_map_comm">list_n_map_comm</a></span> {<span class="id">A</span> <span class="id">B</span>} (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">A</span>) (<span class="id">f</span>:<span class="id">A</span> -&gt; <span class="id">B</span>) <span class="id">z</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#list_n">list_n</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id">f</span> <span class="id">l</span>) <span class="id">z</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id">f</span> (<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#list_n">list_n</a></span> <span class="id">l</span> <span class="id">z</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1917')">Proof.</div>
-<div class="proofscript" id="proof1917">
+<div class="toggleproof" onclick="toggleDisplay('proof1949')">Proof.</div>
+<div class="proofscript" id="proof1949">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#list_n_nat_map_comm">list_n_nat_map_comm</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="list_n_nat_of_length_id">list_n_nat_of_length_id</a></span> {<span class="id">A</span>} (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">A</span>):<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#list_n_nat">list_n_nat</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#length">List.length</a></span> <span class="id">l</span>) <span class="id">l</span> = <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1918')">Proof.</div>
-<div class="proofscript" id="proof1918">
+<div class="toggleproof" onclick="toggleDisplay('proof1950')">Proof.</div>
+<div class="proofscript" id="proof1950">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">IHl</span>.<br/>
@@ -83,8 +83,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="list_n_of_length_id">list_n_of_length_id</a></span> {<span class="id">A</span>} (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">A</span>):<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#list_n">list_n</a></span> <span class="id">l</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.BinInt.html#Z.of_nat">Z.of_nat</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#length">List.length</a></span> <span class="id">l</span>)) = <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1919')">Proof.</div>
-<div class="proofscript" id="proof1919">
+<div class="toggleproof" onclick="toggleDisplay('proof1951')">Proof.</div>
+<div class="proofscript" id="proof1951">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#list_n">list_n</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.ZArith.Znat.html#Nat2Z.id">Nat2Z.id</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#list_n_nat_of_length_id">list_n_nat_of_length_id</a></span>.<br/>
@@ -133,23 +133,23 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="EJsonToEJsonMut.ModelRoundTrip">ModelRoundTrip</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_coll">key_encode_not_coll</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) &lt;&gt; "$<span class="id">coll</span>"%<span class="id">string</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1920')">Proof.</div>
-<div class="proofscript" id="proof1920">
+<div class="toggleproof" onclick="toggleDisplay('proof1952')">Proof.</div>
+<div class="proofscript" id="proof1952">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="key_encode_not_length">key_encode_not_length</a></span> <span class="id">s</span> : (<span class="id"><a href="Qcert.Utils.Encode.html#key_encode">key_encode</a></span> <span class="id">s</span>) &lt;&gt; "$<span class="id">length</span>"%<span class="id">string</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1921')">Proof.</div>
-<div class="proofscript" id="proof1921">
+<div class="toggleproof" onclick="toggleDisplay('proof1953')">Proof.</div>
+<div class="proofscript" id="proof1953">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="id">match_destr</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ejson_to_ejson_mut_idempotent">ejson_to_ejson_mut_idempotent</a></span> <span class="id">j</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#ejson_mut_to_ejson">ejson_mut_to_ejson</a></span> (<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#ejson_to_ejson_mut">ejson_to_ejson_mut</a></span> <span class="id">j</span>) = <span class="id">j</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1922')">Proof.</div>
-<div class="proofscript" id="proof1922">
+<div class="toggleproof" onclick="toggleDisplay('proof1954')">Proof.</div>
+<div class="proofscript" id="proof1954">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">j</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">f_equal</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#list_n_map_comm">list_n_map_comm</a></span>.<br/>
@@ -218,8 +218,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ejson_to_ejson_mut_inv">ejson_to_ejson_mut_inv</a></span> <span class="id">j1</span> <span class="id">j2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#ejson_to_ejson_mut">ejson_to_ejson_mut</a></span> <span class="id">j1</span> = <span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#ejson_to_ejson_mut">ejson_to_ejson_mut</a></span> <span class="id">j2</span> -&gt; <span class="id">j1</span> = <span class="id">j2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1923')">Proof.</div>
-<div class="proofscript" id="proof1923">
+<div class="toggleproof" onclick="toggleDisplay('proof1955')">Proof.</div>
+<div class="proofscript" id="proof1955">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- (<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#ejson_to_ejson_mut_idempotent">ejson_to_ejson_mut_idempotent</a></span> <span class="id">j1</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- (<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#ejson_to_ejson_mut_idempotent">ejson_to_ejson_mut_idempotent</a></span> <span class="id">j2</span>).<br/>
@@ -229,8 +229,8 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="ejson_to_ejson_mut_equiv">ejson_to_ejson_mut_equiv</a></span> <span class="id">j1</span> <span class="id">j2</span>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#ejson_to_ejson_mut">ejson_to_ejson_mut</a></span> <span class="id">j1</span> = <span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#ejson_to_ejson_mut">ejson_to_ejson_mut</a></span> <span class="id">j2</span> &lt;-&gt; <span class="id">j1</span> = <span class="id">j2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1924')">Proof.</div>
-<div class="proofscript" id="proof1924">
+<div class="toggleproof" onclick="toggleDisplay('proof1956')">Proof.</div>
+<div class="proofscript" id="proof1956">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Translation.Model.EJsonToEJsonMut.html#ejson_to_ejson_mut_inv">ejson_to_ejson_mut_inv</a></span>; <span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>

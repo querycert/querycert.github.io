@@ -45,15 +45,15 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="preserves_Some_pre">preserves_Some_pre</a></span> {<span class="id">A</span> <span class="id">B</span>} (<span class="id">f</span>:<span class="id">A</span>-&gt;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id">B</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#PreOrder">PreOrder</a></span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#preserves_Some">preserves_Some</a></span> <span class="id">f</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3483')">Proof.</div>
-<div class="proofscript" id="proof3483">
+<div class="toggleproof" onclick="toggleDisplay('proof3515')">Proof.</div>
+<div class="proofscript" id="proof3515">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">red</span>; <span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#preserves_Some">preserves_Some</a></span>; <span class="tactic">firstorder</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="Forall2_preserves_Some_snd_update_first">Forall2_preserves_Some_snd_update_first</a></span> {<span class="id">B</span>} <span class="id">l</span> <span class="id">v</span> (<span class="id">d</span>:<span class="id">B</span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall2">Forall2</a></span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#preserves_Some">preserves_Some</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span>) <span class="id">l</span> (<span class="id"><a href="Qcert.Utils.Assoc.html#update_first">update_first</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string_dec">string_dec</a></span> <span class="id">l</span> <span class="id">v</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3484')">Proof.</div>
-<div class="proofscript" id="proof3484">
+<div class="toggleproof" onclick="toggleDisplay('proof3516')">Proof.</div>
+<div class="proofscript" id="proof3516">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>.<br/>
@@ -75,8 +75,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="has_some_parts_app">has_some_parts_app</a></span> {<span class="id">A</span> <span class="id">B</span>} {<span class="id">dec</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id">A</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>} <span class="id">l1</span> <span class="id">l2</span> (σ:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id">A</span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id">B</span>)) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> (<span class="id">l1</span> ++ <span class="id">l2</span>) σ &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> <span class="id">l1</span> σ /\ <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> <span class="id">l2</span> σ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3485')">Proof.</div>
-<div class="proofscript" id="proof3485">
+<div class="toggleproof" onclick="toggleDisplay('proof3517')">Proof.</div>
+<div class="proofscript" id="proof3517">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.CoqLibAdd.html#Forall_app_inv">Forall_app_inv</a></span>.<br/>
@@ -84,8 +84,8 @@
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="has_some_parts_incl_proper">has_some_parts_incl_proper</a></span> {<span class="id">A</span> <span class="id">B</span> <span class="id">dec</span>}: <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> ((@<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> <span class="id">A</span>) --&gt; <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_incl">lookup_incl</a></span> --&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>) (@<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> <span class="id">A</span> <span class="id">B</span> <span class="id">dec</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3486')">Proof.</div>
-<div class="proofscript" id="proof3486">
+<div class="toggleproof" onclick="toggleDisplay('proof3518')">Proof.</div>
+<div class="proofscript" id="proof3518">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">x</span> <span class="id">y</span> <span class="id">inclxy</span> <span class="id">l1</span> <span class="id">l2</span> <span class="id">eql</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#equiv_dec">equiv_dec</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span>.<br/>
@@ -111,8 +111,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> σ) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> <span class="id">d</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3487')">Proof.</div>
-<div class="proofscript" id="proof3487">
+<div class="toggleproof" onclick="toggleDisplay('proof3519')">Proof.</div>
+<div class="proofscript" id="proof3519">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#pd_bindings_type">pd_bindings_type</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span> <span class="id">d</span> <span class="id">inn</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#in_map_iff">in_map_iff</a></span> <span class="kwd">in</span> <span class="id">inn</span>.<br/>
@@ -127,8 +127,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#pd_bindings_type">pd_bindings_type</a></span> σ Γ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">l</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#pd_bindings_type">pd_bindings_type</a></span> (<span class="id"><a href="Qcert.Utils.ListAdd.html#cut_down_to">cut_down_to</a></span> σ <span class="id">l</span>) (<span class="id"><a href="Qcert.Utils.ListAdd.html#cut_down_to">cut_down_to</a></span> Γ <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3488')">Proof.</div>
-<div class="proofscript" id="proof3488">
+<div class="toggleproof" onclick="toggleDisplay('proof3520')">Proof.</div>
+<div class="proofscript" id="proof3520">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> 1; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">constructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">H</span> <span class="kwd">as</span> [<span class="id">eqq1</span> ?].<br/>
@@ -241,8 +241,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_expr_eval">nnrs_imp_expr_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> σ <span class="id">e</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3489')">Proof.</div>
-<div class="proofscript" id="proof3489">
+<div class="toggleproof" onclick="toggleDisplay('proof3521')">Proof.</div>
+<div class="proofscript" id="proof3521">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> Γ<span class="id">ctyp</span> Γ<span class="id">typ</span> <span class="id">hasparts</span> <span class="id">etyp</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">dependent</span> <span class="tactic">induction</span> <span class="id">etyp</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="Qcert.Data.OperatorsTyping.TUtil.html#tdot">tdot</a></span> <span class="kwd">in</span> *.<br/>
@@ -280,8 +280,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_expr_eval">nnrs_imp_expr_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> σ <span class="id">e</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3490')">Proof.</div>
-<div class="proofscript" id="proof3490">
+<div class="toggleproof" onclick="toggleDisplay('proof3522')">Proof.</div>
+<div class="proofscript" id="proof3522">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> ? <span class="id">pdb</span> <span class="id">hp</span> ? <span class="id">Hinc</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="id">Hinc</span> <span class="kwd">in</span> <span class="id">hp</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#typed_nnrs_imp_expr_yields_typed_data">typed_nnrs_imp_expr_yields_typed_data</a></span>; <span class="tactic">eauto</span>.<br/>
@@ -295,8 +295,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">d</span> |<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_expr_eval">nnrs_imp_expr_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> σ <span class="id">e</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp; <span class="id">d</span> ▹ τ}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3491')">Proof.</div>
-<div class="proofscript" id="proof3491">
+<div class="toggleproof" onclick="toggleDisplay('proof3523')">Proof.</div>
+<div class="proofscript" id="proof3523">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> Γ<span class="id">ctyp</span> Γ<span class="id">typ</span> <span class="id">hp</span> <span class="id">etyp</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#typed_nnrs_imp_expr_yields_typed_data">typed_nnrs_imp_expr_yields_typed_data</a></span> Γ<span class="id">ctyp</span> Γ<span class="id">typ</span> <span class="id">hp</span> <span class="id">etyp</span>); <span class="tactic">intros</span> <span class="id">HH</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_expr_eval">nnrs_imp_expr_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> σ <span class="id">e</span>).<br/>
@@ -313,8 +313,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_expr_eval">nnrs_imp_expr_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> σ <span class="id">e</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3492')">Proof.</div>
-<div class="proofscript" id="proof3492">
+<div class="toggleproof" onclick="toggleDisplay('proof3524')">Proof.</div>
+<div class="proofscript" id="proof3524">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> Γ<span class="id">ctyp</span> Γ<span class="id">typ</span> <span class="id">etyp</span> <span class="id">d</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">dependent</span> <span class="tactic">induction</span> <span class="id">etyp</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="Qcert.Data.OperatorsTyping.TUtil.html#tdot">tdot</a></span> <span class="kwd">in</span> *.<br/>
@@ -367,8 +367,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="typed_nnrs_imp_expr_vars_in_ctxt">typed_nnrs_imp_expr_vars_in_ctxt</a></span> {Γ<span class="id">c</span> Γ} {<span class="id">e</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_expr">nnrs_imp_expr</a></span>} {τ} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[Γ<span class="id">c</span>; Γ ⊢ <span class="id">e</span> ▷ τ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">x</span>, <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpUsage.html#nnrs_imp_expr_may_use">nnrs_imp_expr_may_use</a></span> <span class="id">e</span> <span class="id">x</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> Γ).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3493')">Proof.</div>
-<div class="proofscript" id="proof3493">
+<div class="toggleproof" onclick="toggleDisplay('proof3525')">Proof.</div>
+<div class="proofscript" id="proof3525">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typexpr</span>; <span class="tactic">dependent</span> <span class="tactic">induction</span> <span class="id">typexpr</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> ? <span class="id">eqq</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#equiv_decb">equiv_decb</a></span> <span class="kwd">in</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr_in</span> <span class="id">eqq</span>; <span class="tactic">red</span> <span class="kwd">in</span> <span class="id">e</span>; <span class="tactic">subst</span>.<br/>
@@ -381,8 +381,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="typed_nnrs_imp_stmt_vars_in_ctxt">typed_nnrs_imp_stmt_vars_in_ctxt</a></span> {Γ<span class="id">c</span> Γ} {<span class="id">s</span>:<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimp.html#nnrs_imp_stmt">nnrs_imp_stmt</a></span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; Γ  ⊢ <span class="id">s</span> ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">x</span>, <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpUsage.html#nnrs_imp_stmt_var_usage">nnrs_imp_stmt_var_usage</a></span> <span class="id">s</span> <span class="id">x</span> &lt;&gt; <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpUsage.html#VarNotUsedAndNotAssigned">VarNotUsedAndNotAssigned</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> Γ)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3494')">Proof.</div>
-<div class="proofscript" id="proof3494">
+<div class="toggleproof" onclick="toggleDisplay('proof3526')">Proof.</div>
+<div class="proofscript" id="proof3526">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typs</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">dependent</span> <span class="tactic">induction</span> <span class="id">typs</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">v</span> <span class="id">neq</span>; <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#equiv_decb">equiv_decb</a></span>, <span class="id"><a href="Qcert.Utils.Var.html#var">var</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">congruence</span>.<br/>
@@ -449,8 +449,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_stmt_eval">nnrs_imp_stmt_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> <span class="id">s</span> σ =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> σ' -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall2">Forall2</a></span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#preserves_Some">preserves_Some</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span>) σ σ'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3495')">Proof.</div>
-<div class="proofscript" id="proof3495">
+<div class="toggleproof" onclick="toggleDisplay('proof3527')">Proof.</div>
+<div class="proofscript" id="proof3527">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> σ σ'.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> σ σ' <span class="id">eqq1</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">invcs</span> <span class="id">eqq1</span>; <span class="tactic">reflexivity</span>.<br/>
@@ -510,8 +510,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> σ₁ = <span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> σ₁' -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> <span class="id">alreadydefined</span> σ₂ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> <span class="id">alreadydefined</span> σ₂'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3496')">Proof.</div>
-<div class="proofscript" id="proof3496">
+<div class="toggleproof" onclick="toggleDisplay('proof3528')">Proof.</div>
+<div class="proofscript" id="proof3528">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">evals</span> <span class="id">sd</span> <span class="id">hp</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_stmt_eval_domain_stack">nnrs_imp_stmt_eval_domain_stack</a></span> <span class="id">evals</span>); <span class="tactic">intros</span> <span class="id">domeqs</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">sd2</span>:<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> σ₂ = <span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> σ₂').<br/>
@@ -550,8 +550,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_stmt_eval">nnrs_imp_stmt_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> <span class="id">s</span> σ = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> σ' -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> <span class="id">alreadydefined</span> σ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> <span class="id">alreadydefined</span> σ'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3497')">Proof.</div>
-<div class="proofscript" id="proof3497">
+<div class="toggleproof" onclick="toggleDisplay('proof3529')">Proof.</div>
+<div class="proofscript" id="proof3529">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">evals</span> <span class="id">hp</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_stmt_preserves_has_some_parts_skip">nnrs_imp_stmt_preserves_has_some_parts_skip</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">_</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> <span class="id">_</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>); <span class="tactic">simpl</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -559,8 +559,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="has_some_parts_cons_some">has_some_parts_cons_some</a></span> {<span class="id">A</span> <span class="id">B</span>} {<span class="id">dec</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id">A</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>} <span class="id">alreadydefined</span> (σ:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id">A</span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id">B</span>)) <span class="id">v</span> <span class="id">x</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> <span class="id">alreadydefined</span> σ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> (<span class="id">v</span> :: <span class="id">alreadydefined</span>) ((<span class="id">v</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">x</span>) :: σ).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3498')">Proof.</div>
-<div class="proofscript" id="proof3498">
+<div class="toggleproof" onclick="toggleDisplay('proof3530')">Proof.</div>
+<div class="proofscript" id="proof3530">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">simpl</span>.<br/>
@@ -574,8 +574,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="has_some_parts_cons_none">has_some_parts_cons_none</a></span> {<span class="id">A</span> <span class="id">B</span>} {<span class="id">dec</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#EqDec">EqDec</a></span> <span class="id">A</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span>} <span class="id">alreadydefined</span> (σ:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id">A</span>*<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#option">option</a></span> <span class="id">B</span>)) <span class="id">v</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> <span class="id">alreadydefined</span> σ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#remove">remove</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#equiv_dec">equiv_dec</a></span> <span class="id">v</span> <span class="id">alreadydefined</span>) ((<span class="id">v</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#None">None</a></span>) :: σ).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3499')">Proof.</div>
-<div class="proofscript" id="proof3499">
+<div class="toggleproof" onclick="toggleDisplay('proof3531')">Proof.</div>
+<div class="proofscript" id="proof3531">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">F</span> <span class="id">x</span> <span class="id">inn</span>.<br/>
@@ -592,8 +592,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">ll</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#filter">filter</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpUsage.html#nnrs_imp_stmt_var_usage">nnrs_imp_stmt_var_usage</a></span> <span class="id">s</span> <span class="id">x</span> ==<span class="id">b</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpUsage.html#VarMustBeAssigned">VarMustBeAssigned</a></span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">ll</span>) σ' .<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3500')">Proof.</div>
-<div class="proofscript" id="proof3500">
+<div class="toggleproof" onclick="toggleDisplay('proof3532')">Proof.</div>
+<div class="proofscript" id="proof3532">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">eqq1</span> <span class="id">ll</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#has_some_parts">has_some_parts</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span>.<br/>
@@ -623,8 +623,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#filter">filter</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpUsage.html#nnrs_imp_stmt_var_usage">nnrs_imp_stmt_var_usage</a></span> <span class="id">s</span> <span class="id">x</span> ==<span class="id">b</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpUsage.html#VarMustBeAssigned">VarMustBeAssigned</a></span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> Γ))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;σ'.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3501')">Proof.</div>
-<div class="proofscript" id="proof3501">
+<div class="toggleproof" onclick="toggleDisplay('proof3533')">Proof.</div>
+<div class="proofscript" id="proof3533">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span>σ<span class="id">c</span> <span class="id">typ</span>σ <span class="id">hasparts</span> <span class="id">enoughdefined</span> <span class="id">typs</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">alreadydefined</span> σ <span class="id">typ</span>σ <span class="id">hasparts</span> <span class="id">enoughdefined</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">dependent</span> <span class="tactic">induction</span> <span class="id">typs</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">alreadydefined</span> σ <span class="id">typ</span>σ <span class="id">hasparts</span> <span class="id">enoughdefined</span>.<br/>
@@ -1060,8 +1060,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> σ',<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_stmt_eval">nnrs_imp_stmt_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> <span class="id">s</span> σ = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> σ' -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#pd_bindings_type">pd_bindings_type</a></span> σ' Γ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3502')">Proof.</div>
-<div class="proofscript" id="proof3502">
+<div class="toggleproof" onclick="toggleDisplay('proof3534')">Proof.</div>
+<div class="proofscript" id="proof3534">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span>σ<span class="id">c</span> <span class="id">typ</span>σ <span class="id">typs</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> σ <span class="id">typ</span>σ.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">dependent</span> <span class="tactic">induction</span> <span class="id">typs</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> σ <span class="id">typ</span>σ σ' <span class="id">eqq</span>.<br/>
@@ -1152,8 +1152,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ (<span class="kwd">forall</span> <span class="id">d</span>, <span class="id">o</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span> -&gt; <span class="id">d</span> ▹ τ)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpUsage.html#nnrs_imp_stmt_var_usage">nnrs_imp_stmt_var_usage</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">si</span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">si</span>) ==<span class="id">b</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpUsage.html#VarMustBeAssigned">VarMustBeAssigned</a></span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">d</span>, <span class="id">o</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3503')">Proof.</div>
-<div class="proofscript" id="proof3503">
+<div class="toggleproof" onclick="toggleDisplay('proof3535')">Proof.</div>
+<div class="proofscript" id="proof3535">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">si</span> <span class="kwd">as</span> [<span class="id">q</span> <span class="id">ret</span>]; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span>σ<span class="id">c</span> [<span class="id">neq</span> <span class="id">typq</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (@<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#typed_nnrs_imp_stmt_yields_typed_data">typed_nnrs_imp_stmt_yields_typed_data</a></span><br/>
@@ -1192,8 +1192,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">o</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_eval">nnrs_imp_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> <span class="id">si</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">o</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="kwd">forall</span> <span class="id">d</span>, <span class="id">o</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span> -&gt; <span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3504')">Proof.</div>
-<div class="proofscript" id="proof3504">
+<div class="toggleproof" onclick="toggleDisplay('proof3536')">Proof.</div>
+<div class="proofscript" id="proof3536">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span>σ<span class="id">c</span> <span class="id">typq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#typed_nnrs_imp_yields_typed_data_aux">typed_nnrs_imp_yields_typed_data_aux</a></span> <span class="id">typ</span>σ<span class="id">c</span> <span class="id">typq</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">as</span> [? [?[??]]].<br/>
@@ -1207,8 +1207,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_eval">nnrs_imp_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> <span class="id">si</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3505')">Proof.</div>
-<div class="proofscript" id="proof3505">
+<div class="toggleproof" onclick="toggleDisplay('proof3537')">Proof.</div>
+<div class="proofscript" id="proof3537">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">ma</span> <span class="id">typ</span>σ<span class="id">c</span> <span class="id">typq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#typed_nnrs_imp_yields_typed_data_aux">typed_nnrs_imp_yields_typed_data_aux</a></span> <span class="id">typ</span>σ<span class="id">c</span> <span class="id">typq</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">as</span> [? [?[??]]].<br/>
@@ -1223,8 +1223,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_eval">nnrs_imp_eval</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> <span class="id">si</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3506')">Proof.</div>
-<div class="proofscript" id="proof3506">
+<div class="toggleproof" onclick="toggleDisplay('proof3538')">Proof.</div>
+<div class="proofscript" id="proof3538">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">bt</span> <span class="id">typ</span> <span class="id">d</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">si</span> <span class="kwd">as</span> [<span class="id">s</span> <span class="id">ret</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">typ</span> <span class="kwd">as</span> [<span class="id">ne</span> <span class="id">typ</span>].<br/>
@@ -1248,8 +1248,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">d</span>, <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_eval_top">nnrs_imp_eval_top</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> <span class="id">si</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; <span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3507')">Proof.</div>
-<div class="proofscript" id="proof3507">
+<div class="toggleproof" onclick="toggleDisplay('proof3539')">Proof.</div>
+<div class="proofscript" id="proof3539">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">bt</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#typed_nnrs_imp_yields_typed_data">typed_nnrs_imp_yields_typed_data</a></span> (<span class="id"><a href="Qcert.Data.ModelTyping.TBindings.html#bindings_type_sort">bindings_type_sort</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">bt</span>) <span class="id">typ</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">as</span> [<span class="id">o</span> [<span class="id">eqq</span> <span class="id">dtyp</span>]].<br/>
@@ -1264,8 +1264,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_eval_top">nnrs_imp_eval_top</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> <span class="id">si</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3508')">Proof.</div>
-<div class="proofscript" id="proof3508">
+<div class="toggleproof" onclick="toggleDisplay('proof3540')">Proof.</div>
+<div class="proofscript" id="proof3540">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">ma</span> <span class="id">bt</span> <span class="id">typ</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#typed_nnrs_imp_yields_typed_data_used">typed_nnrs_imp_yields_typed_data_used</a></span> <span class="id">ma</span> (<span class="id"><a href="Qcert.Data.ModelTyping.TBindings.html#bindings_type_sort">bindings_type_sort</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id">bt</span>) <span class="id">typ</span>) <span class="kwd">as</span> [<span class="id">o</span> [<span class="id">eqq</span> <span class="id">dtyp</span>]].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_eval_top">nnrs_imp_eval_top</a></span>.<br/>
@@ -1279,8 +1279,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_eval_top">nnrs_imp_eval_top</a></span> <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> σ<span class="id">c</span> <span class="id">si</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3509')">Proof.</div>
-<div class="proofscript" id="proof3509">
+<div class="toggleproof" onclick="toggleDisplay('proof3541')">Proof.</div>
+<div class="proofscript" id="proof3541">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpEval.html#nnrs_imp_eval_top">nnrs_imp_eval_top</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#id">id</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">bt</span> <span class="id">typ</span> <span class="id">d</span> <span class="id">eqq</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Lift.html#some_olift">some_olift</a></span> <span class="kwd">in</span> <span class="id">eqq</span>.<br/>
@@ -1297,8 +1297,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">o</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> , σ<span class="id">c</span> ⊢ <span class="id">si</span> ⇓ <span class="id">o</span>  ]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="kwd">forall</span> <span class="id">d</span>, <span class="id">o</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span> -&gt; <span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3510')">Proof.</div>
-<div class="proofscript" id="proof3510">
+<div class="toggleproof" onclick="toggleDisplay('proof3542')">Proof.</div>
+<div class="proofscript" id="proof3542">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span>Γ<span class="id">c</span> <span class="id">typsi</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#typed_nnrs_imp_yields_typed_data">typed_nnrs_imp_yields_typed_data</a></span> <span class="id">typ</span>Γ<span class="id">c</span> <span class="id">typsi</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">as</span> [<span class="id">o</span> [<span class="id">ev</span> <span class="id">F</span>]].<br/>
@@ -1313,8 +1313,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">exists</span> <span class="id">d</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="id"><a href="Qcert.Brands.BrandRelation.html#brand_relation_brands">brand_relation_brands</a></span> , σ<span class="id">c</span> ⊢ <span class="id">si</span> ⇓ <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#Some">Some</a></span> <span class="id">d</span>  ]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ <span class="id">d</span> ▹ τ.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3511')">Proof.</div>
-<div class="proofscript" id="proof3511">
+<div class="toggleproof" onclick="toggleDisplay('proof3543')">Proof.</div>
+<div class="proofscript" id="proof3543">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">ma</span> <span class="id">typ</span>Γ<span class="id">c</span> <span class="id">typsi</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#typed_nnrs_imp_yields_typed_data_used">typed_nnrs_imp_yields_typed_data_used</a></span> <span class="id">ma</span> <span class="id">typ</span>Γ<span class="id">c</span> <span class="id">typsi</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">as</span> [<span class="id">o</span> [<span class="id">ev</span> <span class="id">F</span>]].<br/>
@@ -1326,8 +1326,8 @@
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrs_imp_expr_type_lookup_equiv_prop">nnrs_imp_expr_type_lookup_equiv_prop</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv">lookup_equiv</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#iff">iff</a></span>) <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_expr_type">nnrs_imp_expr_type</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3512')">Proof.</div>
-<div class="proofscript" id="proof3512">
+<div class="toggleproof" onclick="toggleDisplay('proof3544')">Proof.</div>
+<div class="proofscript" id="proof3544">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">cut</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv">lookup_equiv</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>) <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_expr_type">nnrs_imp_expr_type</a></span>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#respectful">respectful</a></span>, <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv">lookup_equiv</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#iff">iff</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>; <span class="tactic">intros</span>; <span class="tactic">subst</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<span class="tactic">intuition</span>; <span class="tactic">eauto</span> | ].<br/>
@@ -1342,8 +1342,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Global</span> <span class="kwd">Instance</span> <span class="id"><a name="nnrs_imp_stmt_type_lookup_equiv_prop">nnrs_imp_stmt_type_lookup_equiv_prop</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv">lookup_equiv</a></span>  ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#iff">iff</a></span>) <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_stmt_type">nnrs_imp_stmt_type</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3513')">Proof.</div>
-<div class="proofscript" id="proof3513">
+<div class="toggleproof" onclick="toggleDisplay('proof3545')">Proof.</div>
+<div class="proofscript" id="proof3545">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Hint</span> <span class="id">Constructors</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_stmt_type">nnrs_imp_stmt_type</a></span> : <span class="id">qcert</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">cut</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Morphisms.html#Proper">Proper</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv">lookup_equiv</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> ==&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Program.Basics.html#impl">impl</a></span>) <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_stmt_type">nnrs_imp_stmt_type</a></span>)<br/>
@@ -1373,8 +1373,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> Γ₂,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv_on">lookup_equiv_on</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span>) Γ₁ Γ₂ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Γ<span class="id">c</span> ; Γ₂  ⊢ <span class="id">e</span> ▷ τ ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3514')">Proof.</div>
-<div class="proofscript" id="proof3514">
+<div class="toggleproof" onclick="toggleDisplay('proof3546')">Proof.</div>
+<div class="proofscript" id="proof3546">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> Γ₁ τ.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">intros</span> Γ₁ τ <span class="id">typ</span> Γ₂ <span class="id">leo</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="id">invcs</span> <span class="id">typ</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">subst</span>; <span class="id">econstructor</span>; <span class="tactic">eauto</span> 3.<br/>
@@ -1390,8 +1390,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> Γ₂,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.Assoc.html#lookup_equiv_on">lookup_equiv_on</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>) Γ₁ Γ₂ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Γ<span class="id">c</span> ; Γ₂  ⊢ <span class="id">s</span> ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3515')">Proof.</div>
-<div class="proofscript" id="proof3515">
+<div class="toggleproof" onclick="toggleDisplay('proof3547')">Proof.</div>
+<div class="proofscript" id="proof3547">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> Γ₁.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">nnrs_imp_stmt_cases</span> (<span class="tactic">induction</span> <span class="id">s</span>) <span class="id">Case</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;; <span class="tactic">simpl</span><br/>
@@ -1463,8 +1463,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_imp_expr_type_has_free_vars">nnrs_imp_expr_type_has_free_vars</a></span> {Γ<span class="id">c</span> Γ <span class="id">e</span> τ} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[Γ<span class="id">c</span>; Γ ⊢ <span class="id">e</span> ▷ τ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span>) (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> Γ).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3516')">Proof.</div>
-<div class="proofscript" id="proof3516">
+<div class="toggleproof" onclick="toggleDisplay('proof3548')">Proof.</div>
+<div class="proofscript" id="proof3548">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span> <span class="id">x</span> <span class="id">inn</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> τ <span class="id">typ</span> <span class="id">inn</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">e</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> τ <span class="id">typ</span> <span class="id">inn</span><br/>
@@ -1479,8 +1479,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="nnrs_imp_stmt_type_has_free_vars">nnrs_imp_stmt_type_has_free_vars</a></span> {Γ<span class="id">c</span> Γ <span class="id">s</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[Γ<span class="id">c</span>; Γ ⊢ <span class="id">s</span>] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>) (<span class="id"><a href="Qcert.Utils.Assoc.html#domain">domain</a></span> Γ).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3517')">Proof.</div>
-<div class="proofscript" id="proof3517">
+<div class="toggleproof" onclick="toggleDisplay('proof3549')">Proof.</div>
+<div class="proofscript" id="proof3549">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">typ</span> <span class="id">x</span> <span class="id">inn</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> Γ <span class="id">typ</span> <span class="id">inn</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">s</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> Γ <span class="id">typ</span> <span class="id">inn</span><br/>
@@ -1517,8 +1517,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> Γ,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Γ<span class="id">c</span>; Γ ⊢ <span class="id">e</span>₁ ▷ τ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span>₂) (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span>₁).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3518')">Proof.</div>
-<div class="proofscript" id="proof3518">
+<div class="toggleproof" onclick="toggleDisplay('proof3550')">Proof.</div>
+<div class="proofscript" id="proof3550">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H</span> (<span class="id"><a href="Qcert.Utils.ListAdd.html#cut_down_to">cut_down_to</a></span> Γ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span>₁))).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">cut_to</span> <span class="id">H</span>.<br/>
@@ -1536,8 +1536,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> Γ,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Γ<span class="id">c</span>; Γ ⊢ <span class="id">s</span>₁] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#incl">incl</a></span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>₂) (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>₁).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3519')">Proof.</div>
-<div class="proofscript" id="proof3519">
+<div class="toggleproof" onclick="toggleDisplay('proof3551')">Proof.</div>
+<div class="proofscript" id="proof3551">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">H</span> (<span class="id"><a href="Qcert.Utils.ListAdd.html#cut_down_to">cut_down_to</a></span> Γ (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>₁))).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">cut_to</span> <span class="id">H</span>.<br/>
@@ -1554,8 +1554,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">v</span>₁ &lt;&gt; <span class="id">v</span>₂ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>₁,τ₁)::(<span class="id">v</span>₂, τ₂)::Γ ⊢  <span class="id">e</span> ▷ τ<span class="id">o</span>  ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>₂,τ₂)::(<span class="id">v</span>₁, τ₁)::Γ ⊢  <span class="id">e</span> ▷ τ<span class="id">o</span>  ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3520')">Proof.</div>
-<div class="proofscript" id="proof3520">
+<div class="toggleproof" onclick="toggleDisplay('proof3552')">Proof.</div>
+<div class="proofscript" id="proof3552">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_expr_type_lookup_equiv_on">nnrs_imp_expr_type_lookup_equiv_on</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -1570,8 +1570,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">v</span>₁ &lt;&gt; <span class="id">v</span>₂ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>₁,τ₁)::(<span class="id">v</span>₂, τ₂)::Γ  ⊢ <span class="id">s</span> ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>₂,τ₂)::(<span class="id">v</span>₁, τ₁)::Γ  ⊢ <span class="id">s</span> ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3521')">Proof.</div>
-<div class="proofscript" id="proof3521">
+<div class="toggleproof" onclick="toggleDisplay('proof3553')">Proof.</div>
+<div class="proofscript" id="proof3553">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_stmt_type_lookup_equiv_on">nnrs_imp_stmt_type_lookup_equiv_on</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -1591,8 +1591,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">v</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_expr_free_vars">nnrs_imp_expr_free_vars</a></span> <span class="id">e</span>)) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>,τ)::Γ ⊢  <span class="id">e</span> ▷ τ<span class="id">o</span>  ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++Γ ⊢ <span class="id">e</span> ▷ τ<span class="id">o</span> ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3522')">Proof.</div>
-<div class="proofscript" id="proof3522">
+<div class="toggleproof" onclick="toggleDisplay('proof3554')">Proof.</div>
+<div class="proofscript" id="proof3554">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_expr_type_lookup_equiv_on">nnrs_imp_expr_type_lookup_equiv_on</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -1608,8 +1608,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">v</span> (<span class="id"><a href="Qcert.NNRSimp.Lang.NNRSimpVars.html#nnrs_imp_stmt_free_vars">nnrs_imp_stmt_free_vars</a></span> <span class="id">s</span>)) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>,τ)::Γ  ⊢ <span class="id">s</span>  ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++Γ ⊢  <span class="id">s</span> ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3523')">Proof.</div>
-<div class="proofscript" id="proof3523">
+<div class="toggleproof" onclick="toggleDisplay('proof3555')">Proof.</div>
+<div class="proofscript" id="proof3555">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_stmt_type_lookup_equiv_on">nnrs_imp_stmt_type_lookup_equiv_on</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -1626,8 +1626,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++Γ ⊢ <span class="id">e</span> ▷ τ<span class="id">o</span> ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> τ,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>,τ)::Γ ⊢  <span class="id">e</span> ▷ τ<span class="id">o</span>  ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3524')">Proof.</div>
-<div class="proofscript" id="proof3524">
+<div class="toggleproof" onclick="toggleDisplay('proof3556')">Proof.</div>
+<div class="proofscript" id="proof3556">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_expr_type_lookup_equiv_on">nnrs_imp_expr_type_lookup_equiv_on</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -1644,8 +1644,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++Γ ⊢  <span class="id">s</span> ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> τ,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>,τ)::Γ  ⊢ <span class="id">s</span>  ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3525')">Proof.</div>
-<div class="proofscript" id="proof3525">
+<div class="toggleproof" onclick="toggleDisplay('proof3557')">Proof.</div>
+<div class="proofscript" id="proof3557">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_stmt_type_lookup_equiv_on">nnrs_imp_stmt_type_lookup_equiv_on</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -1662,8 +1662,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>,τ₁)::Γ ⊢  <span class="id">e</span> ▷ τ<span class="id">o</span>  ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> τ₂,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>,τ₂)::Γ ⊢ <span class="id">e</span> ▷ τ<span class="id">o</span> ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3526')">Proof.</div>
-<div class="proofscript" id="proof3526">
+<div class="toggleproof" onclick="toggleDisplay('proof3558')">Proof.</div>
+<div class="proofscript" id="proof3558">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_expr_type_lookup_equiv_on">nnrs_imp_expr_type_lookup_equiv_on</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -1680,8 +1680,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>,τ₁)::Γ ⊢  <span class="id">s</span>  ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> τ₂,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++(<span class="id">v</span>,τ₂)::Γ ⊢ <span class="id">s</span>  ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3527')">Proof.</div>
-<div class="proofscript" id="proof3527">
+<div class="toggleproof" onclick="toggleDisplay('proof3559')">Proof.</div>
+<div class="proofscript" id="proof3559">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.NNRSimp.Typing.TNNRSimp.html#nnrs_imp_stmt_type_lookup_equiv_on">nnrs_imp_stmt_type_lookup_equiv_on</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">red</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
@@ -1699,8 +1699,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++ Γ ⊢  <span class="id">e</span> ▷ τ<span class="id">o</span> ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> τ,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++ <span class="id"><a href="Qcert.Utils.Assoc.html#update_first">update_first</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#equiv_dec">equiv_dec</a></span> Γ <span class="id">v</span> τ ⊢ <span class="id">e</span> ▷ τ<span class="id">o</span> ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3528')">Proof.</div>
-<div class="proofscript" id="proof3528">
+<div class="toggleproof" onclick="toggleDisplay('proof3560')">Proof.</div>
+<div class="proofscript" id="proof3560">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">inn</span> <span class="id">typ</span> τ.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.Utils.Assoc.html#lookup">lookup</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#equiv_dec">equiv_dec</a></span> Γ <span class="id">v</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span> ? <span class="id">inn2</span>.<br/>
@@ -1725,8 +1725,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++ Γ ⊢  <span class="id">s</span>  ] -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> τ,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[  Γ<span class="id">c</span> ; <span class="id">l</span>++ <span class="id"><a href="Qcert.Utils.Assoc.html#update_first">update_first</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#equiv_dec">equiv_dec</a></span> Γ <span class="id">v</span> τ ⊢ <span class="id">s</span>  ].<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof3529')">Proof.</div>
-<div class="proofscript" id="proof3529">
+<div class="toggleproof" onclick="toggleDisplay('proof3561')">Proof.</div>
+<div class="proofscript" id="proof3561">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">inn</span> <span class="id">typ</span> τ.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.Utils.Assoc.html#lookup">lookup</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.EquivDec.html#equiv_dec">equiv_dec</a></span> Γ <span class="id">v</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span> ? <span class="id">inn2</span>.<br/>

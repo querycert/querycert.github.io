@@ -103,8 +103,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">f3</span> : <span class="kwd">forall</span> <span class="id">c</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.JSON.Model.JSON.html#json">json</a></span>, (<span class="kwd">forall</span> <span class="id">x</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">c</span> -&gt; <span class="id">P</span> <span class="id">x</span>) -&gt; <span class="id">P</span> (<span class="id"><a href="Qcert.JSON.Model.JSON.html#jarray">jarray</a></span> <span class="id">c</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">f4</span> : <span class="kwd">forall</span> <span class="id">r</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.JSON.Model.JSON.html#json">json</a></span>), (<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> (<span class="id">x</span>,<span class="id">y</span>) <span class="id">r</span> -&gt; <span class="id">P</span> <span class="id">y</span>) -&gt; <span class="id">P</span> (<span class="id"><a href="Qcert.JSON.Model.JSON.html#jobject">jobject</a></span> <span class="id">r</span>)):<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">d</span>, <span class="id">P</span> <span class="id">d</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1485')">Proof.</div>
-<div class="proofscript" id="proof1485">
+<div class="toggleproof" onclick="toggleDisplay('proof1514')">Proof.</div>
+<div class="proofscript" id="proof1514">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.JSON.Model.JSON.html#json_ind">json_ind</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span>. <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H</span>.<br/>
@@ -116,8 +116,8 @@
 <br/>
 <div class="doc">Equality is decidable for json </div>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="json_eq_dec">json_eq_dec</a></span> : <span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>:<span class="id"><a href="Qcert.JSON.Model.JSON.html#json">json</a></span>, {<span class="id">x</span>=<span class="id">y</span>}+{<span class="id">x</span>&lt;&gt;<span class="id">y</span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1486')">Proof.</div>
-<div class="proofscript" id="proof1486">
+<div class="toggleproof" onclick="toggleDisplay('proof1515')">Proof.</div>
+<div class="proofscript" id="proof1515">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">x</span>; <span class="tactic">destruct</span> <span class="id">y</span>; <span class="tactic">try</span> <span class="id">solve</span>[<span class="id">right</span>; <span class="tactic">inversion</span> 1].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">left</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.FloatAdd.html#float_eq_dec">float_eq_dec</a></span> <span class="id">n</span> <span class="id">f</span>).<br/>

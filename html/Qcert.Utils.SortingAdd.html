@@ -29,7 +29,6 @@ various parts of the specification. </div>
 <span class="kwd">Section</span> <span class="id"><a name="SortingAdd">SortingAdd</a></span>.<br/>
 <br/>
 <h1> Insertion sort </h1>
-<br/>
 &nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="SortingAdd.InsertionSort">InsertionSort</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">A</span>:<span class="kwd">Type</span>}.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Context</span> {<span class="id">R</span>:<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span>-&gt;<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span>-&gt;<span class="kwd">Prop</span>}.<br/>
@@ -55,8 +54,8 @@ various parts of the specification. </div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_insert_Sorted">insertion_sort_insert_Sorted</a></span> <span class="id">a</span> (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#Sorted">Sorted</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">l</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#Sorted">Sorted</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">a</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof352')">Proof.</div>
-<div class="proofscript" id="proof352">
+<div class="toggleproof" onclick="toggleDisplay('proof356')">Proof.</div>
+<div class="proofscript" id="proof356">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#Sorted_LocallySorted_iff">Sorted_LocallySorted_iff</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">inversion</span> 1; <span class="tactic">subst</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="kwd">match</span> <span class="id">goal</span> <span class="kwd">with</span><br/>
@@ -67,8 +66,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">insertion_sort_insert_Sorted</span> : <span class="id">qcert</span>.<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_Sorted">insertion_sort_Sorted</a></span> (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span>) : <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#Sorted">Sorted</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof353')">Proof.</div>
-<div class="proofscript" id="proof353">
+<div class="toggleproof" onclick="toggleDisplay('proof357')">Proof.</div>
+<div class="proofscript" id="proof357">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">eauto</span> <span class="kwd">with</span> <span class="id">qcert</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
@@ -81,10 +80,10 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>.<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="is_list_sorted_Sorted_iff">is_list_sorted_Sorted_iff</a></span> <span class="id">l</span>: <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="is_list_sorted_Sorted_iff">is_list_sorted_Sorted_iff</a></span> <span class="id">l</span>: <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> &lt;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#Sorted">Sorted</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof354')">Proof.</div>
-<div class="proofscript" id="proof354">
+<div class="toggleproof" onclick="toggleDisplay('proof358')">Proof.</div>
+<div class="proofscript" id="proof358">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">simpl</span>; <span class="tactic">intuition</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
@@ -94,16 +93,25 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="insertion_sort_is_list_sorted">insertion_sort_is_list_sorted</a></span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">l</span>, <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof359')">Proof.</div>
+<div class="proofscript" id="proof359">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_Sorted_iff">is_list_sorted_Sorted_iff</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_Sorted">insertion_sort_Sorted</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="is_list_sorted_ext">is_list_sorted_ext</a></span> : <span class="kwd">forall</span> <span class="id">l</span> (<span class="id">p1</span> <span class="id">p2</span>:<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>), <span class="id">p1</span> = <span class="id">p2</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof355')">Proof.</div>
-<div class="proofscript" id="proof355">
+<div class="toggleproof" onclick="toggleDisplay('proof360')">Proof.</div>
+<div class="proofscript" id="proof360">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Logic.Eqdep_dec.html#eq_proofs_unicity">eq_proofs_unicity</a></span>. <span class="id">decide</span> <span class="id">equality</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="sorted_StronglySorted">sorted_StronglySorted</a></span> `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>}:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="is_list_sorted_StronglySorted">is_list_sorted_StronglySorted</a></span> `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>}:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">l</span>, <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> &lt;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#StronglySorted">StronglySorted</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof356')">Proof.</div>
-<div class="proofscript" id="proof356">
+<div class="toggleproof" onclick="toggleDisplay('proof361')">Proof.</div>
+<div class="proofscript" id="proof361">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_Sorted_iff">is_list_sorted_Sorted_iff</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
@@ -112,10 +120,19 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#StronglySorted_Sorted">StronglySorted_Sorted</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="insertion_sort_StronglySorted">insertion_sort_StronglySorted</a></span> `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>}:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">l</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#StronglySorted">StronglySorted</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof362')">Proof.</div>
+<div class="proofscript" id="proof362">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_StronglySorted">is_list_sorted_StronglySorted</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_is_list_sorted">insertion_sort_is_list_sorted</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="Forall_nin_irr">Forall_nin_irr</a></span> `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Irreflexive">Irreflexive</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>}:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">a</span> <span class="id">l</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">a</span>) <span class="id">l</span> -&gt; ~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">a</span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof357')">Proof.</div>
-<div class="proofscript" id="proof357">
+<div class="toggleproof" onclick="toggleDisplay('proof363')">Proof.</div>
+<div class="proofscript" id="proof363">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; [<span class="tactic">auto</span>|<span class="tactic">intros</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H0</span>; <span class="tactic">subst</span>; <span class="tactic">intro</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H1</span>; <span class="tactic">subst</span>. <br/>
@@ -125,8 +142,8 @@ various parts of the specification. </div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="StronglySorted_NoDup">StronglySorted_NoDup</a></span> `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Irreflexive">Irreflexive</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>}: <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">l</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#StronglySorted">StronglySorted</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">l</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#NoDup">NoDup</a></span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof358')">Proof.</div>
-<div class="proofscript" id="proof358">
+<div class="toggleproof" onclick="toggleDisplay('proof364')">Proof.</div>
+<div class="proofscript" id="proof364">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H0</span>; <span class="tactic">subst</span>.<br/>
@@ -135,8 +152,8 @@ various parts of the specification. </div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="Sorted_NoDup">Sorted_NoDup</a></span> `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#StrictOrder">StrictOrder</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>}: <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">l</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#Sorted">Sorted</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">l</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#NoDup">NoDup</a></span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof359')">Proof.</div>
-<div class="proofscript" id="proof359">
+<div class="toggleproof" onclick="toggleDisplay('proof365')">Proof.</div>
+<div class="proofscript" id="proof365">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#StronglySorted_NoDup">StronglySorted_NoDup</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#Sorted_StronglySorted">Sorted_StronglySorted</a></span>; <span class="tactic">eauto</span>.<br/>
@@ -145,8 +162,8 @@ various parts of the specification. </div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="is_list_sorted_NoDup">is_list_sorted_NoDup</a></span> `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#StrictOrder">StrictOrder</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>} : <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">l</span>, <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#NoDup">NoDup</a></span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof360')">Proof.</div>
-<div class="proofscript" id="proof360">
+<div class="toggleproof" onclick="toggleDisplay('proof366')">Proof.</div>
+<div class="proofscript" id="proof366">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>. <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#Sorted_NoDup">Sorted_NoDup</a></span>; <span class="tactic">eapply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_Sorted_iff">is_list_sorted_Sorted_iff</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Defined.</div>
@@ -159,8 +176,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> =&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#True">True</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id">y</span>::<span class="id">_</span> =&gt; <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">a</span> <span class="id">y</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">end</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof361')">Proof.</div>
-<div class="proofscript" id="proof361">
+<div class="toggleproof" onclick="toggleDisplay('proof367')">Proof.</div>
+<div class="proofscript" id="proof367">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">simpl</span>; <span class="tactic">destruct</span> <span class="id">r</span>; <span class="tactic">intuition</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">intuition</span> <span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
@@ -168,8 +185,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="is_list_sorted_cons_inv">is_list_sorted_cons_inv</a></span> {<span class="id">a</span> <span class="id">r</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> (<span class="id">a</span>::<span class="id">r</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id">r</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof362')">Proof.</div>
-<div class="proofscript" id="proof362">
+<div class="toggleproof" onclick="toggleDisplay('proof368')">Proof.</div>
+<div class="proofscript" id="proof368">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_cons">is_list_sorted_cons</a></span>. <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
@@ -177,36 +194,122 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#StronglySorted">StronglySorted</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> (<span class="id">a</span>::<span class="id">l</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">a</span> <span class="id">x</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof363')">Proof.</div>
-<div class="proofscript" id="proof363">
+<div class="toggleproof" onclick="toggleDisplay('proof369')">Proof.</div>
+<div class="proofscript" id="proof369">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 1; <span class="tactic">subst</span>; <span class="tactic">intros</span> <span class="id">iin</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H3</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="in_insertion_sort_insert">in_insertion_sort_insert</a></span> {<span class="id">x</span> <span class="id">l</span> <span class="id">a</span>} :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">a</span> <span class="id">l</span>) -&gt; <span class="id">a</span> = <span class="id">x</span> \/ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof370')">Proof.</div>
+<div class="proofscript" id="proof370">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">x</span> <span class="id">a</span>. <span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; [<span class="tactic">intuition</span> | ].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">x</span> <span class="id">a0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a0</span> <span class="id">a</span>); <span class="tactic">simpl</span>; <span class="tactic">intros</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">simpl</span>; <span class="tactic">intros</span>; <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">IHl</span> <span class="id">_</span> <span class="id">_</span> <span class="id">H2</span>); <span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="in_insertion_sort">in_insertion_sort</a></span> {<span class="id">x</span> <span class="id">l</span>} :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span>) -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof371')">Proof.</div>
+<div class="proofscript" id="proof371">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">inn</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#in_insertion_sort_insert">in_insertion_sort_insert</a></span> <span class="kwd">in</span> <span class="id">inn</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="is_list_sorted_cons_Forall_lt">is_list_sorted_cons_Forall_lt</a></span> `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>} (<span class="id">a</span>:<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span>) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">l</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> (<span class="id">a</span> :: <span class="id">l</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">a</span> <span class="id">x</span>) (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof372')">Proof.</div>
+<div class="proofscript" id="proof372">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_StronglySorted">is_list_sorted_StronglySorted</a></span> <span class="kwd">in</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">subst</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#StronglySorted_cons_in">StronglySorted_cons_in</a></span> <span class="id">H0</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#in_insertion_sort">in_insertion_sort</a></span>; <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="Forall_insertion_sort">Forall_insertion_sort</a></span> {<span class="id">P</span>} <span class="id">l</span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id">P</span> <span class="id">l</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id">P</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span>).<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof373')">Proof.</div>
+<div class="proofscript" id="proof373">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">fp</span> <span class="id">x</span> <span class="id">inx</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#in_insertion_sort">in_insertion_sort</a></span> <span class="kwd">in</span> <span class="id">inx</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">auto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_sorted_is_id">insertion_sort_sorted_is_id</a></span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span> = <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof364')">Proof.</div>
-<div class="proofscript" id="proof364">
+<div class="toggleproof" onclick="toggleDisplay('proof374')">Proof.</div>
+<div class="proofscript" id="proof374">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">intros</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">l</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">congruence</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">IHl</span> <span class="id">H0</span>).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">IHl</span>; <span class="tactic">clear</span> <span class="id">IHl</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">l</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">H</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">intros</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a0</span> <span class="id">a</span>); <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">assert</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">l</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">IHl</span> <span class="id">H0</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">IHl</span>; <span class="tactic">clear</span> <span class="id">IHl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">l</span>; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">intros</span>; <span class="tactic">trivial</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a0</span> <span class="id">a</span>); <span class="tactic">congruence</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="is_list_sorted_insert_sorted">is_list_sorted_insert_sorted</a></span> `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>} <span class="id">a</span> <span class="id">l</span>:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt; <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">a</span> <span class="id">l</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof375')">Proof.</div>
+<div class="proofscript" id="proof375">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">a</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a0</span> <span class="id">a</span>); <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_cons">is_list_sorted_cons</a></span>; <span class="tactic">split</span>; <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id">case_eq</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">intros</span>; [|<span class="tactic">congruence</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_cons">is_list_sorted_cons</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">apply</span> <span class="id">IHl</span>; <span class="tactic">apply</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_cons_inv">is_list_sorted_cons_inv</a></span> <span class="id">H0</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <span class="tactic">assert</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">x</span> =&gt; <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">a</span> <span class="id">x</span>) (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">by</span> (<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_cons_Forall_lt">is_list_sorted_cons_Forall_lt</a></span>; <span class="tactic">assumption</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>) <span class="tactic">by</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_cons_inv">is_list_sorted_cons_inv</a></span> <span class="id">H0</span>); <span class="tactic">clear</span> <span class="id">H0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">IHl</span> <span class="id">a</span> <span class="id">H4</span>); <span class="tactic">clear</span> <span class="id">IHl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">a0</span> <span class="id">l</span>); <span class="tactic">intros</span>; [<span class="tactic">trivial</span>|].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assert</span> (<span class="id">a0</span> = <span class="id">a1</span> \/ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">a1</span> <span class="id">l</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">by</span> (<span class="tactic">apply</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#in_insertion_sort_insert">in_insertion_sort_insert</a></span> <span class="id">a1</span> <span class="id">l</span> <span class="id">a0</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id">H0</span>; <span class="id">left</span>; <span class="tactic">reflexivity</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H3</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">elim</span> <span class="id">H5</span>; <span class="tactic">intros</span>; [<span class="tactic">subst</span>; <span class="tactic">assumption</span>|]; <span class="tactic">clear</span> <span class="id">H5</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id">H3</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_sorted_is_id">insertion_sort_sorted_is_id</a></span>; <span class="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
+&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="insertion_sort_sorted">insertion_sort_sorted</a></span> `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#Transitive">Transitive</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>}:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> <span class="id">l</span>, <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted">is_list_sorted</a></span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span>) = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span>.<br/>
+<div class="toggleproof" onclick="toggleDisplay('proof376')">Proof.</div>
+<div class="proofscript" id="proof376">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">simpl</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_insert_sorted">is_list_sorted_insert_sorted</a></span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">assumption</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_idempotent">insertion_sort_idempotent</a></span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof365')">Proof.</div>
-<div class="proofscript" id="proof365">
+<div class="toggleproof" onclick="toggleDisplay('proof377')">Proof.</div>
+<div class="proofscript" id="proof377">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_sorted_is_id">insertion_sort_sorted_is_id</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#is_list_sorted_Sorted_iff">is_list_sorted_Sorted_iff</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_Sorted">insertion_sort_Sorted</a></span>.<br/>
@@ -214,8 +317,8 @@ various parts of the specification. </div>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_insert_not_nil">insertion_sort_insert_not_nil</a></span> <span class="id">a</span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">a</span> <span class="id">l</span> &lt;&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof366')">Proof.</div>
-<div class="proofscript" id="proof366">
+<div class="toggleproof" onclick="toggleDisplay('proof378')">Proof.</div>
+<div class="proofscript" id="proof378">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span>; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a0</span> <span class="id">a</span>); <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
@@ -223,18 +326,18 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_nil">insertion_sort_nil</a></span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span> -&gt; <span class="id">l</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof367')">Proof.</div>
-<div class="proofscript" id="proof367">
+<div class="toggleproof" onclick="toggleDisplay('proof379')">Proof.</div>
+<div class="proofscript" id="proof379">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert_not_nil">insertion_sort_insert_not_nil</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
-&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_insert_swap">insertion_sort_insert_swap</a></span> <span class="id">a</span> <span class="id">a0</span> <span class="id">l</span>  `{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#StrictOrder">StrictOrder</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.A">A</a></span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span>}:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R">R</a></span> <span class="id">a</span> <span class="id">a0</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">a</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">a0</span> <span class="id">l</span>) = <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">a0</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">a</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof368')">Proof.</div>
-<div class="proofscript" id="proof368">
+<div class="toggleproof" onclick="toggleDisplay('proof380')">Proof.</div>
+<div class="proofscript" id="proof380">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">a</span> <span class="id">a0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.InsertionSort.R_dec">R_dec</a></span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">simpl</span>; <span class="tactic">intuition</span>.<br/>
@@ -282,8 +385,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="SortingAdd.Filter">Filter</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="StronglySorted_filter">StronglySorted_filter</a></span> {<span class="id">A</span>} {<span class="id">R</span>} <span class="id">f</span> {<span class="id">l</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#StronglySorted">StronglySorted</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">l</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Sorting.Sorted.html#StronglySorted">StronglySorted</a></span> <span class="id">R</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#filter">filter</a></span> <span class="id">f</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof369')">Proof.</div>
-<div class="proofscript" id="proof369">
+<div class="toggleproof" onclick="toggleDisplay('proof381')">Proof.</div>
+<div class="proofscript" id="proof381">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 1; <span class="tactic">simpl</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">f</span> <span class="id">a</span>); <span class="tactic">auto</span>.<br/>
@@ -295,34 +398,13 @@ various parts of the specification. </div>
 <h1> Properties of <span class="bracket"><span class="id">In</span></span> on sorted lists </h1>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Section</span> <span class="id"><a name="SortingAdd.In">In</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="in_insertion_sort_insert">in_insertion_sort_insert</a></span> {<span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span>} {<span class="id">x</span> <span class="id">l</span> <span class="id">a</span>} :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">a</span> <span class="id">l</span>) -&gt; <span class="id">a</span> = <span class="id">x</span> \/ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof370')">Proof.</div>
-<div class="proofscript" id="proof370">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">x</span> <span class="id">a</span>. <span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; [<span class="tactic">intuition</span> | ].<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">x</span> <span class="id">a0</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">R_dec</span> <span class="id">a0</span> <span class="id">a</span>); <span class="tactic">simpl</span>; <span class="tactic">intros</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">H0</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">R_dec</span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">simpl</span>; <span class="tactic">intros</span>; <span class="tactic">intuition</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">IHl</span> <span class="id">_</span> <span class="id">_</span> <span class="id">H2</span>); <span class="tactic">intuition</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="in_insertion_sort">in_insertion_sort</a></span> {<span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span>} {<span class="id">x</span> <span class="id">l</span>} :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">l</span>) -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof371')">Proof.</div>
-<div class="proofscript" id="proof371">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">inn</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#in_insertion_sort_insert">in_insertion_sort_insert</a></span> <span class="kwd">in</span> <span class="id">inn</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intuition</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
-<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Local</span> <span class="kwd">Hint</span> <span class="kwd">Resolve</span> <span class="id">asymmetric_over_cons_inv</span> : <span class="id">qcert</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_insert_in_strong">insertion_sort_insert_in_strong</a></span> {<span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span>} {<span class="id">x</span> <span class="id">l</span> <span class="id">a</span>} <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">contr</span>:<span class="id"><a href="Qcert.Utils.ListAdd.html#asymmetric_over">asymmetric_over</a></span> <span class="id">R</span> (<span class="id">a</span>::<span class="id">l</span>)) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">a</span> = <span class="id">x</span> \/ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">a</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof372')">Proof.</div>
-<div class="proofscript" id="proof372">
+<div class="toggleproof" onclick="toggleDisplay('proof382')">Proof.</div>
+<div class="proofscript" id="proof382">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">x</span> <span class="id">a</span> <span class="id">contr</span>. <span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; [<span class="tactic">intuition</span> | ].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">x</span> <span class="id">a0</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">R_dec</span> <span class="id">a0</span> <span class="id">a</span>); <span class="tactic">simpl</span>; <span class="tactic">intros</span>; <span class="tactic">trivial</span>.<br/>
@@ -337,8 +419,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_insert_in">insertion_sort_insert_in</a></span> {<span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span>} {<span class="id">x</span> <span class="id">l</span> <span class="id">a</span>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">contr</span>:<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>,  ~<span class="id">R</span> <span class="id">x</span> <span class="id">y</span> -&gt; ~<span class="id">R</span> <span class="id">y</span> <span class="id">x</span> -&gt; <span class="id">x</span> = <span class="id">y</span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">a</span> = <span class="id">x</span> \/ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">a</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof373')">Proof.</div>
-<div class="proofscript" id="proof373">
+<div class="toggleproof" onclick="toggleDisplay('proof383')">Proof.</div>
+<div class="proofscript" id="proof383">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert_in_strong">insertion_sort_insert_in_strong</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#asymmetric_asymmetric_over">asymmetric_asymmetric_over</a></span>; <span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
@@ -346,8 +428,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_in_strong">insertion_sort_in_strong</a></span> {<span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span>} {<span class="id">x</span> <span class="id">l</span>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">contr</span>:<span class="id"><a href="Qcert.Utils.ListAdd.html#asymmetric_over">asymmetric_over</a></span> <span class="id">R</span> <span class="id">l</span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof374')">Proof.</div>
-<div class="proofscript" id="proof374">
+<div class="toggleproof" onclick="toggleDisplay('proof384')">Proof.</div>
+<div class="proofscript" id="proof384">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">x</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">specialize</span> (<span class="id">IHl</span> (<span class="id"><a href="Qcert.Utils.ListAdd.html#asymmetric_over_cons_inv">asymmetric_over_cons_inv</a></span> <span class="id">contr</span>)).<br/>
@@ -362,8 +444,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_in">insertion_sort_in</a></span> {<span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span>} {<span class="id">x</span> <span class="id">l</span>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">contr</span>:<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>,  ~<span class="id">R</span> <span class="id">x</span> <span class="id">y</span> -&gt; ~<span class="id">R</span> <span class="id">y</span> <span class="id">x</span> -&gt; <span class="id">x</span> = <span class="id">y</span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof375')">Proof.</div>
-<div class="proofscript" id="proof375">
+<div class="toggleproof" onclick="toggleDisplay('proof385')">Proof.</div>
+<div class="proofscript" id="proof385">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_in_strong">insertion_sort_in_strong</a></span>; <span class="tactic">intuition</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
@@ -371,8 +453,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">contr</span>:<span class="id"><a href="Qcert.Utils.ListAdd.html#asymmetric_over">asymmetric_over</a></span> <span class="id">R</span> <span class="id">l</span>)  :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> <span class="id">l</span> <span class="id">l</span>' -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">l</span>) (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">l</span>').<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof376')">Proof.</div>
-<div class="proofscript" id="proof376">
+<div class="toggleproof" onclick="toggleDisplay('proof386')">Proof.</div>
+<div class="proofscript" id="proof386">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">cut</span> (<span class="kwd">forall</span> <span class="id">l</span> <span class="id">l</span>', (<span class="id"><a href="Qcert.Utils.ListAdd.html#asymmetric_over">asymmetric_over</a></span> <span class="id">R</span> <span class="id">l</span>) -&gt; <span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> <span class="id">l</span> <span class="id">l</span>' -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">forall</span> <span class="id">x</span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">l</span>) -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">l</span>'))).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span> <span class="id">C</span> <span class="id">eq</span> <span class="id">x</span>. <span class="tactic">split</span>; <span class="tactic">intros</span> <span class="id">inn</span>.<br/>
@@ -391,8 +473,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">contr</span>:<span class="kwd">forall</span> <span class="id">x</span> <span class="id">y</span>,  ~<span class="id">R</span> <span class="id">x</span> <span class="id">y</span> -&gt; ~<span class="id">R</span> <span class="id">y</span> <span class="id">x</span> -&gt; <span class="id">x</span> = <span class="id">y</span>)  :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> <span class="id">l</span> <span class="id">l</span>' -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">l</span>) (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">l</span>').<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof377')">Proof.</div>
-<div class="proofscript" id="proof377">
+<div class="toggleproof" onclick="toggleDisplay('proof387')">Proof.</div>
+<div class="proofscript" id="proof387">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eapply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#equivlist_insertion_sort_strong">equivlist_insertion_sort_strong</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.ListAdd.html#asymmetric_asymmetric_over">asymmetric_asymmetric_over</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -407,8 +489,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">dec</span> <span class="id">a0</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">dec</span> <span class="id">a</span> <span class="id">l</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= @<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">A</span> <span class="id">lt</span> <span class="id">dec</span> <span class="id">a</span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof378')">Proof.</div>
-<div class="proofscript" id="proof378">
+<div class="toggleproof" onclick="toggleDisplay('proof388')">Proof.</div>
+<div class="proofscript" id="proof388">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">a</span> <span class="id">a0</span>. <span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> (<span class="id">match_destr</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">repeat</span> (<span class="id">match_destr</span>; <span class="tactic">try</span> <span class="tactic">congruence</span>);<br/>
@@ -425,8 +507,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{<span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#StrictOrder">StrictOrder</a></span> <span class="id">A</span> <span class="id">lt</span>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">trich</span>:<span class="kwd">forall</span> <span class="id">a</span> <span class="id">b</span>, {<span class="id">lt</span> <span class="id">a</span> <span class="id">b</span>} + {<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> <span class="id">a</span> <span class="id">b</span>} + {<span class="id">lt</span> <span class="id">b</span> <span class="id">a</span>}) <span class="id">a</span> <span class="id">l</span> <span class="id">l2</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">dec</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">dec</span> <span class="id">a</span> <span class="id">l</span> ++ <span class="id">l2</span>) = @<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">lt</span> <span class="id">dec</span> (<span class="id">a</span>::<span class="id">l</span> ++ <span class="id">l2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof379')">Proof.</div>
-<div class="proofscript" id="proof379">
+<div class="toggleproof" onclick="toggleDisplay('proof389')">Proof.</div>
+<div class="proofscript" id="proof389">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">a</span> <span class="id">l2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">dec</span> <span class="id">a0</span> <span class="id">a</span>); <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
@@ -439,8 +521,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">trich</span>:<span class="kwd">forall</span> <span class="id">a</span> <span class="id">b</span>, {<span class="id">lt</span> <span class="id">a</span> <span class="id">b</span>} + {<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> <span class="id">a</span> <span class="id">b</span>} + {<span class="id">lt</span> <span class="id">b</span> <span class="id">a</span>}) <span class="id">l1</span> <span class="id">l2</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">dec</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">dec</span> <span class="id">l1</span> ++ <span class="id">l2</span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">lt</span> <span class="id">dec</span> (<span class="id">l1</span> ++ <span class="id">l2</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof380')">Proof.</div>
-<div class="proofscript" id="proof380">
+<div class="toggleproof" onclick="toggleDisplay('proof390')">Proof.</div>
+<div class="proofscript" id="proof390">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">l2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l1</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert_cons_app">insertion_sort_insert_cons_app</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -452,8 +534,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="insertion_sort_trich_equiv">insertion_sort_trich_equiv</a></span> {<span class="id">A</span>:<span class="kwd">Type</span>} <span class="id">lt</span> <span class="id">dec</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">trich</span>:<span class="kwd">forall</span> <span class="id">a</span> <span class="id">b</span>, {<span class="id">lt</span> <span class="id">a</span> <span class="id">b</span>} + {<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq">eq</a></span> <span class="id">a</span> <span class="id">b</span>} + {<span class="id">lt</span> <span class="id">b</span> <span class="id">a</span>}) (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">A</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id"><a href="Qcert.Utils.ListAdd.html#equivlist">equivlist</a></span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">lt</span> <span class="id">dec</span> <span class="id">l</span>) <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof381')">Proof.</div>
-<div class="proofscript" id="proof381">
+<div class="toggleproof" onclick="toggleDisplay('proof391')">Proof.</div>
+<div class="proofscript" id="proof391">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>; <span class="tactic">split</span>; <span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#in_insertion_sort">in_insertion_sort</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">eapply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_in">insertion_sort_in</a></span> <span class="kwd">in</span> <span class="id">H</span>; <span class="tactic">eauto</span>.<br/>
@@ -465,8 +547,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="id">A</span>:<span class="kwd">Type</span>} <span class="id">lt</span> <span class="id">dec</span> (<span class="id">a</span>:<span class="id">A</span>) (<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">A</span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="id">lt</span> <span class="id">a</span>) <span class="id">l</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">A</span> <span class="id">lt</span> <span class="id">dec</span> <span class="id">a</span> <span class="id">l</span> = <span class="id">a</span> :: <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof382')">Proof.</div>
-<div class="proofscript" id="proof382">
+<div class="toggleproof" onclick="toggleDisplay('proof392')">Proof.</div>
+<div class="proofscript" id="proof392">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 1; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">match_destr</span>; <span class="tactic">intuition</span>.<br/>
@@ -479,8 +561,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">f</span> <span class="id">a</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#true">true</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#filter">filter</a></span> <span class="id">f</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">A</span> <span class="id">lt</span> <span class="id">dec</span> <span class="id">a</span> <span class="id">l</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">dec</span> <span class="id">a</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#filter">filter</a></span> <span class="id">f</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof383')">Proof.</div>
-<div class="proofscript" id="proof383">
+<div class="toggleproof" onclick="toggleDisplay('proof393')">Proof.</div>
+<div class="proofscript" id="proof393">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">a</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">b</span> <span class="id">lsort</span> <span class="id">fb</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">fb</span>; <span class="tactic">trivial</span>.<br/>
@@ -507,8 +589,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">f</span> <span class="id">a</span> = <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#false">false</a></span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#filter">filter</a></span> <span class="id">f</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">A</span> <span class="id">lt</span> <span class="id">dec</span> <span class="id">a</span> <span class="id">l</span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#filter">filter</a></span> <span class="id">f</span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof384')">Proof.</div>
-<div class="proofscript" id="proof384">
+<div class="toggleproof" onclick="toggleDisplay('proof394')">Proof.</div>
+<div class="proofscript" id="proof394">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">a</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">intros</span> ? <span class="id">fa</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> <span class="id">fa</span>; <span class="tactic">trivial</span>.<br/>
@@ -524,8 +606,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id">l</span>:<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#list">list</a></span> <span class="id">A</span>) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#filter">filter</a></span> <span class="id">f</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">lt</span> <span class="id">dec</span> <span class="id">l</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">dec</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#filter">filter</a></span> <span class="id">f</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof385')">Proof.</div>
-<div class="proofscript" id="proof385">
+<div class="toggleproof" onclick="toggleDisplay('proof395')">Proof.</div>
+<div class="proofscript" id="proof395">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">case_eq</span> (<span class="id">f</span> <span class="id">a</span>); <span class="tactic">intros</span> <span class="id">fa</span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> &lt;- <span class="id">IHl</span>, <span class="id"><a href="Qcert.Utils.SortingAdd.html#sort_insert_filter_true">sort_insert_filter_true</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -535,16 +617,6 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">rewrite</span> &lt;- <span class="id">IHl</span>, <span class="id"><a href="Qcert.Utils.SortingAdd.html#sort_insert_filter_false">sort_insert_filter_false</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="Forall_insertion_sort">Forall_insertion_sort</a></span> {<span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span>} {<span class="id">P</span>} <span class="id">l</span> :<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id">P</span> <span class="id">l</span> -&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id">P</span> (@<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">A</span> <span class="id">R</span> <span class="id">R_dec</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof386')">Proof.</div>
-<div class="proofscript" id="proof386">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">repeat</span> <span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">fp</span> <span class="id">x</span> <span class="id">inx</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#in_insertion_sort">in_insertion_sort</a></span> <span class="kwd">in</span> <span class="id">inx</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">auto</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Qed.</div>
-&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">End</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#SortingAdd.In">In</a></span>.<br/>
 <br/>
 <h1> Properties of <span class="bracket"><span class="id">map</span></span> on sorted lists </h1>
@@ -560,8 +632,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">R2</span> (<span class="id">f</span> <span class="id">x</span>) (<span class="id">f</span> <span class="id">y</span>)) <span class="id">a</span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id">f</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">R1_dec</span> <span class="id">a</span> <span class="id">l</span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort_insert">insertion_sort_insert</a></span> <span class="id">R2_dec</span> (<span class="id">f</span> <span class="id">a</span>) (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id">f</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof387')">Proof.</div>
-<div class="proofscript" id="proof387">
+<div class="toggleproof" onclick="toggleDisplay('proof396')">Proof.</div>
+<div class="proofscript" id="proof396">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="id">IHl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id">consistent</span> <span class="id">a</span> <span class="id">a0</span>); <span class="tactic">destruct</span> (<span class="id">consistent</span> <span class="id">a0</span> <span class="id">a</span>).<br/>
@@ -577,8 +649,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">R2</span> (<span class="id">f</span> <span class="id">x</span>) (<span class="id">f</span> <span class="id">y</span>)) <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id">f</span> (<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">R1_dec</span> <span class="id">l</span>) =<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Utils.SortingAdd.html#insertion_sort">insertion_sort</a></span> <span class="id">R2_dec</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span> <span class="id">f</span> <span class="id">l</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof388')">Proof.</div>
-<div class="proofscript" id="proof388">
+<div class="toggleproof" onclick="toggleDisplay('proof397')">Proof.</div>
+<div class="proofscript" id="proof397">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> &lt;- <span class="id">IHl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">erewrite</span> <span class="id"><a href="Qcert.Utils.SortingAdd.html#map_insertion_sort_insert">map_insertion_sort_insert</a></span>; <span class="tactic">eauto</span>.<br/>
@@ -591,8 +663,8 @@ various parts of the specification. </div>
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">a</span> <span class="id">l</span>₁ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">a</span> <span class="id">l</span>₂ -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">l</span>₁ = <span class="id">l</span>₂.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof389')">Proof.</div>
-<div class="proofscript" id="proof389">
+<div class="toggleproof" onclick="toggleDisplay('proof398')">Proof.</div>
+<div class="proofscript" id="proof398">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">revert</span> <span class="id">l</span>₂.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">l</span>₁; <span class="tactic">destruct</span> <span class="id">l</span>₂; <span class="tactic">simpl</span>; <span class="tactic">intros</span> <span class="id">eqq</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intuition</span>.<br/>

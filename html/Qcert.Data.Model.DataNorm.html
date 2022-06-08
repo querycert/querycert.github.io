@@ -73,8 +73,8 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="normalize_normalizes">normalize_normalizes</a></span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="kwd">forall</span> (<span class="id">d</span>:<span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span>), <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1536')">Proof.</div>
-<div class="proofscript" id="proof1536">
+<div class="toggleproof" onclick="toggleDisplay('proof1565')">Proof.</div>
+<div class="proofscript" id="proof1565">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">d</span> <span class="kwd">using</span> <span class="id"><a href="Qcert.Data.Model.Data.html#dataInd2">dataInd2</a></span>; <span class="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Model.DataNorm.html#dnunit">dnunit</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Model.DataNorm.html#dnnat">dnnat</a></span>.<br/>
@@ -118,8 +118,8 @@
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="normalize_normalized_eq">normalize_normalized_eq</a></span> {<span class="id">d</span>}:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id">d</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span> = <span class="id">d</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1537')">Proof.</div>
-<div class="proofscript" id="proof1537">
+<div class="toggleproof" onclick="toggleDisplay('proof1566')">Proof.</div>
+<div class="proofscript" id="proof1566">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">d</span> <span class="kwd">using</span> <span class="id"><a href="Qcert.Data.Model.Data.html#dataInd2">dataInd2</a></span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">intros</span>. <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> (@<span class="id"><a href="Qcert.Utils.CoqLibAdd.html#map_eq">map_eq</a></span> <span class="id">_</span> <span class="id">_</span> <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#id">id</a></span>).<br/>
@@ -151,8 +151,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#map">map</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="kwd">fun</span> <span class="id">x0</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#fst">fst</a></span> <span class="id">x0</span>, <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">x0</span>)))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">c</span>) = <span class="id">c</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1538')">Proof.</div>
-<div class="proofscript" id="proof1538">
+<div class="toggleproof" onclick="toggleDisplay('proof1567')">Proof.</div>
+<div class="proofscript" id="proof1567">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">induction</span> <span class="id">c</span>; <span class="tactic">simpl</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">a</span>; <span class="tactic">inversion</span> 1; <span class="tactic">simpl</span> <span class="kwd">in</span> *; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_normalized_eq">normalize_normalized_eq</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -162,24 +162,24 @@
 <br/>
 &nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="normalize_idem">normalize_idem</a></span> <span class="id">d</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> (<span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span>) = <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1539')">Proof.</div>
-<div class="proofscript" id="proof1539">
+<div class="toggleproof" onclick="toggleDisplay('proof1568')">Proof.</div>
+<div class="proofscript" id="proof1568">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_normalized_eq">normalize_normalized_eq</a></span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_normalizes">normalize_normalizes</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Corollary</span> <span class="id"><a name="normalize_data_eq_normalized">normalize_data_eq_normalized</a></span> {<span class="id">d</span>} :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span> = <span class="id">d</span> -&gt; <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id">d</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1540')">Proof.</div>
-<div class="proofscript" id="proof1540">
+<div class="toggleproof" onclick="toggleDisplay('proof1569')">Proof.</div>
+<div class="proofscript" id="proof1569">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">generalize</span> (<span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_normalizes">normalize_normalizes</a></span> <span class="id">d</span>).<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Theorem</span> <span class="id"><a name="normalized_data_dec">normalized_data_dec</a></span> <span class="id">d</span> : {<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id">d</span>} + {~ <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id">d</span>}.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1541')">Proof.</div>
-<div class="proofscript" id="proof1541">
+<div class="toggleproof" onclick="toggleDisplay('proof1570')">Proof.</div>
+<div class="proofscript" id="proof1570">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> (<span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span> == <span class="id">d</span>); <span class="tactic">unfold</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.Equivalence.html#equiv">equiv</a></span>, <span class="id"><a href="http://coq.inria.fr/library/Coq.Classes.RelationClasses.html#complement">complement</a></span> <span class="kwd">in</span> *.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">left</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data_eq_normalized">normalize_data_eq_normalized</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">right</span>. <span class="tactic">intro</span> <span class="id">dn</span>; <span class="tactic">elim</span> <span class="id">c</span>. <span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_normalized_eq">normalize_normalized_eq</a></span>; <span class="tactic">trivial</span>.<br/>
@@ -188,8 +188,8 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="data_normalized_dcoll">data_normalized_dcoll</a></span> <span class="id">a</span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id">a</span> /\ <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id">l</span>)) &lt;-&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> (<span class="id">a</span> :: <span class="id">l</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1542')">Proof.</div>
-<div class="proofscript" id="proof1542">
+<div class="toggleproof" onclick="toggleDisplay('proof1571')">Proof.</div>
+<div class="proofscript" id="proof1571">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="tactic">destruct</span> 1 <span class="kwd">as</span> [<span class="id">d1</span> <span class="id">d2</span>]. <span class="tactic">inversion</span> <span class="id">d2</span>; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">auto</span>.<br/>
@@ -202,8 +202,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id">l1</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id">l2</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> (<span class="id">l1</span> ++ <span class="id">l2</span>))).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1543')">Proof.</div>
-<div class="proofscript" id="proof1543">
+<div class="toggleproof" onclick="toggleDisplay('proof1572')">Proof.</div>
+<div class="proofscript" id="proof1572">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 1; <span class="tactic">inversion</span> 1; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">constructor</span>; <span class="tactic">eauto</span> 1 <span class="kwd">with</span> <span class="id">qcert</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Bindings.html#Forall_sorted">Forall_sorted</a></span>.<br/>
@@ -214,8 +214,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id">l1</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id">l2</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_concat_sort">rec_concat_sort</a></span> <span class="id">l1</span> <span class="id">l2</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1544')">Proof.</div>
-<div class="proofscript" id="proof1544">
+<div class="toggleproof" onclick="toggleDisplay('proof1573')">Proof.</div>
+<div class="proofscript" id="proof1573">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized_rec_sort_app">data_normalized_rec_sort_app</a></span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
@@ -223,24 +223,24 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#In">In</a></span> <span class="id">x</span> <span class="id">l</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id">l</span>) -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id">x</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1545')">Proof.</div>
-<div class="proofscript" id="proof1545">
+<div class="toggleproof" onclick="toggleDisplay('proof1574')">Proof.</div>
+<div class="proofscript" id="proof1574">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">inversion</span> 2; <span class="tactic">subst</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">rewrite</span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall_forall">Forall_forall</a></span> <span class="kwd">in</span> <span class="id">H2</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">eauto</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dnrec_nil">dnrec_nil</a></span> : <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> <span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nil">nil</a></span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1546')">Proof.</div>
-<div class="proofscript" id="proof1546">
+<div class="toggleproof" onclick="toggleDisplay('proof1575')">Proof.</div>
+<div class="proofscript" id="proof1575">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">econstructor</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dnrec_sort_content">dnrec_sort_content</a></span> <span class="id">c</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">d</span>)) <span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">d</span>)) (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> <span class="id">c</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1547')">Proof.</div>
-<div class="proofscript" id="proof1547">
+<div class="toggleproof" onclick="toggleDisplay('proof1576')">Proof.</div>
+<div class="proofscript" id="proof1576">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">F</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Bindings.html#Forall_sorted">Forall_sorted</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
@@ -248,49 +248,49 @@
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="dnrec_sort">dnrec_sort</a></span> <span class="id">c</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> (<span class="kwd">fun</span> <span class="id">d</span> : <span class="id"><a href="http://coq.inria.fr/library/Coq.Strings.String.html#string">string</a></span> * <span class="id"><a href="Qcert.Data.Model.Data.html#data">data</a></span> =&gt; <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#snd">snd</a></span> <span class="id">d</span>)) <span class="id">c</span> -&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#drec">drec</a></span> (<span class="id"><a href="Qcert.Utils.Bindings.html#rec_sort">rec_sort</a></span> <span class="id">c</span>)).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1548')">Proof.</div>
-<div class="proofscript" id="proof1548">
+<div class="toggleproof" onclick="toggleDisplay('proof1577')">Proof.</div>
+<div class="proofscript" id="proof1577">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">intros</span> <span class="id">F</span>; <span class="id">econstructor</span>; <span class="tactic">trivial</span> <span class="kwd">with</span> <span class="id">qcert</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> <span class="id"><a href="Qcert.Utils.Bindings.html#Forall_sorted">Forall_sorted</a></span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="data_normalized_dcoll_Forall">data_normalized_dcoll_Forall</a></span> <span class="id">l</span> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> (<span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id">l</span>) &lt;-&gt; <span class="id"><a href="http://coq.inria.fr/library/Coq.Lists.List.html#Forall">Forall</a></span> <span class="id"><a href="Qcert.Data.Model.DataNorm.html#data_normalized">data_normalized</a></span> <span class="id">l</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1549')">Proof.</div>
-<div class="proofscript" id="proof1549">
+<div class="toggleproof" onclick="toggleDisplay('proof1578')">Proof.</div>
+<div class="proofscript" id="proof1578">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">split</span>; <span class="tactic">intros</span> <span class="id">H</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">invcs</span> <span class="id">H</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;- <span class="id">constructor</span>; <span class="tactic">trivial</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 &nbsp;&nbsp;<br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="normalize_data_forall_ndbool">normalize_data_forall_ndbool</a></span> <span class="id">d</span> :  (<span class="kwd">forall</span> <span class="id">b</span>, <span class="id">d</span> &lt;&gt; <span class="id"><a href="Qcert.Data.Model.Data.html#dbool">dbool</a></span> <span class="id">b</span>) -&gt; (<span class="kwd">forall</span> <span class="id">b</span>, <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span> &lt;&gt; <span class="id"><a href="Qcert.Data.Model.Data.html#dbool">dbool</a></span> <span class="id">b</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1550')">Proof.</div>
-<div class="proofscript" id="proof1550">
+<div class="toggleproof" onclick="toggleDisplay('proof1579')">Proof.</div>
+<div class="proofscript" id="proof1579">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="normalize_data_forall_ndnat">normalize_data_forall_ndnat</a></span> <span class="id">d</span> :  (<span class="kwd">forall</span> <span class="id">n</span>, <span class="id">d</span> &lt;&gt; <span class="id"><a href="Qcert.Data.Model.Data.html#dnat">dnat</a></span> <span class="id">n</span>) -&gt; (<span class="kwd">forall</span> <span class="id">n</span>, <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span> &lt;&gt; <span class="id"><a href="Qcert.Data.Model.Data.html#dnat">dnat</a></span> <span class="id">n</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1551')">Proof.</div>
-<div class="proofscript" id="proof1551">
+<div class="toggleproof" onclick="toggleDisplay('proof1580')">Proof.</div>
+<div class="proofscript" id="proof1580">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="normalize_data_forall_ndstring">normalize_data_forall_ndstring</a></span> <span class="id">d</span> :  (<span class="kwd">forall</span> <span class="id">s</span>, <span class="id">d</span> &lt;&gt; <span class="id"><a href="Qcert.Data.Model.Data.html#dstring">dstring</a></span> <span class="id">s</span>) -&gt; (<span class="kwd">forall</span> <span class="id">s</span>, <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span> &lt;&gt; <span class="id"><a href="Qcert.Data.Model.Data.html#dstring">dstring</a></span> <span class="id">s</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1552')">Proof.</div>
-<div class="proofscript" id="proof1552">
+<div class="toggleproof" onclick="toggleDisplay('proof1581')">Proof.</div>
+<div class="proofscript" id="proof1581">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="normalize_data_forall_ndcoll">normalize_data_forall_ndcoll</a></span> <span class="id">d</span> :  (<span class="kwd">forall</span> <span class="id">c</span>, <span class="id">d</span> &lt;&gt; <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id">c</span>) -&gt; (<span class="kwd">forall</span> <span class="id">c</span>, <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span> &lt;&gt; <span class="id"><a href="Qcert.Data.Model.Data.html#dcoll">dcoll</a></span> <span class="id">c</span>).<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1553')">Proof.</div>
-<div class="proofscript" id="proof1553">
+<div class="toggleproof" onclick="toggleDisplay('proof1582')">Proof.</div>
+<div class="proofscript" id="proof1582">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span> <span class="tactic">try</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">apply</span> (<span class="id">H</span> <span class="id">_</span> (<span class="id"><a href="http://coq.inria.fr/library/Coq.Init.Logic.html#eq_refl">eq_refl</a></span> <span class="id">_</span>)).<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
 &nbsp;&nbsp;<span class="kwd">Lemma</span> <span class="id"><a name="normalize_data_dbool">normalize_data_dbool</a></span> <span class="id">d</span> <span class="id">b</span> : <span class="id"><a href="Qcert.Data.Model.DataNorm.html#normalize_data">normalize_data</a></span> <span class="id">d</span> = <span class="id"><a href="Qcert.Data.Model.Data.html#dbool">dbool</a></span> <span class="id">b</span> &lt;-&gt; <span class="id">d</span> = <span class="id"><a href="Qcert.Data.Model.Data.html#dbool">dbool</a></span> <span class="id">b</span>.<br/>
-<div class="toggleproof" onclick="toggleDisplay('proof1554')">Proof.</div>
-<div class="proofscript" id="proof1554">
+<div class="toggleproof" onclick="toggleDisplay('proof1583')">Proof.</div>
+<div class="proofscript" id="proof1583">
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tactic">destruct</span> <span class="id">d</span>; <span class="tactic">simpl</span>; <span class="tactic">intuition</span> <span class="tactic">discriminate</span>.<br/>
 &nbsp;&nbsp;Qed.</div>
 <br/>
