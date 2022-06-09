@@ -1,4 +1,4 @@
-/// <reference path="./node_modules/qcert/libs/qcertJS.d.ts" />
+/// <reference path="./qcertJS.d.ts" />
 /// <reference path="./lib/fabric.d.ts" />
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -96,7 +96,7 @@ function compileButton() {
     }
     theTextArea.value = "[ Compiling query ]";
     var middlePath = path.slice(1, -1);
-    var input = {
+    var config = {
         source: path[0],
         target: path[path.length - 1],
         path: middlePath,
@@ -105,11 +105,15 @@ function compileButton() {
         sourcesexp: false,
         ascii: false,
         javaimports: undefined,
-        query: srcInput,
         schema: schemaInput,
         eval: false,
         input: undefined,
         optims: JSON.stringify(optimconf) /* XXX Add optimizations here XXX */
+    };
+    console.log(JSON.stringify(config));
+    var input = {
+        gconf: Qcert.buildConfig(config),
+        query: srcInput,
     };
     var resultPack = Qcert.compile(input);
     theTextArea.value = resultPack.result;
@@ -184,7 +188,8 @@ function setupQcertEval(path, srcInput, schemaInput, dataInput, optimconf) {
         return null;
     }
     var middlePath = path.slice(1, -1);
-    return { source: path[0],
+    var config = {
+        source: path[0],
         target: path[path.length - 1],
         path: middlePath,
         exactpath: true,
@@ -192,11 +197,14 @@ function setupQcertEval(path, srcInput, schemaInput, dataInput, optimconf) {
         sourcesexp: false,
         ascii: false,
         javaimports: undefined,
-        query: srcInput,
         schema: schemaInput,
         eval: true,
         input: dataInput,
         optims: JSON.stringify(optimconf) /* XXX Add optimizations here XXX */
+    };
+    return {
+        gconf: Qcert.buildConfig(config),
+        query: srcInput,
     };
 }
 // Executes when defaults button is pushed on the optim config tab
@@ -2053,7 +2061,7 @@ var OptimPhaseTab = /** @class */ (function (_super) {
     };
     OptimPhaseTab.prototype.getPhase = function () {
         var optims = this.sortable.toArray();
-        console.log(optims);
+        console.log(JSON.stringify(optims));
         if (optims.length == 1 && optims[0] == optPlaceholder)
             optims = [];
         var ret = {
@@ -2204,7 +2212,7 @@ function OptimizationsTabMakeFromConfig(canvas, defaults) {
     var yoffset = 60;
     var optims = Qcert.optimList().optims;
     console.log("Setting optimization config");
-    console.log(optims);
+    console.log(JSON.stringify(optims));
     var opts = { rectOptions: { fill: '#548235' }, tabOrigin: { top: yoffset } };
     var optimTabs = [];
     for (var i = 0; i < optims.length; i++) {
@@ -2218,7 +2226,16 @@ function OptimizationsTabMakeFromConfig(canvas, defaults) {
 }
 function getOptimConfig() {
     if (globalOptimTabs) {
-        return globalOptimTabs.map(function (x) { return x.getOptimConfig(); });
+        var optimConfig = globalOptimTabs.map(function (x) { return x.getOptimConfig(); });
+        // XXX Hack - patch nnrs_imp optimizations for consistency with Qcert API
+        var nnrsOptims = optimConfig.filter(function (x) { return x.language === "nnrs_imp"; })[0];
+        if (nnrsOptims) {
+            nnrsOptims.phases.forEach(function (phase) {
+                phase.optims.expr = [];
+                phase.optims.stmt = [];
+            });
+        }
+        return optimConfig;
     }
     else {
         return [];

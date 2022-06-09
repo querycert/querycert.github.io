@@ -1,6 +1,4 @@
 /*
- * Copyright 2015-2016 IBM Corporation
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,428 +12,571 @@
  * limitations under the License.
  */
 
-/* "standard library" (implementation of unary and binary operators) */
-function unwrap(doc) {
-    // Unwrap for Enhanced TxStore format
-    if ("state" in doc && !("$class" in doc)) {
-	if (doc.state == "COMMITTED")
-	    return JSON.parse(doc.currentValue);
-	else
-	    return null; // Not sure if we will need something more fancy for un-committed data
-    }
-    // Leave as-is
-    else
-	return doc;
+/* JavaScript runtime for core operators */
+
+/* Utilities */
+function boxColl(v, len) {
+  len = (typeof len !== 'undefined') ?  len : v.length;
+  return { '$coll': v, '$length': len };
 }
-function concat(r1, r2) {
-  var result = { };
-  for (var key1 in r1)
-    result[key1] = r1[key1];
-  for (var key2 in r2)
-    if (!(key2 in r1))
-      result[key2] = r2[key2];
-  return result;
+function unboxColl(v) {
+  return v['$coll'];
 }
-function contains(v, b) {
-  for (var i=0; i<b.length; i++)
-    if (equal(v, toLeft(b[i])))
-      return true;
+function isBoxColl(obj) {
+  return (Object.prototype.hasOwnProperty.call(obj,'$coll') &&
+          Object.prototype.hasOwnProperty.call(obj,'$length'));
+}
+function collLength(v) {
+  return v['$length'];
+}
+function boxLeft(v) {
+  return { '$left' : v };
+}
+function unboxLeft(v) {
+  return v['$left'];
+}
+function isLeft(v) {
+  return Object.prototype.hasOwnProperty.call(v,'$left');
+}
+function boxRight(v) {
+  return { '$right' : v };
+}
+function unboxRight(v) {
+  return v['$right'];
+}
+function isRight(v) {
+  return Object.prototype.hasOwnProperty.call(v,'$right');
+}
+function sub_brand(b1,b2) {
+  let bsub = null;
+  let bsup = null;
+  const inheritanceUnbox = isBoxColl(inheritance) ? unboxColl(inheritance) : inheritance;
+  const length = inheritanceUnbox.length;
+  for (let i = 0; i < length; i=i+1) {
+    bsub = inheritanceUnbox[i].sub;
+    bsup = inheritanceUnbox[i].sup;
+    if ((b1 === bsub) && (b2 === bsup)) { return true; }
+  }
   return false;
 }
-function distinct(b) {
-    var result = [ ];
-    for (var i=0; i<b.length; i++) {
-        var v = b[i];
-        var dup = false;
-        for (var j=0; j<result.length;j++) {
-          if (equal(v,result[j])) { dup = true; break; }
-        }
-        if (!(dup)) { result.push(v); } else { dup = false; }
-    }
-    return result;
+// from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions?redirectlocale=en-US&redirectslug=JavaScript%2FGuide%2FRegular_Expressions
+function escapeRegExp(string){
+  return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1');
 }
-function fastdistinct(b) {
-    b1 = b.slice(); /* Sorting in place leads to inconsistencies, notably as it re-orders the input WM in the middle of processing */
-    b1.sort(compare);
-    var result = [ ];
-    var v1 = null;
-    var v2 = null;
-    for (var i=0; i<b1.length; i++) {
-        var v1 = b1[i];
-	if (i == (b1.length -1)) {
-	    result.push(v1);
-	}
-	else {
-	    v2 = b1[i+1];
-	    if (equal(v1,v2)) {
-	    } else {
-		result.push(v1);
-	    }
-	    v1 = v2;
-	}
-    }
-    return result;
+
+/* Generic */
+function equal(v1, v2) {
+  return compare(v1, v2) === 0;
 }
 function compare(v1, v2) {
-    var t1 = typeof v1, t2 = typeof v2;
-    if (t1 != t2)
-        return t1 < t2 ? -1 : +1;
-    var a1 = {}.toString.apply(v1), a2 = {}.toString.apply(v2);
-    if (a1 != a2)
-        return a1 < a2 ? -1 : +1;
-    if (a1 == "[object Array]") {
-	v1 = v1.slice(); /* Sorting in place leads to inconsistencies, notably as it re-orders the input WM in the middle of processing */
-	v2 = v2.slice(); /* So we do the sort/compare on a clone of the original array */
-        v1.sort(compare);
-        v2.sort(compare);
+  const t1 = typeof v1;
+  const t2 = typeof v2;
+  if (t1 === 'object' && v1 !== null) {
+    if (isBoxColl(v1)) {
+	    v1 = unboxColl(v1).slice(0, collLength(v1));
+	  }
+  };
+  if (t2 === 'object' && v2 !== null) {
+    if (isBoxColl(v2)) {
+	    v2 = unboxColl(v2).slice(0, collLength(v2));
+	  }
+  }
+  if (t1 != t2) {
+    return t1 < t2 ? -1 : +1;
+  }
+  const a1 = {}.toString.apply(v1);
+  const a2 = {}.toString.apply(v2);
+  if (a1 != a2) {
+    return a1 < a2 ? -1 : +1;
+  }
+  if (a1 === '[object Array]') {
+    v1 = v1.slice(); /* Sorting in place leads to inconsistencies, notably as it re-orders the input WM in the middle of processing */
+    v2 = v2.slice(); /* So we do the sort/compare on a clone of the original array */
+    v1.sort(compare);
+    v2.sort(compare);
+  }
+  if (t1 === 'object') {
+    const fields1 = [];
+    const fields2 = [];
+    for (const f1 in v1) { fields1.push(f1); }
+    for (const f2 in v2) { fields2.push(f2); }
+    fields1.sort(compare);
+    fields2.sort(compare);
+    for (let i = 0; i < fields1.length; i=i+1) {
+      if (!(Object.prototype.hasOwnProperty.call(v2,fields1[i]))) {
+        return -1;
+      }
+      const fc = compare(v1[fields1[i]], v2[fields1[i]]);
+      if (fc != 0) {
+        return fc;
+      }
     }
-    if (t1 == "object") {
-	var fields1 = [];
-	var fields2 = [];
-	for (var f1 in v1) { fields1.push(f1); }
-	for (var f2 in v2) { fields2.push(f2); }
-	fields1 = fields1.sort(compare);
-	fields2 = fields2.sort(compare);
-        for (var i = 0; i < fields1.length; i++) {
-            if (!(fields1[i] in v2))
-                return -1;
-            var fc = compare(v1[fields1[i]], v2[fields1[i]]);
-            if (fc != 0)
-                return fc;
-        }
-	for (var i = 0; i < fields2.length; i++) {
-            if (!(fields2[i] in v1))
-                return +1;
-	}
-        return 0;
+    for (let i = 0; i < fields2.length; i=i+1) {
+      if (!(Object.prototype.hasOwnProperty.call(v1,fields2[i]))) {
+        return +1;
+      }
     }
-    if (v1 != v2)
-        return v1 < v2 ? -1 : +1;
     return 0;
+  }
+  if (v1 != v2) {
+    return v1 < v2 ? -1 : +1;
+  }
+  return 0;
 }
-function equal(v1, v2) {
-    return compare(v1, v2) == 0;
-}
-function compareOfMultipleCriterias(scl) {
-    return function(a,b) {
-	var current_compare = 0;
-	for (var i=0; i<scl.length; i++) {
-	    var sc = scl[i];
-	    if ("asc" in sc) { current_compare = compare(deref(a,sc['asc']), deref(b,sc['asc'])); }
-	    else if ("desc" in sc) { current_compare = -(compare(deref(a,sc['asc']), deref(b,sc['asc']))); }
 
-	    if (current_compare == -1) { return -1; }
-	    else if(current_compare == 1) { return 1; }
-	}
-	return current_compare;
+/* Record */
+function recConcat(r1, r2) {
+  const result = { };
+  for (const key2 in r2) {
+    result[key2] = r2[key2];
+  }
+  for (const key1 in r1) {
+    if (!(Object.prototype.hasOwnProperty.call(r2,key1))) {
+      result[key1] = r1[key1];
     }
-    
-}
-function sort(b,scl) {
-    var result = [ ];
-    if (scl.length == 0) { return b; } // Check for no sorting criteria
-    var compareFun = compareOfMultipleCriterias(scl);
-    result = b.slice(); /* Sorting in place leads to inconsistencies, notably as it re-orders the input WM in the middle of processing */
-    result.sort(compareFun);
-    return result;
-}
-function flatten(aOuter) {
-  var result = [ ];
-  for (var iOuter=0, nOuter=aOuter.length; iOuter<nOuter; iOuter++) {
-    var aInner = aOuter[iOuter];
-    for (var iInner=0, nInner=aInner.length; iInner<nInner; iInner++)
-      result.push(aInner[iInner]);
   }
   return result;
 }
-function mergeConcat(r1, r2) {
-  var result = { };
-  for (var key1 in r1)
+function recMerge(r1, r2) {
+  const result = { };
+  for (const key1 in r1) {
     result[key1] = r1[key1];
-  for (var key2 in r2) {
-    if (key2 in r1) {
-        if (!equal(r1[key2], r2[key2])) {
-            return [ ];
-        }
+  }
+  for (const key2 in r2) {
+    if (Object.prototype.hasOwnProperty.call(r1,key2)) {
+      if (!equal(r1[key2], r2[key2])) {
+        return [ ];
+      }
     } else {
       result[key2] = r2[key2];
     }
   }
   return [ result ];
 }
-function project(r1, p2) {
-  var result = { };
-  for (var key1 in r1) {
-      if (!(p2.indexOf(key1) == -1))
-          result[key1] = r1[key1];
-  }
-  return result;
-}
-function remove(r, f) {
-  var result = { };
-  for (var key in r)
-    if (key != f)
+function recRemove(r, f) {
+  const result = { };
+  for (let key in r) {
+    if (key != f) {
       result[key] = r[key];
+    }
+  }
   return result;
 }
-function sum(b) {
-  var result = 0;
-  for (var i=0; i<b.length; i++)
-    result += b[i];
+function recProject(r1, p2) {
+  const result = { };
+  for (let key1 in r1) {
+    if (!(p2.indexOf(key1) === -1)) {
+      result[key1] = r1[key1];
+    }
+  }
   return result;
+}
+function recDot(receiver, member) {
+  if (typeof receiver === 'object' && Object.prototype.hasOwnProperty.call(receiver,member)) {
+    return receiver[member];
+  }
+  throw new Error('TypeError: recDot called on non-record');
 }
 
-function arithMean(b) {
-  var len = b.length;
-  if(len == 0) {
-     return 0;
-  } else {
-      return sum(b)/len;
+/* Array */
+function array(...args) {
+  return boxColl(Array.of(...args));
+}
+function arrayLength(v) {
+  return BigInt(v.$length);
+}
+function arrayPush(v1,v2) {
+  const content1 = unboxColl(v1);
+  if (content1.length !== collLength(v1)) {
+	  content1 = content1.slice(0, collLength(length));
   }
+  content1.push(v2);
+  return boxColl(content1);
+}
+function arrayAccess(v1,v2) {
+  const content1 = unboxColl(v1);
+  return content1[v2];
 }
 
-function toString(v) {
-  return toStringQ(v, "");
-}
-function toStringQ(v, quote) {
-  if (v === null)
-    return "null";
-  var t = typeof v;
-  if (t == "string")
-    return quote + v + quote;
-  if (t == "number" || t == "boolean")
-    return "" + v;
-  if ({}.toString.apply(v) == "[object Array]") {
-    v = v.slice();
-    v.sort();
-    var result = "[";
-    for (var i=0, n=v.length; i<n; i++) {
-      if (i > 0)
-        result += ", ";
-      result += toStringQ(v[i], quote);
+/* Sum */
+function either(v) {
+  if (typeof v === 'object') {
+    if (isLeft(v)) {
+      return true;
+    } else if (isRight(v)) {
+      return false;
+    } else {
+      throw new Error('TypeError: either called on non-sum');
     }
-    return result + "]";
   }
-  var fs = Object.keys(v);
-  var result2 = "{";
-  var first = true;
-  for (var key in v) {
-    if (first) first = false; else result2 += ", ";
-    result2 += toStringQ(key, quote) + ": " + toStringQ(v[key], quote);
+  throw new Error('TypeError: either called on non-sum');
+}
+function getLeft(v) {
+  if (typeof v === 'object' && isLeft(v)) {
+    return unboxLeft(v);
   }
-  return result2 + "}";
+  throw new Error('TypeError: getLeft called on non-sum');
 }
-function bunion(b1, b2) {
-  var result = [ ];
-  for (var i1=0; i1<b1.length; i1++)
-    result.push(b1[i1]);
-  for (var i2=0; i2<b2.length; i2++)
-    result.push(b2[i2]);
-  return result;
+function getRight(v) {
+  if (typeof v === 'object' && isRight(v)) {
+    return unboxRight(v);
+  }
+  throw new Error('TypeError: getRight called on non-sum');
 }
-function bminus(b1, b2) {
-    var result = [ ];
-    var v1 = b1.slice();
-    var v2 = b2.slice();
-    v1.sort(compare);
-    v2.sort(compare);
-    var i2=0;
-    var length2=v2.length;
-    var comp=0;
-    for (var i1=0; i1<v1.length; i1++) {
-	while ((i2 < length2) && (compare(v1[i1],v2[i2]) == 1)) i2++;
-	if (i2 < length2) {
-	    if(compare(v1[i1],v2[i2]) == (-1)) { result.push(v1[i1]); } else { i2++; }
-	} else {
-	    result.push(v1[i1]);
-	}
-    }
-    return result;
-}
-function bmin(b1, b2) {
-    var result = [ ];
-    var v1 = b1.slice();
-    var v2 = b2.slice();
-    v1.sort(compare);
-    v2.sort(compare);
-    var i2=0;
-    var length2=v2.length;
-    var comp=0;
-    for (var i1=0; i1<v1.length; i1++) {
-	while ((i2 < length2) && (compare(v1[i1],v2[i2]) == 1)) i2++;
-	if (i2 < length2) {
-	    if(compare(v1[i1],v2[i2]) == 0) result.push(v1[i1]);
-	}
-    }
-    return result;
-}
-function bmax(b1, b2) {
-    var result = [ ];
-    var v1 = b1.slice();
-    var v2 = b2.slice();
-    v1.sort(compare);
-    v2.sort(compare);
-    var i2=0;
-    var length2=v2.length;
-    var comp=0;
-    for (var i1=0; i1<v1.length; i1++) {
-	while ((i2 < length2) && (compare(v1[i1],v2[i2]) == 1)) { result.push(v2[i2]); i2++; }
-	if (i2 < length2) {
-	    if(compare(v1[i1],v2[i2]) == 0) i2++;
-	}
-	result.push(v1[i1]);
-    }
-    while (i2 < length2) { result.push(v2[i2]); i2++; }
-    return result;
-}
-function sub_brand(b1,b2) {
-    var bsub=null;
-    var bsup=null;
-    for (var i=0; i<inheritance.length; i++) {
-	bsub = inheritance[i].sub;
-	bsup = inheritance[i].sup;
-	if ((b1 == bsub) && (b2 == bsup)) return true;
-    }
-    return false;
-}
-function left(v) {
-    return { left : v };
-}
-function right(v) {
-    return { right : v };
-}
-function mustBeArray(obj) {
-	if (Array.isArray(obj))
-		return;
-	var e = new Error("Expected an array but got: " + JSON.stringify(obj));
-	java.lang.System.err.println(e.stack);
-	throw e;
+
+/* Brand */
+function unbrand(v) {
+  if (typeof v === 'object' && Object.prototype.hasOwnProperty.call(v,'$class') && Object.prototype.hasOwnProperty.call(v,'$data')) {
+    return v.$data;
+  }
+  throw new Error('TypeError: unbrand called on non-object');
 }
 function cast(brands,v) {
-	mustBeArray(brands);
-	if ("$class" in v)
-		return enhanced_cast(brands,v);
-	var type = v.type;
-	mustBeArray(type);
-    if (brands.length == 1 && brands[0] == "Any") { /* cast to top of hierarchy is built-in */
-    	return left(v);
+  const brandsUnbox = isBoxColl(brands) ? unboxColl(brands) : brands;
+  const type = isBoxColl(v.$class) ? unboxColl(v.$class) : v.$class;
+  if (brandsUnbox.length === 1 && brandsUnbox[0] === 'Any') { /* cast to top of inheritance is built-in */
+    return boxLeft(v);
+  }
+  brands:
+  for (const i in brandsUnbox) {
+    const b = brandsUnbox[i];
+    for (const j in type) {
+      const t = type[j];
+      if (equal(t,b) || sub_brand(t,b)) {
+        continue brands;
+      }
     }
-    brands:
-    for (var i in brands) {
-		var b = brands[i];
-    	for (var j in type) {
-    		var t = type[j];
-    		if (equal(t,b) || sub_brand(t,b))
-    			continue brands;
-    	}
-    	/* the brand b does not appear in the type, so the cast fails */
-    	return right(null);
-    }
-    /* All brands appear in the type, so the cast succeeds */
-	return left(v);
-}
-function enhanced_cast(brands,v) {
-	var type = v.$class;
-	if (brands.length != 1)
-		throw "Can't handle multiple brands yet";
-	var brand = brands[0];
-	// java.lang.System.out.printf("Cast from %s to %s", type, brand);
-    if (brand == type || brand == "Any" || sub_brand(type, brand)) {
-    	// java.lang.System.out.println(" ... succeeded");
-    	return left(v);
-    }
-	// java.lang.System.out.println(" ... failed");
-    return right(null);
-}
-function singleton(v) {
-    if (v.length == 1) {
-	return left(v[0]);
-    } else {
-	return right(null); /* Not a singleton */
-    }
-}
-function unbrand(v) {
-//	if (verboseLibrary) java.lang.System.out.println("Unbranding " + JSON.stringify(v));
-	if (typeof v === "object")
-		return ("data" in v) ? v.data : v;
-	throw "TypeError: unbrand called on non-object";
-}
-function brand(b,v) {
-    return { type : b, data : v };
-}
-function either(v) {
-//	if (verboseLibrary) java.lang.System.out.println("Either called on " + JSON.stringify(v));
-	if (v == null)
-		return false;
-	if (typeof v === "object")
-		return !("right" in v);
-	return true;
-}
-function toLeft(v) {
-	if (typeof v === "object") {
-		if ("left" in v)
-			return v.left;
-		if ("$value" in v)
-			return v.$value;
-		if (looksLikeRelationship(v))
-			return v["key"];
-	}
-	return v;
-}
-function toRight(v) {
-	if (v === null)
-		return null;
-	if (typeof v === "object" && "right" in v)
-		return v.right;
-	// java.lang.System.out.println("Possible problem: right applied to " + (typeof v));
-	return undefined;
-}
-function deref(receiver, member) {
-	// java.lang.System.out.printf("deref of %s[%s]", receiver, member);
-	if (typeof receiver === "object" && member in receiver) {
-		var ans = receiver[member];
-		if (ans === null) {
-			// java.lang.System.out.println(" ... produced null");
-			return null;
-		}
-		if (typeof ans === "object" && looksLikeRelationship(ans))
-			ans = left(ans["key"]);
-		if (("$class" in receiver) && typeof ans === "object" && !("left" in ans) && !Array.isArray(ans))
-			ans = left(ans);
-		// java.lang.System.out.println(" ... produced " + JSON.stringify(ans));
-		return ans;
-	}
-	// java.lang.System.out.println(" ... is undefined");
-	return undefined;
-}
-function looksLikeRelationship(v) {
-	// As the name suggests, this is only heuristic.  We call it a relationship if it has two or three members.
-	// A "key" and "type" member must be among those.   A third member, if present, must be $class and must denote
-	// the relationship class.
-	var hasKey = false;
-	var hasType = false;
-	for (var member in v)
-		if (member == "key")
-			hasKey = true;
-		else if (member == "type")
-			hasType = true;
-		else if (member == "$class" && v["$class"] == "com.ibm.ia.model.Relationship")
-			continue;
-		else
-			return false;
-	return hasKey && hasType;
-}
-function mkWorld(v) {
-  return { "WORLD" : v };
+    /* the brand b does not appear in the type, so the cast fails */
+    return boxRight(null);
+  }
+  /* All brands appear in the type, so the cast succeeds */
+  return boxLeft(v);
 }
 
-// from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions?redirectlocale=en-US&redirectslug=JavaScript%2FGuide%2FRegular_Expressions
-function escapeRegExp(string){
-  return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+/* Collection */
+function iterColl(b, f) {
+  const content = unboxColl(b);
+  for (let i = 0; i < collLength(b); i=i+1) {
+	  f(content[i]);
+  }
+}
+function distinct(b) {
+  const result = [ ];
+  const content = unboxColl(b);
+  for (let i = 0; i < collLength(b); i=i+1) {
+    const v = content[i];
+    let dup = false;
+    for (let j = i+1; j < collLength(b); j=j+1) {
+      if (equal(v,content[j])) { dup = true; break; }
+    }
+    if (!(dup)) { result.push(v); } else { dup = false; }
+  }
+  return boxColl(result);
+}
+function singleton(v) {
+  const content = unboxColl(v);
+  if (collLength(v) === 1) {
+    return boxLeft(content[0]);
+  } else {
+    return boxRight(null); /* Not a singleton */
+  }
+}
+function flatten(aOuter) {
+  const result = [ ];
+  const aOuterContent = unboxColl(aOuter);
+  const nOuter = collLength(aOuter);
+  for (let iOuter = 0; iOuter < nOuter; iOuter = iOuter+1) {
+    const aInner = aOuterContent[iOuter];
+    const aInnerContent = unboxColl(aInner);
+    const nInner = collLength(aInner);
+    for (let iInner = 0; iInner < nInner; iInner = iInner+1) {
+      result.push(aInnerContent[iInner]);
+    }
+  }
+  return boxColl(result);
+}
+function union(b1, b2) {
+  let content1 = unboxColl(b1);
+  let content2 = unboxColl(b2);
+  if (content1.length !== collLength(b1)) {
+	  content1 = content1.slice(0, collLength(b1));
+  }
+  const length2 = collLength(b2);
+  for (let i = 0; i < length2; i=i+1) {
+    content1.push(content2[i]);
+  }
+  return boxColl(content1);
+}
+function minus(b1, b2) {
+  const result = [ ];
+  const v1 = unboxColl(b1).slice(0, collLength(b1));
+  const v2 = unboxColl(b2).slice(0, collLength(b2));
+  v1.sort(compare);
+  v2.sort(compare);
+  let i2 = 0;
+  const length2 = v2.length;
+  for (let i1 = 0; i1 < v1.length; i1=i1+1) {
+    while ((i2 < length2) && (compare(v1[i1],v2[i2]) === 1)) {
+      i2 = i2+1;
+    }
+    if (i2 < length2) {
+      if (compare(v1[i1],v2[i2]) === (-1)) { result.push(v1[i1]); } else { i2=i2+1; }
+    } else {
+      result.push(v1[i1]);
+    }
+  }
+  return boxColl(result);
+}
+function min(b1, b2) {
+  const result = [ ];
+  const v1 = unboxColl(b1).slice(0, collLength(b1));
+  const v2 = unboxColl(b2).slice(0, collLength(b2));
+  v1.sort(compare);
+  v2.sort(compare);
+  let i2 = 0;
+  const length2=v2.length;
+  for (let i1 = 0; i1 < v1.length; i1=i1+1) {
+    while ((i2 < length2) && (compare(v1[i1],v2[i2]) === 1)) {
+      i2=i2+1;
+    }
+    if (i2 < length2) {
+      if (compare(v1[i1],v2[i2]) === 0) result.push(v1[i1]);
+    }
+  }
+  return boxColl(result);
+}
+function max(b1, b2) {
+  const result = [ ];
+  const v1 = unboxColl(b1).slice(0, collLength(b1));
+  const v2 = unboxColl(b2).slice(0, collLength(b2));
+  v1.sort(compare);
+  v2.sort(compare);
+  let i2 = 0;
+  const length2 = v2.length;
+  for (let i1 = 0; i1 < v1.length; i1=i1+1) {
+    while ((i2 < length2) && (compare(v1[i1],v2[i2]) === 1)) {
+      result.push(v2[i2]); i2=i2+1;
+    }
+    if (i2 < length2) {
+      if (compare(v1[i1],v2[i2]) === 0) i2=i2+1;
+    }
+    result.push(v1[i1]);
+  }
+  while (i2 < length2) { result.push(v2[i2]); i2 = i2+1; }
+  return boxColl(result);
+}
+function nth(b1, n) {
+  const index = n;
+  const content = unboxColl(b1);
+  if (0 <= index && index < collLength(b1)) {
+    return boxLeft(content[index]);
+  } else {
+    return boxRight(null);
+  }
+}
+function count(v) {
+  return arrayLength(v);
+}
+function contains(v, b) {
+  const content = unboxColl(b);
+  for (let i = 0; i < collLength(b); i=i+1) {
+    if (equal(v, content[i])) {
+      return true;
+    }
+  }
+  return false;
+}
+function compareOfMultipleCriterias(scl) {
+  const criterias = unboxColl(scl);
+  return function(a,b) {
+    let current_compare = 0;
+    for (let i = 0; i < criterias.length; i=i+1) {
+      const sc = criterias[i];
+      if (Object.prototype.hasOwnProperty.call(sc,'asc')) {
+          current_compare = compare(recDot(a,sc['asc']), recDot(b,sc['asc']));
+      }
+      else if (Object.prototype.hasOwnProperty.call(sc,'desc')) {
+        current_compare = -(compare(recDot(a,sc['asc']), recDot(b,sc['asc'])));
+      }
+
+      if (current_compare === -1) { return -1; }
+      else if (current_compare === 1) { return 1; }
+    }
+    return current_compare;
+  }
+}
+function sort(scl,b) {
+  if (scl.length === 0) { return b; } // Check for no sorting criteria
+  const compareFun = compareOfMultipleCriterias(scl);
+  /* Sorting in place leads to inconsistencies, notably as it re-orders the input WM in the middle of processing */
+  const result = unboxColl(b).slice(0, collLength(b));
+  result.sort(compareFun);
+  return boxColl(result);
+}
+function groupByOfKey(l,k,keysf) {
+  const result = [ ];
+  l.forEach((x) => {
+    if (equal(keysf(x),k)) {
+      result.push(x);
+    }
+  });
+  return boxColl(result);
+}
+function groupByNested(l,keysf) {
+  const keys = unboxColl(distinct(boxColl(l.map(keysf))));
+  const result = [ ];
+  keys.forEach((k) => {
+    result.push({ 'keys': k, 'group' : groupByOfKey(l,k,keysf) });
+  });
+  return result;
+}
+function groupBy(g,kl,l) {
+  l = unboxColl(l).slice(0, collLength(l));
+  kl = unboxColl(kl).slice(0, collLength(kl));
+  // g is partition name
+  // kl is key list
+  // l is input collection of records
+  const keysf = function (j) {
+    return recProject(j,kl);
+  };
+  const grouped = groupByNested(l,keysf);
+  const result = [ ];
+  grouped.forEach((x) => {
+    const gRec = {};
+    gRec[g] = x.group;
+    result.push(recConcat(x.keys, gRec));
+  });
+  return boxColl(result);
+}
+
+/* String */
+function length(v) {
+  return BigInt(v.length);
+}
+function substring(v, start, len) {
+  return v.substring(Number(start),Number(len));
+}
+function substringEnd(v, start) {
+  return v.substring(Number(start));
+}
+function stringJoin(sep, v) {
+  const content = unboxColl(v).slice(0, collLength(v));
+  return content.join(sep);
+}
+function like(pat, s) {
+  const reg1 = escapeRegExp(pat);
+  const reg2 = reg1.replace(/_/g, '.').replace(/%/g, '.*');
+  const reg3 = new RegExp(reg2);
+  return reg3.test(s);
+}
+
+/* Integer */
+function natLt(v1, v2) {
+  return v1 < v2;
+}
+function natLe(v1, v2) {
+  return v1 <= v2;
+}
+function natPlus(v1, v2) {
+  return v1 + v2;
+}
+function natMinus(v1, v2) {
+  return v1 - v2;
+}
+function natMult(v1, v2) {
+  return v1 * v2;
+}
+function natDiv(v1, v2) {
+  return v1 / v2;
+}
+function natRem(v1, v2) {
+  return v1 % v2;
+}
+function natAbs(v) {
+  return v >= 0n ? v : -v;
+}
+function natLog2(v) {
+  // XXX We likely could do something better
+  return BigInt(Math.floor(Math.log2(Number(v)))); // Default Z.log2 is log_inf, biggest integer lower than log2
+}
+function natSqrt(v) {
+  return BigInt(Math.floor(Math.sqrt(Number(v)))); // See Z.sqrt biggest integer lower than sqrt
+}
+function natMinPair(v1, v2) {
+  return v1 < v2 ? v1 : v2;
+}
+function natMaxPair(v1, v2) {
+  return v2 < v1 ? v1 : v2;
+}
+function natSum(b) {
+  const content = unboxColl(b);
+  let result = 0n;
+  for (let i = 0; i < collLength(b); i=i+1) {
+    result += content[i];
+  }
+  return result;
+}
+function natMin(b) {
+  const content = unboxColl(b);
+  let result = content[0] || 0;
+  for (let i = 0; i < collLength(b); i=i+1) {
+    if (content[i] < result) {
+      result = content[i];
+    }
+  }
+  return result;
+}
+function natMax(b) {
+  const content = unboxColl(b);
+  let result = content[0] || 0;
+  for (let i = 0; i < collLength(b); i=i+1) {
+    if (content[i] > result) {
+      result = content[i];
+    }
+  }
+  return result;
+}
+function natArithMean(b) {
+  const len = collLength(b);
+  if (len === 0) {
+    return 0n;
+  } else {
+    return natSum(b)/BigInt(len);
+  }
+}
+function floatOfNat(v) {
+  return Number(v);
+}
+
+/* Float */
+function floatSum(b) {
+  const content = unboxColl(b);
+  let result = 0;
+  for (let i = 0; i < collLength(b); i=i+1) {
+    result += content[i];
+  }
+  return result;
+}
+function floatArithMean(b) {
+  const len = collLength(b);
+  if (len === 0) {
+    return 0;
+  } else {
+    return floatSum(b)/len;
+  }
+}
+function floatMin(b) {
+  const content = unboxColl(b).slice(0, collLength(b));
+  return Math.min.apply(Math,content);
+}
+function floatMax(b) {
+  const content = unboxColl(b).slice(0, collLength(b));
+  return Math.max.apply(Math,content);
+}
+function natOfFloat(v) {
+  return boxNat(Math.trunc(v));
 }
 /*
- * Copyright 2016 Joshua Auerbach
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -449,167 +590,289 @@ function escapeRegExp(string){
  * limitations under the License.
  */
 
-/* Addendum to "standard library" with limited support for SQL-style dates and durations (aka "intervals") */
+/* JavaScript runtime for ToString operators */
 
-DAY = "DAY";
-MONTH = "MONTH";
-YEAR = "YEAR";
+function toString(v) {
+  return toStringQ(v, '');
+}
+function toText(v) {
+  return toStringQ(v, '');
+}
+function toStringQ(v, quote) {
+  if (v === null) {
+    return 'null';
+  }
+  if (typeof v === 'object' && v.$coll && v.$length) {
+    v = unboxColl(v);
+  }
+  const t = typeof v;
+  if (t === 'string') {
+    return quote + v + quote;
+  }
+  if (t === 'boolean') {
+    return '' + v;
+  }
+  if (t === 'number') {
+    if (Math.floor(v) === v) { return (new Number(v)).toFixed(1); } // Make sure there is always decimal point
+    else { return '' + v; }
+  }
+  if (t === 'bigint') {
+    return '' + v;
+  }
+  if ({}.toString.apply(v) === '[object Array]') {
+    v = v.slice();
+    v.sort();
+    let result = '[';
+    const n = v.length;
+    for (let i = 0; i < n; i=i+1) {
+      if (i > 0) {
+        result += ', ';
+      }
+      result += toStringQ(v[i], quote);
+    }
+    return result + ']';
+  }
+  let result2 = '';
+  if (v.$class) { // branded value
+    let cl = v.$class;
+    if (typeof cl === 'object' && cl.$coll && cl.$length) {
+      cl = unboxColl(cl);
+    }
+    result2 += '<';
+    result2 += cl;
+    result2 += ':';
+    result2 += toStringQ(v.$data, quote);
+    result2 += '>';
+  } else { // record
+    // First need to sort
+    const sortable = [];
+    for (const key in v) {
+      sortable.push({ key: key, val: v[key] });
+    }
+    sortable.sort(function(a, b) { return a.key.localeCompare(b.key); });
+    result2 += '{';
+    let first = true;
+    const n = sortable.length;
+    for (let i = 0; i < n; i=i+1) {
+      if (first) { first = false; } else { result2 += ', '; }
+      result2 += toStringQ(sortable[i].key, quote) + '->' + toStringQ(sortable[i].val, quote);
+    }
+    result2 += '}';
+  }
+  return result2 + '';
+}
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-function sqlGetDateComponent(part, date) {
-	mustBeDate(date);
-	switch(part) {
-	case DAY:
-		return date.day;
-	case MONTH:
-		return date.month;
-	case YEAR:
-		return date.year;
-	default:
-		throw new Error("Uninterpretable part: " + part);
-	}
+/* JavaScript runtime for Uri component */
+
+function uriEncode(v) {
+  return encodeURIComponent(v);
 }
 
-function sqlDateFromString(stringDate) {
-	if (typeof stringDate === "string") {
-		parts = stringDate.split("-");
-		if (parts.length === 3)
-		    return makeDate(Number(parts[0]), Number(parts[1]), Number(parts[2]));
-		throw new Error("Malformed string date: " + stringDate);
-	}
-	throw new Error("Expected a date in string form but got " + JSON.stringify(stringDate));
+function uriDecode(v) {
+  return decodeURIComponent(v);
 }
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-function sqlDateDurationFromString(stringDuration) {
-	// TODO verify what the string format for durations is going to be.
-	// Here we assume a number adjoined to a valid unit with a dash.
-	if (typeof stringDuration === "string") {
-		parts = stringDuration.split("-");
-		if (parts.length === 2) {
-			mustBeUnit(parts[1]);
-		    return {"duration": Number(parts[0]), "unit": parts[1]};
-			throw new Error("Malformed string duration: " + stringDuration);
-		}
-		throw new Error("Expected a duration in string form but got " + JSON.stringify(stringDuration));
-	}
-}
+/* JavaScript runtime for SqlDate component */
 
-function sqlDatePointPlus(date, duration) {
-	mustBeDate(date);
-	mustBeDuration(duration);
-	switch(duration.unit) {
-	case DAY:
-		return dateNewDay(date, date.day + duration.duration);
-	case MONTH:
-		return dateNewMonth(date, date.month + duration.duration);
-	case YEAR:
-		return dateNewYear(date, date.year + duration.duration);
-	default:
-		throw new Error("Unexpected state (not supposed to happen)");
-	}
-}
+/* Utilities */
+const DAY = "DAY";
+const MONTH = "MONTH";
+const YEAR = "YEAR";
 
-function sqlDatePointMinus(date, duration) {
-	mustBeDate(date);
-	mustBeDuration(duration);
-	switch(duration.unit) {
-	case DAY:
-		return dateNewDay(date, date.day - duration.duration);
-	case MONTH:
-		return dateNewMonth(date, date.month - duration.duration);
-	case YEAR:
-		return dateNewYear(date, date.year - duration.duration);
-	default:
-		throw new Error("Unexpected bad unit (not supposed to happen)");
-	}
-}
-
-function sqlDatePointNe(date1, date2) {
-	mustBeDate(date1);
-	mustBeDate(date2);
-	return compareDates(date1, date2) != 0;
-}
-
-function sqlDatePointLt(date1, date2) {
-	mustBeDate(date1);
-	mustBeDate(date2);
-	return compareDates(date1, date2) < 0;
-}
-
-function sqlDatePointLe(date1, date2) {
-	mustBeDate(date1);
-	mustBeDate(date2);
-	return compareDates(date1, date2) <= 0;
-}
-
-function sqlDatePointGt(date1, date2) {
-	mustBeDate(date1);
-	mustBeDate(date2);
-	return compareDates(date1, date2) > 0;
-}
-
-function sqlDatePointGe(date1, date2) {
-	mustBeDate(date1);
-	mustBeDate(date2);
-	return compareDates(date1, date2) >= 0;
-}
-
-function sqlDateDurationBetween(date1, date) {
-	throw new Error("We don't know how to do 'duration between' dates yet");
-}
-
-function compareDates(date1, date2) {
-     // java.lang.System.out.println("Comparing " + JSON.stringify(date1) + " and " + JSON.stringify(date2) + " = ");
-	if (date1.year < date2.year)
-		return -1;
-	if (date1.year > date2.year)
-		return 1;
-	if (date1.month < date2.month)
-		return -1;
-	if (date1.month > date2.month)
-		return 1;
-	if (date1.day < date2.day)
-		return -1;
-	if (date1.day > date2.day)
-		return 1;
-	return 0;
-}
-
-function dateNewYear(date, year) {
-	return makeDate(year, date.month, date.day);
-}
-
-function dateNewMonth(date, month) {
-	/* Use Javascript Date object to normalize out-of-range month */
-	var jsDate = new Date(date.year, month-1, date.day);
-        return makeDate(jsDate.getFullYear(), jsDate.getMonth()+1, jsDate.getDate());
-}
-
-function dateNewDay(date, day) {
-    	/* Use Javascript Date object to normalize out-of-range day */
-    	var jsDate = new Date(date.year, date.month-1, day);
-    	return makeDate(jsDate.getFullYear(), jsDate.getMonth()+1, jsDate.getDate());
-}
-
-function makeDate(year, month, day) {
-	return {"year": year, "month": month, "day": day};
+function boxDate(year, month, day) {
+  return { "$foreign" : { "$date" : { "day": day, "month": month, "year": year } } };
 }
 
 function mustBeDate(date) {
-	if (typeof date === "object" && "year" in date && "month" in date && "day" in date)
-		return;
-	throw new Error("Expected a date but got " + JSON.stringify(date));
-}
-
-function mustBeDuration(duration) {
-	if (typeof duration === "object" && "duration" in duration && "unit" in duration) {
-		mustBeUnit(duration.unit);
-		return;
-	}
-	throw new Error("Expected a duration but got " + JSON.stringify(duration));
+  if ("$foreign" in date && "$date" in date["$foreign"]) {
+    const d = date.$foreign.$date;
+    if (typeof d === "object" && "year" in d && "month" in d && "day" in d)
+	    return d;
+  }
+  throw new Error("Expected a date but got " + JSON.stringify(date));
 }
 
 function mustBeUnit(unit) {
-	if (unit === DAY || unit === MONTH || unit === YEAR)
-		return;
-	throw new Error("Expected a duration unit but got " + JSON.stringify(unit));
+  if (unit === DAY || unit === MONTH || unit === YEAR)
+	  return;
+  throw new Error("Expected a period unit but got " + JSON.stringify(unit));
+}
+
+function mustBePeriod(period) {
+  if (period.$foreign && period.$foreign.$interval) {
+    const i = period.$foreign.$interval;
+    if (typeof i === "object" && "period" in i && "unit" in i) {
+	    mustBeUnit(i.unit);
+	    return i;
+    }
+  }
+  throw new Error("Expected a period but got " + JSON.stringify(period));
+}
+
+function compareDates(date1, date2) {
+  if (date1.year < date2.year)
+	  return -1;
+  if (date1.year > date2.year)
+	  return 1;
+  if (date1.month < date2.month)
+	  return -1;
+  if (date1.month > date2.month)
+	  return 1;
+  if (date1.day < date2.day)
+	  return -1;
+  if (date1.day > date2.day)
+	  return 1;
+  return 0;
+}
+
+/* Date */
+function dateFromString(stringDate) {
+  if (typeof stringDate === "string") {
+	  parts = stringDate.split("-");
+	  if (parts.length === 3) {
+      return boxDate(Number(parts[0]), Number(parts[1]), Number(parts[2]));
+    }
+	  throw new Error("Malformed string date: " + stringDate);
+  }
+  throw new Error("Expected a date in string form but got " + JSON.stringify(stringDate));
+}
+
+function dateGetYear(date) {
+  const d = mustBeDate(date);
+	return { "$nat" : d.year };
+}
+
+function dateGetMonth(date) {
+  const d = mustBeDate(date);
+	return { "$nat" : d.month };
+}
+
+function dateGetDay(date) {
+  const d = mustBeDate(date);
+	return { "$nat" : d.day };
+}
+
+function dateNe(date1, date2) {
+  const d1 = mustBeDate(date1);
+  var d2 = mustBeDate(date2);
+  return compareDates(d1, d2) != 0;
+}
+
+function dateLt(date1, date2) {
+  const d1 = mustBeDate(date1);
+  const d2 = mustBeDate(date2);
+  return compareDates(d1, d2) < 0;
+}
+
+function dateLe(date1, date2) {
+  const d1 = mustBeDate(date1);
+  const d2 = mustBeDate(date2);
+  return compareDates(d1, d2) <= 0;
+}
+
+function dateGt(date1, date2) {
+  const d1 = mustBeDate(date1);
+  const d2 = mustBeDate(date2);
+  return compareDates(d1, d2) > 0;
+}
+
+function dateGe(date1, date2) {
+  const d1 = mustBeDate(date1);
+  const d2 = mustBeDate(date2);
+  return compareDates(d1, d2) >= 0;
+}
+
+
+function dateSetYear(date, year) {
+  const d = mustBeDate(date);
+  return boxDate(year, d.month, d.day);
+}
+
+function dateSetMonth(date, month) {
+  const d = mustBeDate(date);
+  /* Use Javascript Date object to normalize out-of-range month */
+  const jsDate = new Date(d.year, month-1, d.day);
+  return boxDate(jsDate.getFullYear(), jsDate.getMonth()+1, jsDate.getDate());
+}
+
+function dateSetDay(date, day) {
+  const d = mustBeDate(date);
+  /* Use Javascript Date object to normalize out-of-range day */
+  const jsDate = new Date(d.year, d.month-1, day);
+  return boxDate(jsDate.getFullYear(), jsDate.getMonth()+1, jsDate.getDate());
+}
+
+/* Period */
+function periodFromString(stringPeriod) {
+  // TODO verify what the string format for periods is going to be.
+  // Here we assume a number adjoined to a valid unit with a dash.
+  if (typeof stringPeriod === "string") {
+	  parts = stringPeriod.split("-");
+	  if (parts.length === 2) {
+	    mustBeUnit(parts[1]);
+	    return {"period": Number(parts[0]), "unit": parts[1]};
+	    throw new Error("Malformed string period: " + stringPeriod);
+	  }
+	  throw new Error("Expected a period in string form but got " + JSON.stringify(stringPeriod));
+  }
+}
+
+function periodPlus(date, period) {
+  const d = mustBeDate(date);
+  const i = mustBePeriod(period);
+  switch(i.unit) {
+  case DAY:
+	  return dateSetDay(d, d.day + i.period);
+  case MONTH:
+	  return dateSetMonth(d, d.month + i.period);
+  case YEAR:
+	  return dateSetYear(d, d.year + i.period);
+  default:
+	  throw new Error("Unexpected state (not supposed to happen)");
+  }
+}
+
+function periodMinus(date, period) {
+  const d = mustBeDate(date);
+  const i = mustBePeriod(period);
+  switch(i.unit) {
+  case DAY:
+	  return dateNewDay(d, d.day - i.period);
+  case MONTH:
+	  return dateNewMonth(d, d.month - i.period);
+  case YEAR:
+	  return dateNewYear(de, d.year - i.period);
+  default:
+	  throw new Error("Unexpected bad unit (not supposed to happen)");
+  }
+}
+
+function periodBetween(date1, date) {
+  throw new Error("We don't know how to do 'period between' dates yet");
 }
